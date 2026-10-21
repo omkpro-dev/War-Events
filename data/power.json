@@ -1,0 +1,2280 @@
+{
+ "asOf": "2026-10-20",
+ "sources": {
+  "spending": "SIPRI Military Expenditure Database, April 2026 release (2025 data, current US$), and SIPRI fact sheet 'Trends in world military expenditure, 2025'",
+  "forces": "Global Firepower 2026 country pages (personnel = active personnel; combat_aircraft = fighters + attack types; warships = destroyers + frigates, corvettes excluded; carriers = aircraft carriers, helicopter carriers excluded)",
+  "nuclear": "FAS Status of World Nuclear Forces 2026 (total inventory, including retired warheads awaiting dismantlement)"
+ },
+ "military": {
+  "US": {
+   "spend_bn": 954.4,
+   "spend_gdp": 3.1,
+   "personnel": 1333030,
+   "tanks": 4666,
+   "combat_aircraft": 2717,
+   "warships": 83,
+   "submarines": 66,
+   "carriers": 11,
+   "warheads": 5042,
+   "sphere": {
+    "projects": "Global network of bases and treaty alliances (NATO, Japan, South Korea, Australia), largest arms exporter, carrier fleets, dollar and trade leverage",
+    "in_sphere_of": "none",
+    "contested": "Indo-Pacific by China, Europe by Russia, Middle East by Iran",
+    "note": "World's largest spender at 3.1% of GDP; spending fell 7.5% in real terms in 2025. At war with Iran since February 2026, with a ceasefire collapsing in July. Excludes 27 corvettes and 9 amphibious helicopter carriers; destroyer count includes cruisers."
+   },
+   "sources": [
+    "https://www.globalfirepower.com/country-military-strength-detail.php?country_id=united-states-of-america",
+    "https://www.sipri.org/sites/default/files/2026-04/2604_milex_2025.pdf",
+    "https://fas.org/initiative/status-world-nuclear-forces/"
+   ],
+   "ppp": 1.0
+  },
+  "CN": {
+   "spend_bn": 335.5,
+   "spend_gdp": 1.7,
+   "personnel": 2035000,
+   "tanks": 5870,
+   "combat_aircraft": 1814,
+   "warships": 99,
+   "submarines": 61,
+   "carriers": 3,
+   "warheads": 620,
+   "sphere": {
+    "projects": "Belt and Road investment and lending, largest navy by hull count, base in Djibouti, arms sales, coast guard and maritime militia pressure",
+    "in_sphere_of": "none",
+    "contested": "South China Sea, Taiwan Strait, Indian Ocean and Pacific islands, with the US and its partners",
+    "note": "SIPRI estimates spending at $336bn, up 7.4% in 2025 and the 31st straight annual rise. Fastest-growing nuclear arsenal. Excludes 50 corvettes and 4 amphibious helicopter carriers."
+   },
+   "sources": [
+    "https://www.globalfirepower.com/country-military-strength-detail.php?country_id=china",
+    "https://www.sipri.org/sites/default/files/2026-04/2604_milex_2025.pdf",
+    "https://fas.org/initiative/status-world-nuclear-forces/"
+   ],
+   "ppp": 2.116
+  },
+  "RU": {
+   "spend_bn": 190.4,
+   "spend_gdp": 7.5,
+   "personnel": 1320000,
+   "tanks": 5630,
+   "combat_aircraft": 1559,
+   "warships": 25,
+   "submarines": 66,
+   "carriers": 1,
+   "warheads": 5420,
+   "sphere": {
+    "projects": "Military power and nuclear deterrence, CSTO, energy exports, arms sales, Africa Corps presence in the Sahel",
+    "in_sphere_of": "none",
+    "contested": "Ukraine and Eastern Europe with NATO, Central Asia and South Caucasus with China and Türkiye, Syria",
+    "note": "Largest nuclear inventory. Military spending reached 7.5% of GDP and 20% of government spending in 2025. War in Ukraine continues; US-brokered talks have stalled. Excludes 79 corvettes."
+   },
+   "sources": [
+    "https://www.globalfirepower.com/country-military-strength-detail.php?country_id=russia",
+    "https://www.sipri.org/sites/default/files/2026-04/2604_milex_2025.pdf",
+    "https://fas.org/initiative/status-world-nuclear-forces/",
+    "https://english.ahram.org.eg/News/576575.aspx"
+   ],
+   "ppp": 2.825
+  },
+  "IN": {
+   "spend_bn": 92.1,
+   "spend_gdp": 2.3,
+   "personnel": 1431000,
+   "tanks": 3913,
+   "combat_aircraft": 600,
+   "warships": 31,
+   "submarines": 18,
+   "carriers": 2,
+   "warheads": 190,
+   "sphere": {
+    "projects": "Indian Ocean naval presence, regional aid and infrastructure, Quad membership, growing arms exports",
+    "in_sphere_of": "none",
+    "contested": "Himalayan border with China, rivalry with Pakistan, competition with China in South Asia and the Indian Ocean",
+    "note": "Fifth-largest spender in 2025 ($92bn, up 8.9%). Fought a brief air and missile conflict with Pakistan in May 2025. Excludes 21 corvettes."
+   },
+   "sources": [
+    "https://www.globalfirepower.com/country-military-strength-detail.php?country_id=india",
+    "https://www.sipri.org/sites/default/files/2026-04/2604_milex_2025.pdf",
+    "https://fas.org/initiative/status-world-nuclear-forces/"
+   ],
+   "ppp": 4.347
+  },
+  "GB": {
+   "spend_bn": 89.0,
+   "spend_gdp": 2.4,
+   "personnel": 141330,
+   "tanks": 288,
+   "combat_aircraft": 141,
+   "warships": 13,
+   "submarines": 10,
+   "carriers": 2,
+   "warheads": 225,
+   "sphere": {
+    "projects": "NATO nuclear power, carrier strike group, AUKUS, Five Eyes, overseas bases in Cyprus, Gulf and Diego Garcia",
+    "in_sphere_of": "US-led alliance system",
+    "contested": "Russian pressure in the North Atlantic and Baltic",
+    "note": "Spending dipped 2% in 2025 to 2.4% of GDP, short of its 2.5% target for 2027. Leading supporter of Ukraine."
+   },
+   "sources": [
+    "https://www.globalfirepower.com/country-military-strength-detail.php?country_id=united-kingdom",
+    "https://www.sipri.org/sites/default/files/2026-04/2604_milex_2025.pdf",
+    "https://fas.org/initiative/status-world-nuclear-forces/"
+   ],
+   "ppp": 1.122
+  },
+  "FR": {
+   "spend_bn": 68.0,
+   "spend_gdp": 2.0,
+   "personnel": 264000,
+   "tanks": 427,
+   "combat_aircraft": 223,
+   "warships": 16,
+   "submarines": 9,
+   "carriers": 1,
+   "warheads": 370,
+   "sphere": {
+    "projects": "Independent nuclear deterrent, overseas territories and bases (Djibouti, UAE, Indo-Pacific), arms exports, EU defence leadership",
+    "in_sphere_of": "US-led alliance system (NATO)",
+    "contested": "Sahel, where Russian influence displaced French forces",
+    "note": "Europe's only EU nuclear power. Excludes 3 amphibious helicopter carriers; GFP lists no separate attack-aircraft category for France."
+   },
+   "sources": [
+    "https://www.globalfirepower.com/country-military-strength-detail.php?country_id=france",
+    "https://www.sipri.org/sites/default/files/2026-04/2604_milex_2025.pdf",
+    "https://fas.org/initiative/status-world-nuclear-forces/"
+   ],
+   "ppp": 1.306
+  },
+  "DE": {
+   "spend_bn": 113.6,
+   "spend_gdp": 2.3,
+   "personnel": 184324,
+   "tanks": 296,
+   "combat_aircraft": 190,
+   "warships": 11,
+   "submarines": 6,
+   "carriers": 0,
+   "warheads": 0,
+   "sphere": {
+    "projects": "Economic weight, EU leadership, NATO brigade in Lithuania, major supplier of aid to Ukraine",
+    "in_sphere_of": "US-led alliance system (NATO)",
+    "contested": "Russian threat on NATO's eastern flank",
+    "note": "Spending rose 24% in 2025 to $114bn, making it the world's fourth-largest spender; aims for 3.5% of GDP by 2029. Excludes 6 corvettes."
+   },
+   "sources": [
+    "https://www.globalfirepower.com/country-military-strength-detail.php?country_id=germany",
+    "https://www.sipri.org/sites/default/files/2026-04/2604_milex_2025.pdf"
+   ],
+   "ppp": 1.246
+  },
+  "JP": {
+   "spend_bn": 62.2,
+   "spend_gdp": 1.4,
+   "personnel": 251500,
+   "tanks": 734,
+   "combat_aircraft": 264,
+   "warships": 49,
+   "submarines": 23,
+   "carriers": 0,
+   "warheads": 0,
+   "sphere": {
+    "projects": "US alliance, development aid and investment in Southeast Asia, security partnerships with Australia, the Philippines and Europe",
+    "in_sphere_of": "US-led alliance system",
+    "contested": "East China Sea (Senkaku Islands) with China, North Korean missiles, Russia in the north",
+    "note": "Spending up 9.7% in 2025 as Japan builds counterstrike capability. GFP counts 4 helicopter destroyers (Izumo and Hyuga classes) as helicopter carriers, excluded here; Izumo-class conversion to carry F-35Bs is under way."
+   },
+   "sources": [
+    "https://www.globalfirepower.com/country-military-strength-detail.php?country_id=japan",
+    "https://www.sipri.org/sites/default/files/2026-04/2604_milex_2025.pdf"
+   ],
+   "ppp": 1.542
+  },
+  "KR": {
+   "spend_bn": 47.8,
+   "spend_gdp": 2.6,
+   "personnel": 450000,
+   "tanks": 1831,
+   "combat_aircraft": 340,
+   "warships": 32,
+   "submarines": 22,
+   "carriers": 0,
+   "warheads": 0,
+   "sphere": {
+    "projects": "US alliance, rapidly growing arms exports (tanks, artillery, aircraft) to Europe and Asia",
+    "in_sphere_of": "US-led alliance system",
+    "contested": "Korean peninsula, facing North Korea, with Chinese and Russian pressure",
+    "note": "Hosts about 28,500 US troops. Major arms exporter to Poland. Excludes 3 corvettes and 2 amphibious helicopter carriers."
+   },
+   "sources": [
+    "https://www.globalfirepower.com/country-military-strength-detail.php?country_id=south-korea",
+    "https://www.sipri.org/sites/default/files/2026-04/2604_milex_2025.pdf"
+   ],
+   "ppp": 1.742
+  },
+  "KP": {
+   "spend_bn": null,
+   "spend_gdp": null,
+   "personnel": 1320000,
+   "tanks": 4895,
+   "combat_aircraft": 455,
+   "warships": 4,
+   "submarines": 24,
+   "carriers": 0,
+   "warheads": 60,
+   "sphere": {
+    "projects": "Nuclear and missile deterrence, arms and troop transfers to Russia",
+    "in_sphere_of": "China and Russia",
+    "contested": "Korean peninsula with South Korea and the US",
+    "note": "SIPRI gives no spending estimate. Sent troops and munitions to support Russia. Nuclear count is an FAS estimate of assembled warheads. Submarine figure includes many small and midget boats; excludes 8 corvettes."
+   },
+   "sources": [
+    "https://www.globalfirepower.com/country-military-strength-detail.php?country_id=north-korea",
+    "https://www.sipri.org/sites/default/files/SIPRI-Milex-data-1949-2025.xlsx",
+    "https://fas.org/initiative/status-world-nuclear-forces/"
+   ]
+  },
+  "PK": {
+   "spend_bn": 11.9,
+   "spend_gdp": 2.9,
+   "personnel": 660000,
+   "tanks": 2677,
+   "combat_aircraft": 421,
+   "warships": 9,
+   "submarines": 8,
+   "carriers": 0,
+   "warheads": 170,
+   "sphere": {
+    "projects": "Nuclear deterrence against India, troops for Gulf partners, mediation role in US-Iran talks",
+    "in_sphere_of": "China (main arms supplier), with close Saudi ties",
+    "contested": "Kashmir and the Indian border, Afghan border",
+    "note": "Signed a mutual defence pact with Saudi Arabia in September 2025. Hosted US-Iran talks in April 2026. Excludes 6 corvettes."
+   },
+   "sources": [
+    "https://www.globalfirepower.com/country-military-strength-detail.php?country_id=pakistan",
+    "https://www.sipri.org/sites/default/files/2026-04/2604_milex_2025.pdf",
+    "https://fas.org/initiative/status-world-nuclear-forces/"
+   ],
+   "ppp": 4.119
+  },
+  "IL": {
+   "spend_bn": 48.3,
+   "spend_gdp": 7.8,
+   "personnel": 169500,
+   "tanks": 1300,
+   "combat_aircraft": 284,
+   "warships": 0,
+   "submarines": 6,
+   "carriers": 0,
+   "warheads": 90,
+   "sphere": {
+    "projects": "Qualitative military edge, strikes across the region, intelligence and arms exports, US alliance",
+    "in_sphere_of": "US",
+    "contested": "Gaza, Lebanon, Syria, Yemen and Iran",
+    "note": "Spending reached 7.8% of GDP in 2025. Joined the US in war on Iran from February 2026. Undeclared nuclear arsenal estimated by FAS. Navy has corvettes (7, excluded) and no frigates or destroyers."
+   },
+   "sources": [
+    "https://www.globalfirepower.com/country-military-strength-detail.php?country_id=israel",
+    "https://www.sipri.org/sites/default/files/2026-04/2604_milex_2025.pdf",
+    "https://fas.org/initiative/status-world-nuclear-forces/",
+    "https://www.dawn.com/news/1976395/iranian-army-fully-prepared-against-threats-spokesman-says"
+   ],
+   "ppp": 0.99
+  },
+  "IR": {
+   "spend_bn": 7.4,
+   "spend_gdp": 2.1,
+   "personnel": 610000,
+   "tanks": 2675,
+   "combat_aircraft": 209,
+   "warships": 7,
+   "submarines": 25,
+   "carriers": 0,
+   "warheads": 0,
+   "sphere": {
+    "projects": "Network of allied armed groups (Hezbollah, Houthis, Iraqi militias), missiles and drones, threats to Gulf shipping",
+    "in_sphere_of": "none; aligned with Russia and China",
+    "contested": "Iraq, Lebanon, Yemen, Syria, Gulf and Strait of Hormuz",
+    "note": "Under US and Israeli attack since February 2026; supreme leader Ali Khamenei was killed. Figures predate war losses. Submarines include midget boats. Excludes 3 corvettes."
+   },
+   "sources": [
+    "https://www.globalfirepower.com/country-military-strength-detail.php?country_id=iran",
+    "https://www.sipri.org/sites/default/files/2026-04/2604_milex_2025.pdf",
+    "https://www.dawn.com/news/1976395/iranian-army-fully-prepared-against-threats-spokesman-says"
+   ],
+   "ppp": 5.02
+  },
+  "TR": {
+   "spend_bn": 30.0,
+   "spend_gdp": 1.9,
+   "personnel": 481000,
+   "tanks": 2284,
+   "combat_aircraft": 201,
+   "warships": 17,
+   "submarines": 14,
+   "carriers": 0,
+   "warheads": 0,
+   "sphere": {
+    "projects": "NATO's second-largest army, drone and arms exports, bases in Syria, Iraq, Qatar, Somalia and Libya",
+    "in_sphere_of": "NATO member pursuing independent policy",
+    "contested": "Syria, Eastern Mediterranean with Greece and Cyprus, South Caucasus, Libya",
+    "note": "Leading backer of Syria's post-Assad government. GFP counts TCG Anadolu as a helicopter carrier, excluded here; GFP lists no separate attack-aircraft category. Excludes 9 corvettes."
+   },
+   "sources": [
+    "https://www.globalfirepower.com/country-military-strength-detail.php?country_id=turkey",
+    "https://www.sipri.org/sites/default/files/2026-04/2604_milex_2025.pdf"
+   ],
+   "ppp": 2.435
+  },
+  "SA": {
+   "spend_bn": 83.2,
+   "spend_gdp": 6.5,
+   "personnel": 247000,
+   "tanks": 1085,
+   "combat_aircraft": 364,
+   "warships": 7,
+   "submarines": 0,
+   "carriers": 0,
+   "warheads": 0,
+   "sphere": {
+    "projects": "Oil wealth, investment and aid, large US and European arms purchases, intervention in Yemen",
+    "in_sphere_of": "US security partner",
+    "contested": "Yemen with the Houthis and Iran, Gulf security",
+    "note": "Spending $83bn (6.5% of GDP), SIPRI estimate. Defence pact with Pakistan since 2025. Houthi strikes hit Saudi energy sites during the 2026 Iran war. Excludes 9 corvettes."
+   },
+   "sources": [
+    "https://www.globalfirepower.com/country-military-strength-detail.php?country_id=saudi-arabia",
+    "https://www.sipri.org/sites/default/files/2026-04/2604_milex_2025.pdf"
+   ],
+   "ppp": 2.136
+  },
+  "AE": {
+   "spend_bn": null,
+   "spend_gdp": null,
+   "personnel": 65000,
+   "tanks": 354,
+   "combat_aircraft": 139,
+   "warships": 0,
+   "submarines": 0,
+   "carriers": 0,
+   "warheads": 0,
+   "sphere": {
+    "projects": "Investment, ports and logistics, backing of local forces in Sudan, Libya, Yemen and the Horn of Africa",
+    "in_sphere_of": "US security partner",
+    "contested": "Sudan, Yemen, Horn of Africa, Gulf security with Iran",
+    "note": "SIPRI has no spending estimate for recent years. Hosts US forces at Al Dhafra. Navy relies on corvettes (11, excluded)."
+   },
+   "sources": [
+    "https://www.globalfirepower.com/country-military-strength-detail.php?country_id=united-arab-emirates",
+    "https://www.sipri.org/sites/default/files/SIPRI-Milex-data-1949-2025.xlsx"
+   ],
+   "ppp": 1.578
+  },
+  "EG": {
+   "spend_bn": 2.5,
+   "spend_gdp": 0.6,
+   "personnel": 438500,
+   "tanks": 3620,
+   "combat_aircraft": 332,
+   "warships": 13,
+   "submarines": 8,
+   "carriers": 0,
+   "warheads": 0,
+   "sphere": {
+    "projects": "Largest Arab army, Suez Canal control, mediation in Gaza",
+    "in_sphere_of": "US (aid), with Gulf financial backing",
+    "contested": "Gaza border, Sudan, Libya, Nile dam dispute with Ethiopia",
+    "note": "Spending low in dollar terms after currency devaluation. Operates 2 Mistral-class helicopter carriers, excluded here. Excludes 7 corvettes."
+   },
+   "sources": [
+    "https://www.globalfirepower.com/country-military-strength-detail.php?country_id=egypt",
+    "https://www.sipri.org/sites/default/files/SIPRI-Milex-data-1949-2025.xlsx"
+   ],
+   "ppp": 6.547
+  },
+  "UA": {
+   "spend_bn": 84.1,
+   "spend_gdp": 39.6,
+   "personnel": 900000,
+   "tanks": 1121,
+   "combat_aircraft": 118,
+   "warships": 0,
+   "submarines": 0,
+   "carriers": 0,
+   "warheads": 0,
+   "sphere": {
+    "projects": "Battle-tested drone and long-range strike capability",
+    "in_sphere_of": "Western (EU and NATO support)",
+    "contested": "At war with Russia, which occupies parts of the east and south",
+    "note": "Spending is about 40% of GDP and 63% of government spending, the highest burden SIPRI recorded. Personnel figure is a GFP estimate. Large war losses make equipment counts uncertain. Navy has no major surface combatants."
+   },
+   "sources": [
+    "https://www.globalfirepower.com/country-military-strength-detail.php?country_id=ukraine",
+    "https://www.sipri.org/sites/default/files/2026-04/2604_milex_2025.pdf",
+    "https://english.ahram.org.eg/News/576575.aspx"
+   ],
+   "ppp": 3.223
+  },
+  "PL": {
+   "spend_bn": 46.8,
+   "spend_gdp": 4.5,
+   "personnel": 250000,
+   "tanks": 798,
+   "combat_aircraft": 70,
+   "warships": 2,
+   "submarines": 1,
+   "carriers": 0,
+   "warheads": 0,
+   "sphere": {
+    "projects": "Frontline NATO state, hub for aid to Ukraine, large purchases of US and Korean arms",
+    "in_sphere_of": "US-led alliance system (NATO)",
+    "contested": "Russian and Belarusian pressure on the eastern border",
+    "note": "Spending rose 23% in 2025 to 4.5% of GDP, the highest share in NATO. Excludes 2 corvettes."
+   },
+   "sources": [
+    "https://www.globalfirepower.com/country-military-strength-detail.php?country_id=poland",
+    "https://www.sipri.org/sites/default/files/2026-04/2604_milex_2025.pdf"
+   ],
+   "ppp": 1.909
+  },
+  "IT": {
+   "spend_bn": 48.1,
+   "spend_gdp": 1.9,
+   "personnel": 165500,
+   "tanks": 203,
+   "combat_aircraft": 153,
+   "warships": 17,
+   "submarines": 8,
+   "carriers": 2,
+   "warheads": 0,
+   "sphere": {
+    "projects": "Mediterranean naval power, NATO bases, missions in Lebanon and the Balkans",
+    "in_sphere_of": "US-led alliance system (NATO)",
+    "contested": "Libya, migration routes, Russian presence in the Mediterranean",
+    "note": "Spending up 20% in 2025. Carriers are Cavour and Garibaldi, both light carriers as counted by GFP."
+   },
+   "sources": [
+    "https://www.globalfirepower.com/country-military-strength-detail.php?country_id=italy",
+    "https://www.sipri.org/sites/default/files/2026-04/2604_milex_2025.pdf"
+   ],
+   "ppp": 1.45
+  },
+  "ES": {
+   "spend_bn": 40.2,
+   "spend_gdp": 2.1,
+   "personnel": 121802,
+   "tanks": 298,
+   "combat_aircraft": 148,
+   "warships": 11,
+   "submarines": 2,
+   "carriers": 1,
+   "warheads": 0,
+   "sphere": {
+    "projects": "NATO and EU missions, links to Latin America and North Africa",
+    "in_sphere_of": "US-led alliance system (NATO)",
+    "contested": "North Africa and Ceuta and Melilla with Morocco",
+    "note": "Spending rose 50% in 2025 to 2.1% of GDP. The carrier is Juan Carlos I, an amphibious ship able to fly jump-jets, counted by GFP."
+   },
+   "sources": [
+    "https://www.globalfirepower.com/country-military-strength-detail.php?country_id=spain",
+    "https://www.sipri.org/sites/default/files/2026-04/2604_milex_2025.pdf"
+   ],
+   "ppp": 1.55
+  },
+  "AU": {
+   "spend_bn": 35.3,
+   "spend_gdp": 1.9,
+   "personnel": 58910,
+   "tanks": 46,
+   "combat_aircraft": 95,
+   "warships": 10,
+   "submarines": 6,
+   "carriers": 0,
+   "warheads": 0,
+   "sphere": {
+    "projects": "US alliance and AUKUS, Pacific islands aid and policing, Five Eyes",
+    "in_sphere_of": "US-led alliance system",
+    "contested": "South Pacific with China",
+    "note": "Will acquire nuclear-powered submarines under AUKUS. Excludes 2 Canberra-class amphibious helicopter carriers."
+   },
+   "sources": [
+    "https://www.globalfirepower.com/country-military-strength-detail.php?country_id=australia",
+    "https://www.sipri.org/sites/default/files/2026-04/2604_milex_2025.pdf"
+   ],
+   "ppp": 1.104
+  },
+  "CA": {
+   "spend_bn": 37.5,
+   "spend_gdp": 1.6,
+   "personnel": 63500,
+   "tanks": 74,
+   "combat_aircraft": 66,
+   "warships": 12,
+   "submarines": 4,
+   "carriers": 0,
+   "warheads": 0,
+   "sphere": {
+    "projects": "NATO and NORAD, Arctic presence, missions in Latvia",
+    "in_sphere_of": "US-led alliance system",
+    "contested": "Arctic with Russia; trade and political tensions with the US",
+    "note": "Spending up 23% in 2025 to 1.6% of GDP. Fleet of 12 Halifax-class frigates."
+   },
+   "sources": [
+    "https://www.globalfirepower.com/country-military-strength-detail.php?country_id=canada",
+    "https://www.sipri.org/sites/default/files/2026-04/2604_milex_2025.pdf"
+   ],
+   "ppp": 1.198
+  },
+  "BR": {
+   "spend_bn": 23.9,
+   "spend_gdp": 1.1,
+   "personnel": 376000,
+   "tanks": 294,
+   "combat_aircraft": 74,
+   "warships": 8,
+   "submarines": 6,
+   "carriers": 0,
+   "warheads": 0,
+   "sphere": {
+    "projects": "Largest South American military, BRICS diplomacy, regional peacekeeping",
+    "in_sphere_of": "none; non-aligned regional power",
+    "contested": "Amazon border security, Venezuela crisis",
+    "note": "Spending up 13% in 2025. Building nuclear-powered submarine. Excludes 2 corvettes and 1 helicopter carrier (Atlântico)."
+   },
+   "sources": [
+    "https://www.globalfirepower.com/country-military-strength-detail.php?country_id=brazil",
+    "https://www.sipri.org/sites/default/files/2026-04/2604_milex_2025.pdf"
+   ],
+   "ppp": 2.187
+  },
+  "ID": {
+   "spend_bn": 15.0,
+   "spend_gdp": 1.0,
+   "personnel": 404500,
+   "tanks": 331,
+   "combat_aircraft": 75,
+   "warships": 10,
+   "submarines": 4,
+   "carriers": 0,
+   "warheads": 0,
+   "sphere": {
+    "projects": "ASEAN leadership, BRICS member, non-aligned diplomacy",
+    "in_sphere_of": "none; balances US and China",
+    "contested": "Natuna waters, overlapping Chinese South China Sea claims",
+    "note": "Spending rose to 1.0% of GDP in 2025. Navy relies heavily on corvettes (26, excluded)."
+   },
+   "sources": [
+    "https://www.globalfirepower.com/country-military-strength-detail.php?country_id=indonesia",
+    "https://www.sipri.org/sites/default/files/2026-04/2604_milex_2025.pdf"
+   ],
+   "ppp": 3.49
+  },
+  "VN": {
+   "spend_bn": 10.5,
+   "spend_gdp": 2.2,
+   "personnel": 450000,
+   "tanks": 1999,
+   "combat_aircraft": 61,
+   "warships": 9,
+   "submarines": 6,
+   "carriers": 0,
+   "warheads": 0,
+   "sphere": {
+    "projects": "Island fortification in the Spratlys, 'bamboo diplomacy' balancing major powers",
+    "in_sphere_of": "none; hedges between China, Russia and the US",
+    "contested": "South China Sea with China",
+    "note": "Spending up to 2.2% of GDP in 2025. Excludes 17 corvettes. GFP lists no separate attack-aircraft category; Su-22s may be counted elsewhere."
+   },
+   "sources": [
+    "https://www.globalfirepower.com/country-military-strength-detail.php?country_id=vietnam",
+    "https://www.sipri.org/sites/default/files/2026-04/2604_milex_2025.pdf"
+   ],
+   "ppp": 3.571
+  },
+  "TW": {
+   "spend_bn": 18.2,
+   "spend_gdp": 2.1,
+   "personnel": 230000,
+   "tanks": 1090,
+   "combat_aircraft": 258,
+   "warships": 25,
+   "submarines": 4,
+   "carriers": 0,
+   "warheads": 0,
+   "sphere": {
+    "projects": "Semiconductor industry, US arms purchases, unofficial ties",
+    "in_sphere_of": "US (unofficial security partner)",
+    "contested": "Claimed by China; Taiwan Strait faces regular Chinese military pressure",
+    "note": "Spending up 14% in 2025 to 2.1% of GDP; government targets 5% by 2030. Excludes 7 corvettes."
+   },
+   "sources": [
+    "https://www.globalfirepower.com/country-military-strength-detail.php?country_id=taiwan",
+    "https://www.sipri.org/sites/default/files/2026-04/2604_milex_2025.pdf"
+   ]
+  },
+  "PH": {
+   "spend_bn": 6.4,
+   "spend_gdp": 1.3,
+   "personnel": 160000,
+   "tanks": 18,
+   "combat_aircraft": 17,
+   "warships": 4,
+   "submarines": 0,
+   "carriers": 0,
+   "warheads": 0,
+   "sphere": {
+    "projects": "Hosts US forces under the EDCA agreement, maritime partnerships with Japan and Australia",
+    "in_sphere_of": "US-led alliance system",
+    "contested": "South China Sea (Scarborough Shoal, Second Thomas Shoal) with China",
+    "note": "Frequent coast guard confrontations with China. Combat aircraft are FA-50 light fighters. Excludes 1 corvette."
+   },
+   "sources": [
+    "https://www.globalfirepower.com/country-military-strength-detail.php?country_id=philippines",
+    "https://www.sipri.org/sites/default/files/SIPRI-Milex-data-1949-2025.xlsx"
+   ],
+   "ppp": 3.016
+  },
+  "TH": {
+   "spend_bn": 6.0,
+   "spend_gdp": 1.0,
+   "personnel": 360850,
+   "tanks": 744,
+   "combat_aircraft": 99,
+   "warships": 7,
+   "submarines": 0,
+   "carriers": 0,
+   "warheads": 0,
+   "sphere": {
+    "projects": "Mainland Southeast Asian regional role",
+    "in_sphere_of": "US treaty ally with close China ties",
+    "contested": "Cambodian border, where fighting broke out in 2025",
+    "note": "Excludes 5 corvettes. Its helicopter carrier Chakri Naruebet is excluded. No submarines; a Chinese-built boat has been delayed."
+   },
+   "sources": [
+    "https://www.globalfirepower.com/country-military-strength-detail.php?country_id=thailand",
+    "https://www.sipri.org/sites/default/files/SIPRI-Milex-data-1949-2025.xlsx"
+   ],
+   "ppp": 3.258
+  },
+  "MX": {
+   "spend_bn": 13.6,
+   "spend_gdp": 0.7,
+   "personnel": 387000,
+   "tanks": 0,
+   "combat_aircraft": 34,
+   "warships": 1,
+   "submarines": 0,
+   "carriers": 0,
+   "warheads": 0,
+   "sphere": {
+    "projects": "Mostly internal security role",
+    "in_sphere_of": "US",
+    "contested": "Cartel violence; US pressure on border, migration and cartels",
+    "note": "Spending fell 33% in 2025 to 0.7% of GDP. Personnel likely includes the National Guard. GFP lists no tanks. Excludes 3 corvettes."
+   },
+   "sources": [
+    "https://www.globalfirepower.com/country-military-strength-detail.php?country_id=mexico",
+    "https://www.sipri.org/sites/default/files/2026-04/2604_milex_2025.pdf"
+   ],
+   "ppp": 1.862
+  },
+  "DZ": {
+   "spend_bn": 25.4,
+   "spend_gdp": 8.8,
+   "personnel": 130000,
+   "tanks": 1485,
+   "combat_aircraft": 153,
+   "warships": 8,
+   "submarines": 6,
+   "carriers": 0,
+   "warheads": 0,
+   "sphere": {
+    "projects": "Largest military in North Africa and the Sahel",
+    "in_sphere_of": "Russia (main arms supplier), non-aligned",
+    "contested": "Western Sahara and rivalry with Morocco, Sahel and Mali border",
+    "note": "Spending reached 8.8% of GDP and 25% of government spending in 2025, Africa's largest. Excludes 8 corvettes."
+   },
+   "sources": [
+    "https://www.globalfirepower.com/country-military-strength-detail.php?country_id=algeria",
+    "https://www.sipri.org/sites/default/files/2026-04/2604_milex_2025.pdf"
+   ],
+   "ppp": 3.072
+  },
+  "NG": {
+   "spend_bn": 2.1,
+   "spend_gdp": 0.9,
+   "personnel": 230000,
+   "tanks": 330,
+   "combat_aircraft": 38,
+   "warships": 1,
+   "submarines": 0,
+   "carriers": 0,
+   "warheads": 0,
+   "sphere": {
+    "projects": "Regional power in West Africa and ECOWAS",
+    "in_sphere_of": "none; partners with US, UK and China",
+    "contested": "Insurgency in the north-east, Sahel coups and Russian presence nearby",
+    "note": "Spending rose 55% in 2025 to $2.1bn. Fighting Boko Haram, ISWAP and armed gangs."
+   },
+   "sources": [
+    "https://www.globalfirepower.com/country-military-strength-detail.php?country_id=nigeria",
+    "https://www.sipri.org/sites/default/files/SIPRI-Milex-data-1949-2025.xlsx"
+   ],
+   "ppp": 7.786
+  },
+  "ZA": {
+   "spend_bn": 3.2,
+   "spend_gdp": 0.7,
+   "personnel": 68731,
+   "tanks": 248,
+   "combat_aircraft": 2,
+   "warships": 4,
+   "submarines": 3,
+   "carriers": 0,
+   "warheads": 0,
+   "sphere": {
+    "projects": "African diplomacy, BRICS member, peacekeeping",
+    "in_sphere_of": "none; non-aligned",
+    "contested": "Regional instability in Mozambique and Great Lakes",
+    "note": "Spending $3.2bn (0.7% of GDP) in 2025. Fleet includes 4 Valour-class frigates and 3 submarines."
+   },
+   "sources": [
+    "https://www.globalfirepower.com/country-military-strength-detail.php?country_id=south-africa",
+    "https://www.sipri.org/sites/default/files/SIPRI-Milex-data-1949-2025.xlsx"
+   ],
+   "ppp": 2.411
+  },
+  "ET": {
+   "spend_bn": 0.5,
+   "spend_gdp": 0.5,
+   "personnel": 503000,
+   "tanks": 338,
+   "combat_aircraft": 25,
+   "warships": 0,
+   "submarines": 0,
+   "carriers": 0,
+   "warheads": 0,
+   "sphere": {
+    "projects": "Large army in the Horn of Africa, push for sea access",
+    "in_sphere_of": "none; ties with UAE, China and Türkiye",
+    "contested": "Eritrea and Red Sea access, Nile dam dispute with Egypt, internal conflicts in Amhara and Oromia",
+    "note": "Landlocked, no navy (naval figures set to 0). Spending only $0.5bn (0.5% of GDP) per SIPRI."
+   },
+   "sources": [
+    "https://www.globalfirepower.com/country-military-strength-detail.php?country_id=ethiopia",
+    "https://www.sipri.org/sites/default/files/SIPRI-Milex-data-1949-2025.xlsx"
+   ],
+   "ppp": 3.883
+  },
+  "QA": {
+   "spend_bn": null,
+   "spend_gdp": null,
+   "personnel": 26550,
+   "tanks": 62,
+   "combat_aircraft": 121,
+   "warships": 0,
+   "submarines": 0,
+   "carriers": 0,
+   "warheads": 0,
+   "sphere": {
+    "projects": "Gas wealth, mediation (Gaza, Afghanistan), hosts Al Udeid, the largest US base in the Middle East",
+    "in_sphere_of": "US security partner",
+    "contested": "Gulf security amid the Iran war",
+    "note": "SIPRI has no spending estimate for recent years. Large fighter fleet relative to size. Navy relies on corvettes (4, excluded)."
+   },
+   "sources": [
+    "https://www.globalfirepower.com/country-military-strength-detail.php?country_id=qatar",
+    "https://www.sipri.org/sites/default/files/SIPRI-Milex-data-1949-2025.xlsx"
+   ],
+   "ppp": 1.777
+  },
+  "IQ": {
+   "spend_bn": 6.4,
+   "spend_gdp": 2.4,
+   "personnel": 193000,
+   "tanks": 1188,
+   "combat_aircraft": 62,
+   "warships": 0,
+   "submarines": 0,
+   "carriers": 0,
+   "warheads": 0,
+   "sphere": {
+    "projects": "Limited",
+    "in_sphere_of": "Contested between Iran and the US",
+    "contested": "Iran-aligned militias, Kurdish region, Turkish operations in the north",
+    "note": "Spending $6.4bn (2.4% of GDP) in 2025. Iran-aligned militias pose a risk of spillover from the Iran war."
+   },
+   "sources": [
+    "https://www.globalfirepower.com/country-military-strength-detail.php?country_id=iraq",
+    "https://www.sipri.org/sites/default/files/2026-04/2604_milex_2025.pdf"
+   ],
+   "ppp": 2.637
+  },
+  "BY": {
+   "spend_bn": 1.9,
+   "spend_gdp": 2.4,
+   "personnel": 63000,
+   "tanks": 577,
+   "combat_aircraft": 93,
+   "warships": 0,
+   "submarines": 0,
+   "carriers": 0,
+   "warheads": 0,
+   "sphere": {
+    "projects": "Limited",
+    "in_sphere_of": "Russia (Union State)",
+    "contested": "Borders with Poland, Lithuania and Ukraine",
+    "note": "Hosts Russian tactical nuclear weapons, which are not counted here. Landlocked, no navy (naval figures set to 0)."
+   },
+   "sources": [
+    "https://www.globalfirepower.com/country-military-strength-detail.php?country_id=belarus",
+    "https://www.sipri.org/sites/default/files/SIPRI-Milex-data-1949-2025.xlsx"
+   ],
+   "ppp": 3.377
+  },
+  "KZ": {
+   "spend_bn": 1.3,
+   "spend_gdp": 0.4,
+   "personnel": 110000,
+   "tanks": 353,
+   "combat_aircraft": 50,
+   "warships": 0,
+   "submarines": 0,
+   "carriers": 0,
+   "warheads": 0,
+   "sphere": {
+    "projects": "Regional diplomacy in Central Asia",
+    "in_sphere_of": "Russia (CSTO), with growing Chinese economic influence",
+    "contested": "Central Asia among Russia, China, Türkiye and the West",
+    "note": "Spending low at 0.4% of GDP. Has a small Caspian flotilla with no major combatants."
+   },
+   "sources": [
+    "https://www.globalfirepower.com/country-military-strength-detail.php?country_id=kazakhstan",
+    "https://www.sipri.org/sites/default/files/SIPRI-Milex-data-1949-2025.xlsx"
+   ],
+   "ppp": 3.015
+  },
+  "GR": {
+   "spend_bn": 8.4,
+   "spend_gdp": 3.0,
+   "personnel": 142700,
+   "tanks": 1344,
+   "combat_aircraft": 178,
+   "warships": 14,
+   "submarines": 9,
+   "carriers": 0,
+   "warheads": 0,
+   "sphere": {
+    "projects": "Eastern Mediterranean defence partnerships, NATO base hosting",
+    "in_sphere_of": "US-led alliance system (NATO)",
+    "contested": "Aegean and Eastern Mediterranean with Türkiye",
+    "note": "Spending around 3.0% of GDP. Fleet of 14 frigates and 9 submarines."
+   },
+   "sources": [
+    "https://www.globalfirepower.com/country-military-strength-detail.php?country_id=greece",
+    "https://www.sipri.org/sites/default/files/2026-04/2604_milex_2025.pdf"
+   ],
+   "ppp": 1.68
+  },
+  "SE": {
+   "spend_bn": 16.5,
+   "spend_gdp": 2.5,
+   "personnel": 25600,
+   "tanks": 110,
+   "combat_aircraft": 73,
+   "warships": 0,
+   "submarines": 4,
+   "carriers": 0,
+   "warheads": 0,
+   "sphere": {
+    "projects": "Defence industry (Saab), Nordic and Baltic security",
+    "in_sphere_of": "US-led alliance system (NATO since 2024)",
+    "contested": "Baltic Sea with Russia",
+    "note": "Spending rose to 2.5% of GDP in 2025. Navy is built around corvettes (7 Visby and Gothenburg class, excluded)."
+   },
+   "sources": [
+    "https://www.globalfirepower.com/country-military-strength-detail.php?country_id=sweden",
+    "https://www.sipri.org/sites/default/files/2026-04/2604_milex_2025.pdf"
+   ],
+   "ppp": 1.149
+  },
+  "FI": {
+   "spend_bn": 8.1,
+   "spend_gdp": 2.6,
+   "personnel": 24000,
+   "tanks": 200,
+   "combat_aircraft": 53,
+   "warships": 0,
+   "submarines": 0,
+   "carriers": 0,
+   "warheads": 0,
+   "sphere": {
+    "projects": "Large wartime reserve, Nordic defence cooperation",
+    "in_sphere_of": "US-led alliance system (NATO since 2023)",
+    "contested": "1,340 km border with Russia",
+    "note": "Active personnel is small, but wartime strength is about 280,000 through conscript reserves. Spending rose to 2.6% of GDP. Navy has no major surface combatants."
+   },
+   "sources": [
+    "https://www.globalfirepower.com/country-military-strength-detail.php?country_id=finland",
+    "https://www.sipri.org/sites/default/files/2026-04/2604_milex_2025.pdf"
+   ],
+   "ppp": 1.173
+  },
+  "NO": {
+   "spend_bn": 17.0,
+   "spend_gdp": 3.3,
+   "personnel": 33440,
+   "tanks": 36,
+   "combat_aircraft": 43,
+   "warships": 4,
+   "submarines": 6,
+   "carriers": 0,
+   "warheads": 0,
+   "sphere": {
+    "projects": "Arctic and North Atlantic surveillance, oil wealth, aid",
+    "in_sphere_of": "US-led alliance system (NATO)",
+    "contested": "Arctic and Barents Sea with Russia",
+    "note": "Spending up to 3.3% of GDP in 2025. F-35 fleet counted by GFP as attack aircraft. Excludes 6 corvettes."
+   },
+   "sources": [
+    "https://www.globalfirepower.com/country-military-strength-detail.php?country_id=norway",
+    "https://www.sipri.org/sites/default/files/2026-04/2604_milex_2025.pdf"
+   ],
+   "ppp": 1.1
+  },
+  "NL": {
+   "spend_bn": 28.9,
+   "spend_gdp": 2.2,
+   "personnel": 44245,
+   "tanks": 18,
+   "combat_aircraft": 38,
+   "warships": 6,
+   "submarines": 3,
+   "carriers": 0,
+   "warheads": 0,
+   "sphere": {
+    "projects": "NATO contributions, F-35s, supplier of aid to Ukraine",
+    "in_sphere_of": "US-led alliance system (NATO)",
+    "contested": "Russian activity in the North Sea",
+    "note": "Spending up to 2.2% of GDP in 2025. Very small tank fleet."
+   },
+   "sources": [
+    "https://www.globalfirepower.com/country-military-strength-detail.php?country_id=netherlands",
+    "https://www.sipri.org/sites/default/files/2026-04/2604_milex_2025.pdf"
+   ],
+   "ppp": 1.185
+  },
+  "AR": {
+   "spend_bn": 3.9,
+   "spend_gdp": 0.6,
+   "personnel": 108000,
+   "tanks": 362,
+   "combat_aircraft": 34,
+   "warships": 3,
+   "submarines": 2,
+   "carriers": 0,
+   "warheads": 0,
+   "sphere": {
+    "projects": "Limited",
+    "in_sphere_of": "US-leaning under the Milei government",
+    "contested": "Falklands (Malvinas) dispute with the UK",
+    "note": "Spending low at 0.6% of GDP. Bought F-16s from Denmark. GFP lists 3 destroyers. Excludes 6 corvettes."
+   },
+   "sources": [
+    "https://www.globalfirepower.com/country-military-strength-detail.php?country_id=argentina",
+    "https://www.sipri.org/sites/default/files/SIPRI-Milex-data-1949-2025.xlsx"
+   ],
+   "ppp": 2.187
+  },
+  "CO": {
+   "spend_bn": 14.5,
+   "spend_gdp": 3.2,
+   "personnel": 429000,
+   "tanks": 0,
+   "combat_aircraft": 40,
+   "warships": 9,
+   "submarines": 4,
+   "carriers": 0,
+   "warheads": 0,
+   "sphere": {
+    "projects": "Counter-insurgency expertise",
+    "in_sphere_of": "US",
+    "contested": "Armed groups and drug trafficking; Venezuelan border",
+    "note": "Spending is high for the region at 3.2% of GDP. GFP lists no tanks. Excludes 2 corvettes."
+   },
+   "sources": [
+    "https://www.globalfirepower.com/country-military-strength-detail.php?country_id=colombia",
+    "https://www.sipri.org/sites/default/files/2026-04/2604_milex_2025.pdf"
+   ],
+   "ppp": 2.644
+  },
+  "MM": {
+   "spend_bn": null,
+   "spend_gdp": null,
+   "personnel": 228000,
+   "tanks": 1040,
+   "combat_aircraft": 90,
+   "warships": 6,
+   "submarines": 3,
+   "carriers": 0,
+   "warheads": 0,
+   "sphere": {
+    "projects": "Limited",
+    "in_sphere_of": "China and Russia (arms and diplomatic backing)",
+    "contested": "Civil war between the junta and resistance and ethnic armed groups",
+    "note": "SIPRI has no 2025 spending figure; it estimated $5bn (6.6% of GDP) for 2024. Junta held contested elections in 2025–26. Excludes 3 corvettes."
+   },
+   "sources": [
+    "https://www.globalfirepower.com/country-military-strength-detail.php?country_id=myanmar",
+    "https://www.sipri.org/sites/default/files/SIPRI-Milex-data-1949-2025.xlsx"
+   ],
+   "ppp": 4.038
+  },
+  "BD": {
+   "spend_bn": 3.8,
+   "spend_gdp": 0.8,
+   "personnel": 204000,
+   "tanks": 320,
+   "combat_aircraft": 41,
+   "warships": 7,
+   "submarines": 2,
+   "carriers": 0,
+   "warheads": 0,
+   "sphere": {
+    "projects": "UN peacekeeping contributor",
+    "in_sphere_of": "none; balances India and China",
+    "contested": "Rohingya crisis and Myanmar border, India relations after 2024 political change",
+    "note": "Spending $3.8bn (0.8% of GDP) in 2025. Excludes 6 corvettes. Operates 2 Chinese-built submarines."
+   },
+   "sources": [
+    "https://www.globalfirepower.com/country-military-strength-detail.php?country_id=bangladesh",
+    "https://www.sipri.org/sites/default/files/SIPRI-Milex-data-1949-2025.xlsx"
+   ],
+   "ppp": 3.909
+  },
+  "MY": {
+   "spend_bn": 4.9,
+   "spend_gdp": 1.0,
+   "personnel": 113000,
+   "tanks": 48,
+   "combat_aircraft": 36,
+   "warships": 2,
+   "submarines": 2,
+   "carriers": 0,
+   "warheads": 0,
+   "sphere": {
+    "projects": "ASEAN diplomacy",
+    "in_sphere_of": "none; balances the US and China",
+    "contested": "South China Sea (Sabah and Sarawak waters) with China",
+    "note": "Spending $4.9bn (1.0% of GDP) in 2025. Excludes 4 corvettes."
+   },
+   "sources": [
+    "https://www.globalfirepower.com/country-military-strength-detail.php?country_id=malaysia",
+    "https://www.sipri.org/sites/default/files/SIPRI-Milex-data-1949-2025.xlsx"
+   ],
+   "ppp": 3.162
+  },
+  "SG": {
+   "spend_bn": 17.4,
+   "spend_gdp": 3.0,
+   "personnel": 51000,
+   "tanks": 170,
+   "combat_aircraft": 100,
+   "warships": 6,
+   "submarines": 6,
+   "carriers": 0,
+   "warheads": 0,
+   "sphere": {
+    "projects": "Best-equipped military in Southeast Asia, hub for US naval access",
+    "in_sphere_of": "none; close US security partner",
+    "contested": "Strait of Malacca and South China Sea tensions",
+    "note": "Spending is 3.0% of GDP. Frigate figure is GFP's count; Singapore's navy is moving to multi-role combat vessels. Excludes 6 corvettes."
+   },
+   "sources": [
+    "https://www.globalfirepower.com/country-military-strength-detail.php?country_id=singapore",
+    "https://www.sipri.org/sites/default/files/2026-04/2604_milex_2025.pdf"
+   ],
+   "ppp": 1.653
+  },
+  "SY": {
+   "spend_bn": null,
+   "spend_gdp": null,
+   "personnel": 100000,
+   "tanks": 168,
+   "combat_aircraft": 57,
+   "warships": 0,
+   "submarines": 0,
+   "carriers": 0,
+   "warheads": 0,
+   "sphere": {
+    "projects": "None",
+    "in_sphere_of": "Contested; post-Assad government backed by Türkiye and Gulf states",
+    "contested": "Israeli occupation in the south, Kurdish north-east, Russian bases at Hmeimim and Tartus",
+    "note": "SIPRI has no spending estimate. Israeli strikes destroyed much of the old army in December 2024; GFP figures are highly uncertain. An August 2026 deal turns Russian bases into joint training centres."
+   },
+   "sources": [
+    "https://www.globalfirepower.com/country-military-strength-detail.php?country_id=syria",
+    "https://www.sipri.org/sites/default/files/SIPRI-Milex-data-1949-2025.xlsx",
+    "https://english.ahram.org.eg/News/574294.aspx"
+   ],
+   "ppp": 4.642
+  }
+ },
+ "rivalries": [
+  {
+   "a": "US",
+   "b": "CN",
+   "note": "Rivalry over trade, technology, Taiwan and the Indo-Pacific."
+  },
+  {
+   "a": "US",
+   "b": "RU",
+   "note": "Rivalry over Ukraine, NATO's eastern flank and nuclear arms control."
+  },
+  {
+   "a": "RU",
+   "b": "UA",
+   "note": "Russia's full-scale invasion of Ukraine since February 2022. US-led talks were revived in Oslo in October 2026, but no ceasefire has been agreed.",
+   "source": "https://www.profilenews.com/en/ukraine-peace-talks/"
+  },
+  {
+   "a": "IN",
+   "b": "PK",
+   "note": "Nuclear-armed rivals; a brief air and missile conflict in May 2025."
+  },
+  {
+   "a": "IN",
+   "b": "CN",
+   "note": "Disputed Himalayan border and competition for influence in South Asia."
+  },
+  {
+   "a": "KP",
+   "b": "KR",
+   "note": "Technically still at war since the 1953 armistice."
+  },
+  {
+   "a": "CN",
+   "b": "TW",
+   "note": "China claims Taiwan and has not ruled out force."
+  },
+  {
+   "a": "IL",
+   "b": "IR",
+   "note": "Years of proxy conflict, then direct war in 2025 and 2026."
+  },
+  {
+   "a": "US",
+   "b": "IR",
+   "note": "At war since February 2026. An April ceasefire has frayed, and mines and attacks still disrupt shipping through Hormuz.",
+   "source": "https://www.cbsnews.com/live-updates/iran-war-us-trump-talks-russia-strait-of-hormuz/"
+  },
+  {
+   "a": "SA",
+   "b": "IR",
+   "note": "Regional rivalry played out in Yemen, Iraq, Syria and Lebanon."
+  },
+  {
+   "a": "GR",
+   "b": "TR",
+   "note": "NATO allies in dispute over Aegean waters, airspace and Cyprus, with tensions rising again in 2026 over maritime claims and airspace violations.",
+   "source": "https://www.irishtimes.com/world/2026/09/17/greeces-growing-ties-with-israel-spark-tensions-with-turkey/"
+  },
+  {
+   "a": "AM",
+   "b": "AZ",
+   "note": "Long conflict over Karabakh. A peace treaty was initialled in August 2025 but is still unsigned, as Baku wants Armenia to change its constitution first.",
+   "source": "https://www.cfr.org/global-conflict-tracker/conflict/nagorno-karabakh-conflict"
+  },
+  {
+   "a": "JP",
+   "b": "CN",
+   "note": "Disputed Senkaku / Diaoyu islands in the East China Sea."
+  },
+  {
+   "a": "DZ",
+   "b": "MA",
+   "note": "Diplomatic ties cut in 2021 over Western Sahara."
+  },
+  {
+   "a": "EG",
+   "b": "ET",
+   "note": "Dispute over Ethiopia's dam on the Blue Nile."
+  },
+  {
+   "a": "PK",
+   "b": "AF",
+   "note": "Open war declared in February 2026 after months of border fighting. Deadly clashes along the Durand Line and air strikes continued into October.",
+   "source": "https://www.cfr.org/global-conflict-tracker/conflict/war-afghanistan"
+  }
+ ],
+ "buffers": [
+  {
+   "cc": "AF",
+   "between": [
+    "IR",
+    "PK",
+    "CN",
+    "RU"
+   ],
+   "note": "Taliban-ruled Afghanistan sits where Iranian, Pakistani, Chinese and Russian interests meet; it feuds with Iran over water and with Pakistan over militants.",
+   "sources": [
+    "https://waterpeacesecurity.org/info/blog-09-09-2022-The-emerging-dynamics-for-conflict-and-cooperation-between-Iran-and-the-Taliban-over-the-Helmand-River",
+    "https://www.info-res.org/post/the-water-rights-dispute-behind-rising-afghan-iran-tensions"
+   ]
+  },
+  {
+   "cc": "MN",
+   "between": [
+    "RU",
+    "CN"
+   ],
+   "note": "Landlocked between Russia and China, Mongolia courts 'third neighbours' such as the US, Japan and South Korea to keep its autonomy.",
+   "sources": [
+    "https://www.everycrsreport.com/reports/R49352.html"
+   ]
+  },
+  {
+   "cc": "NP",
+   "between": [
+    "IN",
+    "CN"
+   ],
+   "note": "Nepal balances its open border and trade with India against Chinese infrastructure offers across the Himalayas.",
+   "sources": [
+    "https://www.lowyinstitute.org/the-interpreter/china-s-new-network-indian-ocean-bases"
+   ]
+  },
+  {
+   "cc": "MM",
+   "between": [
+    "CN",
+    "IN"
+   ],
+   "note": "Military-ruled Myanmar gives China a route to the Indian Ocean via Kyaukphyu, while India seeks access to its northeast and the Bay of Bengal.",
+   "sources": [
+    "https://www.lowyinstitute.org/the-interpreter/china-s-new-network-indian-ocean-bases"
+   ]
+  },
+  {
+   "cc": "BD",
+   "between": [
+    "IN",
+    "CN"
+   ],
+   "note": "Since 2024 Bangladesh has moved away from India and toward China and Pakistan. Its new prime minister made China his first overseas trip, though it still depends on Indian trade and Himalayan rivers.",
+   "sources": [
+    "https://www.lowyinstitute.org/the-interpreter/china-s-medog-county-mega-dam-bad-news-india-bangladesh",
+    "https://www.chathamhouse.org/2026/02/india-wants-reset-relations-after-bangladesh-elections-it-will-be-easier-said-done",
+    "https://organiser.org/2026/08/16/374657/world/future-trajectory-of-india-bangladesh-relations/"
+   ]
+  },
+  {
+   "cc": "LK",
+   "between": [
+    "IN",
+    "CN"
+   ],
+   "note": "Sri Lanka sits on Indian Ocean shipping lanes and balances Indian aid against Chinese-built ports such as Hambantota.",
+   "sources": [
+    "https://www.lowyinstitute.org/the-interpreter/china-s-new-network-indian-ocean-bases"
+   ]
+  },
+  {
+   "cc": "UA",
+   "between": [
+    "RU",
+    "PL",
+    "DE",
+    "US"
+   ],
+   "note": "Ukraine has been at war with Russia since 2022. Washington-led talks were revived in Oslo this week, but Moscow has so far resisted the proposals, and Kyiv relies on Western weapons and money.",
+   "sources": [
+    "https://www.arabnews.com/node/2651155/amp",
+    "https://www.themoscowtimes.com/2026/08/06/whats-the-situation-on-the-front-lines-as-russia-ukraine-talks-begin",
+    "https://www.graduateinstitute.ch/communications/news/intense-diplomacy-without-breakthrough-ongoing-peace-efforts-russia-ukraine-war",
+    "https://www.axios.com/2026/10/20/russia-ukraine-peace-talks-trump-witkoff-oslo",
+    "https://www.aljazeera.com/news/2026/10/20/zelenskyy-to-hold-peace-talks-in-oslo-with-witkoff-kushner-attending",
+    "https://www.csmonitor.com/World/Europe/2026/0926/russia-ukraine-peace-talks-donbas-europe-trump"
+   ]
+  },
+  {
+   "cc": "MD",
+   "between": [
+    "RU",
+    "RO",
+    "DE"
+   ],
+   "note": "An EU candidate with Russian troops in breakaway Transnistria, Moldova is a frontline of Russian and Western competition.",
+   "sources": [
+    "https://radiomoldova.md/p/79323"
+   ]
+  },
+  {
+   "cc": "GE",
+   "between": [
+    "RU",
+    "TR",
+    "US"
+   ],
+   "note": "Georgia's EU accession is frozen as its government drifts toward Moscow, while Russia occupies about a fifth of its territory.",
+   "sources": [
+    "https://atlasinstitute.org/georgias-eu-accession-freeze-public-opinion-versus-state-policy/",
+    "https://www.lowyinstitute.org/the-interpreter/georgian-dream-now-nothing-nightmare"
+   ]
+  },
+  {
+   "cc": "AM",
+   "between": [
+    "RU",
+    "TR",
+    "IR"
+   ],
+   "note": "Armenia has suspended its role in the Russian-led security alliance and turned west, but still hosts a Russian base at Gyumri whose future is now disputed. It borders Turkey and Iran, and an American-backed transit corridor crosses its south.",
+   "sources": [
+    "https://georgiatoday.ge/pashinyan-armenia-would-not-object-if-russia-decides-to-withdraw-military-base/",
+    "https://jamestown.org/?p=102518",
+    "https://en.majalla.com/node/329580",
+    "https://massispost.com/2026/09/pashinyan-armenia-and-russia-reviewing-bilateral-relations-as-yerevan-clarifies-position-on-csto-and-russian-base/",
+    "https://www.azernews.az/region/265138.html"
+   ]
+  },
+  {
+   "cc": "KZ",
+   "between": [
+    "RU",
+    "CN"
+   ],
+   "note": "Kazakhstan, in Russian-led blocs but tied to China by trade and pipelines, pursues a 'multi-vector' policy that includes the West.",
+   "sources": [
+    "https://www.everycrsreport.com/reports/R49352.html"
+   ]
+  },
+  {
+   "cc": "RS",
+   "between": [
+    "RU",
+    "DE",
+    "US"
+   ],
+   "note": "Serbia is an EU candidate surrounded by NATO states, yet relies on Russian gas and refuses sanctions on Moscow.",
+   "sources": [
+    "https://www.iene.eu/energy-news/slovakia-and-hungary-reject-eu-plan-to-phase-out-russian-gas-by-end-2027-p7786.html"
+   ]
+  },
+  {
+   "cc": "IQ",
+   "between": [
+    "IR",
+    "SA",
+    "TR",
+    "US"
+   ],
+   "note": "Iraq hosts US forces and Iran-aligned militias, and depends on Turkish rivers; Baghdad tried to stay out of the 2026 Iran war.",
+   "sources": [
+    "https://arabcenterdc.org/resource/baghdad-between-tehran-and-washington-the-struggle-for-a-sovereign-state/",
+    "https://themedialine.org/by-region/not-our-war-iran-backed-militias-in-iraq-stay-on-the-sidelines"
+   ]
+  },
+  {
+   "cc": "SY",
+   "between": [
+    "TR",
+    "IL",
+    "SA",
+    "RU"
+   ],
+   "note": "Post-Assad Syria is courted by Turkey and the Gulf and faces Israeli strikes. In August it agreed to turn Russia's Hmeimim and Tartus bases into joint training centres, though Russian forces will remain.",
+   "sources": [
+    "https://abcnews.com/International/wireStory/syria-agrees-deal-russia-future-2-key-mediterranean-135499105",
+    "https://english.enabbaladi.net/archives/2026/10/damascus-moscow-work-on-final-deal-for-russian-bases/",
+    "https://www.yahoo.com/news/world/articles/syria-russia-reach-deal-future-130907543.html",
+    "https://www.themoscowtimes.com/2026/08/09/syria-russia-reach-deal-on-future-of-tartous-and-hmeimim-bases-after-18-months-of-talks-a93444"
+   ]
+  },
+  {
+   "cc": "LB",
+   "between": [
+    "IL",
+    "IR",
+    "SA",
+    "FR"
+   ],
+   "note": "Lebanon is caught between Israel and a weakened, Iran-backed Hezbollah that refuses to disarm. A June framework deal ties Israeli withdrawal to disarmament, and talks on verifying it are under way.",
+   "sources": [
+    "https://arabcenterdc.org/resource/the-delicate-dynamics-of-hezbollahs-disarmament/",
+    "https://www.bostonglobe.com/2026/06/01/world/how-lebanons-best-chance-disarm-hezbollah-failed/",
+    "https://www.timesofisrael.com/lebanon-israel-agree-on-countries-that-could-verify-hezbollah-disarmament-official/",
+    "https://www.newarab.com/news/us-tells-lebanon-hezbollah-disarmament-efforts-not-enough"
+   ]
+  },
+  {
+   "cc": "YE",
+   "between": [
+    "SA",
+    "IR",
+    "AE"
+   ],
+   "note": "Yemen is split between Iran-aligned Houthis and a Saudi-backed government, with fighting renewed since mid-2026 and government forces pushing the Houthis back from the Red Sea coast in October. The UAE-backed southern separatists collapsed in early 2026 but have since called for mobilisation.",
+   "sources": [
+    "https://wnyt.com/?p=1072545",
+    "https://news.usni.org/?p=125145",
+    "https://www.aljazeera.com/news/2026/10/12/giants-brigades-leads-southern-yemen-fightback-against-the-houthis",
+    "https://www.newarab.com/news/exiled-yemen-stc-leader-calls-mobilisation-against-houthis",
+    "https://www.gisreportsonline.com/r/yemen-peace-stc/",
+    "https://commonslibrary.parliament.uk/research-briefings/cbp-10427/"
+   ]
+  }
+ ],
+ "spheres": {
+  "US": {
+   "core": [
+    "CA",
+    "GB",
+    "FR",
+    "DE",
+    "IT",
+    "ES",
+    "PT",
+    "NL",
+    "BE",
+    "LU",
+    "NO",
+    "DK",
+    "IS",
+    "PL",
+    "CZ",
+    "SK",
+    "HU",
+    "RO",
+    "BG",
+    "GR",
+    "TR",
+    "LT",
+    "LV",
+    "EE",
+    "FI",
+    "SE",
+    "SI",
+    "HR",
+    "AL",
+    "ME",
+    "MK",
+    "JP",
+    "KR",
+    "AU",
+    "PH",
+    "TH",
+    "BH",
+    "QA",
+    "KW"
+   ],
+   "strong": [
+    "IL",
+    "NZ",
+    "SG",
+    "TW",
+    "SA",
+    "AE",
+    "JO",
+    "EG",
+    "MA",
+    "OM",
+    "UA",
+    "PA",
+    "CO",
+    "AR",
+    "EC",
+    "DO",
+    "GY",
+    "VE",
+    "MX"
+   ],
+   "contested": [
+    "IQ",
+    "LB",
+    "SY",
+    "AM",
+    "GE",
+    "AZ",
+    "PK",
+    "VN",
+    "ID",
+    "MY",
+    "DJ",
+    "SB",
+    "IN"
+   ],
+   "note": "Holds its sphere through NATO and Pacific treaty alliances, Gulf bases, dollar dominance and arms sales; post-Maduro Venezuela and the Iran war have deepened its regional role.",
+   "sources": [
+    "https://www.nato.int/cps/en/natohq/nato_countries.htm",
+    "https://www.koreatimes.co.kr/amp/world/20260104/us-captures-venezuelas-maduro-trump-says-us-will-run-the-country",
+    "https://gjia.georgetown.edu/dialogues/the-saudi-pakistani-defense-pact-and-u-s-force-posture-in-the-gulf/",
+    "https://orfonline.org/research/trump-s-geopolitical-gambit-in-the-south-caucasus",
+    "https://arabcenterdc.org/resource/baghdad-between-tehran-and-washington-the-struggle-for-a-sovereign-state/"
+   ]
+  },
+  "CN": {
+   "core": [
+    "KP",
+    "KH",
+    "LA"
+   ],
+   "strong": [
+    "PK",
+    "MM",
+    "IR",
+    "ZW",
+    "BD"
+   ],
+   "contested": [
+    "LK",
+    "NP",
+    "MV",
+    "KZ",
+    "KG",
+    "TJ",
+    "UZ",
+    "MN",
+    "DJ",
+    "TH",
+    "ID",
+    "MY",
+    "VN",
+    "SB",
+    "GE"
+   ],
+   "note": "Holds its sphere through trade, infrastructure lending, a treaty with North Korea, the Djibouti base and Chinese-built facilities such as Cambodia's Ream naval base.",
+   "sources": [
+    "https://reuters.screenocean.com/record/1988321",
+    "https://www.eurasiantimes.com/china-conduct-drills-at-upgraded-controversial-ream-naval-base/",
+    "https://www.lowyinstitute.org/the-interpreter/china-s-new-network-indian-ocean-bases",
+    "https://chinaglobalsouth.com/2026/02/24/panama-canal-ports-ck-hutchison-annulment-us-china/",
+    "https://www.aiddata.org/publications/banking-on-the-belt-and-road",
+    "https://www.cnbc.com/2026/02/24/panama-officially-voids-annuls-ck-hutchison-contracts-interim-control-maersk-msc-canal-dispute.html",
+    "https://foreignpolicy.com/2026/07/01/bangladesh-china-rahman-visit-diplomacy-india/",
+    "https://www.fdd.org/analysis/2026/06/12/tbilisi-moves-closer-to-beijing-despite-courting-washington/"
+   ]
+  },
+  "RU": {
+   "core": [
+    "BY",
+    "TJ",
+    "KG"
+   ],
+   "strong": [
+    "KZ",
+    "KP",
+    "IR",
+    "CU",
+    "NI",
+    "ML",
+    "BF",
+    "NE",
+    "CF"
+   ],
+   "contested": [
+    "AM",
+    "GE",
+    "AZ",
+    "MD",
+    "RS",
+    "UZ",
+    "LY",
+    "SD"
+   ],
+   "note": "Holds its sphere through its collective security treaty, bases in Tajikistan and Kyrgyzstan, energy supply and Africa Corps deployments in the Sahel. It is losing ground in Armenia, where the Gyumri base is now in doubt, and in Syria, where its bases are being turned into joint training centres.",
+   "sources": [
+    "https://www.everycrsreport.com/files/2026-04-08_IF12389_eafb70071b5b5ecad891e918583c30947bf78996.html",
+    "https://www.intellinews.com/russia-boosts-mali-military-support-as-africa-corps-replaces-wagner-439232/",
+    "https://georgiatoday.ge/pashinyan-armenia-would-not-object-if-russia-decides-to-withdraw-military-base/",
+    "https://abcnews.com/International/wireStory/syria-agrees-deal-russia-future-2-key-mediterranean-135499105",
+    "https://www.lowyinstitute.org/the-interpreter/georgian-dream-now-nothing-nightmare",
+    "https://www.aljazeera.com/news/2026/8/9/syria-says-it-reached-deal-with-moscow-on-future-of-russian-bases",
+    "https://en.armradio.am/2026/09/03/pashinyan-says-armenia-would-not-object-to-withdrawal-of-russian-military-base/",
+    "https://www.cfr.org/global-conflict-tracker/conflict/violent-extremism-sahel"
+   ]
+  },
+  "IN": {
+   "core": [
+    "BT"
+   ],
+   "strong": [
+    "MU"
+   ],
+   "contested": [
+    "NP",
+    "LK",
+    "MV",
+    "BD",
+    "MM",
+    "AF",
+    "SC"
+   ],
+   "note": "Leads in South Asia through aid, trade and security ties with small neighbours, while competing with China for ports, loans and political influence across the region.",
+   "sources": [
+    "https://www.mea.gov.in/foreign-relations.htm",
+    "https://www.lowyinstitute.org/the-interpreter/china-s-new-network-indian-ocean-bases",
+    "https://www.isas.nus.edu.sg/?p=18988"
+   ]
+  },
+  "TR": {
+   "core": [
+    "AZ",
+    "QA",
+    "SO"
+   ],
+   "strong": [
+    "SY",
+    "LY",
+    "PK",
+    "SA"
+   ],
+   "contested": [
+    "IQ",
+    "KZ",
+    "UZ",
+    "KG",
+    "TM",
+    "NE"
+   ],
+   "note": "Projects power through overseas bases in Qatar and Somalia, troops in Libya, sway over post-Assad Syria, drone exports and a 2026 defence pact with Saudi Arabia and Pakistan.",
+   "sources": [
+    "https://pism.pl/publications/The_Road_to_Global_Power_Turkeys_Overseas_Military_Bases_",
+    "https://www.criticalthreats.org/analysis/turkey-somalia-niger-africa-file-april-16-2026",
+    "https://macaubusiness.com/saudi-arabia-turkey-pakistan-sign-defence-pact-amid-regional-war/",
+    "https://krdo.com/news/2026/08/07/saudi-arabia-turns-to-muslim-military-heavyweights-in-landmark-defense-pact-as-iran-war-closes-in/"
+   ]
+  },
+  "IR": {
+   "core": [],
+   "strong": [
+    "YE"
+   ],
+   "contested": [
+    "IQ",
+    "LB",
+    "AF"
+   ],
+   "note": "Its network has shrunk: Syria is lost and Hezbollah is weakened and under disarmament pressure. Iraqi militias struck US and Kurdish targets early in the 2026 war, and the Houthis remain its most active partner.",
+   "sources": [
+    "https://themedialine.org/by-region/not-our-war-iran-backed-militias-in-iraq-stay-on-the-sidelines",
+    "https://www.fdd.org/analysis/2026/03/15/how-iraq-is-the-new-frontline-of-the-iran-war/",
+    "https://arabcenterdc.org/resource/the-delicate-dynamics-of-hezbollahs-disarmament/",
+    "https://news.usni.org/?p=125145",
+    "https://www.adn.com/nation-world/2026/08/11/iranian-backed-houthis-kill-6-in-attack-on-vessel-and-other-developments-in-the-mideast/",
+    "https://www.britannica.com/event/2026-Iran-war",
+    "https://www.axios.com/2026/10/16/iran-backed-militias-sending-money-irgc-centcom"
+   ]
+  },
+  "SA": {
+   "core": [
+    "BH"
+   ],
+   "strong": [
+    "PK",
+    "KW",
+    "JO",
+    "EG",
+    "TR"
+   ],
+   "contested": [
+    "YE",
+    "LB",
+    "SY",
+    "SD",
+    "IQ"
+   ],
+   "note": "Uses money, oil and religious standing; it now leads in Yemen after the southern separatists collapsed, and signed defence pacts with Pakistan and Turkey.",
+   "sources": [
+    "https://gjia.georgetown.edu/dialogues/the-saudi-pakistani-defense-pact-and-u-s-force-posture-in-the-gulf/",
+    "https://macaubusiness.com/saudi-arabia-turkey-pakistan-sign-defence-pact-amid-regional-war/",
+    "https://wnyt.com/?p=1072545",
+    "https://www.gisreportsonline.com/?p=110035"
+   ]
+  },
+  "FR": {
+   "core": [
+    "DJ"
+   ],
+   "strong": [
+    "GA",
+    "CI",
+    "BJ",
+    "MA",
+    "AE"
+   ],
+   "contested": [
+    "CF",
+    "LB"
+   ],
+   "note": "After exits from the Sahel, Chad, Senegal and Côte d'Ivoire's bases, France keeps a major base in Djibouti, a small presence in Gabon and a naval base in Abu Dhabi.",
+   "sources": [
+    "https://www.khaleejtimes.com/world/africa/french-army-leaves-senegal",
+    "https://military.africa/2025/02/france-returns-final-base-to-ivory-coast-military",
+    "https://thedefensepost.com/2025/07/17/france-hands-over-military-senegal/amp/",
+    "https://www.defense.gouv.fr/operations/forces-prepositionnees"
+   ]
+  },
+  "AE": {
+   "core": [],
+   "strong": [
+    "EG",
+    "ET",
+    "TD"
+   ],
+   "contested": [
+    "SD",
+    "LY",
+    "SO",
+    "YE"
+   ],
+   "note": "Projects influence through investment, ports and backing for armed partners, including Sudan's RSF and Libya's Haftar; its Yemen allies collapsed in 2026 amid a rift with Riyadh.",
+   "sources": [
+    "https://www.swp-berlin.org/10.18449/2026C19/",
+    "https://www.middleeasteye.net/news/how-uae-continued-supporting-sudans-rsf-through-haftar-and-libya",
+    "https://www.geeska.com/en/abu-dhabi-has-built-axis-secessionists-andreas-krieg",
+    "https://gvwire.com/2026/01/03/uae-calls-for-restraint-amid-rapidly-moving-yemen-crisis/"
+   ]
+  }
+ },
+ "leverage": [
+  {
+   "holder": "IR",
+   "kind": "chokepoint",
+   "via": "Strait of Hormuz",
+   "over": [
+    "QA",
+    "KW",
+    "IQ",
+    "BH",
+    "AE",
+    "SA",
+    "JP",
+    "KR",
+    "CN",
+    "IN"
+   ],
+   "note": "About a fifth of world oil and much liquefied natural gas pass Hormuz; Iran has kept it effectively closed to commercial traffic since the 2026 war began, with ships hit by mines and missiles, against a US blockade of Iranian shipping.",
+   "sources": [
+    "https://www.aljazeera.com/news/liveblog/2026/8/9/iran-war-live-tehran-demands-end-to-us-blockade-to-reopen-strait-of-hormuz",
+    "https://www.khaleejtimes.com/world/mena/iran-strait-of-hormuz-closed-us-denies",
+    "https://www.eia.gov/international/analysis/special-topics/World_Oil_Transit_Chokepoints"
+   ]
+  },
+  {
+   "holder": "OM",
+   "kind": "chokepoint",
+   "via": "Strait of Hormuz (Musandam shore)",
+   "over": [
+    "QA",
+    "KW",
+    "IQ",
+    "BH",
+    "AE",
+    "IR"
+   ],
+   "note": "Oman controls the southern shore and main shipping lanes of Hormuz and is a key mediator between Iran and the West.",
+   "sources": [
+    "https://www.eia.gov/international/analysis/special-topics/World_Oil_Transit_Chokepoints"
+   ]
+  },
+  {
+   "holder": "YE",
+   "kind": "chokepoint",
+   "via": "Bab el-Mandeb (Houthi-held coast)",
+   "over": [
+    "EG",
+    "SA",
+    "IL",
+    "JO"
+   ],
+   "note": "The Houthis have declared a naval blockade of Saudi-linked shipping and attacked tankers in the Red Sea in 2026, while fighting Saudi-backed forces for control of the strait's Yemeni shore and cutting Suez traffic.",
+   "sources": [
+    "https://news.usni.org/?p=125145",
+    "https://news.bloomberglaw.com/international-trade/us-warns-on-bab-el-mandeb-strait-after-iranian-shipping-threat",
+    "https://www.securitycouncilreport.org/monthly-forecast/2026-10/yemen-91.php",
+    "https://www.cfr.org/global-conflict-tracker/conflict/war-yemen"
+   ]
+  },
+  {
+   "holder": "DJ",
+   "kind": "chokepoint",
+   "via": "Bab el-Mandeb and Port of Djibouti",
+   "over": [
+    "ET"
+   ],
+   "note": "Djibouti handles most of landlocked Ethiopia's trade and rents bases to the US, China, France, Japan and Italy.",
+   "sources": [
+    "https://www.eia.gov/international/analysis/special-topics/World_Oil_Transit_Chokepoints",
+    "https://www.lowyinstitute.org/the-interpreter/china-s-new-network-indian-ocean-bases"
+   ]
+  },
+  {
+   "holder": "EG",
+   "kind": "chokepoint",
+   "via": "Suez Canal",
+   "over": [
+    "IT",
+    "GR",
+    "NL",
+    "IN",
+    "CN"
+   ],
+   "note": "The canal links Europe and Asia; Red Sea attacks have cut its traffic and Egypt's fee income since 2023.",
+   "sources": [
+    "https://www.eia.gov/international/analysis/special-topics/World_Oil_Transit_Chokepoints"
+   ]
+  },
+  {
+   "holder": "TR",
+   "kind": "chokepoint",
+   "via": "Bosporus and Dardanelles (Montreux Convention)",
+   "over": [
+    "RU",
+    "UA",
+    "RO",
+    "BG",
+    "GE"
+   ],
+   "note": "Turkey controls the only sea route out of the Black Sea and has limited warship passage since 2022.",
+   "sources": [
+    "https://www.eia.gov/international/analysis/special-topics/World_Oil_Transit_Chokepoints",
+    "https://www.mfa.gov.tr/the-convention-regarding-the-regime-of-straits.en.mfa"
+   ]
+  },
+  {
+   "holder": "MY",
+   "kind": "chokepoint",
+   "via": "Strait of Malacca",
+   "over": [
+    "CN",
+    "JP",
+    "KR",
+    "TW"
+   ],
+   "note": "Most East Asian oil imports pass Malacca, which Malaysia shares with Indonesia and Singapore; China calls this its 'Malacca dilemma'.",
+   "sources": [
+    "https://www.eia.gov/international/analysis/special-topics/World_Oil_Transit_Chokepoints"
+   ]
+  },
+  {
+   "holder": "SG",
+   "kind": "chokepoint",
+   "via": "Singapore Strait",
+   "over": [
+    "CN",
+    "JP",
+    "KR",
+    "TW"
+   ],
+   "note": "Singapore sits at the narrowest point of the Malacca route and runs one of the world's busiest ports and fuel hubs.",
+   "sources": [
+    "https://www.eia.gov/international/analysis/special-topics/World_Oil_Transit_Chokepoints"
+   ]
+  },
+  {
+   "holder": "ID",
+   "kind": "chokepoint",
+   "via": "Sunda and Lombok straits",
+   "over": [
+    "CN",
+    "JP",
+    "KR",
+    "AU"
+   ],
+   "note": "Indonesia controls the main alternative routes if Malacca is blocked, making it pivotal to Indo-Pacific shipping.",
+   "sources": [
+    "https://www.eia.gov/international/analysis/special-topics/World_Oil_Transit_Chokepoints"
+   ]
+  },
+  {
+   "holder": "PA",
+   "kind": "chokepoint",
+   "via": "Panama Canal",
+   "over": [
+    "US",
+    "CN",
+    "JP",
+    "KR",
+    "CL"
+   ],
+   "note": "Panama annulled a Hong Kong firm's canal port concessions in 2026 under US pressure; the canal is vital to US and Asian trade.",
+   "sources": [
+    "https://www.aljazeera.com/news/2026/02/24/hong-kong-conglomerate-says-panama-canal-ports-seized-by-authorities",
+    "https://chinaglobalsouth.com/2026/02/24/panama-canal-ports-ck-hutchison-annulment-us-china/"
+   ]
+  },
+  {
+   "holder": "DK",
+   "kind": "chokepoint",
+   "via": "Danish straits",
+   "over": [
+    "RU"
+   ],
+   "note": "Russia's Baltic oil exports must pass Danish waters, where Denmark has tightened checks on shadow-fleet tankers.",
+   "sources": [
+    "https://www.spglobal.com/energy/en/news-research/latest-news/shipping/100625-denmark-tightens-ship-checks-at-baltic-sea-chokepoint-in-shadow-fleet-clampdown",
+    "https://www.bloomberg.com/news/articles/2025-02-05/denmark-to-intensify-scrutiny-of-russia-s-shadow-fleet-tankers"
+   ]
+  },
+  {
+   "holder": "ES",
+   "kind": "chokepoint",
+   "via": "Strait of Gibraltar (shared with Morocco)",
+   "over": [
+    "RU",
+    "DZ",
+    "EG"
+   ],
+   "note": "The only Atlantic outlet of the Mediterranean; Spain, Morocco and the UK base at Gibraltar watch all traffic.",
+   "sources": [
+    "https://www.eia.gov/international/analysis/special-topics/World_Oil_Transit_Chokepoints"
+   ]
+  },
+  {
+   "holder": "CN",
+   "kind": "chokepoint",
+   "via": "Taiwan Strait",
+   "over": [
+    "TW",
+    "JP",
+    "KR",
+    "PH"
+   ],
+   "note": "China's drills rehearse blockading Taiwan, threatening a key route for Japanese and Korean trade and Taiwan's energy imports.",
+   "sources": [
+    "https://www.scmp.com/news/china/military/article/3366011/mainland-china-stepping-preparations-taiwan-blockade-report-says",
+    "https://www.spokesman.com/stories/2026/apr/12/taiwan-plans-drills-to-break-potential-chinese-ene/"
+   ]
+  },
+  {
+   "holder": "RU",
+   "kind": "energy",
+   "via": "Pipeline gas (TurkStream and Blue Stream)",
+   "over": [
+    "HU",
+    "SK",
+    "RS",
+    "TR",
+    "AM"
+   ],
+   "note": "Hungary, Slovakia and Serbia still rely on Russian gas; in October 2026 Hungary and Slovakia asked Brussels for more flexibility before the 2027 pipeline ban, and Austria stopped Russian supply in 2025.",
+   "sources": [
+    "https://www.iene.eu/energy-news/slovakia-and-hungary-reject-eu-plan-to-phase-out-russian-gas-by-end-2027-p7786.html",
+    "https://tass.com/economy/1981571/amp",
+    "https://balkangreenenergynews.com/kapitany-hungary-will-meet-eu-deadline-to-end-russian-gas-imports/",
+    "https://www.euronews.com/2026/10/19/visegrad-four-urge-brussels-to-ease-russian-energy-phase-out-rules",
+    "https://www.themoscowtimes.com/2026/01/26/eu-gives-final-approval-to-russian-gas-ban-a91781"
+   ]
+  },
+  {
+   "holder": "QA",
+   "kind": "energy",
+   "via": "Liquefied natural gas exports",
+   "over": [
+    "IN",
+    "PK",
+    "BD",
+    "CN",
+    "KR",
+    "IT"
+   ],
+   "note": "A top liquefied natural gas exporter whose own leverage is hostage to Hormuz: QatarEnergy has declared force majeure since March 2026 and extended it again, to the end of November for Asian buyers and to December for European ones.",
+   "sources": [
+    "https://thenationalnews.com/business/energy/2026/09/28/qatar-extends-lng-force-majeure-as-hormuz-disruption-threatens-winter-supply",
+    "https://www.euronews.com/2026/08/03/second-tanker-with-qatari-lng-struck-in-hormuz-within-a-month-as-force-majeure-widens",
+    "https://www.bloomberg.com/news/articles/2026-09-28/qatar-extends-lng-force-majeure-as-hormuz-disruptions-drag-on"
+   ]
+  },
+  {
+   "holder": "SA",
+   "kind": "energy",
+   "via": "Oil exports and East–West pipeline to Yanbu",
+   "over": [
+    "CN",
+    "IN",
+    "JP",
+    "KR"
+   ],
+   "note": "Saudi Arabia rerouted crude through its Red Sea port Yanbu to bypass Hormuz, keeping it a key supplier to Asia, though Houthi attacks on tankers and missiles aimed at Yanbu now threaten that route.",
+   "sources": [
+    "https://www.worldoil.com/news/2026/3/25/saudi-arabia-ramps-yanbu-exports-toward-5-mmbpd-as-hormuz-disruption-forces-rerouting/",
+    "https://www.aljazeera.com/amp/news/2026/9/14/why-saudi-arabias-east-west-pipeline-matters-for-global-oil",
+    "https://www.aljazeera.com/news/2026/8/24/yemens-houthis-report-attack-on-saudi-ship"
+   ]
+  },
+  {
+   "holder": "US",
+   "kind": "finance",
+   "via": "US dollar, SWIFT access and sanctions",
+   "over": [
+    "RU",
+    "IR",
+    "KP",
+    "CU"
+   ],
+   "note": "Dollar dominance lets Washington cut targets off from global banking and punish third parties that deal with them.",
+   "sources": [
+    "https://ofac.treasury.gov/sanctions-programs-and-country-information"
+   ]
+  },
+  {
+   "holder": "US",
+   "kind": "technology",
+   "via": "Semiconductor export controls",
+   "over": [
+    "CN",
+    "RU",
+    "IR"
+   ],
+   "note": "US rules restrict sales of advanced chips and chipmaking tools to China, and reach foreign firms that use US technology.",
+   "sources": [
+    "https://www.bis.gov/",
+    "https://chinaselectcommittee.house.gov/media/letters/moolenaar-urges-us-engagement-with-the-netherlands-to-close-export-control-loopholes"
+   ]
+  },
+  {
+   "holder": "TW",
+   "kind": "technology",
+   "via": "TSMC advanced chip manufacturing",
+   "over": [
+    "US",
+    "CN",
+    "JP",
+    "KR",
+    "DE"
+   ],
+   "note": "Taiwan's TSMC makes most of the world's most advanced chips, a dependency often called its 'silicon shield'.",
+   "sources": [
+    "https://chinaselectcommittee.house.gov/media/letters/moolenaar-urges-us-engagement-with-the-netherlands-to-close-export-control-loopholes"
+   ]
+  },
+  {
+   "holder": "NL",
+   "kind": "technology",
+   "via": "ASML lithography machines",
+   "over": [
+    "CN",
+    "TW",
+    "KR",
+    "US"
+   ],
+   "note": "ASML is the only maker of EUV lithography tools; Dutch export curbs, aligned with the US, block their sale to China.",
+   "sources": [
+    "https://chinaselectcommittee.house.gov/media/letters/moolenaar-urges-us-engagement-with-the-netherlands-to-close-export-control-loopholes",
+    "https://cryptobriefing.com/asml-china-challenges-capacity-earnings/"
+   ]
+  },
+  {
+   "holder": "CN",
+   "kind": "minerals",
+   "via": "Rare earth mining, processing and magnets",
+   "over": [
+    "US",
+    "JP",
+    "DE",
+    "KR",
+    "IN"
+   ],
+   "note": "China dominates rare earth refining and magnets; after using export licensing as leverage in 2025, it suspended its broadest October 2025 curbs until November 2026, while still licensing heavy rare earths and adding United States and European firms to its export control list in 2026.",
+   "sources": [
+    "https://www.upi.com/Top_News/US/2025/11/09/china-suspends-export-ban-some-rare-earth-metals/4421762702810/",
+    "https://pubs.usgs.gov/periodicals/mcs2025/mcs2025.pdf",
+    "https://www.washingtonpost.com/national-security/2026/06/22/china-takes-aim-us-rare-earth-companies-with-new-export-controls/",
+    "https://www.technology.org/2026/10/19/china-rare-earth-export-pause-november-10/"
+   ]
+  },
+  {
+   "holder": "CN",
+   "kind": "minerals",
+   "via": "Gallium, germanium and antimony",
+   "over": [
+    "US",
+    "JP",
+    "KR",
+    "DE"
+   ],
+   "note": "China produces most of the world's gallium and germanium for chips and defence; it banned exports to the US, then suspended the ban.",
+   "sources": [
+    "https://fastmarkets.com/insights/china-suspends-export-prohibition-on-superhard-materials-us",
+    "https://pubs.usgs.gov/periodicals/mcs2025/mcs2025.pdf"
+   ]
+  },
+  {
+   "holder": "CD",
+   "kind": "minerals",
+   "via": "Cobalt export quotas",
+   "over": [
+    "CN",
+    "JP",
+    "KR"
+   ],
+   "note": "DR Congo mines most of the world's cobalt and replaced a 2025 export ban with quotas capping exports at 96,600 tonnes a year for 2026 and 2027, squeezing mainly Chinese refiners.",
+   "sources": [
+    "https://www.fastmarkets.com/insights/drc-may-reduce-cobalt-quota-if-market-needs-rebalancing-arecoms-says-exclusive/",
+    "https://www.kitco.com/news/off-the-wire/2026-04-30/glencore-expects-drc-cobalt-exports-normalize-line-2026-quotas"
+   ]
+  },
+  {
+   "holder": "CL",
+   "kind": "minerals",
+   "via": "Lithium (Atacama brine)",
+   "over": [
+    "CN",
+    "US",
+    "KR"
+   ],
+   "note": "Chile holds the largest lithium reserves and is moving output under state-led partnerships.",
+   "sources": [
+    "https://pubs.usgs.gov/periodicals/mcs2025/mcs2025.pdf"
+   ]
+  },
+  {
+   "holder": "AU",
+   "kind": "minerals",
+   "via": "Lithium (hard-rock spodumene)",
+   "over": [
+    "CN"
+   ],
+   "note": "Australia mines the most lithium, mostly shipped to China for refining, giving each side leverage over the other.",
+   "sources": [
+    "https://pubs.usgs.gov/periodicals/mcs2025/mcs2025.pdf"
+   ]
+  },
+  {
+   "holder": "ET",
+   "kind": "water",
+   "via": "Grand Ethiopian Renaissance Dam (Blue Nile)",
+   "over": [
+    "EG",
+    "SD"
+   ],
+   "note": "Ethiopia inaugurated the dam in September 2025 without a binding deal, and talks have been stalled since Egypt suspended them in December 2023; Egypt's water minister still calls the dam illegitimate.",
+   "sources": [
+    "https://allafrica.com/stories/202509110210.html",
+    "https://www.thereporterethiopia.com/45870/",
+    "https://www.aljazeera.com/news/2026/8/21/after-gerd-can-egypt-shape-ethiopias-next-nile-dams",
+    "https://www.riotimesonline.com/gerd-nile-dam-dispute-explained-2026/"
+   ]
+  },
+  {
+   "holder": "TR",
+   "kind": "water",
+   "via": "Tigris–Euphrates dams",
+   "over": [
+    "IQ",
+    "SY"
+   ],
+   "note": "Turkish dams control river flows into drought-hit Iraq and Syria; Ankara and Baghdad agreed a first water deal in 2025.",
+   "sources": [
+    "https://www.arabnews.pk/node/2618535",
+    "https://www.rudaw.net/english/middleeast/01112025"
+   ]
+  },
+  {
+   "holder": "CN",
+   "kind": "water",
+   "via": "Upper Mekong (Lancang) dams",
+   "over": [
+    "MM",
+    "LA",
+    "TH",
+    "KH",
+    "VN"
+   ],
+   "note": "China's dams on the upper Mekong shape flows, fisheries and farming downstream; it shares only limited data.",
+   "sources": [
+    "https://www.iiss.org/globalassets/media-library---content--migration/files/publications/rsa-2022/rsa22-13-chapter-11.pdf",
+    "https://www.wilsoncenter.org/sites/default/files/media/documents/event/Cronin%20Mekong%20Presentation%20PDF.pdf"
+   ]
+  },
+  {
+   "holder": "CN",
+   "kind": "water",
+   "via": "Yarlung Tsangpo (Brahmaputra) Medog dam",
+   "over": [
+    "IN",
+    "BD"
+   ],
+   "note": "China began building the world's largest hydropower dam in Tibet in 2025, raising Indian and Bangladeshi concern over river control.",
+   "sources": [
+    "https://www.lowyinstitute.org/the-interpreter/china-s-medog-county-mega-dam-bad-news-india-bangladesh",
+    "https://asianews.network/?p=195878"
+   ]
+  },
+  {
+   "holder": "IN",
+   "kind": "water",
+   "via": "Indus rivers upstream control",
+   "over": [
+    "PK"
+   ],
+   "note": "India has kept the Indus Waters Treaty 'in abeyance' since April 2025 and rejects an August 2026 Hague tribunal ruling that the treaty remains in force, threatening Pakistan's main source of irrigation water.",
+   "sources": [
+    "https://www.isas.nus.edu.sg/?p=18988",
+    "https://www.outlookindia.com/national/indias-indus-strategy-is-moving-beyond-the-old-treaty",
+    "https://www.aljazeera.com/news/2026/9/1/pakistan-wins-indus-waters-battle-at-the-hague-but-india-threat-remains"
+   ]
+  },
+  {
+   "holder": "AF",
+   "kind": "water",
+   "via": "Helmand and Harirud dams",
+   "over": [
+    "IR"
+   ],
+   "note": "Taliban dam projects on rivers flowing into eastern Iran have worsened a long dispute over water shares.",
+   "sources": [
+    "https://waterpeacesecurity.org/info/blog-01-06-2023-Troubled-waters-between-Afghanistan-and-Iran-as-border-troops-clash-over-the-Helmand-River",
+    "https://kabulnow.com/2023/06/taliban-let-helmand-river-water-flow-into-iran-following-weeks-of-tensions/"
+   ]
+  },
+  {
+   "holder": "RU",
+   "kind": "food",
+   "via": "Wheat exports",
+   "over": [
+    "EG",
+    "TR",
+    "SD",
+    "IR"
+   ],
+   "note": "Russia is the largest wheat exporter, with Egypt and Turkey its biggest buyers, giving Moscow influence across the Middle East and Africa.",
+   "sources": [
+    "https://www.fas.usda.gov/data/grain-world-markets-and-trade",
+    "https://cropgpt.ai/russia-wheat-exports-hit-48m-tons-in-2025-26-as-egypt-and-turkey-drive-gains"
+   ]
+  },
+  {
+   "holder": "UA",
+   "kind": "food",
+   "via": "Black Sea grain exports",
+   "over": [
+    "EG",
+    "LB",
+    "LY",
+    "TN"
+   ],
+   "note": "Despite the war, Ukraine exports wheat and maize through its own Black Sea corridor, supplying import-reliant Middle Eastern and North African states.",
+   "sources": [
+    "https://www.fas.usda.gov/data/grain-world-markets-and-trade"
+   ]
+  },
+  {
+   "holder": "CN",
+   "kind": "finance",
+   "via": "Belt and Road lending",
+   "over": [
+    "LA",
+    "PK",
+    "KE",
+    "AO"
+   ],
+   "note": "Heavy debts to Chinese lenders give Beijing influence over borrowers' ports, power grids and policy choices.",
+   "sources": [
+    "https://www.aiddata.org/publications/banking-on-the-belt-and-road"
+   ]
+  }
+ ],
+ "pppNote": "Spending converted with the World Bank GDP purchasing power parity factor, 2025 (NY.GDP.MKTP.PP.CD / NY.GDP.MKTP.CD).",
+ "updated": "2026-10-21"
+}
