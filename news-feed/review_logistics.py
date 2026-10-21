@@ -140,7 +140,7 @@ def review_layer(data, layer, today, log):
         add = ', "add": [{"name": "...", "status": "cut|damaged|at risk", "date": "YYYY-MM-DD", "lat": 0.0, "lng": 0.0, "note": "...", "sources": ["https://...", "https://..."]}]'
     extra = "\nAlso list NEW cable cuts or damage since the latest date above under \"add\" (two outlets each, position of the damage)." if add else ""
     if layer == "chokepoints":
-        extra = "\n\"traffic\" is measured daily by IMF PortWatch and updated by code: use it, never change it. \"latest\" is the editorial line beside it."
+        extra = "\n\"traffic\" is measured daily by IMF PortWatch and updated by code: use it, never change it. \"latest\" is the editorial line beside it: the newest notable event (an attack, a rule change, a reopening), never ship counts."
     prompt = (f"You keep a world logistics map current. Each item below is {what}. Today is {today}.\n"
               f"Editable fields: {', '.join(editable)}. Do not touch anything else.{extra}\n\n"
               f"ITEMS:\n{json.dumps([slim(i) for i in items], ensure_ascii=False)}\n\n"
