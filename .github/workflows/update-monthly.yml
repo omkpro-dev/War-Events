@@ -17,6 +17,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Previous data (monthly-data branch)
+        run: |
+          # The bot's files live on the monthly-data branch (one commit, no history build-up).
+          # Until that branch exists, the copies checked into main are the starting point.
+          if git ls-remote --exit-code --heads origin monthly-data >/dev/null 2>&1; then
+            git fetch --depth=1 origin monthly-data
+            git checkout FETCH_HEAD -- data/economic.json data/eco data/power.json || true
+            git reset -q
+          fi
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -27,10 +36,16 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           CLAUDE_MODEL: claude-haiku-5-5
-      - name: Commit
+      - name: Publish to monthly-data branch (one commit, no history build-up)
         run: |
+          mkdir -p /tmp/pub/data
+          cp -R data/economic.json data/eco data/power.json /tmp/pub/data/
+          cd /tmp/pub
+          echo '{"git":{"deploymentEnabled":false}}' > vercel.json   # data only: Vercel skips this branch
+          git init -q
           git config user.name "war-events-bot"
           git config user.email "bot@warevents.com"
-          git add data/economic.json data/eco data/power.json
-          git diff --cached --quiet || git commit -m "Monthly data refresh $(date -u +%Y-%m)"
-          git push
+          git checkout -q -b monthly-data
+          git add -A
+          git commit -q -m "monthly-data $(date -u +%FT%TZ)"
+          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" monthly-data

@@ -7948,7 +7948,7 @@ var stopLoaderOrb = function(){};
   // Four tabs across the top: Balance of power, Spheres of influence, Strategic buffers, Leverage points.
   // The tab decides what the globe shows and what the wide left pane explains. Press a country to see that tab for it.
   // Data: data/power.json (militaries, rivalries, spheres, buffers, leverage) + data/country_stats.json (partners, rivals, UN votes).
-  var PW_URLS = ['https://raw.githubusercontent.com/omkpro-dev/War-Events/main/data/power.json', 'data/power.json'];
+  var PW_URLS = ['https://raw.githubusercontent.com/omkpro-dev/War-Events/monthly-data/data/power.json', 'data/power.json'];
   var PW_TABS = [['balance', 'Balance of power'], ['spheres', 'Spheres of influence'], ['buffers', 'Strategic buffers'], ['leverage', 'Leverage points']];
   var PW_TAB = (function(){ try { var t = localStorage.getItem('we-pw-tab'); return PW_TABS.some(function(x){ return x[0] === t; }) ? t : 'balance'; } catch(e){ return 'balance'; } })();
   var PW_TOPIC = 'core', PW_LAST = { core:PW_TAB, physical:'geography' };
@@ -8454,7 +8454,7 @@ var stopLoaderOrb = function(){};
     ['researchers', 'Researchers', ecV('researchers'), function(v){ return Math.round(v).toLocaleString(); }, 'Researchers per million people'],
     ['internet', 'Online', ecV('internet'), phPct, 'Share of people using the internet']];
   function loadEcoData(then){
-    var urls = ['https://raw.githubusercontent.com/omkpro-dev/War-Events/main/data/economic.json', 'data/economic.json'];
+    var urls = ['https://raw.githubusercontent.com/omkpro-dev/War-Events/monthly-data/data/economic.json', 'data/economic.json'];
     (function go(i){ if(i >= urls.length) return;
       fetch(urls[i] + '?t=' + Math.floor(Date.now() / 3600000), { cache:'no-store' }).then(function(r){ if(!r.ok) throw 0; return r.json(); })
         .then(function(d){ if(!d || !d.countries) throw 0;
@@ -8466,7 +8466,7 @@ var stopLoaderOrb = function(){};
   var ecHist = {};
   function ecHistory(k, then){
     if(ecHist[k]) return then(ecHist[k]);
-    var urls = ['https://raw.githubusercontent.com/omkpro-dev/War-Events/main/data/eco/' + k + '.json', 'data/eco/' + k + '.json'];
+    var urls = ['https://raw.githubusercontent.com/omkpro-dev/War-Events/monthly-data/data/eco/' + k + '.json', 'data/eco/' + k + '.json'];
     (function go(i){ if(i >= urls.length) return then(null);
       fetch(urls[i] + '?t=' + Math.floor(Date.now() / 3600000), { cache:'no-store' }).then(function(r){ if(!r.ok) throw 0; return r.json(); })
         .then(function(d){ ecHist[k] = d; then(d); }).catch(function(){ go(i + 1); }); })(0);
