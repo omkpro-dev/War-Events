@@ -104,6 +104,7 @@ RSS_FEEDS = [
     ("CGTN", "https://www.cgtn.com/subscribe/rss/section/world.xml"),
     ("Press TV", "https://www.presstv.ir/rss.xml"),
     ("Fars", GN.format("farsnews.ir")),
+    ("Mehr News", "https://en.mehrnews.com/rss"),   # Iranian state agency; its own feed works
 ]
 # Reuters and AP have no public RSS; they arrive through GDELT (and NewsAPI if a key is set).
 GDELT_DOMAINS = ["reuters.com", "apnews.com", "ft.com", "bloomberg.com", "aljazeera.com", "bbc.com", "bbc.co.uk"]
@@ -130,7 +131,7 @@ OUTLETS = {
     "mexiconewsdaily.com": "Mexico News Daily", "batimes.com.ar": "Buenos Aires Times", "balkaninsight.com": "Balkan Insight",
     "notesfrompoland.com": "Notes from Poland", "oc-media.org": "OC Media", "euronews.com": "Euronews",
     "news.cn": "Xinhua", "xinhuanet.com": "Xinhua", "people.cn": "People's Daily", "chinadaily.com.cn": "China Daily",
-    "cgtn.com": "CGTN", "presstv.ir": "Press TV", "presstv.co.uk": "Press TV", "farsnews.ir": "Fars",
+    "cgtn.com": "CGTN", "presstv.ir": "Press TV", "presstv.co.uk": "Press TV", "farsnews.ir": "Fars", "mehrnews.com": "Mehr News",
 }
 TIER1 = {"Reuters", "AP", "BBC News", "Al Jazeera", "The Guardian", "Financial Times", "Bloomberg"}
 PRIORITY = ["Reuters", "AP", "BBC News", "Al Jazeera", "The Guardian", "Financial Times", "Bloomberg",

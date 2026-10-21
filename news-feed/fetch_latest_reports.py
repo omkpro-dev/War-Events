@@ -83,6 +83,7 @@ FEEDS = [
     ("CGTN", "https://www.cgtn.com/subscribe/rss/section/world.xml"),
     ("Press TV", "https://www.presstv.ir/rss.xml"),
     ("Fars", GN.format("farsnews.ir")),
+    ("Mehr News", "https://en.mehrnews.com/rss"),   # Iranian state agency; its own feed works
 ]
 from topics import GEO, is_geopolitical   # shared with the Wire ticker
 ESC = re.compile(r"\b(attack|strike|airstrike|missile|invasion|offensive|killed|shelling|clashes|escalat)", re.I)
