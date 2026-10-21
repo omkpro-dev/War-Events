@@ -648,6 +648,8 @@ def build_story(g, now):
         "time": iso(t),
         "isNew": now - t < timedelta(hours=NEW_HOURS),
         "sourceUrl": rep["url"], "sourceLabel": "Source",
+        # pages enrich_stories.py can read the article from (Google News links for Reuters/AP can't be read)
+        "textUrls": [a["url"] for a in sorted(arts, key=rank) if a.get("url") and "news.google.com" not in a["url"]][:3],
         "outlets": outlets,
         "topics": [k for k, _ in topics.most_common()],
         "score": score,

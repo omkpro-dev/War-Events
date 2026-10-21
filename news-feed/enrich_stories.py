@@ -22,6 +22,8 @@ UA = {"User-Agent": "Mozilla/5.0 (WarEvents enrich bot)"}
 # after the first in an hour reads the instructions from the prompt cache at a tenth of the price.
 SYSTEM = """You are a geopolitical news editor for the site War Events.
 
+If the article text is missing, work from the headline and outlets and never mention to readers that the text was unavailable.
+
 Return ONLY a JSON object, no prose, with:
 - "summary": 2-3 plain sentences (max 70 words) explaining what happened and why it matters geopolitically. Neutral, factual, no speculation beyond the reporting.
 - "points": exactly 3 bullet points on what happened. Very basic, plain English a 12-year-old understands, max 14 words each, no jargon, no repeating the headline word for word.
@@ -47,6 +49,16 @@ Article text (may be partial or empty):
 {text}"""
 
 
+def story_text(story):
+    """The article text: from the source link, else from the other outlets covering the story."""
+    for url in [story.get("sourceUrl", "")] + story.get("textUrls", []):
+        if url and "news.google.com" not in url:
+            text = article_text(url)
+            if len(text) > 300:
+                return text
+    return ""
+
+
 def article_text(url):
     try:
         with urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=15) as r:
@@ -68,7 +80,7 @@ def ask_claude(story):
         "messages": [{"role": "user", "content": STORY.format(
             headline=html.unescape(story.get("headline", "")), place=story.get("place", ""),
             outlets=", ".join(story.get("outlets", [])[:5]),
-            text=article_text(story.get("sourceUrl", "")) or "(not available)")}],
+            text=story_text(story) or "(not available)")}],
     }).encode()
     req = urllib.request.Request("https://api.anthropic.com/v1/messages", data=body, headers={
         "x-api-key": KEY, "anthropic-version": "2023-06-01", "content-type": "application/json"})
@@ -123,7 +135,9 @@ def main():
         if not sid:
             continue
         # Re-ask once for stories cached before the bullet points existed.
-        if (sid not in cache or cache[sid].get("v") != PROMPT_V) and new < MAX_NEW:
+        # also redo summaries written without the article text once another outlet's page can be read
+        notext = "not available" in cache.get(sid, {}).get("summary", "") and s.get("textUrls")
+        if (sid not in cache or cache[sid].get("v") != PROMPT_V or notext) and new < MAX_NEW:
             try:
                 cache[sid] = ask_claude(s)
                 new += 1
