@@ -1,0 +1,53 @@
+name: Update war feed
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"   # every 15 minutes (GitHub may delay runs a little)
+  workflow_dispatch:
+  push:
+    paths:
+      - "war-feed/**"
+      - ".github/workflows/update-war.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: war-feed
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Previous data (war-data branch)
+        run: |
+          mkdir -p war-feed/out
+          if git ls-remote --exit-code --heads origin war-data >/dev/null 2>&1; then
+            git fetch --depth=1 origin war-data
+            git --work-tree=war-feed/out checkout FETCH_HEAD -- . || true
+          fi
+          ls -la war-feed/out
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Install
+        working-directory: war-feed
+        run: npm install --no-audit --no-fund
+      - name: Collect, extract claims, verify
+        working-directory: war-feed
+        run: node run.js
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          ANTHROPIC_MODEL: claude-haiku-5-5
+      - name: Publish to war-data branch (one commit, no history build-up)
+        working-directory: war-feed/out
+        run: |
+          git init -q
+          git config user.name "war-bot"
+          git config user.email "war-bot@users.noreply.github.com"
+          git checkout -q -b war-data
+          git add -A
+          git commit -q -m "War data $(date -u +%FT%TZ)"
+          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" war-data

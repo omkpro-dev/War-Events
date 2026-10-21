@@ -1,0 +1,5 @@
+# Stories to keep off the globe. One per line, any of:
+#   a link to the article        https://www.bbc.co.uk/news/articles/abc123
+#   the story id from the feed   auto-1a2b3c4d5e6f
+#   words in the headline        oil prices
+# Save (commit) this file on GitHub and the feed rebuilds within a minute or two.

@@ -1,0 +1,36 @@
+name: Monthly data (Power core + economy)
+
+on:
+  schedule:
+    - cron: "17 4 1 * *"   # 04:17 UTC on the 1st of every month
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: monthly-data
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Economy (World Bank + IMF)
+        run: python news-feed/update_economic.py
+      - name: Power core (PPP factors + Claude review of spheres, buffers, leverage, rivalries)
+        run: python news-feed/update_power.py
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          CLAUDE_MODEL: claude-haiku-5-5
+      - name: Commit
+        run: |
+          git config user.name "war-events-bot"
+          git config user.email "bot@warevents.com"
+          git add data/economic.json data/eco data/power.json
+          git diff --cached --quiet || git commit -m "Monthly data refresh $(date -u +%Y-%m)"
+          git push

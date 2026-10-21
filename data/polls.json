@@ -1,0 +1,61 @@
+{
+ "bg-2026-pres": [
+  {
+   "pollster": "Myara",
+   "date": "2026-10-04",
+   "sample": 1000,
+   "unit": "pct",
+   "values": {
+    "Yotova": 46.9,
+    "Gyurov": 25.3,
+    "Vazrazhdane": 8.8
+   },
+   "url": "https://myara.bg/electoral-snapshot-beginning-october-1918/",
+   "added": "2026-10-20"
+  }
+ ],
+ "rs-2026-parl": [
+  {
+   "pollster": "Faktor plus",
+   "date": "2026-04-30",
+   "sample": 1000,
+   "unit": "pct",
+   "values": {
+    "SNS": 46.4,
+    "Students": 28.7,
+    "ES": 8.6,
+    "SPS": 5.0
+   },
+   "url": "https://www.danas.rs/vesti/politika/istrazivanje-javnog-mnjenja/",
+   "added": "2026-10-20"
+  },
+  {
+   "pollster": "Faktor plus",
+   "date": "2026-09-20",
+   "sample": null,
+   "unit": "pct",
+   "values": {
+    "SNS": 48.6,
+    "Students": 37.1,
+    "ES": 3.6,
+    "SPS": 4.9
+   },
+   "url": "https://www.danas.rs/vesti/politika/izbori26/istrazivanje-faktor-plus/",
+   "added": "2026-10-20"
+  }
+ ],
+ "br-2026-pres-r2": [
+  {
+   "pollster": "Datafolha",
+   "date": "2026-10-14",
+   "sample": 2520,
+   "unit": "pct",
+   "values": {
+    "F. Bolsonaro": 47.0,
+    "Lula": 45.0
+   },
+   "url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/10/16/datafolha-intencao-ir-votar-2-turno.ghtml",
+   "added": "2026-10-20"
+  }
+ ]
+}

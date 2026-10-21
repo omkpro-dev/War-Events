@@ -1,0 +1,476 @@
+{
+ "note": "Selected major overseas bases and longest-range missiles, from public reporting (CSIS Missile Threat, IISS Military Balance, official defence sources). Not exhaustive.",
+ "bases": {
+  "US": [
+   [
+    "Ramstein Air Base",
+    "DE",
+    49.44,
+    7.6
+   ],
+   [
+    "Yokosuka naval base",
+    "JP",
+    35.29,
+    139.67
+   ],
+   [
+    "Kadena Air Base",
+    "JP",
+    26.36,
+    127.77
+   ],
+   [
+    "Camp Humphreys",
+    "KR",
+    36.96,
+    127.03
+   ],
+   [
+    "Al Udeid Air Base",
+    "QA",
+    25.12,
+    51.31
+   ],
+   [
+    "Naval Support Activity Bahrain",
+    "BH",
+    26.21,
+    50.61
+   ],
+   [
+    "Camp Lemonnier",
+    "DJ",
+    11.55,
+    43.15
+   ],
+   [
+    "Diego Garcia",
+    "IO",
+    -7.31,
+    72.41
+   ],
+   [
+    "Guantanamo Bay",
+    "CU",
+    19.9,
+    -75.1
+   ],
+   [
+    "Incirlik Air Base",
+    "TR",
+    37.0,
+    35.43
+   ],
+   [
+    "Aviano Air Base",
+    "IT",
+    46.03,
+    12.6
+   ],
+   [
+    "Naval Station Rota",
+    "ES",
+    36.62,
+    -6.35
+   ],
+   [
+    "RAF Lakenheath",
+    "GB",
+    52.41,
+    0.56
+   ],
+   [
+    "Andersen Air Force Base, Guam",
+    "GU",
+    13.58,
+    144.93
+   ],
+   [
+    "Pituffik Space Base",
+    "GL",
+    76.53,
+    -68.7
+   ],
+   [
+    "Al Dhafra Air Base",
+    "AE",
+    24.25,
+    54.55
+   ],
+   [
+    "Ali Al Salem Air Base",
+    "KW",
+    29.35,
+    47.52
+   ],
+   [
+    "Muwaffaq Salti Air Base",
+    "JO",
+    31.83,
+    36.78
+   ],
+   [
+    "Redzikowo missile defence base",
+    "PL",
+    54.48,
+    17.1
+   ],
+   [
+    "Mihail Kogalniceanu Air Base",
+    "RO",
+    44.36,
+    28.49
+   ]
+  ],
+  "RU": [
+   [
+    "Hmeimim Air Base (future uncertain)",
+    "SY",
+    35.4,
+    35.95
+   ],
+   [
+    "Tartus naval facility (future uncertain)",
+    "SY",
+    34.89,
+    35.87
+   ],
+   [
+    "201st Military Base, Dushanbe",
+    "TJ",
+    38.56,
+    68.79
+   ],
+   [
+    "Kant Air Base",
+    "KG",
+    42.85,
+    74.85
+   ],
+   [
+    "102nd Military Base, Gyumri",
+    "AM",
+    40.79,
+    43.85
+   ],
+   [
+    "Sevastopol (occupied Crimea)",
+    "UA",
+    44.62,
+    33.53
+   ],
+   [
+    "Operational Group in Transnistria",
+    "MD",
+    46.84,
+    29.63
+   ],
+   [
+    "Gudauta (Abkhazia)",
+    "GE",
+    43.1,
+    40.62
+   ],
+   [
+    "Africa Corps, Bamako",
+    "ML",
+    12.63,
+    -8.0
+   ]
+  ],
+  "CN": [
+   [
+    "PLA Support Base, Djibouti",
+    "DJ",
+    11.59,
+    43.06
+   ],
+   [
+    "Ream Naval Base",
+    "KH",
+    10.51,
+    103.61
+   ]
+  ],
+  "FR": [
+   [
+    "French forces in Djibouti",
+    "DJ",
+    11.55,
+    43.14
+   ],
+   [
+    "French base in Abu Dhabi",
+    "AE",
+    24.52,
+    54.39
+   ],
+   [
+    "Libreville (reduced presence)",
+    "GA",
+    0.45,
+    9.41
+   ]
+  ],
+  "GB": [
+   [
+    "RAF Akrotiri",
+    "CY",
+    34.59,
+    32.99
+   ],
+   [
+    "Mount Pleasant, Falklands",
+    "FK",
+    -51.82,
+    -58.45
+   ],
+   [
+    "Gibraltar",
+    "GI",
+    36.15,
+    -5.35
+   ],
+   [
+    "HMS Jufair, Bahrain",
+    "BH",
+    26.21,
+    50.61
+   ],
+   [
+    "UK Joint Logistics Support Base, Duqm",
+    "OM",
+    19.67,
+    57.7
+   ],
+   [
+    "British Forces Brunei",
+    "BN",
+    4.6,
+    114.33
+   ],
+   [
+    "Diego Garcia (with the US)",
+    "IO",
+    -7.31,
+    72.41
+   ]
+  ],
+  "TR": [
+   [
+    "Tariq bin Ziyad base",
+    "QA",
+    25.29,
+    51.43
+   ],
+   [
+    "TURKSOM, Mogadishu",
+    "SO",
+    2.02,
+    45.3
+   ],
+   [
+    "Northern Cyprus",
+    "CY",
+    35.2,
+    33.4
+   ],
+   [
+    "Bashiqa camp",
+    "IQ",
+    36.45,
+    43.35
+   ]
+  ]
+ },
+ "missiles": {
+  "US": [
+   13000,
+   "Minuteman III intercontinental missile",
+   38.9,
+   -77.04
+  ],
+  "RU": [
+   18000,
+   "RS-28 Sarmat intercontinental missile",
+   55.75,
+   37.62
+  ],
+  "CN": [
+   13000,
+   "DF-41 intercontinental missile",
+   39.9,
+   116.4
+  ],
+  "GB": [
+   12000,
+   "Trident II submarine-launched missile (sea-based: reach moves with the submarine)",
+   51.51,
+   -0.13
+  ],
+  "FR": [
+   10000,
+   "M51 submarine-launched missile (sea-based: reach moves with the submarine)",
+   48.86,
+   2.35
+  ],
+  "IN": [
+   5000,
+   "Agni-V",
+   28.61,
+   77.21
+  ],
+  "PK": [
+   2750,
+   "Shaheen-III",
+   33.69,
+   73.06
+  ],
+  "KP": [
+   15000,
+   "Hwasong-17 / Hwasong-18",
+   39.04,
+   125.76
+  ],
+  "IL": [
+   4800,
+   "Jericho III (estimated)",
+   32.08,
+   34.78
+  ],
+  "IR": [
+   2000,
+   "Khorramshahr / Sejjil",
+   35.69,
+   51.39
+  ]
+ },
+ "nuclear": {
+  "US": {
+   "land": [
+    [
+     "F.E. Warren AFB (ICBM)",
+     41.13,
+     -104.87
+    ],
+    [
+     "Malmstrom AFB (ICBM)",
+     47.51,
+     -111.18
+    ],
+    [
+     "Minot AFB (ICBM)",
+     48.42,
+     -101.36
+    ]
+   ],
+   "sea": [
+    [
+     "Naval Base Kitsap-Bangor (SSBN)",
+     47.73,
+     -122.71
+    ],
+    [
+     "Naval Submarine Base Kings Bay (SSBN)",
+     30.8,
+     -81.56
+    ]
+   ],
+   "air": [
+    [
+     "Whiteman AFB (B-2)",
+     38.73,
+     -93.55
+    ],
+    [
+     "Barksdale AFB (B-52)",
+     32.5,
+     -93.66
+    ],
+    [
+     "Minot AFB (B-52)",
+     48.42,
+     -101.36
+    ]
+   ]
+  },
+  "RU": {
+   "land": [
+    [
+     "Kozelsk missile division",
+     54.03,
+     35.78
+    ],
+    [
+     "Yasny missile division",
+     51.07,
+     59.97
+    ],
+    [
+     "Uzhur missile division",
+     55.32,
+     89.83
+    ]
+   ],
+   "sea": [
+    [
+     "Gadzhiyevo (Northern Fleet SSBNs)",
+     69.25,
+     33.33
+    ],
+    [
+     "Vilyuchinsk (Pacific Fleet SSBNs)",
+     52.93,
+     158.4
+    ]
+   ],
+   "air": [
+    [
+     "Engels air base (Tu-160, Tu-95)",
+     51.48,
+     46.21
+    ],
+    [
+     "Ukrainka air base (Tu-95)",
+     51.17,
+     128.45
+    ]
+   ]
+  },
+  "GB": {
+   "sea": [
+    [
+     "HMNB Clyde, Faslane (Vanguard SSBNs)",
+     56.07,
+     -4.82
+    ]
+   ]
+  },
+  "FR": {
+   "sea": [
+    [
+     "Île Longue (SSBNs)",
+     48.31,
+     -4.52
+    ]
+   ],
+   "air": [
+    [
+     "Saint-Dizier air base (Rafale)",
+     48.64,
+     4.9
+    ]
+   ]
+  },
+  "CN": {
+   "sea": [
+    [
+     "Yulin naval base, Hainan (SSBNs)",
+     18.22,
+     109.55
+    ]
+   ]
+  }
+ }
+}

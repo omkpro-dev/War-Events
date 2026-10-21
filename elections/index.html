@@ -1,0 +1,1293 @@
+<!DOCTYPE html><html lang="en"><head>
+<script>
+/* War Events: runs only on warevents.com; light copy protection */
+(function(){
+  var h = location.hostname, ok = h === 'localhost' || h === '127.0.0.1' || location.protocol === 'https:' && (h === 'warevents.com' || h === 'www.warevents.com' || /\.vercel\.app$/.test(h));
+  if(!ok){ document.documentElement.innerHTML = '<head><title>War Events</title></head><body style="margin:0;background:#0b1628;color:#f0e9da;font:16px/1.5 sans-serif;display:flex;align-items:center;justify-content:center;height:100vh"><p>War Events is only available at <a style="color:#f0e9da" href="https://www.warevents.com">warevents.com</a>.</p></body>'; throw new Error('War Events: unauthorised host'); }
+  try { if(window.top !== window.self) window.top.location = location.href; } catch(e){ document.documentElement.innerHTML = ''; }
+  function editable(t){ return t && t.closest && t.closest('input, textarea, select, [contenteditable="true"]'); }
+  document.addEventListener('contextmenu', function(e){ if(!editable(e.target)) e.preventDefault(); });
+  document.addEventListener('dragstart', function(e){ if(!editable(e.target)) e.preventDefault(); });
+  document.addEventListener('selectstart', function(e){ if(!editable(e.target)) e.preventDefault(); });
+  document.addEventListener('copy', function(e){ if(!editable(e.target)) e.preventDefault(); });
+  document.addEventListener('keydown', function(e){ var k = (e.key || '').toLowerCase(); if((e.ctrlKey || e.metaKey) && (k === 's' || k === 'u' || k === 'p')) e.preventDefault(); });
+})();
+</script>
+<style>body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } img{ -webkit-user-drag:none; user-drag:none; } input, textarea, select{ -webkit-user-select:text; user-select:text; }</style>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="../js/we-transition.js"></script>
+<title>Elections — War Events</title>
+<meta name="description" content="Every national election coming up in Europe, the Americas, East Asia, Oceania and Iran, with each contender on the political compass and the latest polls.">
+<link rel="canonical" href="https://www.warevents.com/elections">
+<link rel="icon" href="../images/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../images/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="../images/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="War Events">
+<meta property="og:url" content="https://www.warevents.com/elections">
+<meta property="og:title" content="Elections — War Events">
+<meta property="og:description" content="Every national election coming up in Europe, the Americas, East Asia, Oceania and Iran, with the political compass and the latest polls.">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&amp;family=Barlow+Condensed:wght@500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0e1a30; --panel:#0c172b; --panel2:#111f38; --line:#24344f; --line2:#33476a;
+    --accent:#f0e9da; --fg:#f0e9da; --body:#d9d2c3; --mid:#97a1b4; --dim:#66728a;
+    --red:#e5484d; --redsoft:#ff8a8d; --green:#5fd3a5; --gold:#d8b25a;
+    --left:#e0645f; --right:#5b8ee0; --centre:#a7a9b4;
+    --hdr:58px;
+  }
+  *{ box-sizing:border-box; }
+  html{ background:var(--bg); -webkit-text-size-adjust:100%; scroll-padding-top:calc(var(--hdr) + 66px); }
+  body{ margin:0; background:var(--bg); color:var(--fg); font-family:'Barlow',sans-serif; -webkit-font-smoothing:antialiased; min-height:100vh; }
+  a{ color:inherit; }
+  button{ font-family:inherit; }
+  :focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
+  .bgdots{ position:fixed; inset:0; pointer-events:none; z-index:0;
+    background-image:radial-gradient(rgba(255,255,255,0.08) 1.3px, transparent 1.3px); background-size:26px 26px; opacity:.5; }
+
+  /* ---------- header ---------- */
+  header{ position:sticky; top:0; z-index:30; display:flex; align-items:center; gap:20px;
+    padding:14px 34px; padding-top:calc(14px + env(safe-area-inset-top));
+    background:rgba(9,18,34,0.92); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
+  .logo-lockup{ display:flex; align-items:center; text-decoration:none; }
+  .we-mark{ display:flex; align-items:stretch; height:1.3em; font-family:'Barlow Condensed','Arial Narrow',sans-serif; font-weight:700; font-size:26px; line-height:1; letter-spacing:0.05em; text-transform:uppercase; white-space:nowrap; }
+  .we-war{ display:flex; align-items:center; padding:0 0.28em; background:var(--accent); color:var(--bg); }
+  .we-events{ display:flex; align-items:center; padding:0 0.3em; color:var(--accent); border:1px solid var(--accent); border-left:none; }
+  .site-nav{ display:flex; align-items:stretch; height:26px; background:rgba(12,22,40,.55); border:1px solid var(--line); margin-left:16px; }
+  .site-nav a{ display:flex; align-items:center; padding:0 11px; font-size:10px; letter-spacing:normal; text-transform:capitalize; color:var(--dim); text-decoration:none; transition:color .2s, background .2s; }
+  .site-nav a:hover{ color:var(--accent); background:rgba(240,233,218,.07); }
+  .site-nav a.active{ color:var(--accent); }
+  .site-nav .csep{ width:1px; background:var(--line); }
+  .back-map{ display:none; margin-left:auto; align-items:center; gap:6px; height:34px; padding:0 13px; border:1px solid rgba(255,250,240,0.22); border-radius:8px;
+    background:linear-gradient(160deg, rgba(255,250,240,0.14), rgba(255,250,240,0.05)); text-decoration:none;
+    font-family:'Barlow Condensed',sans-serif; font-weight:600; font-size:14px; letter-spacing:normal; text-transform:capitalize; }
+  .back-map svg{ width:12px; height:12px; fill:none; stroke:currentColor; stroke-width:1.8; }
+
+  main{ position:relative; z-index:1; max-width:1240px; margin:0 auto; padding:30px 34px 70px; }
+
+  /* ---------- intro ---------- */
+  .kicker{ font-family:'Barlow Condensed',sans-serif; font-weight:600; font-size:13px; letter-spacing:normal; text-transform:capitalize; color:var(--mid); margin:0 0 6px; display:flex; align-items:center; gap:8px; }
+  .kicker .dot{ width:7px; height:7px; border-radius:50%; background:var(--red); animation:pulse 2s infinite; }
+  @keyframes pulse{ 0%{ box-shadow:0 0 0 0 rgba(229,72,77,.55);} 70%{ box-shadow:0 0 0 8px rgba(229,72,77,0);} 100%{ box-shadow:0 0 0 0 rgba(229,72,77,0);} }
+  h1{ font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:clamp(40px,6vw,58px); line-height:1; letter-spacing:0.02em; text-transform:capitalize; margin:0 0 10px; }
+  .lede{ color:#cfc8b8; font-size:17px; line-height:1.5; max-width:660px; margin:0 0 20px; }
+
+  /* ---------- coming-up strip ---------- */
+  .strip-k{ font-size:10.5px; font-weight:700; letter-spacing:normal; text-transform:capitalize; color:var(--mid); margin:0 0 8px; }
+  .strip{ display:flex; gap:8px; overflow-x:auto; scrollbar-width:none; -webkit-overflow-scrolling:touch; padding:2px 2px 4px; margin:0 0 24px; scroll-snap-type:x proximity; }
+  .strip::-webkit-scrollbar{ display:none; }
+  .strip button{ flex:none; scroll-snap-align:start; display:flex; align-items:center; gap:9px; padding:7px 14px 7px 7px; border-radius:99px; cursor:pointer;
+    background:rgba(240,233,218,.05); border:1px solid var(--line); color:var(--fg); text-align:left; transition:border-color .2s, background .2s; }
+  .strip button:hover{ border-color:var(--line2); background:rgba(240,233,218,.09); }
+  .strip .flag{ width:28px; height:28px; }
+  .strip b{ display:block; font-size:13.5px; font-weight:600; line-height:1.15; white-space:nowrap; }
+  .strip small{ display:block; font-size:12px; color:var(--mid); white-space:nowrap; }
+  .strip small.soon{ color:var(--redsoft); font-weight:600; }
+
+  /* ---------- featured ---------- */
+  .next{ position:relative; display:grid; grid-template-columns:minmax(0,0.85fr) minmax(0,1.15fr); gap:10px 36px; padding:26px 28px 24px; margin-bottom:26px;
+    background:linear-gradient(135deg, rgba(240,233,218,0.07), rgba(240,233,218,0.02)); border:1px solid var(--line); border-radius:16px; overflow:hidden; }
+  .next::before{ content:''; position:absolute; inset:0 auto 0 0; width:3px; background:var(--red); }
+  .next-k{ font-size:11px; font-weight:700; letter-spacing:normal; text-transform:capitalize; color:var(--redsoft); margin-bottom:12px; }
+  .next-c{ display:flex; align-items:center; gap:13px; }
+  .next-c .flag{ width:46px; height:46px; }
+  .next-name{ font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:36px; line-height:1; text-transform:capitalize; letter-spacing:0.02em; }
+  .next-type{ color:var(--mid); font-size:14.5px; margin-top:3px; }
+  .count{ display:flex; gap:10px; margin:20px 0 6px; }
+  .count div{ min-width:66px; padding:9px 8px 7px; text-align:center; border:1px solid var(--line); border-radius:10px; background:rgba(9,18,34,.6); }
+  .count b{ display:block; font-family:'Barlow Condensed',sans-serif; font-size:32px; line-height:1; font-variant-numeric:tabular-nums; }
+  .count span{ font-size:10px; letter-spacing:normal; text-transform:capitalize; color:var(--mid); }
+  .next .sum p{ font-size:16px; }
+  .next .viz{ margin-top:0; }
+  .next-sum{ align-self:center; margin-top:0; }
+  .next-viz{ grid-column:1 / -1; padding-top:20px; margin-top:8px; border-top:1px solid var(--line); }
+  .next .viz.both{ gap:40px; }
+  .next .compass{ max-width:360px; }
+
+  /* ---------- toolbar ---------- */
+  .toolbar{ position:sticky; top:var(--hdr); z-index:20; display:flex; align-items:center; gap:8px; padding:10px 0; margin-bottom:4px;
+    overflow-x:auto; scrollbar-width:none; -webkit-overflow-scrolling:touch;
+    background:linear-gradient(var(--bg) 82%, rgba(14,26,48,0)); }
+  .toolbar::-webkit-scrollbar{ display:none; }
+  .seg{ flex:none; display:flex; border:1px solid var(--line); border-radius:10px; overflow:hidden; background:rgba(12,22,40,.7); }
+  .seg button{ appearance:none; border:0; background:none; color:var(--mid); font-weight:600; font-size:13px; letter-spacing:0.02em; padding:8px 13px; cursor:pointer; white-space:nowrap; min-height:36px; }
+  .seg button + button{ border-left:1px solid var(--line); }
+  .seg button[aria-pressed="true"]{ background:var(--accent); color:#0b1628; }
+  .seg button:hover:not([aria-pressed="true"]){ color:var(--accent); background:rgba(240,233,218,.06); }
+  .tb-sep{ flex:none; width:1px; height:22px; background:var(--line); margin:0 2px; }
+  .chip{ appearance:none; flex:none; border:1px solid var(--line); border-radius:99px; background:rgba(12,22,40,.7); color:var(--mid); font-weight:500; font-size:13px; padding:7px 13px; cursor:pointer; white-space:nowrap; min-height:36px; display:inline-flex; align-items:center; gap:7px; }
+  .chip:hover{ color:var(--accent); }
+  .chip[aria-pressed="true"]{ border-color:var(--accent); color:var(--accent); background:rgba(240,233,218,.09); }
+  .chip.key i{ width:9px; height:9px; border-radius:50%; border:1.5px solid currentColor; }
+  .chip.key[aria-pressed="true"] i{ background:var(--red); border-color:var(--red); }
+
+  /* ---------- list ---------- */
+  .month{ display:flex; align-items:center; gap:12px; margin:24px 0 12px; }
+  .month h2{ font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:21px; letter-spacing:normal; text-transform:capitalize; margin:0; }
+  .month span{ font-size:11px; font-weight:700; letter-spacing:normal; text-transform:capitalize; color:var(--mid); padding:3px 8px 2px; border:1px solid var(--line); border-radius:99px; }
+  .month::after{ content:''; flex:1; height:1px; background:var(--line); }
+  .grid{ display:grid; grid-template-columns:repeat(auto-fill, minmax(370px, 1fr)); gap:16px; align-items:start; }
+  .card{ position:relative; display:flex; flex-direction:column; padding:16px 18px 14px; background:var(--panel); border:1px solid var(--line); border-radius:14px;
+    opacity:0; transform:translateY(8px); transition:opacity .5s ease, transform .5s ease, border-color .3s, box-shadow .3s; }
+  .card.in{ opacity:1; transform:none; }
+  .card:hover{ border-color:var(--line2); }
+  .card.flash{ border-color:var(--accent); box-shadow:0 0 0 3px rgba(240,233,218,.15); }
+
+  .c-top{ display:flex; align-items:flex-start; gap:12px; }
+  .cal{ flex:none; width:52px; border-radius:9px; overflow:hidden; text-align:center; background:rgba(240,233,218,.06); border:1px solid var(--line); }
+  .cal .m{ display:block; font-size:10.5px; font-weight:700; letter-spacing:normal; text-transform:capitalize; padding:3px 0 2px; background:rgba(229,72,77,.88); color:#fff; }
+  .cal .d{ display:block; font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:25px; line-height:1; padding:5px 0 1px; font-variant-numeric:tabular-nums; }
+  .cal .y{ display:block; font-size:10px; color:var(--mid); padding-bottom:4px; letter-spacing:0.06em; }
+  .cal.tbc .m{ background:#3a4a68; }
+  .cal.tbc .d{ font-size:16px; padding:8px 0 4px; letter-spacing:0.06em; color:var(--mid); }
+  .cal.res .m{ background:var(--gold); color:#0b1628; }
+  .c-head{ min-width:0; flex:1; }
+  .c-name{ display:flex; align-items:center; gap:8px; font-weight:700; font-size:18.5px; line-height:1.15; }
+  .flag{ flex:none; display:inline-block; width:22px; height:22px; border-radius:50%; overflow:hidden; background:#1a2840; box-shadow:0 0 0 1px rgba(240,233,218,.18); }
+  .flag img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .c-type{ color:var(--mid); font-size:13px; margin-top:3px; line-height:1.35; }
+  .pills{ display:flex; flex-wrap:wrap; gap:5px; margin-top:7px; }
+  .pill{ display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:700; letter-spacing:normal; text-transform:capitalize; padding:3px 8px 2px; border-radius:99px; border:1px solid var(--line2); color:var(--mid); white-space:nowrap; }
+  .pill.soon{ color:#fff; background:rgba(229,72,77,.92); border-color:transparent; }
+  .pill.res{ color:#0b1628; background:var(--gold); border-color:transparent; }
+  .pill.key{ color:var(--redsoft); border-color:rgba(229,72,77,.45); }
+  .c-note{ font-size:12.5px; color:var(--mid); margin-top:11px; padding:7px 10px; border-left:2px solid var(--line2); background:rgba(240,233,218,.03); line-height:1.4; }
+  .c-note b{ color:var(--fg); }
+  .sum{ margin-top:12px; }
+  .lbl{ display:block; font-size:10.5px; font-weight:700; letter-spacing:normal; text-transform:capitalize; color:var(--mid); margin:0 0 5px; }
+  .sum p{ font-size:14.5px; line-height:1.5; color:var(--body); margin:0; }
+
+  /* ---------- viz tabs ---------- */
+  .viz{ margin-top:14px; }
+  .tabs{ display:flex; padding:3px; border-radius:10px; background:rgba(9,18,34,.75); border:1px solid var(--line); margin-bottom:12px; }
+  .tabs button{ flex:1; appearance:none; border:0; background:none; color:var(--mid); font-size:13.5px; font-weight:600; letter-spacing:0.02em; padding:7px 8px; border-radius:7px; cursor:pointer; min-height:36px; display:flex; align-items:center; justify-content:center; gap:7px; }
+  .tabs button:hover{ color:var(--accent); }
+  .tabs button svg{ width:15px; height:15px; fill:none; stroke:currentColor; stroke-width:1.5; }
+  .tabs button[aria-selected="true"]{ background:var(--accent); color:#0b1628; }
+  .pane[hidden]{ display:none; }
+  .viz.both{ display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:28px; }
+  .viz.both .tabs{ display:none; }
+  .viz.both .pane[hidden]{ display:block; }
+  .pane-h{ display:flex; justify-content:space-between; align-items:baseline; gap:10px; margin-bottom:6px; }
+  .pane-h .lbl{ margin:0; white-space:nowrap; }
+  .pane-h em{ font-style:normal; font-size:12px; color:var(--mid); text-align:right; }
+
+  /* ---------- compass ---------- */
+  .compass{ position:relative; width:100%; max-width:340px; margin:0 auto; aspect-ratio:1; }
+  .compass svg{ position:absolute; inset:0; width:100%; height:100%; overflow:visible; }
+  .cp-ring{ fill:none; stroke:rgba(240,233,218,.09); stroke-width:.8; }
+  .cp-outer{ fill:none; stroke:rgba(240,233,218,.35); stroke-width:1.1; }
+  .cp-axis{ stroke:rgba(240,233,218,.30); stroke-width:1; }
+  .cp-tick{ stroke:rgba(240,233,218,.25); stroke-width:.8; }
+  .cp-ax{ font-family:'Barlow',sans-serif; font-weight:700; font-size:9.6px; letter-spacing:.1em; fill:var(--fg); }
+  .cp-axbg{ fill:#0c172b; stroke:rgba(240,233,218,.28); stroke-width:.8; }
+  .cp-q{ font-family:'Barlow',sans-serif; font-weight:700; font-size:8.8px; letter-spacing:.08em; }
+  .cp-link{ stroke:rgba(240,233,218,.5); stroke-width:1.1; stroke-dasharray:3 3; opacity:0; transition:opacity .6s 1s; }
+  .run .cp-link{ opacity:1; }
+  .cp-pt{ cursor:pointer; outline:none; }
+  .cp-pt .move{ transform:translate(0px,0px); transition:transform 1.3s cubic-bezier(.33,0,.15,1); }
+  .cp-pt .halo{ opacity:.3; transform-box:fill-box; transform-origin:center; animation:halo 2.6s ease-out infinite; }
+  @keyframes halo{ 0%{ transform:scale(.6); opacity:.5; } 100%{ transform:scale(2.2); opacity:0; } }
+  .cp-pt .core{ stroke:rgba(240,233,218,.55); stroke-width:1.4; }
+  .cp-pt.main .core{ stroke:var(--accent); stroke-width:2; }
+  .cp-pt.minor .core{ opacity:.5; }
+  .cp-pt.minor.on .core{ opacity:1; }
+  .cp-pt.sel .core{ stroke:#fff; stroke-width:3; }
+  .cp-pt:focus-visible .core{ stroke:#fff; stroke-width:3; }
+  .cp-lab rect{ fill:#0a1426; stroke-width:1.3; }
+  .cp-lab text{ font-family:'Barlow',sans-serif; font-weight:700; fill:var(--fg); }
+  .cp-lab{ opacity:0; transition:opacity .5s 1.1s; pointer-events:none; }
+  .run .cp-lab{ opacity:1; }
+  .compass.instant .cp-lab, .compass.instant .cp-link{ transition:none; }
+  .sweep{ position:absolute; left:11.5%; top:11.5%; width:77%; height:77%; border-radius:50%; pointer-events:none; opacity:0; transition:opacity 1s;
+    background:conic-gradient(from 0deg, rgba(240,233,218,0) 0deg, rgba(240,233,218,0) 310deg, rgba(240,233,218,.06) 350deg, rgba(240,233,218,.15) 359.4deg, rgba(240,233,218,0) 360deg);
+    animation:sweep 10s linear infinite; }
+  .run .sweep{ opacity:1; }
+  @keyframes sweep{ to{ transform:rotate(360deg); } }
+  .cp-tools{ display:flex; justify-content:space-between; align-items:center; gap:10px; margin-top:8px; }
+  .cp-hint{ font-size:12px; color:var(--mid); }
+  .toggle{ appearance:none; display:inline-flex; align-items:center; gap:8px; border:1px solid var(--line); border-radius:99px; background:none; color:var(--mid); font-size:12.5px; font-weight:600; padding:6px 12px; cursor:pointer; min-height:34px; }
+  .toggle:hover{ color:var(--accent); }
+  .toggle i{ position:relative; width:26px; height:15px; border-radius:99px; background:#2a3a55; transition:background .2s; }
+  .toggle i::after{ content:''; position:absolute; left:2px; top:2px; width:11px; height:11px; border-radius:50%; background:var(--accent); transition:transform .2s; }
+  .toggle[aria-pressed="true"]{ color:var(--accent); border-color:var(--line2); }
+  .toggle[aria-pressed="true"] i{ background:var(--red); }
+  .toggle[aria-pressed="true"] i::after{ transform:translateX(11px); }
+  .cp-info{ margin:8px 0 0; padding:9px 11px; border-radius:9px; background:rgba(240,233,218,.06); border:1px solid var(--line); font-size:13px; line-height:1.4; color:var(--mid); display:flex; align-items:flex-start; gap:9px; }
+  .cp-info[hidden]{ display:none; }
+  .cp-info i{ flex:none; width:10px; height:10px; margin-top:4px; border-radius:50%; background:var(--c); }
+  .cp-info b{ color:var(--fg); }
+
+  .vs{ display:grid; grid-template-columns:minmax(0,1fr) auto minmax(0,1fr); gap:8px; align-items:stretch; margin-top:12px; }
+  .vs-i{ position:relative; padding:9px 11px 10px; border-radius:10px; background:rgba(240,233,218,.04); border:1px solid var(--line); border-top:3px solid var(--c); min-width:0; }
+  .vs-n{ font-weight:700; font-size:14.5px; line-height:1.2; }
+  .vs-p{ font-size:12px; color:var(--mid); margin-top:2px; line-height:1.3; }
+  .vs-q{ display:inline-block; margin-top:7px; font-size:10.5px; font-weight:700; letter-spacing:normal; text-transform:capitalize; color:var(--fg); padding:3px 7px 2px; border-radius:5px; background:rgba(240,233,218,.1); }
+  .vs-v{ font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:23px; line-height:1; margin-top:7px; font-variant-numeric:tabular-nums; }
+  .vs-v small{ font-family:'Barlow',sans-serif; font-size:11px; font-weight:600; color:var(--mid); margin-left:4px; letter-spacing:0.04em; }
+  .vs-x{ align-self:center; font:700 12px 'Barlow Condensed',sans-serif; letter-spacing:.18em; color:var(--dim); }
+
+  /* ---------- spectrum ---------- */
+  .spec{ position:relative; margin-top:6px; }
+  .sp-in{ position:relative; margin:0 18px; }
+  .sp-band{ position:absolute; left:-4px; right:-4px; height:8px; border-radius:4px; overflow:hidden; display:flex; }
+  .sp-band span{ flex:1; }
+  .sp-band span + span{ border-left:2px solid var(--panel); }
+  .sp-dot{ position:absolute; transform:translate(-50%,-50%); border-radius:50%; background:var(--c); border:1.5px solid rgba(240,233,218,.35); box-shadow:0 0 0 2.5px var(--panel); z-index:3; opacity:0; transition:opacity .6s; }
+  .sp-dot.lead{ box-shadow:0 0 0 2.5px var(--panel), 0 0 0 4.5px var(--accent); }
+  .sp-lab{ position:absolute; transform:translateX(-50%); white-space:nowrap; font-size:12.5px; font-weight:700; line-height:1; padding:4px 7px 3px; border-radius:6px; background:#0a1426; border:1px solid var(--line2); border-bottom:2px solid var(--c); z-index:4; opacity:0; transition:opacity .6s .3s; }
+  .sp-lab small{ font-weight:600; color:var(--mid); margin-left:4px; font-size:11.5px; }
+  .sp-lab.lead{ background:var(--accent); color:#0b1628; border-color:var(--accent); border-bottom-color:var(--c); }
+  .sp-lab.lead small{ color:#3a4660; }
+  .sp-stem{ position:absolute; width:1px; background:rgba(240,233,218,.35); z-index:2; opacity:0; transition:opacity .6s .3s; }
+  .run .sp-dot, .run .sp-lab, .run .sp-stem{ opacity:1; }
+  .sp-band.poll{ display:block; background:linear-gradient(90deg, rgba(240,233,218,.08), rgba(240,233,218,.30)); }
+  .sp-ticks{ position:absolute; left:0; right:0; height:14px; font-size:10.5px; font-weight:700; letter-spacing:0.04em; color:var(--mid); }
+  .sp-ticks span{ position:absolute; transform:translateX(-50%); white-space:nowrap; font-variant-numeric:tabular-nums; }
+  .sp-ticks span:first-child{ transform:none; }
+  .sp-ticks span.end{ transform:translateX(-100%); }
+  .sp-tk{ position:absolute; width:1px; height:12px; background:rgba(240,233,218,.22); z-index:1; }
+  .sp-maj{ position:absolute; width:0; border-left:1.5px dashed rgba(229,72,77,.85); z-index:1; }
+  .sp-majl{ position:absolute; transform:translateX(-50%); font-size:9.5px; font-weight:800; letter-spacing:normal; text-transform:capitalize; color:#ff8a8d; white-space:nowrap; z-index:4; }
+  .sp-zones{ position:absolute; left:-18px; right:-18px; display:flex; font-size:10px; font-weight:700; letter-spacing:normal; text-transform:capitalize; color:var(--mid); }
+  .sp-zones span{ flex:1; text-align:center; white-space:nowrap; }
+  .sp-zones span:first-child{ text-align:left; } .sp-zones span:last-child{ text-align:right; }
+  .sp-none{ font-size:13px; color:var(--mid); padding:10px 12px; border:1px dashed var(--line2); border-radius:9px; line-height:1.4; }
+
+  /* bloc balance */
+  .bloc{ margin-top:18px; }
+  .bloc-wrap{ position:relative; padding-top:17px; }
+  .bloc-bar{ position:relative; display:flex; height:24px; border-radius:6px; overflow:hidden; background:rgba(240,233,218,.07); }
+  .bloc-bar span{ flex:none; display:flex; align-items:center; justify-content:center; height:100%; background:var(--c); font-size:11px; font-weight:700; color:#fff; text-shadow:0 1px 2px rgba(0,0,0,.5); overflow:hidden; white-space:nowrap; width:0; transition:width 1.1s cubic-bezier(.33,0,.15,1); }
+  .bloc-bar span + span{ box-shadow:-2px 0 0 var(--panel); }
+  .bloc-bar span.other{ background:rgba(240,233,218,.12); color:var(--mid); text-shadow:none; }
+  .bloc-maj{ position:absolute; top:12px; height:34px; width:2px; margin-left:-1px; background:var(--accent); z-index:2; border-radius:1px; }
+  .bloc-ml{ position:absolute; top:0; transform:translateX(-50%); font-size:10.5px; font-weight:700; letter-spacing:0.06em; color:var(--accent); white-space:nowrap; }
+  .bloc-t{ display:flex; justify-content:space-between; gap:8px; margin-top:9px; font-size:12.5px; color:var(--mid); }
+  .bloc-t b{ color:var(--fg); font-variant-numeric:tabular-nums; margin:0 3px 0 5px; font-size:13.5px; }
+  .bloc-t i{ display:inline-block; width:9px; height:9px; border-radius:2px; margin-right:5px; }
+
+  /* ---------- party rows ---------- */
+  .rows{ margin-top:16px; display:flex; flex-direction:column; }
+  .row{ display:grid; grid-template-columns:4px minmax(0,1fr) auto auto; align-items:center; column-gap:11px; row-gap:6px; padding:10px 0; min-height:50px; border-top:1px solid rgba(240,233,218,.07); }
+  .row:first-child{ border-top:0; }
+  .row[hidden]{ display:none; }
+  .row .sw{ align-self:stretch; grid-row:span 2; width:4px; border-radius:2px; background:var(--c); }
+  .row.nobar .sw{ grid-row:auto; }
+  .row .nm{ min-width:0; }
+  .row .nm b{ display:block; font-weight:700; font-size:14.5px; line-height:1.25; }
+  .row .nm small{ display:block; color:var(--mid); font-size:12px; margin-top:2px; line-height:1.3; }
+  .row .tg{ display:inline-block; font-size:9.5px; font-weight:700; letter-spacing:normal; text-transform:capitalize; padding:2px 5px 1px; border-radius:4px; margin-left:7px; vertical-align:2px; white-space:nowrap; }
+  .row .tg.inc{ color:var(--mid); border:1px solid var(--line2); }
+  .row .tg.won{ color:#0b1628; background:var(--gold); }
+  .row .bar{ grid-column:2 / -1; height:5px; border-radius:3px; background:rgba(240,233,218,.07); overflow:hidden; }
+  .row .bar i{ display:block; height:100%; width:0; background:var(--c); border-radius:3px; transition:width 1.1s cubic-bezier(.33,0,.15,1); }
+  .spark{ width:58px; height:24px; display:block; }
+  .row .val{ text-align:right; min-width:54px; }
+  .row .val b{ display:block; font-family:'Barlow Condensed',sans-serif; font-size:22px; font-weight:700; line-height:1; font-variant-numeric:tabular-nums; }
+  .row .val b.na{ color:var(--dim); font-size:16px; }
+  .row .val small{ display:block; font-size:11.5px; font-weight:700; margin-top:3px; font-variant-numeric:tabular-nums; white-space:nowrap; }
+  .up{ color:var(--green); } .dn{ color:#ff7b7f; } .flat{ color:var(--dim); }
+  .more{ appearance:none; align-self:flex-start; background:none; border:1px solid var(--line); border-radius:99px; color:var(--mid); font-size:12.5px; font-weight:600; padding:6px 13px; margin-top:8px; cursor:pointer; min-height:34px; }
+  .more:hover{ color:var(--accent); border-color:var(--line2); }
+
+  .c-foot{ margin-top:12px; padding-top:10px; border-top:1px solid rgba(240,233,218,.07); display:flex; flex-wrap:wrap; gap:4px 12px; align-items:baseline; font-size:11.5px; color:var(--dim); line-height:1.4; }
+  .c-foot .pn{ flex:1 1 100%; }
+  .c-foot a{ color:var(--mid); text-decoration:none; border-bottom:1px solid var(--line2); padding:2px 0; }
+  .c-foot a:hover{ color:var(--accent); }
+  .empty{ color:var(--mid); padding:40px 0; text-align:center; }
+  .foot{ margin-top:46px; padding-top:18px; border-top:1px solid var(--line); color:var(--dim); font-size:12.5px; line-height:1.6; }
+  .loading{ color:var(--mid); padding:60px 0; text-align:center; }
+
+  @media (max-width:980px){
+    .next{ grid-template-columns:1fr; }
+    .next-sum{ margin-top:4px; }
+    .next-viz{ padding-top:16px; margin-top:6px; }
+    .viz.both{ display:block; }
+    .viz.both .tabs{ display:flex; }
+    .viz.both .pane[hidden]{ display:none; }
+  }
+  @media (max-width:640px){
+    header{ padding:11px 16px; padding-top:calc(11px + env(safe-area-inset-top)); }
+    .we-mark{ font-size:21px; }
+    .site-nav{ display:none; }
+    .back-map{ display:inline-flex; }
+    main{ padding:20px 16px 60px; }
+    h1{ font-size:44px; }
+    .lede{ font-size:15.5px; margin-bottom:18px; }
+    .strip{ margin:0 -16px 20px; padding:2px 16px 4px; }
+    .next{ padding:20px 16px 18px; border-radius:14px; }
+    .next-name{ font-size:30px; }
+    .count div{ min-width:0; flex:1; }
+    .toolbar{ margin:0 -16px 4px; padding:9px 16px; }
+    .grid{ grid-template-columns:1fr; gap:14px; }
+    .card{ padding:15px 14px 12px; }
+    .compass{ max-width:350px; }
+  }
+  @media (prefers-reduced-motion:reduce){
+    .card, .sp-dot, .sp-lab, .sp-stem, .bloc-bar span, .row .bar i, .cp-pt .move, .cp-lab, .cp-link{ transition:none; }
+    .kicker .dot, .sweep, .cp-pt .halo{ animation:none; }
+  }
+
+  /* ---- type: same system as the other pages (Barlow throughout; condensed only in the logo) ---- */
+  h1{ font-family:'Barlow',sans-serif; font-weight:700; font-size:clamp(30px,6vw,40px); line-height:1.15; letter-spacing:0; text-transform:none; margin:0 0 12px; }
+  .lede{ font-size:18px; color:#e6dfd0; line-height:1.6; }
+  .kicker{ font-family:'Barlow',sans-serif; font-size:10.5px; font-weight:600; letter-spacing:0.14em; }
+  .back-map{ font-family:'Barlow',sans-serif; font-size:11px; font-weight:600; letter-spacing:0.12em; }
+  .next-name{ font-family:'Barlow',sans-serif; font-weight:700; font-size:30px; text-transform:none; letter-spacing:0; }
+  .count b, .cal .d, .row .val b, .vs-v{ font-family:'Barlow',sans-serif; font-weight:600; letter-spacing:0; }
+  .count b{ font-size:28px; } .row .val b{ font-size:20px; } .vs-v{ font-size:20px; }
+  .month h2{ font-family:'Barlow',sans-serif; font-weight:600; font-size:14px; letter-spacing:0.14em; }
+  .strip-k, .lbl{ font-weight:600; letter-spacing:0.14em; }
+  .vs-x{ font:600 10.5px 'Barlow',sans-serif; letter-spacing:.14em; color:var(--dim); }
+  .cp-ax{ font-weight:600; letter-spacing:.12em; }
+  .cp-q{ font-weight:600; letter-spacing:.1em; }
+  .pill, .tg, .vs-q{ font-weight:600 !important; }
+  @media (max-width:640px){ h1{ font-size:32px; } .lede{ font-size:16px; } .next-name{ font-size:26px; } }
+
+  /* ---- header: identical to the map page (logo + Choose Globe), Elections selected ---- */
+  header{ padding:15px 34px !important; padding-top:calc(15px + env(safe-area-inset-top)) !important; background:rgba(9,18,34,0.82); backdrop-filter:blur(3px); -webkit-backdrop-filter:blur(3px); border-bottom:1px solid #24344f; min-height:64px; }
+  .logo-lockup{ gap:14px; }
+  .we-war{ border-radius:4px 0 0 4px; } .we-events{ border-radius:0 4px 4px 0; }
+  .site-nav, .back-map{ display:none !important; }
+  .globe-pick{ position:absolute; left:50%; top:calc(50% + env(safe-area-inset-top) / 2); transform:translate(-50%,-50%); display:flex; align-items:center; gap:14px; z-index:5; }
+  .globe-pick-label{ font-family:'Barlow',sans-serif; font-weight:500; font-size:11px; letter-spacing:normal; text-transform:capitalize; color:rgba(240,233,218,0.65); white-space:nowrap; }
+  .globe-pick-opts{ display:flex; gap:2px; padding:3px; border:1px solid rgba(240,233,218,0.28); border-radius:4px; background:rgba(240,233,218,0.06); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); }
+  .globe-opt{ appearance:none; border:0; border-radius:3px; background:transparent; color:rgba(240,233,218,0.78); cursor:pointer; padding:7px 14px;
+    font-family:'Barlow',sans-serif; font-weight:500; font-size:13.5px; white-space:nowrap; text-decoration:none; transition:background .2s ease, color .2s ease; }
+  .globe-opt:hover:not([disabled]){ background:rgba(240,233,218,0.12); color:#f0e9da; }
+  .globe-opt[aria-pressed="true"]{ background:#f0e9da; color:#0b1628; }
+  .globe-opt[disabled]{ cursor:default; }
+  .globe-opt:focus-visible{ outline:2px solid #f0e9da; outline-offset:2px; }
+  @media (max-width:1100px){ .globe-pick-label{ display:none; } }
+  .we-gbtn, .we-gmenu, .we-gshade{ display:none; }
+  @media (max-width:820px){
+    .globe-pick{ display:none; }
+    header{ padding:12px 14px 10px !important; padding-top:calc(12px + env(safe-area-inset-top)) !important; justify-content:space-between; min-height:0; }
+    .we-mark{ font-size:19px !important; }
+    .we-gbtn{ display:inline-flex; align-items:center; gap:8px; height:32px; padding:0 10px 0 11px; margin-left:auto; cursor:pointer;
+      border:1px solid rgba(240,233,218,0.32); border-radius:4px; background:rgba(240,233,218,0.07); color:#f0e9da;
+      font-family:'Barlow',sans-serif; font-weight:600; font-size:13px; white-space:nowrap; }
+    .we-gbtn svg{ width:14px; height:14px; flex:0 0 auto; fill:none; stroke:currentColor; stroke-width:1.5; }
+    .we-gbtn .chev{ width:10px; height:10px; transition:transform .2s ease; }
+    .we-gbtn[aria-expanded="true"]{ background:#f0e9da; color:#0b1628; border-color:#f0e9da; }
+    .we-gbtn[aria-expanded="true"] .chev{ transform:rotate(180deg); }
+    .we-gshade{ display:block; position:fixed; inset:0; z-index:60; background:rgba(4,9,18,0.55); opacity:0; pointer-events:none; transition:opacity .2s ease; }
+    .we-gmenu{ display:flex; flex-direction:column; position:fixed; left:10px; right:10px; top:calc(var(--hdr, 60px) + 4px); z-index:61; padding:6px;
+      border:1px solid rgba(240,233,218,0.28); border-radius:5px; background:rgba(9,18,34,0.94); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); box-shadow:0 18px 40px rgba(0,0,0,0.45);
+      opacity:0; transform:translateY(-6px); pointer-events:none; transition:opacity .2s ease, transform .2s ease; }
+    html.we-gopen .we-gshade{ opacity:1; pointer-events:auto; }
+    html.we-gopen .we-gmenu{ opacity:1; transform:none; pointer-events:auto; }
+  }
+  .we-gmenu-k{ padding:8px 10px; font-family:'Barlow',sans-serif; font-weight:500; font-size:12.5px; letter-spacing:normal; text-transform:capitalize; color:rgba(240,233,218,0.6); }
+  .we-gopt{ display:grid; grid-template-columns:1fr auto; align-items:center; column-gap:12px; row-gap:2px; min-height:56px; padding:9px 12px; text-align:left; text-decoration:none;
+    border-top:1px solid rgba(240,233,218,0.12); border-radius:3px; color:#f0e9da; }
+  .we-gmenu-k + .we-gopt{ border-top-color:transparent; }
+  .we-gopt b{ font-family:'Barlow',sans-serif; font-weight:600; font-size:17px; }
+  .we-gopt small{ grid-column:1; font-size:13px; color:rgba(240,233,218,0.72); }
+  .we-gopt i{ grid-column:2; grid-row:1 / span 2; font-style:normal; font-size:12px; font-weight:500; }
+  .we-gopt[aria-checked="true"]{ background:#f0e9da; color:#0b1628; }
+  .we-gopt[aria-checked="true"] small{ color:#33405a; }
+  .we-gopt[aria-disabled="true"] b, .we-gopt[aria-disabled="true"] small{ opacity:0.55; }
+  .we-gopt[aria-disabled="true"] i{ padding:3px 7px; border:1px solid rgba(240,233,218,0.4); border-radius:3px; color:rgba(240,233,218,0.8); }
+
+  /* ---- one shape system, same as the map page: 4px boxes with a hairline cream border;
+          groups of options sit in one box (like Choose Globe); the selected one is solid cream ---- */
+  :root{ --box-b:rgba(240,233,218,0.28); --box-bg:rgba(240,233,218,0.06); }
+  .seg, .tabs{ display:flex; gap:2px; padding:3px; border:1px solid var(--box-b) !important; border-radius:4px !important; background:var(--box-bg) !important; overflow:visible; }
+  .seg button, .tabs button{ border:0 !important; border-radius:3px !important; background:transparent; color:rgba(240,233,218,0.78); font-family:'Barlow',sans-serif; font-weight:500; font-size:13.5px; letter-spacing:0; padding:7px 14px; min-height:0; }
+  .seg button + button{ border-left:0 !important; }
+  .seg button:hover:not([aria-pressed="true"]), .tabs button:hover:not([aria-selected="true"]){ background:rgba(240,233,218,0.12); color:#f0e9da; }
+  .seg button[aria-pressed="true"], .tabs button[aria-selected="true"]{ background:#f0e9da !important; color:#0b1628 !important; box-shadow:none !important; }
+  .chip, .toggle, .more, .strip button, .back-map{ border:1px solid var(--box-b) !important; border-radius:4px !important; background:var(--box-bg) !important; color:rgba(240,233,218,0.78);
+    font-family:'Barlow',sans-serif; font-weight:500; font-size:13.5px; letter-spacing:0; min-height:0; padding:7px 14px; }
+  .chip:hover, .toggle:hover, .more:hover, .strip button:hover{ background:rgba(240,233,218,0.12) !important; color:#f0e9da; }
+  .chip[aria-pressed="true"], .toggle[aria-pressed="true"]{ background:#f0e9da !important; color:#0b1628 !important; border-color:#f0e9da !important; }
+  .chip.key i{ border-radius:2px; }
+  .toggle i{ border-radius:3px !important; } .toggle i::after{ border-radius:2px !important; }
+  .strip button{ padding:6px 12px 6px 8px; }
+  .pill, .row .tg, .vs-q, .tag{ border-radius:3px !important; font-family:'Barlow',sans-serif; font-weight:600; letter-spacing:0.08em; }
+  .card, .next{ border-radius:6px !important; border-color:#24344f !important; }
+  .count div, .cal, .vs-i, .cp-info, .sp-none{ border-radius:4px !important; }
+  .sp-lab{ border-radius:3px !important; }
+  .bloc-bar{ border-radius:3px !important; }
+  .tb-sep{ height:26px; background:var(--box-b); }
+  .toolbar{ gap:10px; }
+
+  /* ---- finish: same glass panels, colours and labels as the map page's cards ---- */
+  :root{ --mid:#bfb7a6; --dim:#8f897c; --body:#ece5d6; --glass:linear-gradient(160deg, rgba(255,250,240,0.10), rgba(240,233,218,0.04)), rgba(7,15,30,0.38);
+         --glass-b:rgba(255,250,240,0.22); --glass-hi:inset 0 1px 0 rgba(255,255,255,0.22), inset 0 0 0 1px rgba(255,255,255,0.04); }
+  .card, .next{ background:var(--glass) !important; border:1px solid var(--glass-b) !important; border-radius:5px !important;
+    box-shadow:var(--glass-hi), 0 10px 30px rgba(0,0,0,0.25) !important; backdrop-filter:blur(22px) saturate(1.5); -webkit-backdrop-filter:blur(22px) saturate(1.5); }
+  .next::before{ display:none !important; }
+  .vs-i, .count div, .cal, .cp-info, .sp-none{ background:linear-gradient(160deg, rgba(255,250,240,0.08), rgba(240,233,218,0.03)) !important; border:1px solid rgba(255,250,240,0.18) !important; border-radius:4px !important; box-shadow:var(--glass-hi) !important; }
+  .vs-i{ border-top-width:2px !important; border-top-color:var(--c) !important; }
+  .lbl, .strip-k, .next-k, .kicker, .pane-h .lbl{ font-family:'Barlow',sans-serif !important; font-size:10.5px !important; font-weight:600 !important; letter-spacing:normal !important; text-transform:capitalize; color:var(--accent) !important; }
+  .month h2{ color:var(--accent); }
+  .sum p, .next .sum p{ color:var(--body); }
+  .c-name, .next-name, .vs-n, .row .nm b{ color:#fffaf0; }
+  .cal .m{ background:#f0e9da !important; color:#0b1628 !important; font-weight:600; letter-spacing:0.1em; }
+  .pill{ color:var(--accent) !important; background:transparent !important; border:1px solid rgba(240,233,218,0.4) !important; font-size:10.5px; padding:2px 7px 1px; }
+  .pill.soon{ background:#f0e9da !important; color:#0b1628 !important; border-color:#f0e9da !important; }
+  .pill.key{ color:var(--accent) !important; }
+  .chip.key[aria-pressed="true"] i, .toggle[aria-pressed="true"] i{ background:#0b1628 !important; border-color:#0b1628 !important; }
+  .row{ border-color:rgba(255,250,240,0.10) !important; }
+  .c-foot{ border-top-color:rgba(255,250,240,0.12) !important; }
+  .c-foot a{ color:var(--mid); }
+  .foot{ color:var(--dim); border-top-color:rgba(255,250,240,0.14); }
+  @media (max-width:640px){ .card, .next{ backdrop-filter:none; -webkit-backdrop-filter:none; } }
+  .strip small.soon{ color:var(--accent) !important; font-weight:600; }
+  .sp-majl{ color:var(--accent) !important; font-weight:600 !important; letter-spacing:0.08em !important; }
+  .sp-maj{ border-left-color:rgba(240,233,218,0.6) !important; }
+
+  /* ---- square compass, drawn like the map page's scales: hairline grid, cream axis titles ---- */
+  .compass{ max-width:340px; aspect-ratio:212 / 208; margin-top:4px; }
+  .next .compass{ max-width:320px; }
+  .cp-grid{ stroke:rgba(240,233,218,.07); stroke-width:.7; }
+  .cp-axis{ stroke:rgba(240,233,218,.32); stroke-width:.9; }
+  .cp-outer{ fill:none; stroke:rgba(255,250,240,.22); stroke-width:1; }
+  .cp-tick{ stroke:rgba(240,233,218,.3); stroke-width:.8; }
+  .cp-ax{ font-family:'Barlow',sans-serif; font-weight:600; font-size:8px; letter-spacing:normal; text-transform:capitalize; fill:var(--accent); }
+  .cp-q{ font-family:'Barlow',sans-serif; font-weight:500; font-size:7px; letter-spacing:normal; text-transform:capitalize; fill:rgba(240,233,218,.5); }
+  .cp-pt .core{ stroke:rgba(240,233,218,.55); stroke-width:1.2; }
+  .cp-pt.main .core{ stroke:#f0e9da; stroke-width:1.6; }
+  .cp-lab rect{ fill:#0a1426; stroke-width:1; }
+  .cp-lab text{ font-family:'Barlow',sans-serif; font-weight:600; fill:#fffaf0; }
+  @media (max-width:640px){ .cp-ax{ font-size:9px; } .cp-q{ font-size:7.6px; } }
+
+  /* ---- equal heights: every card in a row lines up section by section, whatever the text length ---- */
+  .grid{ align-items:stretch; }
+  .card{ height:100%; }
+  .c-top{ min-height:60px; align-items:center; }
+  .card .sum p{ display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:4; overflow:hidden; min-height:calc(4 * 1.5em); }
+  .card .sum.open p{ -webkit-line-clamp:unset; display:block; }
+  .sum-more{ appearance:none; background:none; border:0; padding:4px 0 0; color:var(--accent); font:600 12px 'Barlow',sans-serif; letter-spacing:.04em; cursor:pointer; text-decoration:underline; text-underline-offset:3px; }
+  .sum-more[hidden]{ display:inline; visibility:hidden; }
+  .cp-tools{ min-height:34px; }
+  .vs-i{ display:flex; flex-direction:column; }
+  .vs-n{ display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2; overflow:hidden; min-height:calc(2 * 1.2em); }
+  .vs-p{ display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2; overflow:hidden; min-height:calc(2 * 1.3em); }
+  .vs-q{ align-self:flex-start; white-space:nowrap; max-width:100%; overflow:hidden; text-overflow:ellipsis; }
+  .vs-v{ margin-top:auto !important; padding-top:7px; }
+  .vs-v.na{ font-size:13px !important; color:var(--dim); font-weight:500 !important; }
+  .card .viz{ flex:1 1 auto; }
+  .c-foot{ margin-top:auto !important; }
+  .card .viz + .c-foot{ margin-top:12px; }
+  @media (max-width:640px){ .card{ height:auto; } .c-top{ min-height:0; } .sum-more[hidden]{ display:none; } .card .sum p{ min-height:0; } }
+
+  /* ---- type scale: the same sizes as the map page's cards (title 21-22, story title 15-16,
+          body 13.5, meta 12, section labels 10) ---- */
+  main{ padding-top:26px; }
+  h1{ font-size:22px !important; font-weight:600 !important; line-height:1.3 !important; margin:0 0 6px !important; }
+  .lede{ font-size:13.5px !important; line-height:1.55 !important; color:#ece5d6 !important; max-width:620px; margin:0 0 18px !important; }
+  .lbl, .strip-k, .next-k, .pane-h .lbl{ font-size:10px !important; letter-spacing:0.08em !important; margin-bottom:6px; }
+  .sum{ margin-top:14px; }
+  .sum p, .next .sum p{ font-size:13.5px !important; line-height:1.5 !important; color:#ece5d6 !important; }
+  .card .sum p{ min-height:calc(4 * 1.5em); }
+  .c-name{ font-size:16px !important; font-weight:600 !important; }
+  .c-name .flag{ width:22px !important; height:22px !important; }
+  .cal{ min-width:48px; }
+  .cal .d{ font-size:21px !important; }
+  .next{ padding:22px 24px 20px !important; gap:8px 32px !important; }
+  .next-k{ margin-bottom:12px !important; }
+  .next-c{ gap:14px !important; align-items:center; }
+  .next-name{ display:flex; align-items:center; gap:9px; font-size:21px !important; font-weight:600 !important; line-height:1.25; }
+  .next-name .flag{ width:24px !important; height:24px !important; }
+  .next-type{ font-size:12.5px !important; margin-top:4px !important; color:var(--mid); }
+  .next-type .nd{ color:#f0e9da; font-weight:500; }
+  .next-sum{ align-self:start !important; margin-top:24px !important; }
+  .count{ margin-top:16px !important; }
+  .count b{ font-size:22px !important; }
+  .count span{ font-size:9.5px !important; }
+  .count div{ padding:8px 6px 6px !important; min-width:56px; }
+  .month h2{ font-size:11px !important; letter-spacing:0.12em !important; }
+  .strip b{ font-size:12.5px !important; font-weight:600; }
+  .strip small{ font-size:11.5px !important; }
+  .vs-n{ font-size:13.5px !important; font-weight:600 !important; }
+  .vs-p{ font-size:11.5px !important; }
+  .vs-v{ font-size:18px !important; }
+  .row .nm b{ font-size:13.5px !important; font-weight:600 !important; }
+  .row .nm small{ font-size:11.5px !important; }
+  .row .val b{ font-size:18px !important; }
+  .c-foot{ font-size:11px !important; }
+  .foot{ font-size:12px !important; }
+  @media (max-width:640px){
+    h1{ font-size:21px !important; }
+    .lede, .sum p, .next .sum p{ font-size:14px !important; }
+    .next{ padding:18px 16px !important; }
+    .next-name{ font-size:19px !important; }
+    .next-sum{ margin-top:6px !important; }
+  }
+  .next .compass{ max-width:320px !important; }
+  .cp-q{ font-size:6.4px !important; }
+  @media (max-width:640px){ .cp-q{ font-size:7.2px !important; } }
+  #stripWrap{ margin-top:6px; }
+
+  /* ---- feed-style text: Barlow, white; names bold; summary beside the date tile under the name ---- */
+  :root{ --mid:#fffaf0; --dim:rgba(255,250,240,.78); --body:#fffaf0; }
+  .lede, .sum p, .next .sum p, .lbl, .strip-k, .next-k, .month h2, .strip b, .strip small, .c-foot, .c-foot a, .foot,
+  .row .nm small, .vs-p, .vs-v small, .bloc-t, .bloc-t b, .sp-ticks, .next-type, .c-type, .row .val small{ color:#fffaf0 !important; }
+  .c-name, .next-name, .strip b, .vs-n, .row .nm b{ font-weight:700 !important; color:#fffaf0 !important; }
+  .sum p, .next .sum p, .lede{ font-weight:400 !important; font-size:12.65px !important; line-height:1.5 !important; }
+  .c-name{ font-size:14.3px !important; }
+  .next-name{ font-size:17px !important; }
+  .c-top{ align-items:flex-start !important; min-height:0 !important; }
+  .c-head, .next-head{ flex:1 1 auto; min-width:0; display:flex; flex-direction:column; }
+  .c-name, .next-name{ margin-top:1px; }
+  .c-head .sum, .next-head .sum{ margin-top:6px !important; }
+  .card .sum p{ min-height:calc(4 * 1.5em); }
+  .next > div:first-child{ grid-column:1 / -1; }
+  .next-c{ align-items:flex-start !important; }
+  .next-sum{ margin-top:6px !important; max-width:820px; }
+  .next-head .sum p{ font-size:13.5px !important; }
+  @media (max-width:640px){ .sum p, .next .sum p, .lede{ font-size:14px !important; } .c-name{ font-size:16px !important; } }
+
+  /* ---- compass: equal dots, plain white capital names; full width, flush with the date tile ---- */
+  .compass{ max-width:none !important; width:100%; margin:6px 0 0 !important; aspect-ratio:1 !important; }
+  .next .compass{ max-width:420px !important; }
+  .cp-pt .core{ stroke:#fffaf0 !important; stroke-width:1.4 !important; opacity:1 !important; }
+  .cp-pt.minor .core{ opacity:1 !important; }
+  .cp-lab text{ font-family:'Barlow',sans-serif; font-weight:700; fill:#fffaf0; letter-spacing:.04em;
+    paint-order:stroke; stroke:rgba(9,18,34,.85); stroke-width:2.6px; stroke-linejoin:round; }
+  .vs{ grid-template-columns:minmax(0,1fr) minmax(0,1fr) !important; gap:10px !important; }
+  .sp-dot{ width:14px !important; height:14px !important; }
+  .sp-dot.lead{ box-shadow:0 0 0 2.5px var(--panel) !important; }
+  .bloc{ margin-top:14px; }
+  .next[hidden]{ display:none !important; }
+
+  /* ---- card text = Feed text: Barlow 400, 12.65px, #fffaf0, normal case; bold stays bold at 14.3px ---- */
+  .card, .card *{ letter-spacing:0 !important; }
+  .card .sum p, .vs-p, .vs-q, .vs-v small, .row .nm small, .row .val small, .row .tg, .c-foot, .c-foot .pn, .c-foot a,
+  .sp-ticks, .sp-majl, .bloc-t, .bloc-ml, .sp-none, .sum-more, .tabs button, .cp-info{
+    font-family:'Barlow',sans-serif !important; font-size:12.65px !important; font-weight:400 !important;
+    text-transform:none !important; color:#fffaf0 !important; }
+  .c-name, .vs-n, .row .nm b, .vs-v, .row .val b, .bloc-t b{ font-family:'Barlow',sans-serif !important; font-size:14.3px !important; font-weight:700 !important; color:#fffaf0 !important; }
+  .vs-q, .row .tg{ background:none !important; border:0 !important; padding:0 !important; margin:4px 0 0 !important; }
+  .row .tg{ margin:0 0 0 6px !important; }
+  .row .tg::before{ content:'· '; }
+  .c-foot a{ border-bottom:0 !important; text-decoration:underline; text-decoration-color:rgba(255,250,240,.35); text-underline-offset:3px; }
+  .cal .m, .cal .d, .cal .y{ letter-spacing:.06em !important; }
+  .cp-lab text{ font-weight:400 !important; letter-spacing:0 !important; }
+  .cp-q{ font-family:'Barlow',sans-serif !important; font-weight:400 !important; font-size:7.5px !important; text-transform:none !important; letter-spacing:0 !important; fill:rgba(255,250,240,.75) !important; }
+  @media (max-width:640px){
+    .card .sum p, .vs-p, .vs-q, .vs-v small, .row .nm small, .row .val small, .row .tg, .c-foot, .c-foot .pn, .c-foot a,
+    .sp-ticks, .sp-majl, .bloc-t, .sp-none, .sum-more, .tabs button{ font-size:14px !important; }
+    .c-name, .vs-n, .row .nm b, .vs-v, .row .val b, .bloc-t b{ font-size:15.5px !important; }
+  }
+
+  /* ---- line spacing = Feed / Events text (1.45) ---- */
+  .card .sum p, .next .sum p, .lede, .vs-p, .vs-q, .row .nm small, .row .nm b, .vs-n, .c-foot, .c-foot .pn, .sp-none, .cp-info, .bloc-t{ line-height:1.45 !important; }
+  .card .sum p{ min-height:calc(4 * 1.45em) !important; }
+  .vs-n{ min-height:calc(2 * 1.45em) !important; }
+  .vs-p{ min-height:calc(2 * 1.45em) !important; }
+
+  /* ---- phones: compact, same scale as the map page on a phone ---- */
+  @media (max-width:640px){
+    main{ padding:16px 14px 50px !important; }
+    h1{ font-size:19px !important; margin-bottom:4px !important; }
+    .lede{ font-size:13px !important; margin-bottom:12px !important; }
+    .toolbar{ gap:6px !important; padding:8px 14px !important; }
+    .seg, .tabs{ padding:2px !important; }
+    .seg button, .chip, .tabs button{ font-size:12.5px !important; padding:5px 10px !important; }
+    .tb-sep{ height:20px !important; }
+    .strip-k{ margin-bottom:6px !important; }
+    .strip button{ padding:4px 9px 4px 5px !important; gap:7px !important; }
+    .strip .flag{ width:22px !important; height:22px !important; }
+    .strip b, .strip small{ font-size:12px !important; }
+    .month{ margin:18px 0 10px !important; }
+    .card{ padding:13px 12px 11px !important; }
+    .cal{ min-width:42px !important; }
+    .cal .m{ font-size:9.5px !important; padding:2px 0 1px !important; }
+    .cal .d{ font-size:18px !important; padding:3px 0 0 !important; }
+    .cal .y{ font-size:9px !important; padding-bottom:3px !important; }
+    .c-top{ gap:10px !important; }
+    .c-name .flag{ width:20px !important; height:20px !important; }
+    .card .sum p, .vs-p, .vs-q, .vs-v small, .row .nm small, .row .val small, .row .tg, .c-foot, .c-foot .pn, .c-foot a,
+    .sp-ticks, .sp-majl, .bloc-t, .sp-none, .sum-more, .tabs button{ font-size:13px !important; }
+    .c-name, .vs-n, .row .nm b, .vs-v, .row .val b, .bloc-t b{ font-size:14px !important; }
+    .viz{ margin-top:10px !important; }
+    .vs{ gap:8px !important; }
+    .vs-i{ padding:8px 9px 9px !important; }
+    .bloc-bar span{ font-size:10.5px !important; }
+  }
+  @media (max-width:640px){ .cp-lab text{ font-size:6.8px !important; } .cp-q{ font-size:6.2px !important; } }
+  @media (max-width:640px){ .card .sum p{ min-height:0 !important; } .vs-n, .vs-p{ min-height:0 !important; } }
+
+  /* ---- compass at half size (text and dots kept at their normal size) ---- */
+  .compass{ width:50% !important; max-width:none !important; margin:8px 0 0 !important; }
+  .next .compass{ width:50% !important; }
+  .cp-q{ font-size:13px !important; }
+  .cp-pt .core{ stroke-width:2.4 !important; }
+  .cp-grid{ stroke-width:1.2 !important; } .cp-axis{ stroke-width:1.6 !important; } .cp-outer{ stroke-width:1.8 !important; }
+  @media (max-width:640px){ .compass{ width:60% !important; } .cp-lab text{ font-size:13px !important; } .cp-q{ font-size:12px !important; } }
+  .cp-q{ font-size:12px !important; }
+
+  /* ---- compass key: one line per dot, beside the compass (wraps, never cut) ---- */
+  .cp-row{ display:flex; align-items:flex-start; gap:14px; margin-top:8px; }
+  .cp-row .compass{ flex:0 0 50%; width:50% !important; margin:0 !important; }
+  .cp-key{ flex:1 1 0; min-width:0; list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:7px; }
+  .cp-key li{ display:flex; align-items:flex-start; gap:7px; min-width:0; }
+  .cp-key i{ flex:none; width:9px; height:9px; margin-top:4px; border-radius:50%; background:var(--c); box-shadow:0 0 0 1.5px #fffaf0; }
+  .cp-key span{ min-width:0; font-size:12.65px; line-height:1.45; color:#fffaf0; overflow-wrap:anywhere; }
+  .cp-key b{ font-weight:700; }
+  .cp-key em{ display:block; font-style:normal; color:rgba(255,250,240,.78); }
+  @media (max-width:640px){
+    .cp-row{ flex-direction:column; gap:12px; }
+    .cp-row .compass{ flex:none; width:62% !important; }
+    .cp-key{ width:100%; display:grid; grid-template-columns:1fr 1fr; gap:8px 12px; }
+    .cp-key span{ font-size:13px; }
+  }
+  @media (max-width:640px){ .strip{ margin:0 -14px 18px !important; padding:2px 14px 4px !important; scroll-padding:0 14px; } }
+  .cp-pt .core, .cp-pt.main .core{ stroke:none !important; stroke-width:0 !important; }
+  /* no white rings on any party dot */
+  .cp-key i, .sp-dot, .sp-dot.lead, .row .sw{ box-shadow:none !important; border:0 !important; }
+  .cp-key i{ width:8px !important; height:8px !important; }
+  .bloc-t, .bloc-t span{ font-weight:700 !important; }
+  .viz > .vs{ margin-top:14px; }
+  /* summary: clip by height (works the same in Safari), never by width */
+  .card .sum p{ display:block !important; -webkit-line-clamp:unset !important; max-height:calc(4 * 1.45em); min-height:calc(4 * 1.45em) !important; overflow:hidden; overflow-wrap:break-word; }
+  .card .sum.open p{ max-height:none; }
+  @media (max-width:640px){ .card .sum p{ max-height:none; min-height:0 !important; } }
+  /* flags: square with 3px corners, like the Feed */
+  .flag, .flag img{ border-radius:3px !important; box-shadow:none !important; }
+  .flag{ aspect-ratio:1; }
+  .c-name .flag{ width:18px !important; height:18px !important; }
+  .strip .flag{ width:22px !important; height:22px !important; }
+  #stripWrap{ display:none !important; }
+  #list > .grid{ margin-top:18px; }
+  /* 50% marker: label sits above the bar, line starts under the label */
+  .bloc-wrap{ padding-top:22px !important; }
+  .bloc-ml{ top:0 !important; line-height:1 !important; }
+  .bloc-maj{ top:17px !important; height:32px !important; }
+  /* a card that opens Polls grows on its own; the others in its row keep their size */
+  #list > .grid{ align-items:start !important; }
+  #list .card{ height:auto !important; }
+  .globe-pick-label{ display:none !important; }
+  /* dates: same font settings as the body text (Barlow, normal digits, no tracking, no caps) */
+  .cal, .cal *, .strip small, .count b, .count span{ font-family:'Barlow',sans-serif !important; font-variant-numeric:normal !important; letter-spacing:0 !important; text-transform:none !important; }
+  .cal .m{ font-size:12.65px !important; font-weight:600 !important; padding:2px 0 1px !important; }
+  .cal .d{ font-size:20px !important; font-weight:700 !important; padding:3px 0 0 !important; }
+  .cal .y{ font-size:12.65px !important; font-weight:400 !important; color:#fffaf0 !important; padding-bottom:3px !important; }
+  body{ font-variant-numeric:normal; }
+  /* the divider above the poll note is always visible, even on the tallest card */
+  .card .viz{ margin-bottom:14px; }
+  .c-foot{ border-top:1px solid rgba(255,250,240,0.12) !important; padding-top:12px !important; }
+  /* every card the same height on the default (Compass) view, whatever data it has:
+     fixed footer (note + sources line), key never taller than the compass */
+  .c-foot{ min-height:calc(2 * 1.45em + 4px + 12px); align-content:flex-start; }
+  .c-foot .pn{ display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:1; overflow:hidden; }
+  .cp-row{ align-items:stretch; }
+  .cp-key{ gap:4px !important; max-height:100%; overflow:hidden; }
+  @media (max-width:640px){ .cp-key{ max-height:none; flex:none !important; height:auto !important; overflow:visible !important; } }
+  @media (max-width:640px){
+    .cp-row{ flex-direction:row !important; align-items:flex-start !important; gap:12px !important; }
+    .cp-row .compass{ flex:0 0 56% !important; width:56% !important; }
+    .cp-key{ flex:1 1 auto !important; width:auto !important; display:flex !important; flex-direction:column; gap:6px !important; }
+    .cp-key span{ font-size:12.65px !important; }
+  }
+  #list .card .c-foot{ margin-top:auto !important; }
+  h1{ margin-bottom:14px !important; }
+
+  /* Main banner: thin dividers between the page buttons */
+  @media (min-width:700px){
+    .globe-pick .globe-opt{ position:relative; }
+    .globe-pick .globe-opt + .globe-opt::before{ content:''; position:absolute; left:-2px; top:25%; bottom:25%; width:1px; background:rgba(240,233,218,0.22); pointer-events:none; }
+    .globe-pick .globe-opt[aria-pressed="true"]::before, .globe-pick .globe-opt[aria-pressed="true"] + .globe-opt::before,
+    .globe-pick .globe-opt:hover::before, .globe-pick .globe-opt:hover + .globe-opt::before{ opacity:0; }
+  }
+
+  /* Narrow screens: Upcoming/Results on one row, all regions on their own row that scrolls sideways */
+  @media (max-width:900px){
+    .toolbar{ flex-wrap:wrap !important; overflow:visible !important; }
+    #regions{ flex:1 1 100% !important; width:100%; max-width:100%; box-sizing:border-box; overflow-x:auto !important; overflow-y:hidden; scrollbar-width:none; -webkit-overflow-scrolling:touch; overscroll-behavior-x:contain; }
+    #regions::-webkit-scrollbar{ display:none; }
+    #regions button{ flex:none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="bgdots"></div>
+<header id="hdr">
+  <a class="logo-lockup" href="/" aria-label="War Events — Home">
+    <span class="we-mark"><span class="we-war">WAR</span><span class="we-events">EVENTS</span></span>
+  </a>
+  <div class="globe-pick" role="group" aria-label="Choose globe">
+    <span class="globe-pick-label">Choose Globe</span>
+    <div class="globe-pick-opts"><a class="globe-opt" href="/" aria-pressed="false">Live</a><a class="globe-opt" href="/?view=wars" aria-pressed="false">Active Wars</a><a class="globe-opt" href="/?view=power" aria-pressed="false">Power</a><a class="globe-opt" href="/elections" aria-pressed="true">Elections</a><a class="globe-opt" href="/?view=logistics" aria-pressed="false">Logistics</a><a class="globe-opt" href="/?view=disasters" aria-pressed="false">Disasters</a></div>
+  </div>
+  <button type="button" class="we-gbtn" id="gbtn" aria-haspopup="menu" aria-expanded="false" aria-label="Globe: Elections. Change globe"><svg class="we-gicon" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6"/><path d="M2 8h12M8 2c2 2 2 10 0 12M8 2c-2 2-2 10 0 12"/></svg><span>Elections</span><svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5L6 8l3.5-3.5"/></svg></button>
+</header>
+<div class="we-gshade" id="gshade"></div>
+<div class="we-gmenu" id="gmenu" role="menu" aria-label="Choose globe"><div class="we-gmenu-k">Choose globe</div><a class="we-gopt" role="menuitemradio" href="/" aria-checked="false"><b>Live</b><small>Live stories and their impact</small><i></i></a><a class="we-gopt" role="menuitemradio" href="/?view=wars" aria-checked="false"><b>Active Wars</b><small>Where fighting and occupation are happening now</small><i></i></a><a class="we-gopt" role="menuitemradio" href="/elections" aria-checked="true"><b>Elections</b><small>Upcoming votes and where every party stands</small><i></i></a><a class="we-gopt" role="menuitemradio" href="/?view=logistics" aria-checked="false"><b>Logistics</b><small>Chokepoints, shipping, cables, sanctions and energy</small><i></i></a><a class="we-gopt" role="menuitemradio" href="/?view=disasters" aria-checked="false"><b>Disasters</b><small>Quakes, storms, fires, floods and air quality</small><i></i></a><a class="we-gopt" role="menuitemradio" href="/?view=power" aria-checked="false"><b>Power</b><small>The balance of power and spheres of influence</small><i></i></a></div>
+
+<main>
+  <h1>Elections</h1>
+
+  <div class="toolbar" id="toolbar">
+    <div class="seg" id="view">
+      <button type="button" data-v="upcoming" aria-pressed="true">Upcoming</button>
+      <button type="button" data-v="result" aria-pressed="false">Results</button>
+    </div>
+    <div class="seg" id="regions" role="group" aria-label="Region"></div>
+  </div>
+
+  <section class="next" id="next" hidden></section>
+
+  <div id="list"><p class="loading">Loading elections…</p></div>
+
+  <p class="foot">How to read this: the political compass places each contender on two axes, economic left to right and libertarian to authoritarian, based on how parties are usually classified (their platforms, political scientists' expert surveys and reference works). It's a guide, not a judgment. The spectrum shows the same left-right placement sized by polling, and "Support by side" adds up support for each side. Polls are recent averages where reliable polling exists; arrows show the change over two weeks. Dates marked TBC haven't been officially set. Checked and updated daily.</p>
+</main>
+
+<script>
+(function(){
+  'use strict';
+  var LIVE = 'https://raw.githubusercontent.com/omkpro-dev/War-Events/main/data/elections.json';
+  var LOCAL = '../data/elections.json';
+  var REGIONS = ['All', 'Europe', 'Americas', 'East Asia', 'Oceania', 'Middle East', 'North Africa'];
+  var MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var MONTHS_L = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var state = { view:'upcoming', region:'All', keyOnly:false, tab:'compass' };
+  var DATA = [], BY = {};
+  try { var s = JSON.parse(localStorage.getItem('we-elections') || '{}');
+    if(REGIONS.indexOf(s.region) >= 0) state.region = s.region; if(s.keyOnly) state.keyOnly = true; } catch(e){}
+
+  // ---------- helpers ----------
+  function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]; }); }
+  function day(d){ var p = String(d).split('-'); return new Date(+p[0], +p[1] - 1, +p[2]); }
+  function today(){ var n = new Date(); return new Date(n.getFullYear(), n.getMonth(), n.getDate()); }
+  function daysTo(e){ return Math.round((day(e.date) - today()) / 864e5); }
+  function fmtShort(e){ var d = day(e.date); return e.approx ? MONTHS[d.getMonth()] + ' ' + d.getFullYear() : d.getDate() + ' ' + MONTHS[d.getMonth()]; }
+  function fmtLong(e){ var d = day(e.date); return e.approx ? 'Expected ' + MONTHS_L[d.getMonth()] + ' ' + d.getFullYear() : d.getDate() + ' ' + MONTHS_L[d.getMonth()] + ' ' + d.getFullYear(); }
+  function rel(e){
+    if(e.status === 'result') return { t:'Result', c:'res' };
+    var n = daysTo(e);
+    if(e.approx) return { t: n > 60 ? 'Date TBC · ~' + Math.round(n / 30.4) + ' months' : 'Date TBC', c:'' };
+    if(n < 0) return { t:'Counting', c:'soon' };
+    if(n === 0) return { t:'Today', c:'soon' };
+    if(n === 1) return { t:'Tomorrow', c:'soon' };
+    if(n <= 45) return { t:'In ' + n + ' days', c: n <= 14 ? 'soon' : '' };
+    return { t:'In ' + Math.round(n / 30.4) + ' months', c:'' };
+  }
+  function flag(code){ return '<span class="flag"><img src="https://flagcdn.com/w80/' + esc(String(code).toLowerCase()) + '.png" alt="" loading="lazy"></span>'; }
+  function host(u){ try { return new URL(u).hostname.replace(/^www\./, ''); } catch(e){ return 'source'; } }
+  function seatsUnit(e){ return (e.polling && e.polling.unit === 'seats') || /seat/i.test(e.pollNote || '') || e.contenders.some(function(c){ return (c.poll || 0) > 100; }); }
+  function valOf(c){ return c.poll != null ? c.poll : (c.seatsWon != null ? c.seatsWon : null); }
+  function r1(v){ return Math.round(v * 10) / 10; }
+  function unitOf(e, c){ return (seatsUnit(e) || (c && c.poll == null && c.seatsWon != null)) ? '' : '%'; }
+  function totalSeats(e){ var m = /([\d,]{2,5})\s*(?:[A-Za-z]+\s+){0,2}seats/i.exec(e.seats || ''); return m ? +m[1].replace(/,/g, '') : 0; }
+  function hasSpectrum(e){
+    if(/referendum/i.test(e.type)) return false;
+    var cs = e.contenders.filter(function(c){ return c.pos != null; });
+    if(cs.length < 2) return false;
+    return !cs.every(function(c){ return /big tent|nonpartisan|independent/i.test(c.posLabel || '') || Math.abs(c.pos - 0.5) < 0.001; });
+  }
+  function noPollNote(e){
+    if(/referendum/i.test(e.type)) return 'A yes/no vote. No reliable polls yet.';
+    if(!e.contenders.length) return 'Candidates haven\'t been confirmed yet.';
+    return 'No reliable polls yet.';
+  }
+  function noSpectrumNote(e){
+    if(/referendum/i.test(e.type)) return 'A yes/no vote, so there\'s no left-right split.';
+    if(!e.contenders.length) return 'Candidates haven\'t been confirmed yet.';
+    if(e.contenders.length < 2) return 'No competitive party contest: candidates run without parties, or only one is standing.';
+    return 'The main contenders don\'t divide clearly along left and right.';
+  }
+  function quadName(c){
+    var x = c.pos, y = c.auth, h = x < 0.42 ? 'left' : x > 0.58 ? 'right' : '', v = y > 0.6 ? 'Auth' : y < 0.4 ? 'Lib' : '';
+    if(v && h) return v + ' ' + h;
+    if(v) return v + ' centre';
+    if(h) return h === 'left' ? 'Centre-left' : 'Centre-right';
+    return 'Centre';
+  }
+  function ranked(e){
+    var cs = e.contenders.slice();
+    if(cs.some(function(c){ return valOf(c) != null; })) cs.sort(function(a, b){ var va = valOf(a), vb = valOf(b); return (vb == null ? -1 : vb) - (va == null ? -1 : va); });
+    return cs;
+  }
+  function mainTwo(e){
+    var cs = ranked(e).filter(function(c){ return c.pos != null && c.auth != null; });
+    return { two:cs.slice(0, 2), rest:cs.slice(2) };
+  }
+  function hasCompass(e){ return mainTwo(e).two.length === 2 && !/referendum/i.test(e.type); }
+
+  // ---------- political compass ----------
+  var R = 100;
+  // Square compass: economic left-right across, libertarian (bottom) to authoritarian (top) up the side.
+  function toDisc(c){
+    var x = Math.max(-1, Math.min(1, (c.pos - 0.5) * 2)), y = Math.max(-1, Math.min(1, (0.5 - c.auth) * 2));
+    return { x: 92 * x, y: 92 * y };
+  }
+  // Readable outline for a party colour on the navy background: very dark colours get a cream edge.
+  function edge(hex){ var m = /^#?([0-9a-f]{6})$/i.exec(hex || ''); if(!m) return '#8e98ab'; var n = parseInt(m[1], 16);
+    var l = 0.2126 * (n >> 16 & 255) + 0.7152 * (n >> 8 & 255) + 0.0722 * (n & 255); return l < 70 ? 'rgba(240,233,218,.7)' : '#' + m[1]; }
+  function overlap(a, b){ return a.x1 < b.x2 && a.x2 > b.x1 && a.y1 < b.y2 && a.y2 > b.y1; }
+  // Greedy label placement: try spots around each dot; first one in frame and clear of everything placed so far wins.
+  function placeLabels(pts, occupied){
+    pts.forEach(function(p){
+      var f = 13, w = p.text.length * f * 0.6 + 6, h = f + 4, g = p.r + 2;
+      var spots = [[0, -(g + h / 2)], [0, g + h / 2], [g + w / 2, 0], [-(g + w / 2), 0],
+                   [g * 0.7 + w / 2, -(g * 0.7 + h / 2)], [-(g * 0.7 + w / 2), -(g * 0.7 + h / 2)],
+                   [g * 0.7 + w / 2, g * 0.7 + h / 2], [-(g * 0.7 + w / 2), g * 0.7 + h / 2],
+                   [0, -(g + h * 1.6)], [0, g + h * 1.6]];
+      if(p.prefer === 'down') spots.unshift(spots.splice(1, 1)[0]);
+      var best = null;
+      for(var i = 0; i < spots.length && !best; i++){
+        var cx = p.x + spots[i][0], cy = p.y + spots[i][1];
+        var box = { x1:cx - w / 2, x2:cx + w / 2, y1:cy - h / 2, y2:cy + h / 2 };
+        if(box.x1 < -99 || box.x2 > 99 || box.y1 < -99 || box.y2 > 99) continue;
+        if(occupied.some(function(o){ return overlap(o, box); })) continue;
+        best = { cx:cx, cy:cy, w:w, h:h, f:f, box:box };
+      }
+      if(!best){
+        // no clean spot: clamp every candidate into the frame and take the one overlapping least
+        var bestA = 1e9;
+        for(var j = 0; j < spots.length; j++){
+          var cx3 = Math.max(-99 + w / 2, Math.min(99 - w / 2, p.x + spots[j][0])), cy3 = Math.max(-99 + h / 2, Math.min(99 - h / 2, p.y + spots[j][1]));
+          var b3 = { x1:cx3 - w / 2, x2:cx3 + w / 2, y1:cy3 - h / 2, y2:cy3 + h / 2 };
+          var a3 = occupied.reduce(function(t, o){ var ox = Math.min(o.x2, b3.x2) - Math.max(o.x1, b3.x1), oy = Math.min(o.y2, b3.y2) - Math.max(o.y1, b3.y1); return t + (ox > 0 && oy > 0 ? ox * oy : 0); }, 0);
+          if(a3 < bestA){ bestA = a3; best = { cx:cx3, cy:cy3, w:w, h:h, f:f, box:b3 }; }
+        }
+      }
+      p.lab = best; occupied.push(best.box);
+    });
+  }
+  function compassSVG(e, showAll){
+    var m = mainTwo(e), uid = 'cp' + e.id.replace(/[^a-z0-9]/gi, '');
+    var all = m.two.map(function(c, i){ return { c:c, main:true, i:i }; }).concat(m.rest.map(function(c, i){ return { c:c, main:false, i:i + 2 }; }));
+    all.forEach(function(p){ var d = toDisc(p.c); p.x = d.x; p.y = d.y; p.r = 5; p.text = String(p.c.short || p.c.name); });
+    // reserved: the quadrant names in the four inside corners, and every dot
+    var occ = [];
+    all.forEach(function(p){ occ.push({ x1:p.x - p.r - 1, x2:p.x + p.r + 1, y1:p.y - p.r - 1, y2:p.y + p.r + 1 }); });
+    var labelled = all.filter(function(p){ return p.main || showAll; });
+    if(Math.abs(all[0].x - all[1].x) < 70 && Math.abs(all[0].y - all[1].y) < 70){ var lower = all[0].y > all[1].y ? 0 : 1; all[lower].prefer = 'down'; }
+    placeLabels(labelled, occ);
+
+    var s = '<svg viewBox="-101 -101 202 202" role="img" aria-label="Political compass for ' + esc(e.country) + '">'
+      + '<rect x="-100" y="-100" width="200" height="200" fill="#0c172b"/>'
+      + '<rect x="-100" y="-100" width="100" height="100" fill="rgba(224,100,95,.10)"/>'
+      + '<rect x="0" y="-100" width="100" height="100" fill="rgba(91,142,224,.11)"/>'
+      + '<rect x="-100" y="0" width="100" height="100" fill="rgba(95,211,165,.07)"/>'
+      + '<rect x="0" y="0" width="100" height="100" fill="rgba(216,178,90,.08)"/>';
+    [-75, -50, -25, 25, 50, 75].forEach(function(v){ s += '<line class="cp-grid" x1="' + v + '" y1="-100" x2="' + v + '" y2="100"/><line class="cp-grid" x1="-100" y1="' + v + '" x2="100" y2="' + v + '"/>'; });
+    s += '<line class="cp-axis" x1="-100" y1="0" x2="100" y2="0"/><line class="cp-axis" x1="0" y1="-100" x2="0" y2="100"/>'
+      + '<rect class="cp-outer" x="-100" y="-100" width="200" height="200"/>';
+
+    all.slice().reverse().forEach(function(p){
+      var col = esc(p.c.color || '#8e98ab');
+      s += '<g class="cp-pt ' + (p.main ? 'main' : 'minor') + (showAll ? ' on' : '') + '" tabindex="0" role="button" data-i="' + p.i + '" aria-label="' + esc(p.c.name + ', ' + quadName(p.c)) + '">'
+        + '<g class="move" data-x="' + p.x.toFixed(1) + '" data-y="' + p.y.toFixed(1) + '">'
+        + '<circle r="15" fill="transparent"/>'
+        + '<circle class="core" r="' + p.r + '" fill="' + col + '"/></g></g>';
+    });
+    labelled.forEach(function(p){
+      var L = p.lab, col = esc(edge(p.c.color));
+      s += '<g class="cp-lab">'
+        + '<text x="' + L.cx.toFixed(1) + '" y="' + (L.cy + L.f * 0.36).toFixed(1) + '" font-size="' + L.f + '" text-anchor="middle">' + esc(p.text) + '</text></g>';
+    });
+    return s + '</svg>';
+  }
+  function vsHTML(e){
+    if(!hasCompass(e)) return '';
+    var m = mainTwo(e);
+    return '<div class="vs">' + m.two.map(function(c){
+      var v = valOf(c);
+      return '<div class="vs-i" style="--c:' + esc(c.color || '#8e98ab') + '"><div class="vs-n">' + esc(c.name) + '</div>'
+        + '<div class="vs-p">' + (c.leader && c.leader !== c.name ? esc(c.leader) : '') + '</div>'
+        + '<span class="vs-q">' + esc(quadName(c)) + '</span>'
+        + (v != null ? '<div class="vs-v">' + r1(v) + unitOf(e, c) + '<small>' + (e.status === 'result' ? 'result' : seatsUnit(e) ? 'seats' : 'poll') + '</small></div>' : '<div class="vs-v na">No polls yet</div>') + '</div>';
+    }).join('') + '</div>';
+  }
+  function compassHTML(e){
+    var m = mainTwo(e);
+    var vs = m.two.map(function(c){
+      var v = valOf(c);
+      return '<div class="vs-i" style="--c:' + esc(c.color || '#8e98ab') + '"><div class="vs-n">' + esc(c.name) + '</div>'
+        + '<div class="vs-p">' + (c.leader && c.leader !== c.name ? esc(c.leader) : '') + '</div>'
+        + '<span class="vs-q">' + esc(quadName(c)) + '</span>'
+        + (v != null ? '<div class="vs-v">' + r1(v) + unitOf(e, c) + '<small>' + (e.status === 'result' ? 'result' : seatsUnit(e) ? 'seats' : 'poll') + '</small></div>' : '<div class="vs-v na">No polls yet</div>') + '</div>';
+    });
+    var key = m.two.concat(m.rest).sort(function(a, b){ return (valOf(b) || 0) - (valOf(a) || 0); }).map(function(c){
+      var v = valOf(c);
+      return '<li style="--c:' + esc(c.color || '#8e98ab') + '"><i></i><span><b>' + esc(c.short || c.name) + '</b>'
+        + (v != null ? ' ' + r1(v) + unitOf(e, c) : '') + '</span></li>';
+    }).join('');
+    return '<div class="cp-row"><div class="compass" data-id="' + esc(e.id) + '">' + compassSVG(e, true) + '</div>'
+      + '<ul class="cp-key">' + key + '</ul></div>'
+      + '<div class="cp-info" aria-live="polite" hidden></div>';
+  }
+
+  // ---------- spectrum (laid out after render so labels can be measured) ----------
+  function hasPolls(e){ return !/referendum/i.test(e.type) && e.contenders.filter(function(c){ return valOf(c) != null; }).length >= 2; }
+  // Poll spectrum: everyone placed by their poll share (or projected seats), so whoever is
+  // furthest right is closest to winning. The dashed line is what it takes to win outright.
+  function spectrumHTML(e){
+    var t = e.status === 'result' ? 'Result' : seatsUnit(e) ? 'Projected seats' : 'Who\'s ahead';
+    return '<div class="spec" data-id="' + esc(e.id) + '"><div class="sp-in"></div></div>';
+  }
+  function pollScale(e, max){
+    var seats = seatsUnit(e), ts = seats ? totalSeats(e) : 0;
+    if(seats){
+      var need = ts ? Math.floor(ts / 2) + 1 : 0;
+      var top = Math.max(max * 1.12, need ? need * 1.12 : 0);
+      var step = top > 200 ? 50 : top > 80 ? 20 : 10;
+      return { max:Math.ceil(top / step) * step, step:step, maj:need || null, majT:need ? 'Majority ' + need : '', u:'' };
+    }
+    var top2 = Math.min(100, Math.max(50, Math.ceil((max + 6) / 10) * 10));
+    return { max:top2, step:top2 > 60 ? 20 : 10, maj:50, majT:/presiden/i.test(e.type) && !/runoff|2nd/i.test(e.type) ? '50% wins outright' : '', u:'%' };
+  }
+  function layoutSpectrum(spec){
+    var e = BY[spec.dataset.id]; if(!e) return;
+    var inn = spec.querySelector('.sp-in'), W = inn.clientWidth; if(!W) return;
+    var cs = e.contenders.filter(function(c){ return valOf(c) != null; }).slice(0, 7);
+    var vals = cs.map(valOf);
+    var max = vals.length ? Math.max.apply(null, vals) : 0;
+    var sc = pollScale(e, max);
+    var lead = null; cs.forEach(function(c){ var v = valOf(c); if(v != null && (!lead || v > valOf(lead))) lead = c; });
+    var phone = W < 420;
+    var html = '<div class="sp-band poll"></div>';
+    for(var tv = 0; tv <= sc.max; tv += sc.step) html += '<span class="sp-tk" data-v="' + tv + '"></span>';
+    if(sc.maj && sc.maj <= sc.max) html += '<span class="sp-maj"></span><span class="sp-majl">' + esc(sc.majT) + '</span>';
+    cs.forEach(function(c, i){
+      var v = valOf(c), d = 14;
+      html += '<span class="sp-dot' + (c === lead ? ' lead' : '') + '" data-i="' + i + '" style="--c:' + esc(c.color || '#8e98ab') + ';width:' + d + 'px;height:' + d + 'px" title="' + esc(c.name + ': ' + r1(v) + unitOf(e, c)) + '"></span>'
+        + '<span class="sp-stem" data-i="' + i + '"></span>'
+        + '<span class="sp-lab' + (c === lead ? ' lead' : '') + '" data-i="' + i + '" style="--c:' + esc(edge(c.color)) + '">' + esc(c.short || c.name) + (v != null ? '<small>' + r1(v) + unitOf(e, c) + '</small>' : '') + '</span>';
+    });
+    html += '<div class="sp-ticks">';
+    for(var tl = 0; tl <= sc.max; tl += sc.step) html += '<span data-v="' + tl + '"' + (tl === sc.max ? ' class="end"' : '') + '>' + tl + sc.u + '</span>';
+    html += '</div>';
+    inn.innerHTML = html;
+    var LANE = 28, LH = 22;
+    var items = cs.map(function(c, i){
+      var lab = inn.querySelector('.sp-lab[data-i="' + i + '"]');
+      return { i:i, x:Math.max(0, Math.min(1, valOf(c) / sc.max)) * W, w:lab.offsetWidth + 6, d:inn.querySelector('.sp-dot[data-i="' + i + '"]').offsetWidth, v:valOf(c) || 0 };
+    });
+    // names are not drawn on the poll scale (the bar below names everyone): dots only
+    Array.prototype.forEach.call(inn.querySelectorAll('.sp-lab, .sp-stem'), function(x){ x.remove(); });
+    var order = [];
+    var lanes = { up:[], dn:[] };
+    order.forEach(function(it){
+      var lx1 = Math.max(-18, Math.min(W + 18 - it.w, it.x - it.w / 2)), lx2 = lx1 + it.w;
+      it.lx = lx1 + it.w / 2;
+      var slots = [['up', 0], ['dn', 0], ['up', 1], ['dn', 1], ['up', 2], ['dn', 2], ['up', 3], ['dn', 3]];
+      for(var k = 0; k < slots.length; k++){
+        var side = slots[k][0], L = slots[k][1], lane = lanes[side][L] || (lanes[side][L] = []);
+        if(lane.every(function(r){ return lx2 <= r[0] || lx1 >= r[1]; })){ lane.push([lx1, lx2]); it.side = side; it.lane = L; return; }
+      }
+      it.side = 'up'; it.lane = lanes.up.length; lanes.up.push([[lx1, lx2]]);
+    });
+    var nUp = lanes.up.filter(function(l){ return l.length; }).length, nDn = lanes.dn.filter(function(l){ return l.length; }).length;
+    var maxD = Math.max.apply(null, items.map(function(i){ return i.d; }).concat([12]));
+    var axisY = nUp * LANE + maxD / 2 + 4;
+    items.forEach(function(it){
+      var dot = inn.querySelector('.sp-dot[data-i="' + it.i + '"]'), lab = inn.querySelector('.sp-lab[data-i="' + it.i + '"]'), st = inn.querySelector('.sp-stem[data-i="' + it.i + '"]');
+      dot.style.left = it.x + 'px'; dot.style.top = axisY + 'px';
+      if(!lab) return;
+      lab.style.left = it.lx + 'px';
+      var top, sTop, sH;
+      if(it.side === 'up'){ top = axisY - maxD / 2 - 4 - (it.lane + 1) * LANE + (LANE - LH); sTop = top + LH; sH = axisY - sTop; }
+      else { top = axisY + maxD / 2 + 4 + it.lane * LANE + (LANE - LH) - 2; sTop = axisY; sH = top - axisY; }
+      lab.style.top = top + 'px';
+      st.style.left = it.x + 'px'; st.style.top = sTop + 'px'; st.style.height = Math.max(0, sH) + 'px';
+    });
+    inn.querySelector('.sp-band').style.top = (axisY - 4) + 'px';
+    var zt = nDn ? axisY + maxD / 2 + 4 + nDn * LANE + 6 : axisY + Math.max(maxD / 2, 6) + 8;
+    var tk = inn.querySelector('.sp-ticks'); tk.style.top = zt + 'px';
+    Array.prototype.forEach.call(tk.children, function(s){ s.style.left = (+s.dataset.v / sc.max * W) + 'px'; });
+    Array.prototype.forEach.call(inn.querySelectorAll('.sp-tk'), function(s){ s.style.left = (+s.dataset.v / sc.max * W) + 'px'; s.style.top = (axisY - 6) + 'px'; });
+    var mj = inn.querySelector('.sp-maj');
+    if(mj){
+      var mx = sc.maj / sc.max * W, mtop = Math.max(0, axisY - maxD / 2 - 14);
+      mj.style.left = mx + 'px'; mj.style.top = (axisY - 14) + 'px'; mj.style.height = (zt - axisY + 12) + 'px';
+      var ml = inn.querySelector('.sp-majl');
+      if(ml.textContent){ ml.style.left = Math.min(W - 50, Math.max(50, mx)) + 'px'; ml.style.top = (zt + 16) + 'px'; zt += 14; } else ml.remove();
+    }
+    inn.style.height = (zt + 18) + 'px';
+  }
+
+  // ---------- bloc balance ----------
+  function blocHTML(e){
+    if(/referendum/i.test(e.type)) return '';
+    var cs = e.contenders.filter(function(c){ return valOf(c) != null && c.pos != null; });
+    if(cs.length < 2) return '';
+    var seats = seatsUnit(e), ts = seats ? totalSeats(e) : 0, tot = seats ? ts : 100;
+    var sum = cs.reduce(function(a, c){ return a + valOf(c); }, 0);
+    if(!tot || sum > tot * 1.02) tot = sum;
+    cs.sort(function(a, b){ return a.pos - b.pos; });
+    var bl = { l:0, c:0, r:0 };
+    cs.forEach(function(c){ var v = valOf(c); if(c.pos < 0.42) bl.l += v; else if(c.pos > 0.58) bl.r += v; else bl.c += v; });
+    var segs = cs.map(function(c){ var w = valOf(c) / tot * 100;
+      return '<span data-w="' + w.toFixed(2) + '" style="--c:' + esc(c.color || '#8e98ab') + '" title="' + esc(c.name + ': ' + r1(valOf(c)) + unitOf(e, c)) + '">' + (w > 12 ? esc(c.short || c.name) : '') + '</span>'; }).join('');
+    var rest = Math.max(0, 100 - sum / tot * 100);
+    if(rest > 1.5) segs += '<span class="other" data-w="' + rest.toFixed(2) + '" title="Others / undecided">' + (rest > 14 ? 'Others' : '') + '</span>';
+    var mp = null, mt = '', u = seats ? '' : '%';
+    if(seats && ts && tot === ts){ var need = Math.floor(ts / 2) + 1; mp = need / ts * 100; mt = 'Majority ' + need; }
+    else if(!seats){ mp = 50; mt = '50%'; }
+    var ml = mp == null ? '' : '<span class="bloc-ml" style="left:' + Math.min(92, Math.max(8, mp)) + '%">' + mt + '</span><span class="bloc-maj" style="left:' + mp + '%"></span>';
+    return '<div class="bloc"><div class="bloc-wrap">' + ml + '<div class="bloc-bar">' + segs + '</div></div>'
+      + '</div>';
+  }
+
+  // ---------- party rows ----------
+  function spark(c){
+    var s = (c.series || []).filter(function(p){ return p && p[1] != null; });
+    if(s.length < 3) return '';
+    var vs = s.map(function(p){ return +p[1]; }), lo = Math.min.apply(null, vs), hi = Math.max.apply(null, vs);
+    if(hi - lo < 2){ var mid = (hi + lo) / 2; lo = mid - 1; hi = mid + 1; }
+    var pts = vs.map(function(v, i){ return [(i / (vs.length - 1) * 52 + 2).toFixed(1), (21 - (v - lo) / (hi - lo) * 18).toFixed(1)]; });
+    var last = pts[pts.length - 1], col = esc(c.color || '#8e98ab');
+    return '<svg class="spark" viewBox="0 0 58 24" aria-hidden="true"><polyline points="' + pts.map(function(p){ return p.join(','); }).join(' ') + '" fill="none" stroke="' + col + '" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round"/><circle cx="' + last[0] + '" cy="' + last[1] + '" r="2.6" fill="' + col + '"/></svg>';
+  }
+  function trendHTML(c){
+    if(c.trend == null || isNaN(c.trend)) return '';
+    var t = +c.trend;
+    if(Math.abs(t) < 0.3) return '<small class="flat">steady</small>';
+    return '<small class="' + (t > 0 ? 'up' : 'dn') + '" title="Change over two weeks">' + (t > 0 ? '▲ ' : '▼ ') + r1(Math.abs(t)) + '</small>';
+  }
+  function rowsHTML(e){
+    var cs = ranked(e), res = e.status === 'result';
+    if(!cs.length) return '';
+    var nopoll = cs.every(function(c){ return valOf(c) == null; });
+    var max = Math.max.apply(null, cs.map(function(c){ return valOf(c) || 0; }).concat([1]));
+    var scale = seatsUnit(e) ? max : Math.max(max, 50);
+    var rows = cs.map(function(c, i){
+      var v = valOf(c), u = unitOf(e, c);
+      var won = res && e.winner && (c.name === e.winner || c.short === e.winner || (c.leader && c.leader === e.winner));
+      var sub = [c.leader && c.leader !== c.name ? c.leader : '', c.posLabel || ''].filter(Boolean).join(' · ');
+      return '<div class="row' + (nopoll ? ' nobar' : '') + '" style="--c:' + esc(c.color || '#8e98ab') + '"' + (i >= 5 ? ' hidden' : '') + '>'
+        + '<span class="sw"></span>'
+        + '<span class="nm"><b>' + esc(c.name) + (won ? '<span class="tg won">Won</span>' : '') + (c.incumbent && !res ? '<span class="tg inc">In power</span>' : '') + '</b>'
+        + (sub ? '<small>' + esc(sub) + '</small>' : '') + '</span>'
+        + (nopoll ? '<span></span><span></span>'
+          : '<span></span><span class="val"><b class="' + (v == null ? 'na' : '') + '">' + (v == null ? '—' : r1(v) + u) + '</b>' + trendHTML(c) + '</span>'
+            + '<span class="bar"><i data-w="' + (v == null ? 0 : Math.min(100, v / scale * 100)) + '"></i></span>')
+        + '</div>';
+    }).join('');
+    var more = cs.length > 5 ? '<button type="button" class="more" data-more>Show ' + (cs.length - 5) + ' more</button>' : '';
+    return '<div class="rows">' + rows + '</div>' + more;
+  }
+
+  // ---------- one election's visuals: compass + polls, as tabs ----------
+  var ICON_C = '<svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.2"/><path d="M8 1.8v12.4M1.8 8h12.4"/></svg>';
+  var ICON_P = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 13.5h12M4 11V7M8 11V3.5M12 11V8.5"/></svg>';
+  function vizHTML(e, both){
+    var polls = (hasPolls(e) ? spectrumHTML(e) + (hasSpectrum(e) ? blocHTML(e) : '') : '<div class="sp-none">' + esc(noPollNote(e)) + '</div>') + rowsHTML(e);
+    if(!hasCompass(e)) return '<div class="viz">' + polls + '</div>';
+    var t = state.tab;
+    return '<div class="viz' + (both ? ' both' : '') + '"><div class="tabs" role="tablist">'
+      + '<button type="button" role="tab" data-tab="compass" aria-selected="' + (t === 'compass') + '">' + ICON_C + 'Compass</button>'
+      + '<button type="button" role="tab" data-tab="polls" aria-selected="' + (t === 'polls') + '">' + ICON_P + (e.status === 'result' ? 'Results' : 'Polls') + '</button></div>'
+      + '<div class="pane" data-pane="compass"' + (t === 'compass' ? '' : ' hidden') + '>' + compassHTML(e) + '</div>'
+      + '<div class="pane" data-pane="polls"' + (t === 'polls' ? '' : ' hidden') + '>' + polls + '</div>' + vsHTML(e) + '</div>';
+  }
+
+  function calHTML(e){
+    var d = day(e.date), c = e.status === 'result' ? ' res' : e.approx ? ' tbc' : '';
+    return '<div class="cal' + c + '" aria-hidden="true"><span class="m">' + MONTHS[d.getMonth()] + '</span><span class="d">' + (e.approx ? 'TBC' : d.getDate()) + '</span><span class="y">' + d.getFullYear() + '</span></div>';
+  }
+  // Poll notes are only shown in the known short forms; anything else (a bot slip) is hidden.
+  var NOTE_RE = /^(Seat projections, )?(Average of (\d+|recent( runoff)?) (polls|seat projections)|1 (poll|seat projection)), [0-9A-Za-z \u2013\-]{3,30}$|^(No polls yet|No polling average yet|Final result|Preliminary result)$/i;
+  function noteOK(n){ return !!n && n.length <= 70 && NOTE_RE.test(n); }
+  // Every card gets the height of the tallest card on the default view (Compass), so a card
+  // with no polls, no sources or no compass is never shorter. Opening Polls can still grow one card.
+  function equalCards(){
+    var cards = Array.prototype.slice.call(document.querySelectorAll('#list .card'));
+    if(!cards.length) return;
+    if(innerWidth <= 640){ cards.forEach(function(c){ c.style.minHeight = ''; }); return; }
+    cards.forEach(function(c){ c.style.minHeight = ''; });
+    var onCompass = cards.filter(function(c){ var p = c.querySelector('.pane[data-pane="polls"]'); return !p || p.hidden; });
+    var h = Math.max.apply(null, onCompass.map(function(c){ return Math.ceil(c.getBoundingClientRect().height); }).concat([0]));
+    cards.forEach(function(c){ c.style.minHeight = h + 'px'; });
+  }
+  var eqT; addEventListener('resize', function(){ clearTimeout(eqT); eqT = setTimeout(equalCards, 200); });
+  function cardHTML(e){
+    var r = rel(e);
+    var foot = '<div class="c-foot">' + (e.counting ? '<span class="pn">Counting: final result to follow</span>' : noteOK(e.pollNote) ? '<span class="pn">' + esc(e.pollNote) + '</span>' : '')
+      + (e.sources || []).filter(function(u){ return !/wikipedia\.org/i.test(u); }).slice(0, 3).map(function(u){ return '<a href="' + esc(u) + '" target="_blank" rel="noopener">' + esc(host(u)) + '</a>'; }).join('') + '</div>';
+    return '<article class="card" id="' + esc(e.id) + '" aria-label="' + esc(e.country + ' ' + e.type + ', ' + fmtLong(e)) + '">'
+      + '<div class="c-top">' + calHTML(e) + '<div class="c-head"><div class="c-name">' + flag(e.code) + '<span>' + esc(e.country) + '</span></div>'
+      + '<div class="sum"><p>' + esc(e.stakes) + '</p><button type="button" class="sum-more" hidden>Read more</button></div>'
+      + '</div></div>'
+      + (e.status === 'result' && e.winner ? '<div class="c-note"><b>Winner:</b> ' + esc(e.winner) + '</div>' : '')
+      + vizHTML(e, false) + foot + '</article>';
+  }
+
+  // ---------- featured: next key vote ----------
+  var cdTimer;
+  function renderNext(){
+    var box = document.getElementById('next');
+    // The next vote is simply the first card of the list (same size as every other); no separate feature box.
+    box.hidden = true; box.innerHTML = ''; return;
+    var e = DATA.filter(function(e){ return e.status === 'upcoming' && !e.approx && daysTo(e) >= 0 && e.major && (hasPolls(e) || hasCompass(e)); })[0];
+    if(!e){ box.hidden = true; return; }
+    box.hidden = false;
+    box.innerHTML = '<div><div class="next-k">Next key vote</div>'
+      + '<div class="next-c">' + calHTML(e) + '<div class="next-head"><div class="next-name">' + flag(e.code) + '<span>' + esc(e.country) + '</span></div>'
+      + '<div class="sum next-sum"><p>' + esc(e.stakes) + '</p></div></div></div>'
+      + '</div>'
+      + '<div class="next-viz">' + vizHTML(e, true) + '</div>';
+    var target = day(e.date).getTime();
+    function tick(){
+      var ms = Math.max(0, target - Date.now()), cd = document.getElementById('cd'); if(!cd) return;
+      var d = Math.floor(ms / 864e5), h = Math.floor(ms / 36e5) % 24, m = Math.floor(ms / 6e4) % 60;
+      cd.innerHTML = ms ? '<div><b>' + d + '</b><span>days</span></div><div><b>' + h + '</b><span>hours</span></div><div><b>' + m + '</b><span>mins</span></div>'
+        : '<div><b>Today</b><span>polls open</span></div>';
+    }
+    tick(); clearInterval(cdTimer); cdTimer = setInterval(tick, 30000);
+    runViz(box);
+  }
+
+  function renderStrip(){
+    var up = DATA.filter(function(e){ return e.status === 'upcoming'; }).slice(0, 24);
+    document.getElementById('stripWrap').hidden = !up.length;
+    document.getElementById('strip').innerHTML = up.map(function(e){ var r = rel(e);
+      return '<button type="button" data-go="' + esc(e.id) + '">' + flag(e.code) + '<span><b>' + esc(e.country) + '</b><small class="' + (r.c === 'soon' ? 'soon' : '') + '">' + esc(fmtShort(e)) + (e.approx ? ' · TBC' : '') + '</small></span></button>'; }).join('');
+  }
+
+  // ---------- list ----------
+  function render(){
+    var list = document.getElementById('list');
+    var items = DATA.filter(function(e){
+      if(e.status !== state.view) return false;
+      if(state.region !== 'All' && e.region !== state.region) return false;
+      if(state.keyOnly && !e.major) return false;
+      return true;
+    });
+    if(state.view === 'result') items = items.slice().reverse();
+    var nUp = DATA.filter(function(e){ return e.status === 'upcoming'; }).length;
+
+    if(!items.length){ list.innerHTML = '<p class="empty">Nothing here with these filters.</p>'; return; }
+    // one continuous grid, in date order (no month dividers)
+    list.innerHTML = '<div class="grid">' + items.map(cardHTML).join('') + '</div>';
+    setTimeout(equalCards, 60);
+    observe();
+  }
+
+  // Lay out and animate whatever is visible inside root.
+  function runViz(root){
+    // Summaries are clamped to the same 4 lines on every card; "Read more" only where text was cut.
+    Array.prototype.forEach.call(root.querySelectorAll('.card .sum'), function(b){
+      var p = b.querySelector('p'), m = b.querySelector('.sum-more');
+      if(p && m && !b.classList.contains('open')) m.hidden = p.scrollHeight <= p.clientHeight + 2;
+    });
+    Array.prototype.forEach.call(root.querySelectorAll('.spec'), function(s){ if(s.offsetParent && !s.dataset.w){ layoutSpectrum(s); s.dataset.w = s.clientWidth; } });
+    requestAnimationFrame(function(){ requestAnimationFrame(function(){
+      Array.prototype.forEach.call(root.querySelectorAll('.spec, .compass'), function(s){ if(s.offsetParent) s.classList.add('run'); });
+      Array.prototype.forEach.call(root.querySelectorAll('.compass .move'), function(g){ if(g.closest('.compass').offsetParent) g.style.transform = 'translate(' + g.dataset.x + 'px,' + g.dataset.y + 'px)'; });
+      Array.prototype.forEach.call(root.querySelectorAll('.bar i, .bloc-bar span[data-w]'), function(b){ if(b.offsetParent) b.style.width = b.dataset.w + '%'; });
+    }); });
+  }
+
+  var io = 'IntersectionObserver' in window ? new IntersectionObserver(function(ents){
+    ents.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); runViz(en.target); io.unobserve(en.target); } });
+  }, { rootMargin:'0px 0px -30px 0px' }) : null;
+  function observe(){
+    Array.prototype.forEach.call(document.querySelectorAll('#list .card'), function(c){ if(io) io.observe(c); else { c.classList.add('in'); runViz(c); } });
+  }
+
+  // ---------- controls ----------
+  function save(){ try { localStorage.setItem('we-elections', JSON.stringify({ region:state.region, keyOnly:state.keyOnly, tab:state.tab })); } catch(e){} }
+  var reg = document.getElementById('regions');
+  reg.innerHTML = REGIONS.map(function(r){ return '<button type="button" data-r="' + esc(r) + '" aria-pressed="' + (r === state.region) + '">' + esc(r) + '</button>'; }).join('');
+  function setRegion(r){ state.region = r; Array.prototype.forEach.call(reg.children, function(x){ x.setAttribute('aria-pressed', String(x.dataset.r === r)); }); }
+  // A mouse wheel scrolls the region bar sideways; the chosen region is kept in view
+  reg.addEventListener('wheel', function(ev){ if(reg.scrollWidth <= reg.clientWidth + 1) return; var d = Math.abs(ev.deltaX) > Math.abs(ev.deltaY) ? ev.deltaX : ev.deltaY; if(!d) return; ev.preventDefault(); reg.scrollLeft += d; }, { passive:false });
+  setTimeout(function(){ var on = reg.querySelector('[aria-pressed="true"]'); if(on && reg.scrollWidth > reg.clientWidth) reg.scrollLeft = Math.max(0, on.offsetLeft - 24); }, 50);
+  reg.addEventListener('click', function(ev){ var b = ev.target.closest('button'); if(!b) return; setRegion(b.dataset.r); save(); render(); });
+  var view = document.getElementById('view');
+  function setView(v){ state.view = v; Array.prototype.forEach.call(view.children, function(x){ x.setAttribute('aria-pressed', String(x.dataset.v === v)); }); }
+  view.addEventListener('click', function(ev){ var b = ev.target.closest('button'); if(!b) return; setView(b.dataset.v); render(); });
+  state.keyOnly = false; var ko = { setAttribute:function(){}, addEventListener:function(){} };
+  ko.addEventListener('click', function(){ state.keyOnly = !state.keyOnly; ko.setAttribute('aria-pressed', String(state.keyOnly)); save(); render(); });
+
+  function goTo(id){
+    var el = document.getElementById(id);
+    if(!el || !el.closest('#list')){ setView((BY[id] || {}).status || 'upcoming'); setRegion('All'); state.keyOnly = false; ko.setAttribute('aria-pressed', 'false'); render(); el = document.getElementById(id); }
+    if(!el) return;
+    el.classList.add('in'); runViz(el);
+    el.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block:'start' });
+    el.classList.add('flash'); setTimeout(function(){ el.classList.remove('flash'); }, 1600);
+  }
+
+  function showInfo(pt){
+    var comp = pt.closest('.compass'), e = BY[comp.dataset.id]; if(!e) return;
+    var m = mainTwo(e), list = m.two.concat(m.rest), c = list[+pt.dataset.i]; if(!c) return;
+    Array.prototype.forEach.call(comp.querySelectorAll('.cp-pt'), function(p){ p.classList.toggle('sel', p === pt); });
+    var info = comp.parentNode.querySelector('.cp-info'), v = valOf(c);
+    info.hidden = false; info.style.setProperty('--c', c.color || '#8e98ab');
+    info.innerHTML = '<i></i><span><b>' + esc(c.name) + '</b>' + (c.leader && c.leader !== c.name ? ' · ' + esc(c.leader) : '') + '<br>' + esc(quadName(c)) + (c.posLabel ? ' · ' + esc(c.posLabel) : '') + (v != null ? ' · <b>' + r1(v) + unitOf(e, c) + '</b>' : '') + '</span>';
+  }
+
+  document.addEventListener('click', function(ev){
+    var t = ev.target;
+    var go = t.closest('[data-go]'); if(go){ goTo(go.dataset.go); return; }
+    var more = t.closest('[data-more]');
+    if(more){ var rows = more.previousElementSibling; Array.prototype.forEach.call(rows.querySelectorAll('.row[hidden]'), function(r){ r.hidden = false; }); runViz(rows); more.remove(); return; }
+    var tab = t.closest('[data-tab]');
+    if(tab){
+      var viz = tab.closest('.viz'), want = tab.dataset.tab;   // this card only; every card opens on Compass
+      Array.prototype.forEach.call(viz.querySelectorAll('[data-tab]'), function(b){ b.setAttribute('aria-selected', String(b === tab)); });
+      Array.prototype.forEach.call(viz.querySelectorAll('.pane'), function(p){ p.hidden = p.dataset.pane !== want; });
+      runViz(viz); return;
+    }
+    var sm = t.closest('.sum-more');
+    if(sm){ var sb = sm.closest('.sum'), op = !sb.classList.contains('open'); sb.classList.toggle('open', op); sm.textContent = op ? 'Show less' : 'Read more'; return; }
+    var all = t.closest('[data-all]');
+    if(all){
+      var on = all.getAttribute('aria-pressed') !== 'true', comp = all.closest('.pane').querySelector('.compass'), e = BY[comp.dataset.id];
+      all.setAttribute('aria-pressed', String(on));
+      comp.classList.add('instant');
+      comp.innerHTML = compassSVG(e, on);
+      Array.prototype.forEach.call(comp.querySelectorAll('.move'), function(g){ g.style.transition = 'none'; g.style.transform = 'translate(' + g.dataset.x + 'px,' + g.dataset.y + 'px)'; });
+      return;
+    }
+    var pt = t.closest('.cp-pt'); if(pt){ showInfo(pt); return; }
+  });
+  document.addEventListener('keydown', function(ev){ var el = ev.target; if((ev.key === 'Enter' || ev.key === ' ') && el.classList && el.classList.contains('cp-pt')){ ev.preventDefault(); showInfo(el); } });
+
+  function setHdr(){ var h = document.getElementById('hdr'); if(h) document.documentElement.style.setProperty('--hdr', h.offsetHeight + 'px'); }
+  setHdr();
+  var rt, lastW = innerWidth;
+  addEventListener('resize', function(){ clearTimeout(rt); rt = setTimeout(function(){ setHdr(); if(innerWidth === lastW) return; lastW = innerWidth;
+    Array.prototype.forEach.call(document.querySelectorAll('.spec'), function(s){ delete s.dataset.w; if(s.offsetParent) { layoutSpectrum(s); s.dataset.w = s.clientWidth; } }); }, 150); });
+
+  // ---------- data ----------
+  function use(j){
+    var arr = (j && j.elections) || [];
+    if(!arr.length) return false;
+    arr.forEach(function(e){
+      var seen = {};   // never show the same party twice
+      e.contenders = (e.contenders || []).filter(function(c){ var k = String(c.short || c.name).toLowerCase(); if(seen[k]) return false; seen[k] = 1; return true; });
+      e.sources = e.sources || []; BY[e.id] = e;
+    });
+    // A vote whose day has passed moves to Results straight away, even before the bot has the
+    // final numbers (it then shows its last polls, marked "Counting"). Nothing ever disappears.
+    arr.forEach(function(e){ if(e.status === 'upcoming' && !e.approx && daysTo(e) < 0){ e.status = 'result'; e.counting = true; } });
+    DATA = arr.filter(function(e){ return e.status === 'result' || e.approx || daysTo(e) >= 0; })
+      .sort(function(a, b){ return a.date < b.date ? -1 : a.date > b.date ? 1 : (b.major ? 1 : 0) - (a.major ? 1 : 0); });
+    renderNext(); render();
+    if(location.hash) setTimeout(function(){ goTo(decodeURIComponent(location.hash.slice(1))); }, 60);
+    return true;
+  }
+  function get(u){ return fetch(u, { cache:'no-store' }).then(function(r){ if(!r.ok) throw 0; return r.json(); }); }
+  get(LIVE).then(function(j){ if(!use(j)) throw 0; }).catch(function(){
+    get(LOCAL).then(function(j){ if(!use(j)) throw 0; }).catch(function(){ document.getElementById('list').innerHTML = '<p class="empty">Couldn\'t load elections. Check your connection and try again.</p>'; });
+  });
+})();
+</script>
+<script>
+(function(){
+  var b = document.getElementById('gbtn'), root = document.documentElement;
+  function set(o){ root.classList.toggle('we-gopen', o); b.setAttribute('aria-expanded', String(o));
+    var h = document.getElementById('hdr'); if(h) root.style.setProperty('--hdr', Math.round(h.getBoundingClientRect().bottom) + 'px'); }
+  b.addEventListener('click', function(e){ e.stopPropagation(); set(!root.classList.contains('we-gopen')); });
+  document.getElementById('gshade').addEventListener('click', function(){ set(false); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && root.classList.contains('we-gopen')){ set(false); b.focus(); } });
+})();
+</script>
+</body></html>

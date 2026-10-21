@@ -1,0 +1,59 @@
+name: Update wire + feed
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"   # every 15 minutes
+  workflow_dispatch:
+  push:
+    paths:
+      - "fetch_rss_feeds.py"
+      - "news-feed/fetch_latest_reports.py"
+      - ".github/workflows/update-wire.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: news-feed
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Random start delay (so runs never land at the exact same minute)
+        if: github.event_name == 'schedule'
+        run: sleep $(( RANDOM % 240 ))
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Previous data (wire-data branch)
+        run: |
+          # The bot's files live on the wire-data branch (one commit, no history build-up).
+          # Until that branch exists, the copies checked into main are the starting point.
+          if git ls-remote --exit-code --heads origin wire-data >/dev/null 2>&1; then
+            git fetch --depth=1 origin wire-data
+            git checkout FETCH_HEAD -- wire_ticker.json latest_reports.json || true
+            git reset -q
+          fi
+      - name: Top banner (WIRE ticker)
+        run: python fetch_rss_feeds.py
+        continue-on-error: true
+      - name: FEED panel (latest reports)
+        run: python news-feed/fetch_latest_reports.py
+        continue-on-error: true
+      - name: Publish to wire-data branch (one commit, no history build-up)
+        run: |
+          mkdir -p /tmp/pub && cd "$GITHUB_WORKSPACE"
+          for f in wire_ticker.json latest_reports.json; do
+            [ -f "$f" ] && mkdir -p "/tmp/pub/$(dirname "$f")" && cp "$f" "/tmp/pub/$f"
+          done
+          cd /tmp/pub
+          git init -q
+          git config user.name "news-bot"
+          git config user.email "news-bot@users.noreply.github.com"
+          git checkout -q -b wire-data
+          git add -A
+          git commit -q -m "wire-data $(date -u +%FT%TZ)"
+          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" wire-data

@@ -1,0 +1,1236 @@
+{
+ "updated": "2026-10-19",
+ "note": "Main polling firms per country (chosen from the firms behind the polls on Wikipedia's polling pages). feed = RSS/Atom, list = news page scraped for article links, match = optional regex filter.",
+ "countries": {
+  "BG": {
+   "keywords": [
+    "проучване",
+    "нагласи",
+    "социологическо",
+    "президентски избори",
+    "електорални нагласи",
+    "Алфа Рисърч",
+    "Галъп",
+    "Тренд"
+   ],
+   "pollsters": [
+    {
+     "name": "Myara",
+     "site": "https://myara.bg",
+     "feed": "https://myara.bg/feed/"
+    },
+    {
+     "name": "Market Links",
+     "site": "https://www.marketlinks.bg",
+     "list": "https://www.marketlinks.bg",
+     "match": "нагласи|избори|/news/"
+    },
+    {
+     "name": "Sova Harris",
+     "site": "https://sovaharris.com",
+     "feed": "https://sovaharris.com/feed/"
+    }
+   ]
+  },
+  "RS": {
+   "keywords": [
+    "istraživanje javnog mnjenja",
+    "istraživanje",
+    "rejting",
+    "anketa",
+    "Studentska lista",
+    "SNS",
+    "Faktor plus",
+    "CRTA"
+   ],
+   "pollsters": [
+    {
+     "name": "NSPM",
+     "site": "http://www.nspm.rs",
+     "list": "http://www.nspm.rs/istrazivanja-javnog-mnjenja/",
+     "match": "istrazivanja-javnog-mnjenja/"
+    },
+    {
+     "name": "Faktor Plus / CRTA (Danas)",
+     "site": "https://www.danas.rs/tag/istrazivanje-javnog-mnjenja/",
+     "list": "https://www.danas.rs/tag/istrazivanje-javnog-mnjenja/",
+     "match": "istra[zž]ivanj|anket|rejting|faktor|crta"
+    },
+    {
+     "name": "Various pollsters (N1)",
+     "site": "https://n1info.rs/tag/istrazivanje-javnog-mnjenja/",
+     "list": "https://n1info.rs/tag/istrazivanje-javnog-mnjenja/",
+     "match": "istra[zž]ivanj|anket|rejting|lista"
+    }
+   ]
+  },
+  "BR": {
+   "keywords": [
+    "pesquisa",
+    "intenção de voto",
+    "segundo turno",
+    "Datafolha",
+    "Quaest",
+    "Lula",
+    "Flávio",
+    "AtlasIntel"
+   ],
+   "pollsters": [
+    {
+     "name": "Datafolha / Quaest (g1)",
+     "site": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/",
+     "feed": "https://g1.globo.com/rss/g1/politica/",
+     "match": "datafolha|quaest|atlas|pesquisa"
+    },
+    {
+     "name": "Quaest",
+     "site": "https://quaest.com.br",
+     "feed": "https://quaest.com.br/feed/"
+    },
+    {
+     "name": "Paraná Pesquisas",
+     "site": "https://paranapesquisas.com.br",
+     "feed": "https://paranapesquisas.com.br/pesquisas/feed/",
+     "match": "BR-|presiden|nacional|brasil"
+    },
+    {
+     "name": "IPESPE",
+     "site": "https://ipespe.org.br",
+     "feed": "https://ipespe.org.br/feed/"
+    }
+   ]
+  },
+  "US": {
+   "keywords": [
+    "generic ballot",
+    "midterms",
+    "congressional",
+    "House",
+    "poll",
+    "Democrats",
+    "Republicans",
+    "likely voters"
+   ],
+   "pollsters": [
+    {
+     "name": "YouGov / Economist",
+     "site": "https://today.yougov.com",
+     "feed": "https://yougov.com/en-us/rss",
+     "match": "generic|midterm|congress|economist ?/ ?yougov|ballot"
+    },
+    {
+     "name": "Emerson College",
+     "site": "https://emersoncollegepolling.com",
+     "feed": "https://emersoncollegepolling.com/feed/",
+     "match": "national|generic|congress|midterm"
+    },
+    {
+     "name": "Ipsos",
+     "site": "https://www.ipsos.com/en-us",
+     "feed": "https://www.ipsos.com/en-us/rss.xml",
+     "match": "reuters|abc news|midterm|congress|election|generic"
+    },
+    {
+     "name": "Quinnipiac",
+     "site": "https://poll.qu.edu",
+     "list": "https://poll.qu.edu/poll-results/",
+     "match": "releaseid"
+    },
+    {
+     "name": "Marist",
+     "site": "https://maristpoll.marist.edu",
+     "list": "https://maristpoll.marist.edu/polls/",
+     "match": "national|midterm|congress"
+    }
+   ]
+  },
+  "NZ": {
+   "keywords": [
+    "poll",
+    "party vote",
+    "preferred prime minister",
+    "Curia",
+    "Verian",
+    "National",
+    "Labour",
+    "Greens"
+   ],
+   "pollsters": [
+    {
+     "name": "Curia (Taxpayers' Union–Curia)",
+     "site": "https://www.curia.co.nz",
+     "feed": "https://www.curia.co.nz/feed/",
+     "match": "poll"
+    },
+    {
+     "name": "Verian (1News)",
+     "site": "https://www.1news.co.nz/politics/",
+     "feed": "https://www.1news.co.nz/arc/outboundfeeds/rss/?outputType=xml",
+     "match": "poll|verian"
+    },
+    {
+     "name": "Talbot Mills / Freshwater / various (NZ Herald)",
+     "site": "https://www.nzherald.co.nz/nz/politics/",
+     "feed": "https://www.nzherald.co.nz/arc/outboundfeeds/rss/section/nz/politics/?outputType=xml",
+     "match": "\\bpoll\\b(?! of polls)|talbot mills|freshwater"
+    }
+   ]
+  },
+  "ES": {
+   "keywords": [
+    "encuesta",
+    "sondeo",
+    "estimación de voto",
+    "intención de voto",
+    "escaños",
+    "barómetro",
+    "PP",
+    "PSOE"
+   ],
+   "pollsters": [
+    {
+     "name": "EM-Analytics (ElectoPanel)",
+     "site": "https://electomania.es",
+     "feed": "https://electomania.es/category/electopanel/feed/"
+    },
+    {
+     "name": "SocioMétrica",
+     "site": "https://sociometrica.es",
+     "feed": "https://sociometrica.es/feed/"
+    },
+    {
+     "name": "CIS",
+     "site": "https://www.cis.es",
+     "list": "https://www.cis.es/es/",
+     "match": "bar[oó]metro de \\w+ 20\\d\\d"
+    },
+    {
+     "name": "DYM",
+     "site": "https://institutodym.es",
+     "feed": "https://institutodym.es/es/feed/",
+     "match": "encuesta dym|estimaci[oó]n|intenci[oó]n de voto|esca[ñn]os|votantes|PP|PSOE|Vox"
+    }
+   ]
+  },
+  "EE": {
+   "keywords": [
+    "reiting",
+    "erakondade toetus",
+    "küsitlus",
+    "Norstat",
+    "Kantar Emor",
+    "Isamaa",
+    "Reformierakond",
+    "Keskerakond"
+   ],
+   "pollsters": [
+    {
+     "name": "Turu-uuringute AS",
+     "site": "https://turu-uuringute.eu",
+     "feed": "https://www.turu-uuringute.eu/feed",
+     "match": "reiting|erakon"
+    },
+    {
+     "name": "Kantar Emor",
+     "site": "https://emor.ee",
+     "feed": "https://www.kantaremor.ee/feed",
+     "match": "reiting|erakon|toetus|valimis"
+    }
+   ]
+  },
+  "FR": {
+   "keywords": [
+    "sondage",
+    "intentions de vote",
+    "présidentielle",
+    "premier tour",
+    "second tour",
+    "baromètre",
+    "Le Pen",
+    "Bardella"
+   ],
+   "pollsters": [
+    {
+     "name": "Elabe",
+     "site": "https://elabe.fr",
+     "feed": "https://elabe.fr/feed/"
+    },
+    {
+     "name": "Cluster17",
+     "site": "https://cluster17.com",
+     "feed": "https://cluster17.com/feed/"
+    },
+    {
+     "name": "Ipsos BVA",
+     "site": "https://www.ipsos.com/fr-fr",
+     "feed": "https://www.ipsos.com/fr-fr/rss.xml",
+     "match": "présidentielle|intentions? de vote|baromètre politique|législatives|élection|premier tour"
+    },
+    {
+     "name": "OpinionWay",
+     "site": "https://www.opinion-way.com/fr/",
+     "feed": "https://www.opinion-way.com/fr/feed",
+     "match": "présidentielle|présitrack|intentions? de vote|élection|législatives|sondage"
+    }
+   ]
+  },
+  "FI": {
+   "keywords": [
+    "gallup",
+    "kannatus",
+    "puoluekannatus",
+    "Taloustutkimus",
+    "Verian",
+    "kannatusmittaus",
+    "SDP",
+    "perussuomalaiset"
+   ],
+   "pollsters": [
+    {
+     "name": "Verian (Helsingin Sanomat)",
+     "site": "https://www.hs.fi/politiikka/",
+     "feed": "https://www.hs.fi/rss/politiikka.xml",
+     "match": "gallup|kannatus|verian"
+    },
+    {
+     "name": "Various pollsters (Ilta-Sanomat)",
+     "site": "https://www.is.fi/politiikka/",
+     "feed": "https://www.is.fi/rss/politiikka.xml",
+     "match": "gallup|kannatus|kysely"
+    }
+   ]
+  },
+  "GR": {
+   "keywords": [
+    "δημοσκόπηση",
+    "πρόθεση ψήφου",
+    "εκτίμηση ψήφου",
+    "ΝΔ",
+    "ΠΑΣΟΚ",
+    "Pulse",
+    "Interview",
+    "Metron Analysis"
+   ],
+   "pollsters": [
+    {
+     "name": "Pulse RC",
+     "site": "https://pulserc.gr",
+     "feed": "https://pulserc.gr/feed/"
+    },
+    {
+     "name": "Interview / Opinion Poll / MRB (Proto Thema)",
+     "site": "https://www.protothema.gr/tag/dimoskopisi/",
+     "list": "https://www.protothema.gr/tag/dimoskopisi/",
+     "match": "/politics/"
+    },
+    {
+     "name": "Marc / Alco / GPO (NewsIT)",
+     "site": "https://www.newsit.gr/tags/dimoskopisi/",
+     "list": "https://www.newsit.gr/tags/dimoskopisi/",
+     "match": "/politikh/"
+    }
+   ]
+  },
+  "ME": {
+   "keywords": [
+    "istraživanje javnog mnjenja",
+    "istraživanje",
+    "anketa",
+    "rejting",
+    "CEDEM",
+    "Damar",
+    "PES",
+    "DPS"
+   ],
+   "pollsters": [
+    {
+     "name": "Various pollsters (Borba)",
+     "site": "https://borba.me",
+     "feed": "https://www.borba.me/feed/",
+     "match": "istra[zž]ivanj|anket|rejting|podr[sš]k[ae] (gra[dđ]ana|bira[cč])"
+    },
+    {
+     "name": "CEDEM / Damar / Ipsos (Vijesti)",
+     "site": "https://www.vijesti.me/tag/istrazivanje-javnog-mnjenja",
+     "match": "istra[zž]ivanj|anket|rejting|cedem|damar|ipsos",
+     "list": "https://www.vijesti.me/tag/istrazivanje-javnog-mnjenja"
+    }
+   ],
+   "note": "Montenegrin pollsters (CEDEM, Damar, Ipsos, Borba's own polls) publish rarely and mostly as PDFs or via media; coverage relies on news sites and is thin."
+  },
+  "MN": {
+   "keywords": [
+    "санал асуулга",
+    "судалгаа",
+    "рейтинг",
+    "Сант Марал",
+    "IRI",
+    "ерөнхийлөгчийн сонгууль"
+   ],
+   "pollsters": [
+    {
+     "name": "Sant Maral / various (iKon.mn)",
+     "site": "https://ikon.mn",
+     "feed": "https://ikon.mn/rss",
+     "match": "санал асуулга|судалгаа|рейтинг|сант марал|IRI"
+    },
+    {
+     "name": "IRI",
+     "site": "https://www.iri.org",
+     "feed": "https://www.iri.org/feed/",
+     "match": "mongolia"
+    }
+   ],
+   "note": "Mongolia has no regularly published independent voting-intention polls; these sources only catch occasional surveys (IRI, Sant Maral) reported in the news."
+  },
+  "MX": {
+   "keywords": [
+    "encuesta",
+    "preferencias electorales",
+    "intención de voto",
+    "diputados",
+    "Morena",
+    "PAN",
+    "PRI",
+    "Movimiento Ciudadano"
+   ],
+   "pollsters": [
+    {
+     "name": "De las Heras Demotecnia",
+     "site": "https://www.demotecnia.com.mx",
+     "feed": "https://www.demotecnia.com.mx/feed/",
+     "match": "encuesta nacional|diputad|elecci|partido"
+    },
+    {
+     "name": "Parametría",
+     "site": "https://parametria.com.mx",
+     "feed": "https://parametria.com.mx/feed/",
+     "match": "encuesta|preferencia|partido|elector|2027|morena"
+    },
+    {
+     "name": "Buendía & Márquez (El Universal)",
+     "site": "https://www.eluniversal.com.mx/tag/encuestas/",
+     "list": "https://www.eluniversal.com.mx/tag/encuestas/",
+     "match": "encuesta|buend[ií]a|preferencia|morena"
+    },
+    {
+     "name": "Enkoll (El País)",
+     "site": "https://elpais.com/noticias/encuestas-electorales/",
+     "list": "https://elpais.com/noticias/encuestas-electorales/",
+     "match": "/mexico/"
+    }
+   ]
+  },
+  "SK": {
+   "keywords": [
+    "prieskum",
+    "volebný model",
+    "volebné preferencie",
+    "Smer",
+    "PS",
+    "Hlas",
+    "KDH",
+    "Republika"
+   ],
+   "pollsters": [
+    {
+     "name": "NMS",
+     "site": "https://nms.global/sk",
+     "feed": "https://nms.global/sk/feed/",
+     "match": "volebný model|volebn|preferenc|prieskum"
+    },
+    {
+     "name": "Ipsos (Denník N)",
+     "site": "https://www.ipsos.com/sk-sk",
+     "feed": "https://www.ipsos.com/sk-sk/rss.xml",
+     "match": "volebn|preferenc"
+    }
+   ]
+  },
+  "PL": {
+   "keywords": [
+    "sondaż",
+    "poparcie",
+    "sondaż partyjny",
+    "preferencje partyjne",
+    "IBRiS",
+    "United Surveys",
+    "KO",
+    "PiS"
+   ],
+   "pollsters": [
+    {
+     "name": "CBOS",
+     "site": "https://www.cbos.pl",
+     "list": "https://www.cbos.pl",
+     "match": "preferencje partyjne|preferencje wyborcze|elektoraty"
+    },
+    {
+     "name": "Wprost polls (various firms)",
+     "site": "https://www.wprost.pl/polityka/sondaze",
+     "list": "https://www.wprost.pl/polityka/sondaze",
+     "match": "sondaż|sondaz"
+    },
+    {
+     "name": "IBRiS / Opinia24 (Onet)",
+     "site": "https://wiadomosci.onet.pl",
+     "feed": "https://wiadomosci.onet.pl/.feed",
+     "match": "sondaż|sondaz|poparcie|ibris"
+    }
+   ]
+  },
+  "IT": {
+   "keywords": [
+    "sondaggio",
+    "sondaggi politici",
+    "intenzioni di voto",
+    "Fratelli d'Italia",
+    "Pd",
+    "M5S",
+    "Lega",
+    "Forza Italia"
+   ],
+   "pollsters": [
+    {
+     "name": "YouTrend / Quorum",
+     "site": "https://www.youtrend.it",
+     "feed": "https://www.youtrend.it/feed/",
+     "match": "sondaggio (youtrend|quorum)|intenzioni di voto"
+    },
+    {
+     "name": "Ipsos",
+     "site": "https://www.ipsos.com/it-it",
+     "feed": "https://www.ipsos.com/it-it/rss.xml",
+     "match": "sondaggi politici|intenzioni di voto|elettori|partiti"
+    },
+    {
+     "name": "Demopolis",
+     "site": "https://www.demopolis.it",
+     "feed": "https://www.demopolis.it/?feed=rss2"
+    }
+   ]
+  },
+  "SI": {
+   "keywords": [
+    "anketa",
+    "javnomnenjska raziskava",
+    "Vox populi",
+    "Ninamedia",
+    "Mediana",
+    "predsedniške volitve",
+    "priljubljenost",
+    "lestvica politikov"
+   ],
+   "pollsters": [
+    {
+     "name": "Ninamedia",
+     "site": "https://ninamedia.si",
+     "feed": "https://ninamedia.si/feed"
+    },
+    {
+     "name": "Mediana",
+     "site": "https://www.mediana.si",
+     "feed": "https://www.mediana.si/feed",
+     "match": "politi|strank|volit|predsedni|vlad"
+    },
+    {
+     "name": "Various pollsters (RTV SLO)",
+     "site": "https://www.rtvslo.si/slovenija",
+     "feed": "https://www.rtvslo.si/feeds/01.xml",
+     "match": "anketa|raziskav|vox populi|mediana|ninamedia|valicon"
+    }
+   ]
+  },
+  "CH": {
+   "keywords": [
+    "Wahlbarometer",
+    "Umfrage",
+    "SRG-Umfrage",
+    "Parteistärke",
+    "SVP",
+    "SP",
+    "FDP",
+    "Mitte"
+   ],
+   "pollsters": [
+    {
+     "name": "Sotomo",
+     "site": "https://sotomo.ch",
+     "list": "https://sotomo.ch/de/projekte/",
+     "match": "wahlbarometer|wahl|partei"
+    },
+    {
+     "name": "Sotomo / gfs.bern (SRF)",
+     "site": "https://www.srf.ch/news/schweiz",
+     "feed": "https://www.srf.ch/news/bnf/rss/1646",
+     "match": "wahlbarometer|srg-trend|srg-umfrage|umfrage"
+    }
+   ]
+  },
+  "AR": {
+   "keywords": [
+    "encuesta",
+    "intención de voto",
+    "sondeo",
+    "imagen",
+    "Milei",
+    "La Libertad Avanza",
+    "peronismo",
+    "Kicillof"
+   ],
+   "pollsters": [
+    {
+     "name": "Zuban Córdoba",
+     "site": "https://zubancordoba.com",
+     "feed": "https://zubancordoba.com/feed/"
+    },
+    {
+     "name": "Various pollsters (Perfil)",
+     "site": "https://www.perfil.com/seccion/politica",
+     "feed": "https://www.perfil.com/feed/politica",
+     "match": "encuesta|sondeo"
+    },
+    {
+     "name": "Various pollsters (Clarín)",
+     "site": "https://www.clarin.com/politica/",
+     "feed": "https://www.clarin.com/rss/politica/",
+     "match": "encuesta|sondeo"
+    }
+   ]
+  },
+  "DE": {
+   "keywords": [
+    "Sonntagsfrage",
+    "Umfrage",
+    "Wahlumfrage",
+    "DeutschlandTrend",
+    "Trendbarometer",
+    "AfD",
+    "Union",
+    "SPD"
+   ],
+   "pollsters": [
+    {
+     "name": "Infratest dimap",
+     "site": "https://www.infratest-dimap.de",
+     "feed": "https://www.infratest-dimap.de/rss.xml",
+     "match": "deutschlandtrend|sonntagsfrage"
+    },
+    {
+     "name": "YouGov",
+     "site": "https://yougov.com/de-de",
+     "feed": "https://yougov.com/de-de/rss",
+     "match": "sonntagsfrage|wahlabsicht|bundestagswahl"
+    },
+    {
+     "name": "INSA",
+     "site": "https://insa.news",
+     "feed": "https://insa.news/feed/"
+    },
+    {
+     "name": "Forsa (RTL/ntv)",
+     "site": "https://www.n-tv.de/thema/rtl-ntv-trendbarometer",
+     "match": "trendbarometer",
+     "list": "https://www.n-tv.de/thema/rtl-ntv-trendbarometer"
+    }
+   ]
+  },
+  "GB": {
+   "keywords": [
+    "voting intention",
+    "Westminster",
+    "poll",
+    "Reform",
+    "Labour",
+    "Conservatives",
+    "MRP",
+    "Lib Dems"
+   ],
+   "pollsters": [
+    {
+     "name": "YouGov",
+     "site": "https://yougov.com/en-gb",
+     "feed": "https://yougov.com/en-gb/rss",
+     "match": "voting intention|westminster|MRP"
+    },
+    {
+     "name": "Survation",
+     "site": "https://www.survation.com",
+     "feed": "https://www.survation.com/feed"
+    },
+    {
+     "name": "Find Out Now",
+     "site": "https://findoutnow.co.uk",
+     "list": "https://findoutnow.co.uk/blog/",
+     "match": "voting intention|westminster|poll"
+    },
+    {
+     "name": "Ipsos UK",
+     "site": "https://www.ipsos.com/en-uk",
+     "feed": "https://www.ipsos.com/en-uk/rss.xml",
+     "match": "voting intention|political monitor|labour|reform|conservative|general election"
+    }
+   ]
+  },
+  "NL": {
+   "keywords": [
+    "peiling",
+    "zetelpeiling",
+    "zetels",
+    "Peilingwijzer",
+    "Tweede Kamer",
+    "PVV",
+    "D66",
+    "GL-PvdA"
+   ],
+   "pollsters": [
+    {
+     "name": "Ipsos I&O",
+     "site": "https://www.ipsos-publiek.nl",
+     "feed": "https://www.ipsos-publiek.nl/feed/",
+     "match": "zetelpeiling|peiling|zetels"
+    },
+    {
+     "name": "Peil.nl (Maurice de Hond)",
+     "site": "https://www.maurice.nl",
+     "feed": "https://www.maurice.nl/feed/",
+     "match": "zetels|peiling|zetelverdeling|stand van"
+    }
+   ]
+  },
+  "PT": {
+   "keywords": [
+    "sondagem",
+    "intenções de voto",
+    "barómetro",
+    "inquérito",
+    "PSD",
+    "PS",
+    "Chega",
+    "AD"
+   ],
+   "pollsters": [
+    {
+     "name": "Intercampus (CM/CMTV)",
+     "site": "https://www.cmjornal.pt",
+     "feed": "https://www.cmjornal.pt/rss",
+     "match": "sondagem|intercampus"
+    },
+    {
+     "name": "Aximage (DN)",
+     "site": "https://www.dn.pt",
+     "feed": "https://www.dn.pt/feed",
+     "match": "sondagem|aximage|intenç(ões|ão) de voto"
+    }
+   ],
+   "note": "Portuguese pollsters (Intercampus, Aximage, Pitagórica, CESOP) have no usable news pages; polls are picked up from their media partners' feeds."
+  },
+  "SE": {
+   "keywords": [
+    "väljarbarometer",
+    "opinionsmätning",
+    "partisympatier",
+    "mätning",
+    "Socialdemokraterna",
+    "Sverigedemokraterna",
+    "Moderaterna"
+   ],
+   "pollsters": [
+    {
+     "name": "Demoskop",
+     "site": "https://demoskop.se",
+     "feed": "https://demoskop.se/feed/",
+     "match": "väljarbarometer|mätning|väljar"
+    },
+    {
+     "name": "Ipsos (DN/Ipsos)",
+     "site": "https://www.ipsos.com/sv-se",
+     "feed": "https://www.ipsos.com/sv-se/rss.xml",
+     "match": "DN/Ipsos|dnipsos|väljar|partisympati"
+    },
+    {
+     "name": "Novus",
+     "site": "https://novus.se",
+     "feed": "https://www.novus.se/feed",
+     "match": "väljarbarometer|väljar|partisympati"
+    }
+   ]
+  },
+  "AT": {
+   "keywords": [
+    "Umfrage",
+    "Sonntagsfrage",
+    "Kanzlerfrage",
+    "FPÖ",
+    "ÖVP",
+    "SPÖ",
+    "NEOS",
+    "Grüne"
+   ],
+   "pollsters": [
+    {
+     "name": "OGM",
+     "site": "https://www.ogm.at",
+     "feed": "https://www.ogm.at/feed/"
+    },
+    {
+     "name": "Unique Research (Heute/profil)",
+     "site": "https://www.unique-research.at",
+     "feed": "https://www.unique-research.at/blog-feed.xml",
+     "match": "umfrage"
+    },
+    {
+     "name": "Market (Der Standard)",
+     "site": "https://www.derstandard.at/inland",
+     "feed": "https://www.derstandard.at/rss/inland",
+     "match": "umfrage|sonntagsfrage|market"
+    }
+   ]
+  },
+  "HU": {
+   "keywords": [
+    "közvélemény-kutatás",
+    "pártpreferencia",
+    "felmérés",
+    "támogatottság",
+    "Tisza",
+    "Fidesz",
+    "Medián",
+    "választás"
+   ],
+   "pollsters": [
+    {
+     "name": "Medián",
+     "site": "https://median.hu",
+     "list": "https://median.hu"
+    },
+    {
+     "name": "Republikon",
+     "site": "https://republikon.hu",
+     "list": "https://republikon.hu/elemzesek,-kutatasok.aspx",
+     "match": "párt|támogatottság|kvk|választ"
+    },
+    {
+     "name": "Publicus",
+     "site": "https://publicus.hu",
+     "list": "https://publicus.hu/blog/",
+     "match": "párt|tisza|fidesz|választ|szavaz"
+    }
+   ]
+  },
+  "CZ": {
+   "keywords": [
+    "volební model",
+    "průzkum",
+    "volební preference",
+    "sněmovní",
+    "ANO",
+    "STAN",
+    "ODS",
+    "SPD"
+   ],
+   "pollsters": [
+    {
+     "name": "Median",
+     "site": "https://www.median.eu/cs/",
+     "feed": "https://www.median.eu/cs/?feed=rss2"
+    },
+    {
+     "name": "NMS",
+     "site": "https://nms.global/cz",
+     "feed": "https://nms.global/cz/feed/",
+     "match": "volební model|volební preference|volby|sněmovn"
+    }
+   ]
+  },
+  "RO": {
+   "keywords": [
+    "sondaj",
+    "intenția de vot",
+    "barometru",
+    "alegeri",
+    "PSD",
+    "AUR",
+    "PNL",
+    "USR"
+   ],
+   "pollsters": [
+    {
+     "name": "CURS",
+     "site": "https://curs.ro",
+     "feed": "https://curs.ro/feed/"
+    },
+    {
+     "name": "INSCOP",
+     "site": "https://www.inscop.ro",
+     "feed": "https://www.inscop.ro/feed/",
+     "match": "sondaj|intenți|vot|partid|alegeri|barometru"
+    }
+   ]
+  },
+  "UA": {
+   "keywords": [
+    "опитування",
+    "рейтинг",
+    "довіра",
+    "вибори",
+    "соціологія",
+    "Зеленський",
+    "Залужний",
+    "KIIS"
+   ],
+   "pollsters": [
+    {
+     "name": "Rating Group",
+     "site": "https://ratinggroup.ua",
+     "list": "https://ratinggroup.ua/press-releases",
+     "match": "/news/"
+    },
+    {
+     "name": "Razumkov Centre",
+     "site": "https://razumkov.org.ua",
+     "list": "https://razumkov.org.ua/napriamky/sotsiologichni-doslidzhennia",
+     "match": "sotsiologichni-doslidzhennia/"
+    }
+   ]
+  },
+  "CA": {
+   "keywords": [
+    "poll",
+    "federal",
+    "vote intention",
+    "Liberals",
+    "Conservatives",
+    "NDP",
+    "Carney",
+    "Poilievre"
+   ],
+   "pollsters": [
+    {
+     "name": "Abacus Data",
+     "site": "https://abacusdata.ca",
+     "feed": "https://abacusdata.ca/feed/"
+    },
+    {
+     "name": "Léger",
+     "site": "https://leger360.com",
+     "feed": "https://leger360.com/feed/",
+     "match": "federal|liberal|conservative|carney|poilievre|vote"
+    },
+    {
+     "name": "Angus Reid Institute",
+     "site": "https://angusreid.org",
+     "feed": "https://angusreid.org/feed/"
+    },
+    {
+     "name": "EKOS",
+     "site": "https://www.ekospolitics.com",
+     "feed": "https://www.ekospolitics.com/index.php/feed/"
+    },
+    {
+     "name": "Liaison Strategies",
+     "site": "https://www.liaisonstrategies.ca",
+     "list": "https://www.liaisonstrategies.ca/polls",
+     "match": "federal|national|canad|carney|poilievre"
+    }
+   ]
+  },
+  "JP": {
+   "keywords": [
+    "世論調査",
+    "内閣支持率",
+    "政党支持率",
+    "比例投票先",
+    "自民党",
+    "支持率",
+    "衆院選"
+   ],
+   "pollsters": [
+    {
+     "name": "NHK",
+     "site": "https://www3.nhk.or.jp/news/cat04.html",
+     "feed": "https://www.nhk.or.jp/rss/news/cat4.xml",
+     "match": "世論調査|支持率"
+    },
+    {
+     "name": "Asahi Shimbun",
+     "site": "https://www.asahi.com/politics/",
+     "feed": "https://www.asahi.com/rss/asahi/politics.rdf",
+     "match": "世論調査|支持率"
+    },
+    {
+     "name": "Yomiuri / Kyodo / Jiji (Yahoo! News)",
+     "site": "https://news.yahoo.co.jp/categories/domestic",
+     "feed": "https://news.yahoo.co.jp/rss/topics/domestic.xml",
+     "match": "世論調査|支持率"
+    }
+   ]
+  },
+  "KR": {
+   "keywords": [
+    "여론조사",
+    "지지율",
+    "정당 지지도",
+    "리얼미터",
+    "한국갤럽",
+    "민주당",
+    "국민의힘"
+   ],
+   "pollsters": [
+    {
+     "name": "KSOI",
+     "site": "https://www.ksoi.org",
+     "feed": "https://www.ksoi.org/rss",
+     "match": "지지율|여론조사|정당|지지도"
+    },
+    {
+     "name": "Realmeter / Gallup Korea (Yonhap)",
+     "site": "https://www.yna.co.kr/politics/all",
+     "feed": "https://www.yna.co.kr/rss/politics.xml",
+     "match": "여론조사|지지율|지지도|리얼미터|갤럽"
+    }
+   ]
+  },
+  "TW": {
+   "keywords": [
+    "民調",
+    "民意調查",
+    "支持度",
+    "政黨支持",
+    "賴清德",
+    "國民黨",
+    "民進黨"
+   ],
+   "pollsters": [
+    {
+     "name": "TPOF (Taiwanese Public Opinion Foundation)",
+     "site": "https://www.tpof.org",
+     "list": "https://www.tpof.org/"
+    },
+    {
+     "name": "My-Formosa / TVBS / various (Yahoo News TW politics)",
+     "site": "https://tw.news.yahoo.com/politics",
+     "feed": "https://tw.news.yahoo.com/rss/politics",
+     "match": "民調|民意調查|支持度|滿意度"
+    },
+    {
+     "name": "Various pollsters (Yahoo News TW)",
+     "site": "https://tw.news.yahoo.com",
+     "feed": "https://tw.news.yahoo.com/rss/",
+     "match": "民調|民意調查|支持度"
+    }
+   ],
+   "note": "No national election before 2028; firms (My-Formosa, TPOF, TVBS) mostly publish on JS sites or via media, so this relies on news feeds."
+  },
+  "AU": {
+   "keywords": [
+    "Newspoll",
+    "poll",
+    "two-party preferred",
+    "primary vote",
+    "Labor",
+    "Coalition",
+    "One Nation",
+    "Resolve"
+   ],
+   "pollsters": [
+    {
+     "name": "Essential (Guardian Essential poll)",
+     "site": "https://www.theguardian.com/australia-news/essential-poll",
+     "feed": "https://www.theguardian.com/australia-news/essential-poll/rss",
+     "match": "essential poll"
+    },
+    {
+     "name": "Newspoll / Resolve / Roy Morgan / YouGov (The Poll Bludger)",
+     "site": "https://www.pollbludger.net",
+     "feed": "https://www.pollbludger.net/feed/",
+     "match": "federal polls?|newspoll|two-party"
+    }
+   ]
+  },
+  "IR": {
+   "keywords": [
+    "survey",
+    "poll",
+    "GAMAAN",
+    "نظرسنجی",
+    "انتخابات",
+    "ISPA"
+   ],
+   "pollsters": [
+    {
+     "name": "GAMAAN",
+     "site": "https://gamaan.org",
+     "feed": "https://gamaan.org/feed/"
+    }
+   ],
+   "note": "No regular independent voting-intention polling in Iran; GAMAAN (Netherlands-based online surveys) is the only credible independent source with a feed. ISPA (state-affiliated) site not reachable."
+  },
+  "IL": {
+   "keywords": [
+    "סקר",
+    "סקר מנדטים",
+    "מנדטים",
+    "סקר בחירות",
+    "אחוז החסימה",
+    "גוש"
+   ],
+   "pollsters": [
+    {
+     "name": "Channel 12 / N12 (Midgam, Mano Geva)",
+     "site": "https://www.mako.co.il/news-politics",
+     "feed": "https://news.google.com/rss/search?q=%D7%A1%D7%A7%D7%A8+%D7%97%D7%93%D7%A9%D7%95%D7%AA+12+%D7%9E%D7%A0%D7%93%D7%98%D7%99%D7%9D&hl=he&gl=IL&ceid=IL:he",
+     "list": "https://www.mako.co.il/news-politics"
+    },
+    {
+     "name": "Channel 13 News",
+     "site": "https://13tv.co.il",
+     "feed": "https://news.google.com/rss/search?q=%D7%A1%D7%A7%D7%A8+%D7%9E%D7%A0%D7%93%D7%98%D7%99%D7%9D+%D7%97%D7%93%D7%A9%D7%95%D7%AA+13&hl=he&gl=IL&ceid=IL:he"
+    },
+    {
+     "name": "Kan 11 (Kantar)",
+     "site": "https://www.kan.org.il",
+     "feed": "https://news.google.com/rss/search?q=%D7%A1%D7%A7%D7%A8+%D7%9E%D7%A0%D7%93%D7%98%D7%99%D7%9D+%D7%9B%D7%90%D7%9F&hl=he&gl=IL&ceid=IL:he"
+    },
+    {
+     "name": "Maariv (Lazar Research)",
+     "site": "https://www.maariv.co.il",
+     "feed": "https://news.google.com/rss/search?q=%D7%A1%D7%A7%D7%A8+%D7%9E%D7%A2%D7%A8%D7%99%D7%91+%D7%9E%D7%A0%D7%93%D7%98%D7%99%D7%9D&hl=he&gl=IL&ceid=IL:he",
+     "list": "https://www.maariv.co.il/Rss/RssFeedsPolitiMedini"
+    },
+    {
+     "name": "Channel 14 (Direct Polls / Next Data)",
+     "site": "https://www.c14.co.il",
+     "feed": "https://news.google.com/rss/search?q=%D7%A1%D7%A7%D7%A8+%D7%9E%D7%A0%D7%93%D7%98%D7%99%D7%9D+%D7%A2%D7%A8%D7%95%D7%A5+14&hl=he&gl=IL&ceid=IL:he"
+    },
+    {
+     "name": "i24NEWS (Direct Polls)",
+     "site": "https://www.i24news.tv",
+     "list": "https://www.i24news.tv/en/news/israel-election-s-2026"
+    },
+    {
+     "name": "Jerusalem Post poll round-ups",
+     "site": "https://www.jpost.com",
+     "list": "https://www.jpost.com/israel-election-2026"
+    }
+   ],
+   "note": "Kan, Channel 13, Channel 14 and Times of Israel block direct fetches (403); Google News RSS queries used as feeds and verified 19 Oct 2026 to return current seat polls."
+  },
+  "TR": {
+   "keywords": [
+    "anket",
+    "seçim anketi",
+    "oy oranı",
+    "kamuoyu araştırması",
+    "bu pazar seçim olsa"
+   ],
+   "pollsters": [
+    {
+     "name": "MetroPOLL",
+     "site": "https://www.metropoll.com.tr",
+     "feed": "https://news.google.com/rss/search?q=Metropoll+anket&hl=tr&gl=TR&ceid=TR:tr"
+    },
+    {
+     "name": "KONDA",
+     "site": "https://konda.com.tr",
+     "list": "https://konda.com.tr/raporlar"
+    },
+    {
+     "name": "ORC Araştırma",
+     "site": "https://orcarastirma.com.tr",
+     "feed": "https://news.google.com/rss/search?q=ORC+anket+oy+oran%C4%B1&hl=tr&gl=TR&ceid=TR:tr"
+    },
+    {
+     "name": "AREA Araştırma",
+     "site": "https://www.areaarastirma.com",
+     "feed": "https://news.google.com/rss/search?q=Area+Ara%C5%9Ft%C4%B1rma+anket&hl=tr&gl=TR&ceid=TR:tr"
+    },
+    {
+     "name": "ALF Araştırma",
+     "site": "https://www.alfarastirma.com",
+     "feed": "https://news.google.com/rss/search?q=ALF+Ara%C5%9Ft%C4%B1rma+anket&hl=tr&gl=TR&ceid=TR:tr"
+    },
+    {
+     "name": "Optimar",
+     "site": "https://www.optimar.com.tr",
+     "feed": "https://news.google.com/rss/search?q=Optimar+anket&hl=tr&gl=TR&ceid=TR:tr",
+     "list": "https://www.optimar.com.tr/arastirma/"
+    }
+   ],
+   "note": "Pollster sites mostly unreachable or without RSS (MetroPOLL 503, ALF/Area TLS/proxy errors); Google News RSS used. No vote in window: next regular elections May 2028, early vote floated for Mar-Apr 2028."
+  },
+  "MA": {
+   "keywords": [
+    "sondage",
+    "استطلاع رأي",
+    "intentions de vote",
+    "baromètre"
+   ],
+   "pollsters": [
+    {
+     "name": "MIPA (Moroccan Institute for Policy Analysis)",
+     "site": "https://mipa.institute",
+     "feed": "https://mipa.institute/?feed=rss2"
+    },
+    {
+     "name": "Moroccan election polls (news search)",
+     "site": "",
+     "feed": "https://news.google.com/rss/search?q=sondage+Maroc+%C3%A9lections+l%C3%A9gislatives&hl=fr&gl=MA&ceid=MA:fr"
+    }
+   ],
+   "note": "No regular independent voting-intention polling is published in Morocco; MIPA publishes occasional opinion surveys/analysis rather than vote-intention polls."
+  },
+  "EG": {
+   "keywords": [
+    "استطلاع رأي",
+    "بصيرة"
+   ],
+   "pollsters": [
+    {
+     "name": "Baseera (Egyptian Center for Public Opinion Research)",
+     "site": "https://baseera.com.eg",
+     "feed": "https://news.google.com/rss/search?q=%D9%85%D8%B1%D9%83%D8%B2+%D8%A8%D8%B5%D9%8A%D8%B1%D8%A9+%D8%A7%D8%B3%D8%AA%D8%B7%D9%84%D8%A7%D8%B9&hl=ar&gl=EG&ceid=EG:ar"
+    }
+   ],
+   "note": "No independent voting-intention polls; Baseera publishes approval/social surveys. No national vote in window (House/Senate held 2025, presidential due 2029-30)."
+  },
+  "DZ": {
+   "keywords": [
+    "sondage",
+    "استطلاع رأي"
+   ],
+   "pollsters": [],
+   "note": "No independent political pollsters publish vote-intention polls. Legislative election held 2 Jul 2026; presidential due 2029."
+  },
+  "TN": {
+   "keywords": [
+    "sondage",
+    "سبر آراء"
+   ],
+   "pollsters": [],
+   "note": "No verified working feed for Tunisian pollsters (sigma.tn has no RSS; emrhod.com TLS error; news searches return nothing current). No date set for next legislative election (five-year ARP term from March 2023)."
+  },
+  "LY": {
+   "keywords": [
+    "استطلاع رأي"
+   ],
+   "pollsters": [],
+   "note": "No credible pollsters; no election date set (30 Aug 2026 UN-backed agreement targets elections within 24 months)."
+  },
+  "MR": {
+   "keywords": [
+    "sondage",
+    "استطلاع"
+   ],
+   "pollsters": [],
+   "note": "No independent pollsters; no national vote scheduled before 2028."
+  },
+  "SD": {
+   "keywords": [
+    "استطلاع"
+   ],
+   "pollsters": [],
+   "note": "No pollsters; civil war, no election date fixed."
+  }
+ }
+}

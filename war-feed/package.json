@@ -1,0 +1,14 @@
+{
+  "name": "war-feed",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "run": "node run.js"
+  },
+  "dependencies": {
+    "fast-xml-parser": "^4.5.1"
+  }
+}

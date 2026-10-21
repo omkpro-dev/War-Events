@@ -1,0 +1,47 @@
+name: Update disasters
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"   # every 30 minutes (GitHub may delay runs a little)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: disasters
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Previous data (disasters-data branch)
+        run: |
+          mkdir -p dz-out
+          if git ls-remote --exit-code --heads origin disasters-data >/dev/null 2>&1; then
+            git fetch --depth=1 origin disasters-data
+            git --work-tree=dz-out checkout FETCH_HEAD -- . || true
+          fi
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Collect disasters (GDACS, USGS, EMSC, NHC, JTWC, FIRMS, Smithsonian, ReliefWeb, CO2, air) + Logistics/Disasters news
+        run: |
+          python news-feed/fetch_disasters.py dz-out
+          python news-feed/fetch_topic_news.py dz-out
+        env:
+          FIRMS_MAP_KEY: ${{ secrets.FIRMS_MAP_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          CLAUDE_MODEL: claude-haiku-5-5
+      - name: Publish to disasters-data branch (one commit, no history build-up, no site redeploy)
+        working-directory: dz-out
+        run: |
+          git init -q
+          git config user.name "disasters-bot"
+          git config user.email "disasters-bot@users.noreply.github.com"
+          git checkout -q -b disasters-data
+          git add -A
+          git commit -q -m "Disasters $(date -u +%FT%TZ)"
+          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" disasters-data
