@@ -44,6 +44,7 @@ jobs:
       - name: Publish to war-data branch (one commit, no history build-up)
         working-directory: war-feed/out
         run: |
+          echo '{"git":{"deploymentEnabled":false}}' > vercel.json   # data only: Vercel skips this branch
           git init -q
           git config user.name "war-bot"
           git config user.email "war-bot@users.noreply.github.com"

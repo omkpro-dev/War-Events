@@ -50,6 +50,7 @@ jobs:
             [ -f "$f" ] && mkdir -p "/tmp/pub/$(dirname "$f")" && cp "$f" "/tmp/pub/$f"
           done
           cd /tmp/pub
+          echo '{"git":{"deploymentEnabled":false}}' > vercel.json   # data only: Vercel skips this branch
           git init -q
           git config user.name "news-bot"
           git config user.email "news-bot@users.noreply.github.com"
