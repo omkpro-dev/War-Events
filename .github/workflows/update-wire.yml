@@ -14,7 +14,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: news-feed
+  group: wire-feed
   cancel-in-progress: false
 
 jobs:
