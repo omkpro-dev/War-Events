@@ -7466,7 +7466,7 @@ var stopLoaderOrb = function(){};
   // Same page, same map: chokepoints coloured by status, sea lanes (with the
   // diversions), undersea cables + recent cuts, pipelines and LNG, and country
   // layers for sanctions / Starlink / internet shutdowns. Data: data/logistics.json.
-  var LG_DATA_URLS = ['https://raw.githubusercontent.com/omkpro-dev/War-Events/main/data/logistics.json', 'data/logistics.json'];
+  var LG_DATA_URLS = ['https://raw.githubusercontent.com/omkpro-dev/War-Events/logistics-data/data/logistics.json', 'data/logistics.json'];
   var LG_COL = { closed:'#e0483e', disrupted:'#f2a33c', diverted:'#f2d04c', open:'#5fb4ff', sanctioned:'#c58cff',
                  cut:'#e0483e', damaged:'#f2a33c', repaired:'#5fb4ff', 'at risk':'#f2d04c',
                  operating:'#57c58c', reduced:'#f2a33c', halted:'#e0483e' };
@@ -7570,7 +7570,7 @@ var stopLoaderOrb = function(){};
       var lanes = (lgData.lanes || []).filter(function(l){ return (l.via || []).indexOf(it.id) >= 0; });
       h += '<div class="war-pop-k">Chokepoint · as of ' + warEsc(asOf) + '</div><div class="war-pop-t">' + warEsc(it.name) + '</div>'
         + '<div class="lg-st">' + lgPill(it.status) + (it.since && it.status !== 'open' ? '<small>since ' + warEsc(lgDate(it.since)) + '</small>' : '') + '</div>'
-        + '<dl class="lg-dl">' + (it.normal ? '<dt>Normal</dt><dd>' + warEsc(it.normal) + '</dd>' : '') + (it.latest ? '<dt>Latest</dt><dd>' + warEsc(it.latest) + '</dd>' : '') + (it.carries ? '<dt>Carries</dt><dd>' + warEsc(it.carries) + '</dd>' : '') + '</dl>'
+        + '<dl class="lg-dl">' + (it.normal ? '<dt>Normal</dt><dd>' + warEsc(it.normal) + '</dd>' : '') + (it.traffic ? '<dt>Traffic</dt><dd>' + warEsc(it.traffic) + '</dd>' : '') + (it.latest ? '<dt>Latest</dt><dd>' + warEsc(it.latest) + '</dd>' : '') + (it.carries ? '<dt>Carries</dt><dd>' + warEsc(it.carries) + '</dd>' : '') + '</dl>'
         + '<p class="lg-p">' + warEsc(it.note) + '</p>'
         + (lanes.length ? '<div class="lg-h">Routes through here</div><ul class="lg-ul">' + lanes.map(function(l){ return '<li><i style="--c:' + LG_COL[l.status] + '"></i><span><b>' + warEsc(l.name) + '</b> ' + warEsc(LG_STATUS[l.status]) + '</span></li>'; }).join('') + '</ul>' : '');
     } else if(m.kind === 'cable'){
@@ -7584,7 +7584,7 @@ var stopLoaderOrb = function(){};
       h += '<div class="war-pop-k">' + lab + ' · as of ' + warEsc(asOf) + '</div><div class="war-pop-t">' + warEsc(it.country) + '</div>'
         + '<div class="lg-st"><span class="lg-pill" style="--c:#' + ('00000' + t[0].toString(16)).slice(-6) + '">' + warEsc(t[2]) + '</span>'
         + (it.by && it.by.length ? '<small>by ' + warEsc(it.by.join(', ')) + '</small>' : '') + (it.since ? '<small>since ' + warEsc(lgDate(it.since)) + '</small>' : '') + '</div>'
-        + '<p class="lg-p">' + warEsc(it.note) + '</p>';
+        + '<p class="lg-p">' + warEsc(it.note) + '</p>' + (it.ioda ? '<p class="lg-p"><small>' + warEsc(it.ioda) + '</small></p>' : '');
     }
     h += lgSources(it.sources);
     lgPop.innerHTML = h; lgPop.hidden = false;
@@ -8660,7 +8660,7 @@ var stopLoaderOrb = function(){};
 
   // ================= Globe overlays for the Power panes (bases, missile reach, rivalries, trade, ranges, peaks, chokepoints) =================
   var weOv = null, weReach = null, weGeoF = null, weOvKey = '';
-  function weJSON(file, then){ var urls = ['https://raw.githubusercontent.com/omkpro-dev/War-Events/main/data/' + file, 'data/' + file];
+  function weJSON(file, then){ var urls = ['https://raw.githubusercontent.com/omkpro-dev/War-Events/' + (file === 'logistics.json' ? 'logistics-data' : 'main') + '/data/' + file, 'data/' + file];
     (function go(i){ if(i >= urls.length) return then(null); fetch(urls[i] + '?t=' + Math.floor(Date.now() / 3600000), { cache:'no-store' }).then(function(r){ if(!r.ok) throw 0; return r.json(); }).then(then).catch(function(){ go(i + 1); }); })(0); }
   if(isPowMode()){ weJSON('reach.json', function(d){ weReach = d; }); weJSON('geofeatures.json', function(d){ weGeoF = d; }); }
   function weOvClear(){ weOvKey = ''; if(weSetPainted){ weSetPainted = false; try { pwApply(); } catch(e){} } if(weOv){ pwGroup.remove(weOv); weOv.traverse(function(o){ if(o.geometry) o.geometry.dispose(); if(o.material){ if(o.material.map) o.material.map.dispose(); o.material.dispose(); } }); weOv = null; }

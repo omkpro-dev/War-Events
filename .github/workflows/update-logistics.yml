@@ -1,0 +1,83 @@
+name: Update logistics
+
+on:
+  schedule:
+    - cron: "20 */6 * * *"   # every 6 hours: PortWatch ship counts + IODA outages; Mondays 06:20 UTC also the Claude review
+  workflow_dispatch:
+    inputs:
+      review:
+        description: "Also run the full Claude review now"
+        type: boolean
+        default: false
+  push:
+    paths:
+      - "data/logistics.json"
+      - "news-feed/logistics_numbers.py"
+      - "news-feed/review_logistics.py"
+      - ".github/workflows/update-logistics.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: logistics
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Previous data (logistics-data branch)
+        run: |
+          # The bot's copy lives on the logistics-data branch (one commit, no history build-up).
+          # It remembers which version of main's data/logistics.json it started from: if main's copy
+          # has been edited since, the edit wins and the bot carries on from it.
+          MAIN_SHA=$(sha1sum data/logistics.json | cut -c1-40)
+          echo "MAIN_SHA=$MAIN_SHA" >> "$GITHUB_ENV"
+          if git ls-remote --exit-code --heads origin logistics-data >/dev/null 2>&1; then
+            git fetch --depth=1 origin logistics-data
+            git show FETCH_HEAD:data/logistics.json > /tmp/prev.json
+            if [ "$(python3 -c "import json; print(json.load(open('/tmp/prev.json')).get('baseSha', ''))")" = "$MAIN_SHA" ]; then
+              cp /tmp/prev.json data/logistics.json
+            else
+              echo "main's data/logistics.json was edited: starting from it"
+            fi
+          fi
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Numbers (IMF PortWatch + IODA)
+        run: python news-feed/logistics_numbers.py
+      - name: Check new internet outages (Claude)
+        run: python news-feed/review_logistics.py --outages
+        continue-on-error: true
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          CLAUDE_MODEL: claude-haiku-5-5
+      - name: Weekly review (Claude + web search)
+        if: inputs.review || (github.event_name == 'schedule' && github.event.schedule == '20 */6 * * *')
+        run: |
+          if [ "${{ inputs.review }}" != "true" ] && { [ "$(date -u +%u)" != 1 ] || [ "$(date -u +%H)" != 06 ]; }; then
+            echo "Not Monday morning: no weekly review this run"; exit 0
+          fi
+          python news-feed/review_logistics.py --weekly
+        continue-on-error: true
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          CLAUDE_MODEL: claude-haiku-5-5
+      - name: Publish to logistics-data branch (one commit, no history build-up)
+        run: |
+          python3 -c "import json, os; p = 'data/logistics.json'; d = json.load(open(p)); d['baseSha'] = os.environ['MAIN_SHA']; json.dump(d, open(p, 'w'), ensure_ascii=False, separators=(',', ':'))"
+          mkdir -p /tmp/pub/data
+          cp data/logistics.json /tmp/pub/data/
+          cd /tmp/pub
+          echo '{"git":{"deploymentEnabled":false}}' > vercel.json   # data only: Vercel skips this branch
+          git init -q
+          git config user.name "logistics-bot"
+          git config user.email "logistics-bot@users.noreply.github.com"
+          git checkout -q -b logistics-data
+          git add -A
+          git commit -q -m "logistics-data $(date -u +%FT%TZ)"
+          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" logistics-data
