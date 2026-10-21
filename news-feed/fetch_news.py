@@ -96,6 +96,14 @@ RSS_FEEDS = [
     # Titles end in " - Reuters" / " - AP News" (trimmed when read); links go via news.google.com.
     ("Reuters", GN.format("reuters.com")),
     ("AP", GN.format("apnews.com")),
+    # state media, Oct 2026: China and Iran. Xinhua's and China Daily's own feeds are dead (2018 items / 404),
+    # People's Daily's stopped in 2025 and Fars blocks foreign readers, so those four come via Google News.
+    ("Xinhua", GN.format("english.news.cn")),
+    ("People's Daily", GN.format("en.people.cn")),
+    ("China Daily", GN.format("chinadaily.com.cn")),
+    ("CGTN", "https://www.cgtn.com/subscribe/rss/section/world.xml"),
+    ("Press TV", "https://www.presstv.ir/rss.xml"),
+    ("Fars", GN.format("farsnews.ir")),
 ]
 # Reuters and AP have no public RSS; they arrive through GDELT (and NewsAPI if a key is set).
 GDELT_DOMAINS = ["reuters.com", "apnews.com", "ft.com", "bloomberg.com", "aljazeera.com", "bbc.com", "bbc.co.uk"]
@@ -121,6 +129,8 @@ OUTLETS = {
     "irrawaddy.com": "The Irrawaddy", "rappler.com": "Rappler", "elpais.com": "El País",
     "mexiconewsdaily.com": "Mexico News Daily", "batimes.com.ar": "Buenos Aires Times", "balkaninsight.com": "Balkan Insight",
     "notesfrompoland.com": "Notes from Poland", "oc-media.org": "OC Media", "euronews.com": "Euronews",
+    "news.cn": "Xinhua", "xinhuanet.com": "Xinhua", "people.cn": "People's Daily", "chinadaily.com.cn": "China Daily",
+    "cgtn.com": "CGTN", "presstv.ir": "Press TV", "presstv.co.uk": "Press TV", "farsnews.ir": "Fars",
 }
 TIER1 = {"Reuters", "AP", "BBC News", "Al Jazeera", "The Guardian", "Financial Times", "Bloomberg"}
 PRIORITY = ["Reuters", "AP", "BBC News", "Al Jazeera", "The Guardian", "Financial Times", "Bloomberg",
@@ -504,6 +514,11 @@ def from_rss(name, url):
             a["url"] = a.get("guid")
         if "news.google.com" in url and a.get("title"):   # "Headline - Reuters" -> "Headline"
             a["title"] = re.sub(r"\s+-\s+[^-]{2,30}$", "", a["title"])
+            a["title"] = re.sub(r"^Farsnews\s*\|\s*", "", a["title"])
+        if not a.get("time"):   # undated feeds (Press TV): take the day from links like /2026/10/21/
+            m = re.search(r"/(20\d\d)/(\d\d)/(\d\d)/", a.get("url") or "")
+            if m:
+                a["time"] = parse_time(f"{m.group(1)}-{m.group(2)}-{m.group(3)}T12:00:00Z")
         a["cover"] = _image(el)
         out.append(a)
     return out

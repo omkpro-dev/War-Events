@@ -41,8 +41,10 @@ FEEDS = [
     ("UK Defence Journal", "https://ukdefencejournal.org.uk/feed/"),
     ("RT", "https://www.rt.com/rss/news/"),
     ("Sputnik", "https://sputnikglobe.com/export/rss2/archive/index.xml"),
-    ("Xinhua", "https://english.news.cn/rss/worldrss.xml"),
-    ("China Daily", "https://www.chinadaily.com.cn/rss/world_rss.xml"),
+    ("Xinhua", "https://news.google.com/rss/search?q=site:english.news.cn+(war+OR+military+OR+troops+OR+missile+OR+sanctions"
+      "+OR+ceasefire+OR+minister+OR+president+OR+election+OR+attack)+when:1d&hl=en-US&gl=US&ceid=US:en"),   # own feed is dead; Google News site search
+    ("China Daily", "https://news.google.com/rss/search?q=site:chinadaily.com.cn+(war+OR+military+OR+troops+OR+missile+OR+sanctions"
+      "+OR+ceasefire+OR+minister+OR+president+OR+election+OR+attack)+when:1d&hl=en-US&gl=US&ceid=US:en"),   # own feed is dead; Google News site search
     ("CGTN", "https://www.cgtn.com/subscribe/rss/section/world.xml"),
     ("Global Times", "https://www.globaltimes.cn/rss/outbrain.xml"),
     ("TASS", "https://tass.com/rss/v2.xml"),
@@ -95,7 +97,7 @@ def parse_feed(label, data):
     for it in root.iter("item"):                          # RSS 2.0
         desc = it.findtext("description") or ""
         items.append({
-            "title": clean(it.findtext("title")),
+            "title": re.sub(r"\s+-\s+" + re.escape(clean(it.findtext("source"))) + r"$", "", clean(it.findtext("title"))) if it.findtext("source") else clean(it.findtext("title")),
             "link": (it.findtext("link") or "").strip(),
             "date": parse_date(it.findtext("pubDate")),
             "image": first_image(desc),

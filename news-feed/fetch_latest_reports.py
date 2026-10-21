@@ -19,7 +19,8 @@ OUT = os.path.join(ROOT, "latest_reports.json")
 NAMES = json.load(open(os.path.join(ROOT, "news-feed", "country_iso2.json"), encoding="utf-8"))
 GN = ("https://news.google.com/rss/search?q=site:{}+(war+OR+military+OR+troops+OR+missile+OR+sanctions"
       "+OR+ceasefire+OR+minister+OR+president+OR+election+OR+attack)+when:1d&hl=en-US&gl=US&ceid=US:en")
-GN_HANDLE = {"Reuters": "reuters.com", "AP": "apnews.com"}   # Google News links hide the real site
+GN_HANDLE = {"Reuters": "reuters.com", "AP": "apnews.com", "Xinhua": "news.cn", "People's Daily": "people.cn",
+             "China Daily": "chinadaily.com.cn", "Fars": "farsnews.ir"}   # Google News links hide the real site
 FEEDS = [
     ("BBC News", "https://feeds.bbci.co.uk/news/world/rss.xml"),
     ("Al Jazeera", "https://www.aljazeera.com/xml/rss/all.xml"),
@@ -74,6 +75,14 @@ FEEDS = [
     # Titles end in " - Reuters" / " - AP News" (trimmed when read); links go via news.google.com.
     ("Reuters", GN.format("reuters.com")),
     ("AP", GN.format("apnews.com")),
+    # state media, Oct 2026: China and Iran. Xinhua's and China Daily's own feeds are dead (2018 items / 404),
+    # People's Daily's stopped in 2025 and Fars blocks foreign readers, so those four come via Google News.
+    ("Xinhua", GN.format("english.news.cn")),
+    ("People's Daily", GN.format("en.people.cn")),
+    ("China Daily", GN.format("chinadaily.com.cn")),
+    ("CGTN", "https://www.cgtn.com/subscribe/rss/section/world.xml"),
+    ("Press TV", "https://www.presstv.ir/rss.xml"),
+    ("Fars", GN.format("farsnews.ir")),
 ]
 from topics import GEO, is_geopolitical   # shared with the Wire ticker
 ESC = re.compile(r"\b(attack|strike|airstrike|missile|invasion|offensive|killed|shelling|clashes|escalat)", re.I)
@@ -103,13 +112,15 @@ def items(label, url):
         title = html.unescape(re.sub(r"<[^>]+>", "", get("title"))).strip()
         if "news.google.com" in url:   # "Headline - Reuters" -> "Headline"
             title = re.sub(r"\s+-\s+[^-]{2,30}$", "", title)
+            title = re.sub(r"^Farsnews\s*\|\s*", "", title)
         if not title or not is_geopolitical(title, trusted=label in ("Defense News", "DefenceTalk")):
             continue
         d = get("pubDate") or get("date")
         try:
             t = parsedate_to_datetime(d) if "," in d else datetime.fromisoformat(d.replace("Z", "+00:00"))
-        except Exception:
-            t = datetime.now(timezone.utc)
+        except Exception:   # undated feeds (Press TV): take the day from links like /2026/10/21/, else now
+            m = re.search(r"/(20\d\d)/(\d\d)/(\d\d)/", get("link"))
+            t = datetime(int(m.group(1)), int(m.group(2)), int(m.group(3)), 12, tzinfo=timezone.utc) if m else datetime.now(timezone.utc)
         desc = html.unescape(re.sub(r"<[^>]+>", "", get("description"))).strip()
         link = get("link").strip()
         cc = []
