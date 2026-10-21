@@ -16,7 +16,7 @@
 <style>body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } img{ -webkit-user-drag:none; user-drag:none; } input, textarea, select{ -webkit-user-select:text; user-select:text; }</style>
 
 <meta charset="utf-8">
-<script>/* Live data is read straight from GitHub, so robot updates show without a new Vercel deploy. */ var LIVE_DATA = 'https://raw.githubusercontent.com/omkpro-dev/War-Events/main/'; /* News + wire bots publish to their own one-commit branches so main's history stays small. */ var NEWS_DATA = 'https://raw.githubusercontent.com/omkpro-dev/War-Events/news-data/'; var WIRE_DATA = 'https://raw.githubusercontent.com/omkpro-dev/War-Events/wire-data/';</script>
+<script>/* Live data is read straight from GitHub, so robot updates show without a new Vercel deploy. */ var LIVE_DATA = 'https://raw.githubusercontent.com/omkpro-dev/War-Events/main/'; /* News + wire bots publish to their own one-commit branches so main's history stays small. */ var NEWS_DATA = 'https://raw.githubusercontent.com/omkpro-dev/War-Events/news-data/'; var WIRE_DATA = 'https://raw.githubusercontent.com/omkpro-dev/War-Events/wire-data/'; var PROFILES_DATA = 'https://raw.githubusercontent.com/omkpro-dev/War-Events/profiles-data/';</script>
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
@@ -7153,7 +7153,7 @@ var stopLoaderOrb = function(){};
       statRow('Geopolitical Power Index', (s && s.milRank) ? ('#' + s.milRank + ' of 145') : 'Not ranked');
   }
   // Full-coverage stats + key partners for every country (World Bank WDI, Global Firepower 2026).
-  fetch(LIVE_DATA + 'data/country_stats.json?v=' + Date.now()).then(function(r){ return r.json(); }).then(function(d){
+  fetch(PROFILES_DATA + 'data/country_stats.json?v=' + Date.now()).then(function(r){ if(!r.ok) throw 0; return r.json(); }).catch(function(){ return fetch('data/country_stats.json').then(function(r){ return r.json(); }); }).then(function(d){
     if(!d || !d.countries) return;
     Object.keys(d.countries).forEach(function(id){
       var c = d.countries[id];
