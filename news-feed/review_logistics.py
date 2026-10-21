@@ -24,6 +24,10 @@ DATA = os.path.join(ROOT, "data", "logistics.json")
 SEARCHES = int(os.environ.get("LOGISTICS_SEARCHES", "6"))
 NOTE_WORDS = 60
 LOG_KEEP = 80
+# Sources the review never accepts: SEO/AI content farms, aggregators and social posts. Add more as they turn up.
+BLOCKED = {"wikipedia.org", "referently.com", "niftytrader.in", "aihorizonnetwork.com", "tech-insider.org", "technology.org",
+           "medium.com", "blogspot.com", "quora.com", "reddit.com", "facebook.com", "x.com", "twitter.com", "youtube.com",
+           "tiktok.com", "linkedin.com", "scribd.com"}
 
 # layer -> (status field, allowed values, other editable fields, what one item is)
 LAYERS = {
@@ -44,7 +48,8 @@ def rules(today, status, key, add):
     return (f"Rules:\n"
             f"- Check every item against CURRENT sources found with web search; do not rely on memory. Today is {today}.\n"
             "- Only propose a change when something has actually changed or the text is now wrong or out of date. Most items need no change.\n"
-            "- Never cite Wikipedia. Use news outlets, official bodies, shipping/insurance/telecoms trackers. Only cite pages you actually opened.\n"
+            "- Never cite Wikipedia, social media, blogs, SEO/AI content sites or aggregators. Use established news outlets, official bodies, "
+            "shipping/insurance/telecoms trackers. Only cite pages you actually opened.\n"
             f"- Plain text, no HTML or markdown. Notes: at most {NOTE_WORDS} words, neutral, same style as the existing notes, with dates.\n"
             f'- A change of "{status}" needs at least two independent outlets agreeing.\n'
             'Return ONLY JSON: {"changes": [{"key": "<the item\'s ' + key + '>", "field": "<field>", "value": "<new value>", '
@@ -56,10 +61,15 @@ def domain(u):
     return d[4:] if d.startswith("www.") else d
 
 
+def blocked(u):
+    d = domain(u)
+    return any(d == b or d.endswith("." + b) for b in BLOCKED)
+
+
 def good_sources(srcs):
     out = []
     for u in srcs or []:
-        if isinstance(u, str) and re.match(r"https?://[^\s]+$", u) and "wikipedia.org" not in u and u not in out:
+        if isinstance(u, str) and re.match(r"https?://[^\s]+$", u) and not blocked(u) and u not in out:
             out.append(u)
     return out
 
@@ -196,6 +206,10 @@ def main():
         return
     data = json.load(open(path, encoding="utf-8"))
     today, log = dt.date.today().isoformat(), []
+    for layer in LAYERS:   # drop sources that are on the block list (also ones cited before it existed)
+        for it in data.get(layer, []):
+            if it.get("sources"):
+                it["sources"] = [u for u in it["sources"] if not blocked(u)]
     if mode == "--outages":
         if not check_outages(data, today, log):
             print("no new outages to check")
