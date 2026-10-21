@@ -38,6 +38,7 @@ jobs:
       - name: Publish to disasters-data branch (one commit, no history build-up, no site redeploy)
         working-directory: dz-out
         run: |
+          echo '{"git":{"deploymentEnabled":false}}' > vercel.json   # data only: Vercel skips this branch
           git init -q
           git config user.name "disasters-bot"
           git config user.email "disasters-bot@users.noreply.github.com"
