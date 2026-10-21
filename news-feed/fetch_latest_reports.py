@@ -17,6 +17,9 @@ import outlets as ranking
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "latest_reports.json")
 NAMES = json.load(open(os.path.join(ROOT, "news-feed", "country_iso2.json"), encoding="utf-8"))
+GN = ("https://news.google.com/rss/search?q=site:{}+(war+OR+military+OR+troops+OR+missile+OR+sanctions"
+      "+OR+ceasefire+OR+minister+OR+president+OR+election+OR+attack)+when:1d&hl=en-US&gl=US&ceid=US:en")
+GN_HANDLE = {"Reuters": "reuters.com", "AP": "apnews.com"}   # Google News links hide the real site
 FEEDS = [
     ("BBC News", "https://feeds.bbci.co.uk/news/world/rss.xml"),
     ("Al Jazeera", "https://www.aljazeera.com/xml/rss/all.xml"),
@@ -46,13 +49,38 @@ FEEDS = [
     ("Africanews", "https://www.africanews.com/feed/rss"),
     ("Kyiv Independent", "https://kyivindependent.com/news-archive/rss/"),
     ("Sky News", "https://feeds.skynews.com/feeds/rss/world.xml"),
+    # added Oct 2026: regions the list above barely covered
+    ("Meduza", "https://meduza.io/rss/en/all"),
+    ("The Moscow Times", "https://www.themoscowtimes.com/rss/news"),
+    ("Ukrainska Pravda", "https://www.pravda.com.ua/eng/rss/"),
+    ("Iran International", "https://www.iranintl.com/en/feed"),
+    ("The New Arab", "https://www.newarab.com/rss"),
+    ("Jerusalem Post", "https://www.jpost.com/rss/rssfeedsfrontpage.aspx"),
+    ("Radio Dabanga", "https://www.dabangasudan.org/en/feed"),
+    ("Premium Times", "https://www.premiumtimesng.com/feed"),
+    ("Daily Maverick", "https://www.dailymaverick.co.za/dmrss/"),
+    ("CNA", "https://www.channelnewsasia.com/api/v1/rss-outbound-feed?_format=xml&category=6311"),
+    ("Taipei Times", "https://www.taipeitimes.com/xml/index.rss"),
+    ("The Irrawaddy", "https://www.irrawaddy.com/feed"),
+    ("Rappler", "https://www.rappler.com/feed/"),
+    ("El País", "https://feeds.elpais.com/mrss-s/pages/ep/site/english.elpais.com/portada"),
+    ("Mexico News Daily", "https://mexiconewsdaily.com/feed/"),
+    ("Buenos Aires Times", "https://www.batimes.com.ar/feed"),
+    ("Balkan Insight", "https://balkaninsight.com/feed/"),
+    ("Notes from Poland", "https://notesfrompoland.com/feed/"),
+    ("OC Media", "https://oc-media.org/feed/"),
+    ("Euronews", "https://www.euronews.com/rss"),
+    # Reuters and AP have no public RSS: Google News search feeds limited to their sites, last 24 hours.
+    # Titles end in " - Reuters" / " - AP News" (trimmed when read); links go via news.google.com.
+    ("Reuters", GN.format("reuters.com")),
+    ("AP", GN.format("apnews.com")),
 ]
 from topics import GEO, is_geopolitical   # shared with the Wire ticker
 ESC = re.compile(r"\b(attack|strike|airstrike|missile|invasion|offensive|killed|shelling|clashes|escalat)", re.I)
 DEESC = re.compile(r"\b(ceasefire|truce|peace|talks|deal|agreement|withdraw|de-escalat|release)", re.I)
 CATS = [("Nuclear", r"nuclear"), ("Maritime", r"navy|ship|strait|maritime|vessel"), ("Diplomacy", r"talks|summit|envoy|diplomat|treaty"),
         ("Sanctions", r"sanction|tariff"), ("Defence", r"defen[cs]e|procure|army|military"), ("Conflict", r".")]
-UA = {"User-Agent": "Mozilla/5.0 (WarEvents feed bot)"}
+UA = {"User-Agent": "WarEventsNewsBot/1.0 (+https://www.warevents.com)"}   # same as fetch_news.py; Cloudflare sites block the old one
 KEYS = sorted(NAMES, key=len, reverse=True)
 NAME_RE = re.compile(r"\b(" + "|".join(re.escape(k) for k in KEYS) + r")\b")
 
@@ -61,7 +89,9 @@ def items(label, url):
     time.sleep(random.uniform(1.5, 4))   # polite spacing between sites
     try:
         with urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=15) as r:
-            root = ET.fromstring(r.read())
+            body = r.read()
+        end = max(body.rfind(b"</rss>"), body.rfind(b"</feed>"), body.rfind(b"</rdf:RDF>"))
+        root = ET.fromstring(body[:body.index(b">", end) + 1] if end > 0 else body)   # drop anything a CDN tacks on after the feed
     except Exception as e:
         print("feed fail", label, e)
         return []
@@ -71,6 +101,8 @@ def items(label, url):
             continue
         get = lambda n: next((c.text or "" for c in it if c.tag.split("}")[-1] == n), "")
         title = html.unescape(re.sub(r"<[^>]+>", "", get("title"))).strip()
+        if "news.google.com" in url:   # "Headline - Reuters" -> "Headline"
+            title = re.sub(r"\s+-\s+[^-]{2,30}$", "", title)
         if not title or not is_geopolitical(title, trusted=label in ("Defense News", "DefenceTalk")):
             continue
         d = get("pubDate") or get("date")
@@ -87,7 +119,7 @@ def items(label, url):
                 cc.append(c)
         cat = next(n for n, p in CATS if re.search(p, title, re.I))
         out.append({
-            "name": label, "handle": urlparse(link).netloc.replace("www.", "") or label,
+            "name": label, "handle": GN_HANDLE.get(label) if "news.google.com" in url else urlparse(link).netloc.replace("www.", "") or label,
             "category": cat, "severity": "escalation" if ESC.search(title) else "de-escalation" if DEESC.search(title) else "development",
             "time": t.astimezone(timezone.utc).isoformat(), "text": title + (" — " + desc[:180] if desc and desc[:40] not in title else ""),
             "cc": cc[:4], "permalink": link,

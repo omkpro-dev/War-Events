@@ -15,9 +15,13 @@ TIER2 = {   # respected regional / specialist outlets
     "CNN", "Kyiv Independent", "Times of Israel", "SCMP", "South China Morning Post", "Nikkei Asia",
     "Japan Times", "Yonhap", "The National", "Arab News", "Asharq Al-Awsat", "Al-Monitor",
     "Middle East Eye", "The Diplomat", "Defense News", "NK News", "RFI Africa", "France 24 Africa",
-    "Africanews",
+    "Africanews", "Meduza", "The Moscow Times", "Ukrainska Pravda", "The New Arab", "Radio Dabanga",
+    "Premium Times", "Daily Maverick", "CNA", "The Irrawaddy", "Rappler", "El País", "Balkan Insight",
+    "OC Media", "Euronews",
 }
-# Tier 3: everything else, e.g. The Hindu, Dawn, Daily Sabah, DefenceTalk.
+# Tier 3: everything else, e.g. The Hindu, Dawn, Daily Sabah, DefenceTalk, and the more partisan or
+# single-country outlets: Iran International, Jerusalem Post, Taipei Times, Mexico News Daily,
+# Buenos Aires Times, Notes from Poland.
 
 WEIGHT = {1: 4.0, 2: 3.0, 3: 1.5}   # credit an outlet adds to a story's score
 CAP = {1: None, 2: 5, 3: 2}         # max items per outlet in one list (None = no limit)

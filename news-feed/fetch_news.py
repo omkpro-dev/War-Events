@@ -40,6 +40,8 @@ NEWSAPI_KEY = os.environ.get("NEWSAPI_KEY", "").strip()
 GNEWS_KEY = os.environ.get("GNEWS_KEY", "").strip()
 UA = "WarEventsNewsBot/1.0 (+https://www.warevents.com)"
 
+GN = ("https://news.google.com/rss/search?q=site:{}+(war+OR+military+OR+troops+OR+missile+OR+sanctions"
+      "+OR+ceasefire+OR+minister+OR+president+OR+election+OR+attack)+when:1d&hl=en-US&gl=US&ceid=US:en")
 RSS_FEEDS = [
     ("BBC News", "https://feeds.bbci.co.uk/news/world/rss.xml"),
     ("Al Jazeera", "https://www.aljazeera.com/xml/rss/all.xml"),
@@ -69,6 +71,31 @@ RSS_FEEDS = [
     ("Africanews", "https://www.africanews.com/feed/rss"),
     ("Kyiv Independent", "https://kyivindependent.com/news-archive/rss/"),
     ("Sky News", "https://feeds.skynews.com/feeds/rss/world.xml"),
+    # added Oct 2026: regions the list above barely covered
+    ("Meduza", "https://meduza.io/rss/en/all"),
+    ("The Moscow Times", "https://www.themoscowtimes.com/rss/news"),
+    ("Ukrainska Pravda", "https://www.pravda.com.ua/eng/rss/"),
+    ("Iran International", "https://www.iranintl.com/en/feed"),
+    ("The New Arab", "https://www.newarab.com/rss"),
+    ("Jerusalem Post", "https://www.jpost.com/rss/rssfeedsfrontpage.aspx"),
+    ("Radio Dabanga", "https://www.dabangasudan.org/en/feed"),
+    ("Premium Times", "https://www.premiumtimesng.com/feed"),
+    ("Daily Maverick", "https://www.dailymaverick.co.za/dmrss/"),
+    ("CNA", "https://www.channelnewsasia.com/api/v1/rss-outbound-feed?_format=xml&category=6311"),
+    ("Taipei Times", "https://www.taipeitimes.com/xml/index.rss"),
+    ("The Irrawaddy", "https://www.irrawaddy.com/feed"),
+    ("Rappler", "https://www.rappler.com/feed/"),
+    ("El País", "https://feeds.elpais.com/mrss-s/pages/ep/site/english.elpais.com/portada"),
+    ("Mexico News Daily", "https://mexiconewsdaily.com/feed/"),
+    ("Buenos Aires Times", "https://www.batimes.com.ar/feed"),
+    ("Balkan Insight", "https://balkaninsight.com/feed/"),
+    ("Notes from Poland", "https://notesfrompoland.com/feed/"),
+    ("OC Media", "https://oc-media.org/feed/"),
+    ("Euronews", "https://www.euronews.com/rss"),
+    # Reuters and AP have no public RSS: Google News search feeds limited to their sites, last 24 hours.
+    # Titles end in " - Reuters" / " - AP News" (trimmed when read); links go via news.google.com.
+    ("Reuters", GN.format("reuters.com")),
+    ("AP", GN.format("apnews.com")),
 ]
 # Reuters and AP have no public RSS; they arrive through GDELT (and NewsAPI if a key is set).
 GDELT_DOMAINS = ["reuters.com", "apnews.com", "ft.com", "bloomberg.com", "aljazeera.com", "bbc.com", "bbc.co.uk"]
@@ -87,7 +114,13 @@ OUTLETS = {
     "al-monitor.com": "Al-Monitor", "dailysabah.com": "Daily Sabah", "yna.co.kr": "Yonhap", "nknews.org": "NK News",
     "japantimes.co.jp": "Japan Times", "thediplomat.com": "The Diplomat", "dawn.com": "Dawn", "thehindu.com": "The Hindu",
     "rfi.fr": "RFI Africa", "lemonde.fr": "Le Monde", "africanews.com": "Africanews", "kyivindependent.com": "Kyiv Independent",
-    "news.sky.com": "Sky News",
+    "news.sky.com": "Sky News", "meduza.io": "Meduza", "themoscowtimes.com": "The Moscow Times",
+    "pravda.com.ua": "Ukrainska Pravda", "iranintl.com": "Iran International", "newarab.com": "The New Arab",
+    "jpost.com": "Jerusalem Post", "dabangasudan.org": "Radio Dabanga", "premiumtimesng.com": "Premium Times",
+    "dailymaverick.co.za": "Daily Maverick", "channelnewsasia.com": "CNA", "taipeitimes.com": "Taipei Times",
+    "irrawaddy.com": "The Irrawaddy", "rappler.com": "Rappler", "elpais.com": "El País",
+    "mexiconewsdaily.com": "Mexico News Daily", "batimes.com.ar": "Buenos Aires Times", "balkaninsight.com": "Balkan Insight",
+    "notesfrompoland.com": "Notes from Poland", "oc-media.org": "OC Media", "euronews.com": "Euronews",
 }
 TIER1 = {"Reuters", "AP", "BBC News", "Al Jazeera", "The Guardian", "Financial Times", "Bloomberg"}
 PRIORITY = ["Reuters", "AP", "BBC News", "Al Jazeera", "The Guardian", "Financial Times", "Bloomberg",
@@ -442,7 +475,9 @@ def _image(el):
 def from_rss(name, url):
     import time as _t, random as _r
     _t.sleep(_r.uniform(1.5, 4))   # polite spacing between sites
-    root = ET.fromstring(http_get(url))
+    body = http_get(url)
+    end = max(body.rfind(b"</rss>"), body.rfind(b"</feed>"), body.rfind(b"</rdf:RDF>"))
+    root = ET.fromstring(body[:body.index(b">", end) + 1] if end > 0 else body)   # drop anything a CDN tacks on after the feed
     out = []
     for el in root.iter():
         if _local(el.tag) not in ("item", "entry"):
@@ -467,6 +502,8 @@ def from_rss(name, url):
                 a["time"] = parse_time(t)
         if not a.get("url"):
             a["url"] = a.get("guid")
+        if "news.google.com" in url and a.get("title"):   # "Headline - Reuters" -> "Headline"
+            a["title"] = re.sub(r"\s+-\s+[^-]{2,30}$", "", a["title"])
         a["cover"] = _image(el)
         out.append(a)
     return out
