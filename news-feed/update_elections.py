@@ -16,6 +16,7 @@ Needs the ANTHROPIC_API_KEY secret. Standard library only.
 import datetime as dt
 import html as htmllib
 import json, os, re, time, urllib.parse, urllib.request
+import usage   # prints this run's token use and cost to the log
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA = os.path.join(ROOT, "data", "elections.json")
@@ -93,6 +94,7 @@ def ask(prompt, searches=5, max_tokens=4000):
             "x-api-key": KEY, "anthropic-version": "2023-06-01", "content-type": "application/json"})
         with urllib.request.urlopen(req, timeout=240) as r:
             out = json.loads(r.read())
+            usage.record(out)
         if out.get("stop_reason") == "pause_turn":
             messages.append({"role": "assistant", "content": out["content"]})
             continue

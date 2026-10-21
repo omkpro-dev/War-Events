@@ -4,6 +4,11 @@ on:
   schedule:
     - cron: "*/15 * * * *"   # every 15 minutes (GitHub may delay runs a little)
   workflow_dispatch:
+    inputs:
+      selftest:
+        description: "Also make one test call to check the claims model settings"
+        type: boolean
+        default: false
   push:
     paths:
       - "war-feed/**"
@@ -40,7 +45,15 @@ jobs:
         run: node run.js
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          ANTHROPIC_MODEL: claude-haiku-5-5
+          ANTHROPIC_MODEL: claude-sonnet-5-5
+      - name: Self-test claims model
+        if: inputs.selftest
+        working-directory: war-feed
+        run: node --input-type=module -e "const { selfTest } = await import('./war-news/claims.js'); await selfTest();"
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          ANTHROPIC_MODEL: claude-sonnet-5-5
+          CLAIMS_FILE: /tmp/selftest-claims.json
       - name: Publish to war-data branch (one commit, no history build-up)
         working-directory: war-feed/out
         run: |

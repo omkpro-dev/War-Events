@@ -59,26 +59,65 @@ Rules:
 - kind "denial" = a side or official denies a reported capture of the place.
 - No claims -> [].`;
 
+// Token use for this run, printed by extractClaims in the same [usage] format as the Python bots.
+const PRICES = { 'claude-haiku-5-5': [0.10, 0.50], 'claude-sonnet-5-5': [2, 10], 'claude-opus-5-5': [4, 20] };
+const usage = { calls: 0, inp: 0, read: 0, write: 0, out: 0 };
+function addUsage(u = {}) {
+  usage.calls++; usage.inp += u.input_tokens || 0; usage.read += u.cache_read_input_tokens || 0;
+  usage.write += u.cache_creation_input_tokens || 0; usage.out += u.output_tokens || 0;
+}
+function usageLine() {
+  const [pi, po] = Object.entries(PRICES).find(([k]) => MODEL.startsWith(k))?.[1] ?? [0, 0];
+  const cost = (usage.inp * pi + usage.read * pi * 0.1 + usage.write * pi * 1.25 + usage.out * po) / 1e6;
+  return `[usage] war_claims ${MODEL} calls=${usage.calls} in=${usage.inp} cache_read=${usage.read} cache_write=${usage.write} out=${usage.out} searches=0 cost=$${cost.toFixed(4)}`;
+}
+
+// Claude Sonnet 5.5 rejects thinking "disabled": "between_tools" is its lowest setting (no thinking
+// here, as there are no tools). It also gets Anthropic's server-side fallback for declined requests.
+const SONNET_55 = MODEL.startsWith('claude-sonnet-5-5');
+
 async function callModel(article, conflict) {
   const actors = conflict.actors.map((a) => `${a.id} = ${a.name} (also: ${a.aliases.join(', ')})`).join('\n');
-  const user = `Conflict: ${conflict.name}\nActors:\n${actors}\n\nOutlet: ${article.outlet}\nPublished: ${article.publishedAt}\nTitle: ${article.title}\nText: ${article.summary || '(none)'}`;
+  const user = `Outlet: ${article.outlet}\nPublished: ${article.publishedAt}\nTitle: ${article.title}\nText: ${article.summary || '(none)'}`;
   const res = await fetch('https://api.anthropic.com/v1/messages', {
     method: 'POST',
     headers: {
       'x-api-key': process.env.ANTHROPIC_API_KEY,
       'anthropic-version': '2023-06-01',
       'content-type': 'application/json',
+      ...(SONNET_55 ? { 'anthropic-beta': 'server-side-fallback-2026-07-01' } : {}),
     },
-    body: JSON.stringify({ model: MODEL, max_tokens: 800, system: SYSTEM, messages: [{ role: 'user', content: user }],
-      thinking: { type: 'disabled' }, output_config: { effort: 'low' } }),
+    body: JSON.stringify({
+      model: MODEL, max_tokens: 800,
+      // instructions + this conflict's actors are the same for every article about it: cache them
+      system: [{ type: 'text', text: SYSTEM },
+               { type: 'text', text: `Conflict: ${conflict.name}\nActors:\n${actors}`, cache_control: { type: 'ephemeral' } }],
+      messages: [{ role: 'user', content: user }],
+      thinking: { type: SONNET_55 ? 'between_tools' : 'disabled' }, output_config: { effort: 'low' },
+      ...(SONNET_55 ? { fallbacks: 'default' } : {}),
+    }),
     signal: AbortSignal.timeout(45000),
   });
   if (!res.ok) throw new Error(`Anthropic API ${res.status}: ${(await res.text()).slice(0, 200)}`);
   const data = await res.json();
+  addUsage(data.usage);
+  if (data.stop_reason === 'refusal') {
+    console.warn('[claims] declined:', article.title.slice(0, 80), data.stop_details?.category ?? '');
+    return [];
+  }
   const raw = data.content?.find((b) => b.type === 'text')?.text ?? '[]';
   const json = raw.slice(raw.indexOf('['), raw.lastIndexOf(']') + 1);
   const parsed = JSON.parse(json || '[]');
   return Array.isArray(parsed) ? parsed : [];
+}
+
+/** One call on a made-up article, nothing saved: checks the model settings work (workflow "selftest"). */
+export async function selfTest() {
+  const conflict = CONFLICTS[0];
+  const found = await callModel({ outlet: 'Test', publishedAt: new Date().toISOString(),
+    title: `${conflict.actors[0].name} forces say they captured a village near the front line`, summary: '' }, conflict);
+  console.log('selftest', conflict.id, JSON.stringify(found).slice(0, 300));
+  console.log(usageLine());
 }
 
 /** Extract claims from new articles. Returns the number of claims stored. */
@@ -122,5 +161,6 @@ export async function extractClaims(articles) {
     }
   }
   if (articles.length) save();
+  if (usage.calls) console.log(usageLine());
   return stored;
 }

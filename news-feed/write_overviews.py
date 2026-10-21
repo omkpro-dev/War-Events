@@ -11,6 +11,7 @@ almost nothing after the first pass. Bump OVERVIEW_V to rewrite them all.
 Standard library only.
 """
 import json, os, re, time, urllib.request
+import usage   # prints this run's token use and cost to the log
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STATS = os.path.join(ROOT, "data", "country_stats.json")
@@ -61,6 +62,7 @@ def ask(name, c):
         "x-api-key": KEY, "anthropic-version": "2023-06-01", "content-type": "application/json"})
     with urllib.request.urlopen(req, timeout=60) as r:
         out = json.loads(r.read())
+        usage.record(out)
     txt = "".join(b.get("text", "") for b in out.get("content", []) if b.get("type") == "text").strip()
     txt = re.sub(r"\s+", " ", txt.strip('"\' \n'))
     return txt if 120 <= len(txt) <= 700 else ""

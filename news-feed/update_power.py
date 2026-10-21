@@ -9,6 +9,7 @@ Military figures (SIPRI, Global Firepower, FAS) are yearly publications and are 
 """
 import json, os, re, time, urllib.request
 from datetime import date
+import usage   # prints this run's token use and cost to the log
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 PATH = os.path.join(os.path.dirname(HERE), "data", "power.json")
@@ -49,6 +50,7 @@ def ask(prompt, searches=8):
             "x-api-key": KEY, "anthropic-version": "2023-06-01", "content-type": "application/json"})
         with urllib.request.urlopen(req, timeout=300) as r:
             out = json.loads(r.read())
+            usage.record(out)
         if out.get("stop_reason") == "pause_turn":
             messages.append({"role": "assistant", "content": out["content"]}); continue
         return "".join(b.get("text", "") for b in out.get("content", []) if b.get("type") == "text")

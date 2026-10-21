@@ -10,6 +10,7 @@ Writes logistics_feed.json and disasters_feed.json into the folder given as the 
 """
 import datetime as dt, html as htmllib, json, os, re, sys, time, urllib.request
 from email.utils import parsedate_to_datetime
+import usage   # prints this run's token use and cost to the log
 
 OUT = sys.argv[1] if len(sys.argv) > 1 else "."
 UA = "Mozilla/5.0 (compatible; WarEventsTopics/1.0; +https://www.warevents.com)"
@@ -169,6 +170,7 @@ def ai_keep(items, topic, cache, text=lambda i: i["title"]):
                     "x-api-key": KEY, "anthropic-version": "2023-06-01", "content-type": "application/json"})
                 with urllib.request.urlopen(req, timeout=90) as r:
                     out = json.loads(r.read())
+                    usage.record(out)
                 txt = "".join(b.get("text", "") for b in out.get("content", []) if b.get("type") == "text")
                 m = re.search(r"\[[\d,\s]*\]", txt)
                 ok = set(json.loads(m.group(0))) if m else None

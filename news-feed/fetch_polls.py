@@ -24,6 +24,7 @@ import html as htmllib
 import json, math, unicodedata, os, re, sys, time, urllib.error, urllib.parse, urllib.request
 import xml.etree.ElementTree as ET
 from html.parser import HTMLParser
+import usage   # prints this run's token use and cost to the log
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ELECTIONS = os.path.join(ROOT, "data", "elections.json")
@@ -196,6 +197,7 @@ def claude(prompt, max_tokens=1500):
         "x-api-key": KEY, "anthropic-version": "2023-06-01", "content-type": "application/json"})
     with urllib.request.urlopen(req, timeout=120) as r:
         out = json.loads(r.read())
+        usage.record(out)
     return "".join(b.get("text", "") for b in out.get("content", []) if b.get("type") == "text")
 
 
