@@ -4912,8 +4912,8 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
   .bias-key{ display:flex; flex-wrap:wrap; gap:3px 12px; font:500 12px 'Barlow',sans-serif; color:var(--text-secondary); } .bias-key span{ display:inline-flex; align-items:center; gap:5px; } .bias-key i{ width:9px; height:9px; border-radius:2px; background:var(--c); }
   .bias-note{ margin:7px 0 0; font:500 11.5px/1.45 'Barlow',sans-serif; color:var(--text-secondary); }
   /* ---- Flat panels: one solid colour, a 28% white outline, 5px corners (same curve and line as the nav). No blur, gradient or shadow. ---- */
-  :root{ --pn-bg:#121b2c; --pn-line:rgba(255,255,255,0.28); }
-  :root[data-theme="light"]{ --pn-bg:#f6f0e2; --pn-line:rgba(23,35,63,0.28); }
+  :root{ --pn-bg:rgba(18,27,44,0.82); --pn-line:rgba(255,255,255,0.28); }
+  :root[data-theme="light"]{ --pn-bg:rgba(246,240,226,0.82); --pn-line:rgba(23,35,63,0.28); }
   html:not(.we-phone) .callout-box, html:not(.we-phone) .reports-panel, html:not(.we-phone) .country-panel, html.we-pow:not(.we-phone) .pw-pane,
   .reports-panel, .callout-box, .country-panel{
     background:var(--pn-bg) !important; backdrop-filter:none !important; -webkit-backdrop-filter:none !important;
@@ -4980,6 +4980,14 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
   html .we-reelbox .rc-pane .cmod, html .we-reelbox .rc-pane .cb-panel, html .we-reelbox .rc-pane .bias-sec{
     background:rgba(var(--tn),0.07) !important; border:1px solid rgba(var(--tn),0.16) !important; border-radius:5px !important; box-shadow:none !important;
     backdrop-filter:none !important; -webkit-backdrop-filter:none !important; }
+  /* Panels and side tabs see through like the banner: the same 82% tint with a light 3px blur, so the globe shows faintly behind. */
+  html:not(.we-phone) .callout-box, html:not(.we-phone) .reports-panel, html:not(.we-phone) .country-panel, html.we-pow:not(.we-phone) .pw-pane,
+  .reports-panel, .callout-box, .country-panel,
+  html:not(.we-phone) .key-dev-label, html:not(.we-phone) #railTabEvents, html.we-pow:not(.we-phone) .pw-handle, html:not(.we-phone) .rail-tab{
+    backdrop-filter:blur(3px) !important; -webkit-backdrop-filter:blur(3px) !important; }
+  /* Feed cards: same flat tint as the story boxes */
+  html .reports-panel .report-block{
+    background:rgba(var(--tn),0.07) !important; border:1px solid rgba(var(--tn),0.16) !important; border-radius:5px !important; box-shadow:none !important; }
 </style>
 </head>
 <body>
