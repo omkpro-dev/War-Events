@@ -25,7 +25,7 @@
     --g1:255,250,240; --t1:#fffaf0; --t2:#f0e9da; --tw:#fff; --n0:#0b1628; --n2:#1a2840; --n3:#0e1a30;
   }
   :root[data-theme="light"]{
-    --c1:23,35,63; --c2:15,32,68; --cw:23,35,63; --g1:255,255,255; --n1:250,246,236; --sh:70,56,24;
+    --c1:23,35,63; --c2:15,32,68; --cw:23,35,63; --g1:23,35,63; --n1:250,246,236; --sh:70,56,24;
     --t1:#17233f; --t2:#0f2044; --tw:#0f2044; --n0:#f2ead9; --n2:#e9e0cc; --n3:#efe7d6;
     color-scheme:light;
   }
@@ -4827,8 +4827,8 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
   html.we-pow .we-lane{ display:none !important; }
   /* iPhone-style liquid glass: heavy blur that over-saturates what's behind it, big soft corners, a bright specular rim
      (top-left light, bottom-right bounce) and a faint sheen across the top. Same recipe in both themes; only the tint differs. */
-  :root{ --lg-tint:rgba(18,30,52,0.30); --lg-hi:255,255,255; --lg-rim:0.42; --lg-sheen:0.16; --lg-shadow:0,0,0; --lg-bright:0.9; --lg-sat:1.9; }
-  :root[data-theme="light"]{ --lg-tint:rgba(250,246,236,0.90); --lg-rim:0.95; --lg-sheen:0.4; --lg-shadow:70,56,24; --lg-bright:1.6; --lg-sat:1.1; }
+  :root{ --lg-tint:rgba(18,30,52,0.30); --lg-hi:255,255,255; --lg-rim:0.42; --lg-sheen:0; --lg-csheen:0.12; --lg-shadow:0,0,0; --lg-bright:0.9; --lg-sat:1.9; }
+  :root[data-theme="light"]{ --lg-tint:rgba(250,246,236,0.90); --lg-rim:0.95; --lg-sheen:0.4; --lg-csheen:0.68; --lg-shadow:70,56,24; --lg-bright:1.6; --lg-sat:1.1; }
   html:not(.we-phone) .callout-box, html:not(.we-phone) .reports-panel, html:not(.we-phone) .country-panel, html.we-pow:not(.we-phone) .pw-pane,
   .reports-panel, .callout-box, .country-panel{
     background:
@@ -4841,7 +4841,7 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
       inset 0 0 22px rgba(var(--lg-hi),0.07), 0 18px 44px rgba(var(--lg-shadow),0.28), 0 2px 6px rgba(var(--lg-shadow),0.14) !important;
   }
   .ctrl-cluster, .site-nav{
-    background:linear-gradient(180deg, rgba(var(--lg-hi),calc(var(--lg-sheen) + 0.28)), rgba(var(--lg-hi),0.12)), var(--lg-tint) !important;
+    background:linear-gradient(180deg, rgba(var(--lg-hi),var(--lg-csheen)), rgba(var(--lg-hi),0.12)), var(--lg-tint) !important;
     backdrop-filter:blur(24px) saturate(1.9) !important; -webkit-backdrop-filter:blur(24px) saturate(1.9) !important;
     border:1px solid rgba(var(--lg-hi),calc(var(--lg-rim) * 0.5)) !important; border-radius:999px !important;
     box-shadow:inset 0 1.5px 0 rgba(var(--lg-hi),var(--lg-rim)), inset 0 -1px 0 rgba(var(--lg-hi),0.2), 0 8px 22px rgba(var(--lg-shadow),0.2) !important;
