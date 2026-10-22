@@ -5135,6 +5135,12 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
   .report-block .report-top{ gap:10px; margin-bottom:8px; }
   .report-block .we-src-top{ font-family:'Barlow',sans-serif; font-size:12.65px; font-weight:400; color:var(--t1); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; min-width:0; margin-left:4px; }
   .report-block .we-ago-top{ font-family:'Barlow',sans-serif; font-style:normal; font-weight:700; font-size:13px; color:var(--text-primary, var(--t1)); white-space:nowrap; flex:none; }
+
+  /* Why It Matters and the Negative-Positive spectrum read as one joined box */
+  .callout-body:has(#calloutImpact:not([hidden])) .cb-article{ margin-bottom:0 !important; padding-bottom:0 !important; }
+  .callout-body:has(#calloutImpact:not([hidden])) .cb-article > .cb-panel:last-child{ margin-bottom:0 !important; border-bottom:none !important; border-bottom-left-radius:0 !important; border-bottom-right-radius:0 !important; }
+  .callout-body #calloutImpact:not([hidden]){ margin-top:0 !important; border-top:1px solid rgba(255,250,240,.16) !important; border-top-left-radius:0 !important; border-top-right-radius:0 !important; background:rgba(255,250,240,.07) !important; }
+  :root[data-theme="light"] .callout-body #calloutImpact:not([hidden]){ border-top-color:rgba(var(--tn),.16) !important; }
 </style>
 </head>
 <body>
