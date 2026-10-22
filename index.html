@@ -15151,7 +15151,7 @@ var stopLoaderOrb = function(){};
     rep = rk >= 0 ? rep.slice(rk) : '';
     if(weRepEl){
       // just the main outlet's name, next to the Source button
-      var mainSrc = ((Array.isArray(p.coverage) && p.sourceUrl && (p.coverage.filter(function(c){ return c && c.u === p.sourceUrl; })[0] || {}).o) || (Array.isArray(p.outlets) && p.outlets[0])) || ((rep.match(/Reported by:?\s*<\/b>\s*([^<]+?)(?:\.\s|\.?$|<)/i) || [])[1] || '');
+      var mainSrc = ((Array.isArray(p.coverage) && p.sourceUrl && (function(){ var hs = function(u){ try{ return new URL(u).hostname.replace(/^www\./, ''); }catch(e){ return ''; } }, h0 = hs(p.sourceUrl), cv = p.coverage.filter(function(c){ return c && c.u && (c.u === p.sourceUrl || (h0 && hs(c.u) === h0)); })[0]; return cv && cv.o; })()) || (Array.isArray(p.outlets) && p.outlets[0])) || ((rep.match(/Reported by:?\s*<\/b>\s*([^<]+?)(?:\.\s|\.?$|<)/i) || [])[1] || '');
       weRepEl.textContent = String(mainSrc).replace(/&amp;/g, '&').trim();
     }
     if(weMediaEl) weFillMedia(p);
