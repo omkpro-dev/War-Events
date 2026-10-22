@@ -5071,6 +5071,9 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
   .cb-article .cb-panel.why-open .why-extra{ display:list-item; }
   .why-more{ appearance:none; border:0; background:none; padding:2px 0; color:var(--tw); font:600 12px 'Barlow',sans-serif; text-decoration:underline; text-underline-offset:3px; cursor:pointer; }
   html body .callout-body .cb-article .cb-panel .cb-list li:nth-child(3):not(.why-extra){ display:list-item !important; }   /* an older compact rule hid the third line */
+  /* Logistics and Disasters: no Coverage & Bias tab, the panel is just the story */
+  html.we-logi .rc-tabs, html.we-dis .rc-tabs{ display:none !important; }
+  html.we-logi:not(.we-phone) .we-reelbox .rc-head, html.we-dis:not(.we-phone) .we-reelbox .rc-head{ margin-bottom:14px !important; }
 </style>
 </head>
 <body>
