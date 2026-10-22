@@ -6103,8 +6103,25 @@ var stopLoaderOrb = function(){};
   // from clipping to white, which is what made the light border lines vanish
   // over the Middle East and Sahara. Raise toward 0xcccccc to undo.
   var GLOBE_TINT = 0xaeb8cb;
-  // The globe renders the same in both themes (light theme only changes the page and panels around it).
-  var sphereMat = new THREE.MeshPhongMaterial({ map: placeholderTexture, color: GLOBE_TINT, specular: 0x111111, shininess: 4 });
+  // The globe renders the same in both themes, except that in light mode the sea takes the site's navy instead of near-black
+  // (only the darkest texels are remapped, so land, relief and coastlines are untouched).
+  var seaUniform = { value: document.documentElement.getAttribute('data-theme') === 'light' ? 1 : 0 };
+  window.addEventListener('we-theme', function(e){ seaUniform.value = e.detail && e.detail.light ? 1 : 0; });
+  function navySea(mat){
+    mat.onBeforeCompile = function(sh){
+      sh.uniforms.uSea = seaUniform;
+      sh.fragmentShader = 'uniform float uSea;\n' + sh.fragmentShader.replace('#include <map_fragment>',
+        '#include <map_fragment>\n' +
+        '#ifdef USE_MAP\n' +
+        '  float sl = dot(diffuseColor.rgb, vec3(0.299, 0.587, 0.114));\n' +
+        '  float sea = (1.0 - smoothstep(0.07, 0.17, sl)) * uSea;\n' +
+        '  diffuseColor.rgb = mix(diffuseColor.rgb, vec3(0.075, 0.14, 0.30) * (0.8 + 2.5 * sl), sea);\n' +
+        '#endif');
+    };
+    mat.customProgramCacheKey = function(){ return 'navySea'; };
+    return mat;
+  }
+  var sphereMat = navySea(new THREE.MeshPhongMaterial({ map: placeholderTexture, color: GLOBE_TINT, specular: 0x111111, shininess: 4 }));
   var globeMesh = new THREE.Mesh(sphereGeo, sphereMat);
   // Corrects the offset between three.js's default sphere UV wrap and the
   // lat/lon formula used for markers below, so texture and dots line up.
@@ -12541,7 +12558,7 @@ var stopLoaderOrb = function(){};
       THREE.MathUtils.degToRad(90 - latTop), THREE.MathUtils.degToRad(D));
     var tex = new THREE.CanvasTexture(canvas);
     tex.anisotropy = ((PHONE_GL && !WE_FLAT_PRE) ? Math.min(4, renderer.capabilities.getMaxAnisotropy()) : renderer.capabilities.getMaxAnisotropy());
-    var mat = new THREE.MeshPhongMaterial({ map: tex, color: GLOBE_TINT, specular: 0x111111, shininess: 4, transparent: true, opacity: 0 });
+    var mat = navySea(new THREE.MeshPhongMaterial({ map: tex, color: GLOBE_TINT, specular: 0x111111, shininess: 4, transparent: true, opacity: 0 }));
     var mesh = new THREE.Mesh(geo, mat);
     mesh.renderOrder = -1;             // under every fill, line and marker
     mesh.raycast = function(){};       // clicks go to the countries, not the imagery
