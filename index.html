@@ -68,7 +68,7 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <!-- Focus transitions (loader reveal + page changes); upload we-transition.js alongside the pages -->
 <script src="js/we-transition.js"></script>
-<script src="js/we-bias.js?v=14"></script>
+<script src="js/we-bias.js?v=15"></script>
 
 <script>
 /* Phones get the same War Events site, laid out for a small screen (CSS under
@@ -5092,9 +5092,11 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
   html body .callout-body .cb-glass.cb-article .cb-sum + .cb-sum2{ margin-top:0.85em !important; }
   .cb-article .sum-extra{ display:none; } .cb-article .cb-sum.sum-open .sum-extra{ display:inline; }
   .cb-article .sum-more{ appearance:none; display:block; margin:6px 0 0; padding:2px 0; border:0; background:none; color:var(--tw); font:600 12px 'Barlow',sans-serif; text-decoration:underline; text-underline-offset:3px; cursor:pointer; }
-  /* Why It Matters: bolder lettering throughout, with the lead actor heaviest and brightest */
-  html body .callout-body .cb-article .cb-panel .cb-list li{ font-weight:600 !important; }
-  html body .callout-body .cb-article .cb-panel .cb-list li .why-k{ font-weight:800 !important; }
+  /* Why It Matters: regular weight, no bold lettering */
+  html body .callout-body .cb-article .cb-panel .cb-list li, html body .callout-body .cb-article .cb-panel .cb-list li .why-k{ font-weight:400 !important; }
+  html body .callout-body .cb-article .cb-panel .cb-list li .why-k{ color:inherit !important; }
+  /* Feed: newspaper-style justified text with hyphenation, like the story summary */
+  html body .reports-panel .report-block .tweet-text{ text-align:justify !important; text-justify:inter-word; -webkit-hyphens:auto; hyphens:auto; hyphenate-limit-chars:6 3 3; hyphenate-limit-lines:2; text-wrap:pretty; line-height:1.48; }
 </style>
 </head>
 <body>
@@ -11532,10 +11534,20 @@ var stopLoaderOrb = function(){};
       R.classList.add('we-reel');
       paintStrip(); setTimeout(function(){ fit(cur < 0 ? 0 : cur); }, 60); setTimeout(function(){ fit(cur < 0 ? 0 : cur); }, 900);
     }
+    // The story dots (right edge) start just under the header and tab bar, never over them.
+    function alignStrip(){
+      if(!strip || !reel || !callout) return;
+      var card = reel.children[cur < 0 ? 0 : cur], hd = card && card.querySelector('.rc-head'); if(!hd) return;
+      var tb = card.querySelector('.rc-tabs'), k = (reel.getBoundingClientRect().height / (reel.offsetHeight || 1)) || 1;
+      var top = (reel.getBoundingClientRect().top - callout.getBoundingClientRect().top) / k + hd.offsetHeight + (tb && getComputedStyle(tb).display !== 'none' ? tb.offsetHeight : 0) + 12;
+      strip.style.setProperty('top', Math.round(top) + 'px', 'important');
+    }
+    window.__weAlignStrip = alignStrip;
     function paintStrip(){
       if(!strip) return;
       if(strip.children.length !== n){ strip.innerHTML = ''; for(var i = 0; i < n; i++){ var b = document.createElement('button'); b.type = 'button'; b.className = 'we-dseg'; b.setAttribute('data-i', i); b.setAttribute('aria-label', 'Story ' + (i + 1)); strip.appendChild(b); } }
       Array.prototype.forEach.call(strip.children, function(b, i){ b.setAttribute('aria-selected', String(i === cur)); });
+      alignStrip();
     }
     function onScroll(){
       if(busy || !reel) return;
@@ -11564,6 +11576,7 @@ var stopLoaderOrb = function(){};
       callout.style.setProperty('bottom', 'auto', 'important');
       callout.style.setProperty('height', H + 'px', 'important');
       callout.style.setProperty('max-height', avail + 'px', 'important');
+      alignStrip();
     }
     // Re-fit the pane to the story on screen (used when the Story / Coverage & Bias tab changes the card's height), without a window resize.
     window.__weReelFit = function(){ var st = window.__weStory && window.__weStory(); if(st) fit(st.i); };

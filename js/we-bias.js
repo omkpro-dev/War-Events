@@ -72,8 +72,8 @@
     var missing = Object.keys(REGIONS).filter(function(r){ return READ[r] && !byRegion[r]; });
     var copies = groups.filter(function(g){ return g.length > 1; }).reduce(function(s, g){ return s + g.length; }, 0);
     var html = '';
-    // one box: the takeaway as its title, the three numbers underneath
-    html += '<section class="bias-sec bias-sum"><div class="bias-take">' + (arts.length === 1 ? 'Only one outlet has reported this' : 'Mostly reported from ' + esc(top === 'west' ? 'the West' : top === 'mideast' ? 'the Middle East' : REGIONS[top][0])) + '</div>';
+    // one box with the three numbers
+    html += '<section class="bias-sec bias-sum">';
     html += '<div class="bias-facts"><div><b>' + arts.length + '</b><span>outlet' + (arts.length > 1 ? 's' : '') + '</span></div><div><b>' + n + '</b><span>separate report' + (n > 1 ? 's' : '') + '</span></div><div><b>' + covered + ' of ' + nReg + '</b><span>world regions</span></div></div></section>';
     if(arts.length > 1){
       var label = score >= 80 ? 'Very broad' : score >= 60 ? 'Broad, but uneven' : score >= 35 ? 'Limited' : 'Narrow';
