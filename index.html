@@ -25,13 +25,13 @@
     --g1:255,250,240; --tn:255,250,240; --t1:#fffaf0; --t2:#f0e9da; --tw:#fff; --n0:#0b1628; --n2:#1a2840; --n3:#0e1a30;
   }
   :root[data-theme="light"]{
-    --c1:23,35,63; --c2:15,32,68; --cw:23,35,63; --g1:15,32,68; --tn:15,32,68; --n1:255,255,255; --sh:20,30,55;
-    --t1:#17233f; --t2:#0f2044; --tw:#0f2044; --n0:#ffffff; --n2:#e8edf4; --n3:#ffffff;
+    --c1:23,35,63; --c2:15,32,68; --cw:23,35,63; --g1:15,32,68; --tn:15,32,68; --n1:238,238,238; --sh:20,30,55;
+    --t1:#17233f; --t2:#0f2044; --tw:#0f2044; --n0:#eeeeee; --n2:#e2e5ea; --n3:#eeeeee;
     color-scheme:light;
   }
   /* light theme: values for the remaining fixed colours (dark falls back to each original value) */
-  :root[data-theme="light"]{ --nx:255,255,255; --nxh:#ffffff; --tx:23,35,63; --txh:#17233f;
-    --panel:#ffffff; --panel-border:#d3dae6; --text-secondary:#4c5c7a; --text-tertiary:#7a89a3; }
+  :root[data-theme="light"]{ --nx:238,238,238; --nxh:#eeeeee; --tx:23,35,63; --txh:#17233f;
+    --panel:#eeeeee; --panel-border:#cfd5df; --text-secondary:#4c5c7a; --text-tertiary:#7a89a3; }
   /* glass panels and clusters take their look from the shared liquid-glass block further down; light only sets ink colours here */
   :root[data-theme="light"] .reports-panel, :root[data-theme="light"] .callout-box, :root[data-theme="light"] .country-panel{
     --text-primary:#17233f; --text-secondary:#34415a; --text-tertiary:#5a6c93;
@@ -4829,7 +4829,7 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
   /* iPhone-style liquid glass: heavy blur that over-saturates what's behind it, big soft corners, a bright specular rim
      (top-left light, bottom-right bounce) and a faint sheen across the top. Same recipe in both themes; only the tint differs. */
   :root{ --lg-tint:rgba(18,30,52,0.30); --lg-hi:255,255,255; --lg-rim:0.42; --lg-sheen:0; --lg-csheen:0.12; --lg-shadow:0,0,0; --lg-bright:0.9; --lg-sat:1.9; }
-  :root[data-theme="light"]{ --lg-tint:rgba(255,255,255,0.92); --lg-rim:0.95; --lg-sheen:0.4; --lg-csheen:0.68; --lg-shadow:15,32,68; --lg-bright:1.6; --lg-sat:1.1; }
+  :root[data-theme="light"]{ --lg-tint:rgba(238,238,238,0.92); --lg-rim:0.95; --lg-sheen:0.4; --lg-csheen:0.68; --lg-shadow:15,32,68; --lg-bright:1.6; --lg-sat:1.1; }
   html:not(.we-phone) .callout-box, html:not(.we-phone) .reports-panel, html:not(.we-phone) .country-panel, html.we-pow:not(.we-phone) .pw-pane,
   .reports-panel, .callout-box, .country-panel{
     background:
@@ -4913,7 +4913,7 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
   .bias-note{ margin:7px 0 0; font:500 11.5px/1.45 'Barlow',sans-serif; color:var(--text-secondary); }
   /* ---- Flat panels: one solid colour, a 28% white outline, 5px corners (same curve and line as the nav). No blur, gradient or shadow. ---- */
   :root{ --pn-bg:rgba(18,27,44,0.82); --pn-line:rgba(255,255,255,0.28); }
-  :root[data-theme="light"]{ --pn-bg:rgba(255,255,255,0.88); --pn-line:rgba(15,32,68,0.22); }
+  :root[data-theme="light"]{ --pn-bg:rgba(238,238,238,0.88); --pn-line:rgba(15,32,68,0.22); }
   html:not(.we-phone) .callout-box, html:not(.we-phone) .reports-panel, html:not(.we-phone) .country-panel, html.we-pow:not(.we-phone) .pw-pane,
   .reports-panel, .callout-box, .country-panel{
     background:var(--pn-bg) !important; backdrop-filter:none !important; -webkit-backdrop-filter:none !important;
@@ -6256,24 +6256,26 @@ var stopLoaderOrb = function(){};
   // from clipping to white, which is what made the light border lines vanish
   // over the Middle East and Sahara. Raise toward 0xcccccc to undo.
   var GLOBE_TINT = 0xaeb8cb;
-  // The globe renders the same in both themes, except that in light mode the sea takes the site's navy instead of near-black
-  // (only the darkest texels are remapped, so land, relief and coastlines are untouched).
+  // Day mode swaps the grey night map for NASA's true-colour Blue Marble, with the sea repainted a smooth blue
+  // (the source ocean is near-black and noisy). Night mode keeps its original grey map. See applyGlobeTheme() below.
   var seaUniform = { value: document.documentElement.getAttribute('data-theme') === 'light' ? 1 : 0 };
-  window.addEventListener('we-theme', function(e){ seaUniform.value = e.detail && e.detail.light ? 1 : 0; });
   function navySea(mat){
     mat.onBeforeCompile = function(sh){
-      sh.uniforms.uSea = seaUniform;
-      sh.fragmentShader = 'uniform float uSea;\n' + sh.fragmentShader.replace('#include <map_fragment>',
+      sh.uniforms.uDay = seaUniform;
+      sh.fragmentShader = 'uniform float uDay;\n' + sh.fragmentShader.replace('#include <map_fragment>',
         '#include <map_fragment>\n' +
         '#ifdef USE_MAP\n' +
-        '  float sl = dot(diffuseColor.rgb, vec3(0.299, 0.587, 0.114));\n' +
-        '  float sea = (1.0 - smoothstep(0.07, 0.17, sl)) * uSea;\n' +
-        '  diffuseColor.rgb = mix(diffuseColor.rgb, vec3(0.075, 0.14, 0.30) * (0.8 + 2.5 * sl), sea);\n' +
+        '  float dl = dot(diffuseColor.rgb, vec3(0.299, 0.587, 0.114));\n' +
+        '  float blueLead = diffuseColor.b - max(diffuseColor.r, diffuseColor.g);\n' +
+        '  float sea = smoothstep(0.0, 0.03, blueLead) * (1.0 - smoothstep(0.16, 0.30, dl)) * uDay;\n' +
+        '  vec3 seaCol = vec3(0.16, 0.37, 0.66) * (0.92 + 0.9 * dl);\n' +
+        '  diffuseColor.rgb = mix(diffuseColor.rgb, seaCol, sea);\n' +
         '#endif');
     };
-    mat.customProgramCacheKey = function(){ return 'navySea'; };
+    mat.customProgramCacheKey = function(){ return 'dayGlobe'; };
     return mat;
   }
+  var nightTex = null, dayTex = null;
   var sphereMat = navySea(new THREE.MeshPhongMaterial({ map: placeholderTexture, color: GLOBE_TINT, specular: 0x111111, shininess: 4 }));
   var globeMesh = new THREE.Mesh(sphereGeo, sphereMat);
   // Corrects the offset between three.js's default sphere UV wrap and the
@@ -6570,8 +6572,8 @@ var stopLoaderOrb = function(){};
       // sampler blend across the 180deg seam instead of clamping at the edge.
       loadedTexture.wrapS = THREE.RepeatWrapping;
       loadedTexture.wrapT = THREE.ClampToEdgeWrapping;
-      sphereMat.map = loadedTexture;
-      sphereMat.needsUpdate = true;
+      nightTex = loadedTexture;
+      if(seaUniform.value !== 1){ sphereMat.map = loadedTexture; sphereMat.needsUpdate = true; }
     },
     undefined,
     function(){ /* load failed — keep the procedural placeholder texture */ }
@@ -12644,6 +12646,25 @@ var stopLoaderOrb = function(){};
   var GIBS = 'https://gibs.earthdata.nasa.gov/wmts/epsg4326/best/';
   var TILE_MIN_Z = 5, TILE_MAX_Z = 6, BM_MAX_Z = 7, TILE_CACHE_MAX = PHONE_GL ? 60 : 180, TILE_MAX_LOADS = PHONE_GL ? 1 : 6;
   var tileGroup = new THREE.Group(); globeGroup.add(tileGroup);
+  // Day / night globe. Day uses the saved Blue Marble (images/globe/earth-day-*.jpg), brighter-but-softer light, and hides the grey hi-res tile overlay.
+  function applyGlobeTheme(light){
+    seaUniform.value = light ? 1 : 0;
+    sunLight.intensity = light ? 0.8 : 1.28;
+    scene.children.forEach(function(o){ if(o.isAmbientLight) o.intensity = light ? 0.78 : 0.55; });
+    tileGroup.visible = !light;
+    sphereMat.color.setHex(light ? 0xffffff : GLOBE_TINT);
+    if(light){
+      if(dayTex){ sphereMat.map = dayTex; sphereMat.needsUpdate = true; }
+      else {
+        new THREE.TextureLoader().load(HI_TEX ? 'images/globe/earth-day-8k.jpg' : 'images/globe/earth-day-4k.jpg', function(t){
+          t.anisotropy = renderer.capabilities.getMaxAnisotropy(); t.wrapS = THREE.RepeatWrapping; t.wrapT = THREE.ClampToEdgeWrapping; dayTex = t;
+          if(seaUniform.value === 1){ sphereMat.map = dayTex; sphereMat.needsUpdate = true; }
+        });
+      }
+    } else if(nightTex){ sphereMat.map = nightTex; sphereMat.needsUpdate = true; }
+  }
+  window.addEventListener('we-theme', function(e){ applyGlobeTheme(!!(e.detail && e.detail.light)); });
+  if(seaUniform.value === 1) applyGlobeTheme(true);
   var tiles = new Map(), tileQueue = [], tileLoads = 0, tileLastUpdate = 0, tileZ = 0;
   var _tileDir = new THREE.Vector3(), _tileQ = new THREE.Quaternion();
   function tileDeg(z){ return 288 / Math.pow(2, z); }
