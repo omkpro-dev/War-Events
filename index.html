@@ -22,10 +22,10 @@
      --n0..--n3: surfaces   --n1: glass r,g,b   --sh: shadow r,g,b */
   :root{
     --c1:255,250,240; --c2:240,233,218; --cw:255,255,255; --n1:9,18,34; --sh:0,0,0;
-    --t1:#fffaf0; --t2:#f0e9da; --tw:#fff; --n0:#0b1628; --n2:#1a2840; --n3:#0e1a30;
+    --g1:255,250,240; --t1:#fffaf0; --t2:#f0e9da; --tw:#fff; --n0:#0b1628; --n2:#1a2840; --n3:#0e1a30;
   }
   :root[data-theme="light"]{
-    --c1:23,35,63; --c2:15,32,68; --cw:23,35,63; --n1:250,246,236; --sh:70,56,24;
+    --c1:23,35,63; --c2:15,32,68; --cw:23,35,63; --g1:255,255,255; --n1:250,246,236; --sh:70,56,24;
     --t1:#17233f; --t2:#0f2044; --tw:#0f2044; --n0:#f2ead9; --n2:#e9e0cc; --n3:#efe7d6;
     color-scheme:light;
   }
@@ -1758,7 +1758,7 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
   .ctrl-btn, .site-nav a{ color:var(--n0) !important; }
   /* Left/right menus: clear liquid glass, faint cream tint */
   .reports-panel, .callout-box, .callout-head, .country-panel{
-    background:linear-gradient(160deg, rgba(var(--c1),0.10), rgba(var(--c2),0.04)) !important;
+    background:linear-gradient(160deg, rgba(var(--g1),0.10), rgba(var(--g1),0.04)) !important;
     backdrop-filter:blur(22px) saturate(1.7) brightness(0.92) !important; -webkit-backdrop-filter:blur(22px) saturate(1.7) brightness(0.92) !important;
     border:1px solid rgba(var(--c1),0.22) !important;
     box-shadow:inset 0 1px 0 rgba(var(--cw),0.22), inset 0 0 0 1px rgba(var(--cw),0.04), 0 10px 30px rgba(var(--sh),0.25);
@@ -1817,7 +1817,7 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
   }
   .we-deck{ position:absolute; left:0; right:0; top:0; bottom:0; pointer-events:none; z-index:0; }
   .we-deck-card{ position:absolute; left:0; right:0; top:0; bottom:0; border-radius:5px;
-    background:linear-gradient(160deg, rgba(var(--c1),0.08), rgba(var(--c2),0.03)), rgba(7,15,30,0.30);
+    background:linear-gradient(160deg, rgba(var(--g1),0.08), rgba(var(--g1),0.03)), rgba(7,15,30,0.30);
     border:1px solid rgba(var(--c1),0.18); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); }
   .we-deck-card.c1{ transform:translateY(12px) scale(0.955); opacity:0.75; }
   .we-deck-card.c2{ transform:translateY(24px) scale(0.91); opacity:0.45; }
@@ -1891,7 +1891,7 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
   }
   /* Key points / Why it matters: glass panels sitting on the card */
   .callout-body .cb-panel{ margin:0 0 10px; padding:10px 12px 4px; border-radius:6px;
-    background:linear-gradient(160deg, rgba(var(--c1),0.10), rgba(var(--c1),0.035));
+    background:linear-gradient(160deg, rgba(var(--g1),0.10), rgba(var(--g1),0.035));
     border:1px solid rgba(var(--c1),0.16); box-shadow:inset 0 1px 0 rgba(var(--c1),0.10), 0 4px 14px rgba(var(--sh),0.18);
     backdrop-filter:blur(12px) saturate(1.2); -webkit-backdrop-filter:blur(12px) saturate(1.2); }
   .callout-body .cb-panel .cb-list{ margin-bottom:6px !important; }
@@ -1913,14 +1913,14 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
   /* Feed: each story in its own glass panel, same look as Key points */
   .report-block, .report-block:last-child{ margin:0 0 10px !important; padding:11px 12px 10px !important; border-radius:6px;
     border:1px solid rgba(var(--c1),0.16) !important; border-bottom:1px solid rgba(var(--c1),0.16) !important;
-    background:linear-gradient(160deg, rgba(var(--c1),0.10), rgba(var(--c1),0.035));
+    background:linear-gradient(160deg, rgba(var(--g1),0.10), rgba(var(--g1),0.035));
     box-shadow:inset 0 1px 0 rgba(var(--c1),0.10), 0 4px 14px rgba(var(--sh),0.18);
     backdrop-filter:blur(12px) saturate(1.2); -webkit-backdrop-filter:blur(12px) saturate(1.2); }
   .report-block:last-child{ margin-bottom:0 !important; }
   .report-block .tweet-card{ background:none !important; border:0 !important; padding:0 !important; box-shadow:none !important; }
   /* spacing: Potential Impact sits 8px under Why it matters (same gap as between the panels); Reported by + Source pinned to the card bottom */
   .callout-body .cb-panel:last-child{ margin-bottom:0 !important; }
-  html #calloutImpact{ margin-top:8px !important; background:linear-gradient(160deg, rgba(var(--c1),0.10), rgba(var(--c1),0.035)) !important;
+  html #calloutImpact{ margin-top:8px !important; background:linear-gradient(160deg, rgba(var(--g1),0.10), rgba(var(--g1),0.035)) !important;
     border:1px solid rgba(var(--c1),0.16) !important; box-shadow:inset 0 1px 0 rgba(var(--c1),0.10), 0 4px 14px rgba(var(--sh),0.18);
     backdrop-filter:blur(12px) saturate(1.2); -webkit-backdrop-filter:blur(12px) saturate(1.2); }
   @media (min-width:900px){
@@ -1953,10 +1953,10 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
   #cpWiki[hidden]{ display:none !important; }
   #cpWiki, .we-rep-foot .source-btn, .we-rep-foot #calloutSource{ color:var(--t1) !important; padding:7px 14px 6px !important; border-radius:6px;
     border:1px solid rgba(var(--c1),0.22) !important;
-    background:linear-gradient(160deg, rgba(var(--c1),0.14), rgba(var(--c1),0.05)) !important;
+    background:linear-gradient(160deg, rgba(var(--g1),0.14), rgba(var(--g1),0.05)) !important;
     box-shadow:inset 0 1px 0 rgba(var(--c1),0.14), 0 4px 14px rgba(var(--sh),0.2);
     backdrop-filter:blur(12px) saturate(1.2); -webkit-backdrop-filter:blur(12px) saturate(1.2); transition:background .2s ease, border-color .2s ease; }
-  #cpWiki:hover, .we-rep-foot .source-btn:hover, .we-rep-foot #calloutSource:hover{ background:linear-gradient(160deg, rgba(var(--c1),0.22), rgba(var(--c1),0.09)) !important; border-color:rgba(var(--c1),0.35) !important; }
+  #cpWiki:hover, .we-rep-foot .source-btn:hover, .we-rep-foot #calloutSource:hover{ background:linear-gradient(160deg, rgba(var(--g1),0.22), rgba(var(--g1),0.09)) !important; border-color:rgba(var(--c1),0.35) !important; }
   /* Events card + Feed 20% wider on desktop (330 -> 396px); dividers, labels and ticks shift out with them */
   @media (min-width:1181px){
     html:not(.we-phone) .right-rail{ width:396px !important; }
@@ -1994,7 +1994,7 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
   .we-media{ display:none; }
   @media (min-width:900px){
     html:not(.we-phone) .we-media{ display:block; flex:none; height:118px; margin:2px 0 12px; border-radius:6px; overflow:hidden;
-      border:1px solid rgba(var(--c1),0.14); background:linear-gradient(160deg, rgba(var(--c1),0.08), rgba(var(--c1),0.02)); }
+      border:1px solid rgba(var(--c1),0.14); background:linear-gradient(160deg, rgba(var(--g1),0.08), rgba(var(--g1),0.02)); }
     html:not(.we-phone) .we-media img{ display:block; width:100%; height:100%; object-fit:cover; }
     html:not(.we-phone) .we-media img:not([src]){ display:none; }
     html:not(.we-phone) .we-media.is-emblem{ background:#000; }
@@ -2317,37 +2317,12 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
   .cp-wiki[hidden]{ display:none; }
   /* Legibility on the glass panels */
   .reports-panel, .callout-box, .country-panel{
-    background:linear-gradient(160deg, rgba(var(--c1),0.10), rgba(var(--c2),0.04)), rgba(7,15,30,0.38) !important;
+    background:linear-gradient(160deg, rgba(var(--g1),0.10), rgba(var(--g1),0.04)), rgba(7,15,30,0.38) !important;
     backdrop-filter:blur(26px) saturate(1.5) brightness(0.72) !important; -webkit-backdrop-filter:blur(26px) saturate(1.5) brightness(0.72) !important;
     --text-primary:var(--t1); --text-secondary:var(--txh, #e4dccb); --text-tertiary:var(--txh, #bfb7a6);
     text-shadow:0 1px 3px rgba(var(--sh),0.7), 0 0 1px rgba(var(--sh),0.5);
   }
   .callout-head{ background:transparent !important; backdrop-filter:none !important; -webkit-backdrop-filter:none !important; border:none !important; box-shadow:none !important; }
-  /* iPhone-style liquid glass: heavy blur that over-saturates what's behind it, big soft corners, a bright specular rim
-     (top-left light, bottom-right bounce) and a faint sheen across the top. Same recipe in both themes; only the tint differs. */
-  :root{ --lg-tint:rgba(18,30,52,0.30); --lg-hi:255,255,255; --lg-rim:0.42; --lg-sheen:0.16; --lg-shadow:0,0,0; --lg-bright:0.9; }
-  :root[data-theme="light"]{ --lg-tint:rgba(252,248,238,0.38); --lg-rim:0.85; --lg-sheen:0.5; --lg-shadow:70,56,24; --lg-bright:1.06; }
-  .reports-panel, .callout-box, .country-panel{
-    background:
-      radial-gradient(120% 70% at 12% 0%, rgba(var(--lg-hi),var(--lg-sheen)), rgba(var(--lg-hi),0) 55%),
-      linear-gradient(160deg, rgba(var(--lg-hi),calc(var(--lg-sheen) * 0.5)), rgba(var(--lg-hi),0.02) 60%),
-      var(--lg-tint) !important;
-    backdrop-filter:blur(30px) saturate(1.9) brightness(var(--lg-bright)) !important; -webkit-backdrop-filter:blur(30px) saturate(1.9) brightness(var(--lg-bright)) !important;
-    border:1px solid rgba(var(--lg-hi),calc(var(--lg-rim) * 0.45)) !important; border-radius:22px !important;
-    box-shadow:inset 1.5px 1.5px 0 rgba(var(--lg-hi),var(--lg-rim)), inset -1px -1px 0 rgba(var(--lg-hi),calc(var(--lg-rim) * 0.3)),
-      inset 0 0 22px rgba(var(--lg-hi),0.07), 0 18px 44px rgba(var(--lg-shadow),0.28), 0 2px 6px rgba(var(--lg-shadow),0.14) !important;
-  }
-  .ctrl-cluster, .site-nav{
-    background:linear-gradient(180deg, rgba(var(--lg-hi),calc(var(--lg-sheen) + 0.28)), rgba(var(--lg-hi),0.12)), var(--lg-tint) !important;
-    backdrop-filter:blur(24px) saturate(1.9) !important; -webkit-backdrop-filter:blur(24px) saturate(1.9) !important;
-    border:1px solid rgba(var(--lg-hi),calc(var(--lg-rim) * 0.5)) !important; border-radius:999px !important;
-    box-shadow:inset 0 1.5px 0 rgba(var(--lg-hi),var(--lg-rim)), inset 0 -1px 0 rgba(var(--lg-hi),0.2), 0 8px 22px rgba(var(--lg-shadow),0.2) !important;
-  }
-  .ctrl-cluster, .site-nav{ --text-primary:var(--t1); --text-secondary:var(--t2); --text-tertiary:var(--t2); --accent:var(--t1); color:var(--t1); }
-  .ctrl-btn, .site-nav a{ color:var(--t1) !important; }
-  .site-nav a.active{ background:rgba(var(--lg-hi),0.28); box-shadow:inset 0 1px 0 rgba(var(--lg-hi),0.5); border-radius:999px; margin:2px; }
-  :root[data-theme="light"] .ctrl-cluster, :root[data-theme="light"] .site-nav{ --text-primary:#17233f; --text-secondary:#34415a; --text-tertiary:#5a6c93; --accent:#0f2044; color:#17233f; }
-  :root[data-theme="light"] .ctrl-btn, :root[data-theme="light"] .site-nav a{ color:#17233f !important; }
   .callout-body, .report-text, .cp-sections, .country-panel-note{ color:#ece5d6 !important; }
   .source-btn{ text-shadow:none; }
   .key-dev-label{ cursor:pointer; }
@@ -3503,7 +3478,7 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
   /* ---- Performance: tinted-solid panels instead of live blur. Same cream-on-navy glass look, no per-frame re-blur ---- */
   *, *::before, *::after{ backdrop-filter:none !important; -webkit-backdrop-filter:none !important; }
   html:not(.we-phone) .reports-panel, html:not(.we-phone) .callout-box, html:not(.we-phone) .country-panel{
-    background:linear-gradient(160deg, rgba(var(--c1),0.09), rgba(var(--c2),0.03) 55%), rgba(var(--nx, 10,20,38),0.88) !important;
+    background:linear-gradient(160deg, rgba(var(--g1),0.09), rgba(var(--g1),0.03) 55%), rgba(var(--nx, 10,20,38),0.88) !important;
     box-shadow:inset 0 1px 0 rgba(var(--c1),0.10), 0 18px 40px rgba(var(--sh),0.35) !important; }
   /* ---- Active Wars view ---- */
   .war-legend{ position:fixed; z-index:30; left:50%; transform:translateX(-50%); bottom:22px; display:flex; gap:16px; padding:7px 14px; border:1px solid rgba(var(--c2),0.22); border-radius:4px;
@@ -3943,7 +3918,7 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
   html.we-pow:not(.we-phone) .pw-legend{ left:calc(50% + (20px + min(615px, 41vw)) / 2); }
   .pw-pane{ position:fixed; z-index:20; left:20px; top:98px; bottom:16px; width:min(615px, 41vw); overflow-y:auto; overscroll-behavior:contain; scrollbar-width:thin;
     padding:16px 18px 18px; border:1px solid rgba(var(--c2),0.16); border-radius:4px; color:var(--tw); font-family:'Barlow',sans-serif; font-size:12.65px; line-height:1.45;
-    background:linear-gradient(160deg, rgba(var(--c1),0.09), rgba(var(--c2),0.03) 55%), rgba(var(--nx, 10,20,38),0.88); box-shadow:inset 0 1px 0 rgba(var(--c1),0.10), 0 18px 40px rgba(var(--sh),0.35); }
+    background:linear-gradient(160deg, rgba(var(--g1),0.09), rgba(var(--g1),0.03) 55%), rgba(var(--nx, 10,20,38),0.88); box-shadow:inset 0 1px 0 rgba(var(--c1),0.10), 0 18px 40px rgba(var(--sh),0.35); }
   .pw-pane p{ margin:0 0 8px; }
   .pw-head{ display:flex; align-items:center; gap:10px; margin:0 0 4px; }
   .pw-head h2{ margin:0; font-family:'Barlow',sans-serif; font-weight:600; font-size:20px; line-height:1.2; color:var(--t1); flex:1; }
@@ -4178,7 +4153,7 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
     position:fixed !important; top:50% !important; translate:none !important; transform:translateY(-50%) !important; writing-mode:vertical-rl;
     display:flex !important; align-items:center; justify-content:center; width:26px; min-height:96px; padding:14px 0 !important; box-sizing:border-box;
     font-size:0 !important; letter-spacing:normal !important; text-transform:none !important; color:var(--t2) !important; cursor:pointer;
-    background:linear-gradient(160deg, rgba(var(--c1),0.09), rgba(var(--c2),0.03) 55%), rgba(var(--nx, 10,20,38),0.88) !important;
+    background:linear-gradient(160deg, rgba(var(--g1),0.09), rgba(var(--g1),0.03) 55%), rgba(var(--nx, 10,20,38),0.88) !important;
     border:1px solid var(--panel-border, rgba(var(--c2),0.16)); box-shadow:none; transition:color .2s ease, background .2s ease; }
   html:not(.we-phone) .key-dev-label{ border-left:0 !important; border-radius:0 4px 4px 0 !important; left:var(--we-kd-x, 0px) !important; }
   html:not(.we-phone) #railTabEvents{ border-right:0 !important; border-radius:4px 0 0 4px !important; left:auto !important; right:var(--we-rr-x, 0px) !important; }
@@ -4188,7 +4163,7 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
   html.kd-collapsed:not(.we-phone) .key-dev-label::after{ content:'Open Events'; }
   html:not(.we-phone) #railTabEvents::after{ content:'Close'; }
   html.rr-collapsed:not(.we-phone) #railTabEvents::after{ content:'Open Feed'; }
-  html:not(.we-phone) .key-dev-label:hover, html:not(.we-phone) #railTabEvents:hover{ color:var(--tw) !important; background:linear-gradient(160deg, rgba(var(--c1),0.16), rgba(var(--c2),0.06) 55%), rgba(var(--nx, 16,28,50),0.95) !important; }
+  html:not(.we-phone) .key-dev-label:hover, html:not(.we-phone) #railTabEvents:hover{ color:var(--tw) !important; background:linear-gradient(160deg, rgba(var(--g1),0.16), rgba(var(--g1),0.06) 55%), rgba(var(--nx, 16,28,50),0.95) !important; }
   /* story dots beside Events only show while Events is open */
   html.kd-collapsed:not(.we-phone) .key-dev-ticks{ display:none !important; }
 
@@ -4209,10 +4184,10 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
   html.we-pow:not(.we-phone) .pw-handle{ position:fixed; z-index:21; top:50%; transform:translateY(-50%); left:var(--pw-hx, 0px); writing-mode:vertical-rl;
     display:flex; align-items:center; justify-content:center; width:26px; min-height:96px; padding:14px 0; box-sizing:border-box; appearance:none; cursor:pointer;
     color:var(--t2); font:500 12.65px/1 'Barlow',sans-serif; letter-spacing:normal;
-    background:linear-gradient(160deg, rgba(var(--c1),0.09), rgba(var(--c2),0.03) 55%), rgba(var(--nx, 10,20,38),0.88);
+    background:linear-gradient(160deg, rgba(var(--g1),0.09), rgba(var(--g1),0.03) 55%), rgba(var(--nx, 10,20,38),0.88);
     border:1px solid var(--panel-border, rgba(var(--c2),0.16)); border-left:0; border-radius:0 4px 4px 0; transition:left .45s cubic-bezier(.3,0,.2,1), background .2s ease; }
   html.we-pow:not(.we-phone) .pw-handle span{ transform:rotate(180deg); }
-  html.we-pow:not(.we-phone) .pw-handle:hover{ color:var(--tw); background:linear-gradient(160deg, rgba(var(--c1),0.16), rgba(var(--c2),0.06) 55%), rgba(var(--nx, 16,28,50),0.95); }
+  html.we-pow:not(.we-phone) .pw-handle:hover{ color:var(--tw); background:linear-gradient(160deg, rgba(var(--g1),0.16), rgba(var(--g1),0.06) 55%), rgba(var(--nx, 16,28,50),0.95); }
 
   html.we-pow .key-dev-label, html.we-pow #railTabEvents, html.we-pow .rail-tabs{ display:none !important; }
 
@@ -4223,7 +4198,7 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
   html:not(.we-phone) .we-media, html:not(.we-phone) .we-media > .callout-headline{ border:0 !important; box-shadow:none !important; outline:0 !important; }
   html:not(.we-phone) .we-media > .callout-headline{ position:static !important; padding:0 !important; background:none !important; }
   .callout-body .cb-glass{ margin:0 0 8px; padding:10px 12px; border-radius:6px;
-    background:linear-gradient(160deg, rgba(var(--c1),0.10), rgba(var(--c1),0.035));
+    background:linear-gradient(160deg, rgba(var(--g1),0.10), rgba(var(--g1),0.035));
     border:1px solid rgba(var(--c1),0.16); box-shadow:inset 0 1px 0 rgba(var(--c1),0.10), 0 4px 14px rgba(var(--sh),0.18); flex:none !important; }
   .callout-body .cb-glass .cb-sum, .callout-body .cb-glass .cb-sum.we-clip{ display:block !important; -webkit-line-clamp:unset !important; overflow:visible !important; min-height:0 !important; max-height:none !important; margin:0 !important; flex:none !important;
     -webkit-mask-image:none !important; mask-image:none !important; }
@@ -4253,7 +4228,7 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
 
   /* Spheres of influence pane */
   .sp-wrap{ display:flex; flex-direction:column; gap:0; margin-top:4px; }
-  .sp-lead{ padding:12px 14px; border-radius:6px; border:1px solid rgba(var(--c2),0.12); background:linear-gradient(160deg, rgba(var(--c1),0.08), rgba(var(--c1),0.025)); color:var(--tw); line-height:1.5; }
+  .sp-lead{ padding:12px 14px; border-radius:6px; border:1px solid rgba(var(--c2),0.12); background:linear-gradient(160deg, rgba(var(--g1),0.08), rgba(var(--g1),0.025)); color:var(--tw); line-height:1.5; }
   .sp-stats{ display:grid; grid-template-columns:repeat(3, 1fr); gap:8px; margin-top:10px; }
   .sp-stat{ position:relative; padding:10px 12px; border-radius:6px; border:1px solid rgba(var(--c2),0.12); background:rgba(var(--c2),0.03); display:flex; align-items:baseline; gap:8px; overflow:hidden; }
   .sp-stat i{ position:absolute; left:0; top:0; bottom:0; width:3px; }
@@ -4438,7 +4413,7 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
 
   /* Panes solid enough that the globe no longer shows through (the blur that used to hide it was removed for speed) */
   html:not(.we-phone) .callout-box, html:not(.we-phone) .reports-panel, html:not(.we-phone) .country-panel, html.we-pow:not(.we-phone) .pw-pane{
-    background:linear-gradient(160deg, rgba(var(--c1),0.10), rgba(var(--c2),0.03) 55%), rgba(var(--n1),0.62) !important;
+    background:linear-gradient(160deg, rgba(var(--g1),0.10), rgba(var(--g1),0.03) 55%), rgba(var(--n1),0.62) !important;
     backdrop-filter:blur(12px) !important; -webkit-backdrop-filter:blur(12px) !important; }   /* real glass with a light blur: much cheaper than the old 26px blur + colour filters */
   html:not(.we-phone) #calloutScroll{ scrollbar-width:thin; scrollbar-color:rgba(var(--c2),0.18) transparent; }
   html:not(.we-phone) #calloutScroll::-webkit-scrollbar{ width:6px; background:transparent; }
@@ -4474,9 +4449,9 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
   html.we-pow.pw-collapsed:not(.we-phone) .pw-handle{ transform:translateY(-50%) translateX(calc(-1 * var(--pw-hx, 430px))) !important; }
   /* Tab colour = its pane: same glass, with a sliver that hides the pane's edge line behind the tab */
   html:not(.we-phone) .key-dev-label, html:not(.we-phone) #railTabEvents, html.we-pow:not(.we-phone) .pw-handle{
-    background:linear-gradient(160deg, rgba(var(--c1),0.10), rgba(var(--c2),0.03) 55%), rgba(var(--n1),0.62) !important;
+    background:linear-gradient(160deg, rgba(var(--g1),0.10), rgba(var(--g1),0.03) 55%), rgba(var(--n1),0.62) !important;
     backdrop-filter:blur(12px) !important; -webkit-backdrop-filter:blur(12px) !important; }
-  html:not(.we-phone) .key-dev-label:hover, html:not(.we-phone) #railTabEvents:hover, html.we-pow:not(.we-phone) .pw-handle:hover{ background:linear-gradient(160deg, rgba(var(--c1),0.16), rgba(var(--c2),0.05) 55%), rgba(var(--nx, 18,28,46),0.7) !important; }
+  html:not(.we-phone) .key-dev-label:hover, html:not(.we-phone) #railTabEvents:hover, html.we-pow:not(.we-phone) .pw-handle:hover{ background:linear-gradient(160deg, rgba(var(--g1),0.16), rgba(var(--g1),0.05) 55%), rgba(var(--nx, 18,28,46),0.7) !important; }
 
   html:not(.we-phone) .key-dev-label::after, html:not(.we-phone) #railTabEvents::after, html.we-pow:not(.we-phone) .pw-handle::after{
     content:'' !important; display:block !important; position:absolute; top:1px; bottom:1px; width:1.4px; background:rgb(var(--nx, 22,31,48)); pointer-events:none; }
@@ -4800,7 +4775,7 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
   html.we-phone .lg-legend .lgl-keys{ flex-wrap:wrap !important; white-space:normal !important; }
   html.we-phone #calloutImpact:not(:has(.scale-chip)){ display:none !important; }
 
-  .pw-pane .ec-hero{ display:flex; flex-direction:column; gap:3px; margin:4px 0 10px; padding:14px 16px; border-radius:6px; border:1px solid rgba(var(--c2),0.12); background:linear-gradient(160deg, rgba(var(--c1),0.08), rgba(var(--c1),0.02)); }
+  .pw-pane .ec-hero{ display:flex; flex-direction:column; gap:3px; margin:4px 0 10px; padding:14px 16px; border-radius:6px; border:1px solid rgba(var(--c2),0.12); background:linear-gradient(160deg, rgba(var(--g1),0.08), rgba(var(--g1),0.02)); }
   .pw-pane .ec-hero span{ font-size:12px; color:rgba(var(--c1),0.65); }
   .pw-pane .ec-hero b{ font-size:28px; font-weight:600; line-height:1.1; color:var(--tw); font-variant-numeric:tabular-nums; }
   .pw-pane .ec-hero small{ font-size:12px; color:rgba(var(--c1),0.6); }
@@ -4850,6 +4825,32 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
   html.we-phone .we-keydock .ph-scale-row{ gap:10px; flex-wrap:wrap; justify-content:center; }
   /* Phone Power: no story lane (that's for Events); the panel just scrolls */
   html.we-pow .we-lane{ display:none !important; }
+  /* iPhone-style liquid glass: heavy blur that over-saturates what's behind it, big soft corners, a bright specular rim
+     (top-left light, bottom-right bounce) and a faint sheen across the top. Same recipe in both themes; only the tint differs. */
+  :root{ --lg-tint:rgba(18,30,52,0.30); --lg-hi:255,255,255; --lg-rim:0.42; --lg-sheen:0.16; --lg-shadow:0,0,0; --lg-bright:0.9; --lg-sat:1.9; }
+  :root[data-theme="light"]{ --lg-tint:rgba(250,246,236,0.90); --lg-rim:0.95; --lg-sheen:0.4; --lg-shadow:70,56,24; --lg-bright:1.6; --lg-sat:1.1; }
+  html:not(.we-phone) .callout-box, html:not(.we-phone) .reports-panel, html:not(.we-phone) .country-panel, html.we-pow:not(.we-phone) .pw-pane,
+  .reports-panel, .callout-box, .country-panel{
+    background:
+      radial-gradient(120% 70% at 12% 0%, rgba(var(--lg-hi),var(--lg-sheen)), rgba(var(--lg-hi),0) 55%),
+      linear-gradient(160deg, rgba(var(--lg-hi),calc(var(--lg-sheen) * 0.5)), rgba(var(--lg-hi),0.02) 60%),
+      var(--lg-tint) !important;
+    backdrop-filter:blur(22px) saturate(var(--lg-sat)) brightness(var(--lg-bright)) !important; -webkit-backdrop-filter:blur(22px) saturate(var(--lg-sat)) brightness(var(--lg-bright)) !important;
+    border:1px solid rgba(var(--lg-hi),calc(var(--lg-rim) * 0.45)) !important; border-radius:22px !important;
+    box-shadow:inset 1.5px 1.5px 0 rgba(var(--lg-hi),var(--lg-rim)), inset -1px -1px 0 rgba(var(--lg-hi),calc(var(--lg-rim) * 0.3)),
+      inset 0 0 22px rgba(var(--lg-hi),0.07), 0 18px 44px rgba(var(--lg-shadow),0.28), 0 2px 6px rgba(var(--lg-shadow),0.14) !important;
+  }
+  .ctrl-cluster, .site-nav{
+    background:linear-gradient(180deg, rgba(var(--lg-hi),calc(var(--lg-sheen) + 0.28)), rgba(var(--lg-hi),0.12)), var(--lg-tint) !important;
+    backdrop-filter:blur(24px) saturate(1.9) !important; -webkit-backdrop-filter:blur(24px) saturate(1.9) !important;
+    border:1px solid rgba(var(--lg-hi),calc(var(--lg-rim) * 0.5)) !important; border-radius:999px !important;
+    box-shadow:inset 0 1.5px 0 rgba(var(--lg-hi),var(--lg-rim)), inset 0 -1px 0 rgba(var(--lg-hi),0.2), 0 8px 22px rgba(var(--lg-shadow),0.2) !important;
+  }
+  .ctrl-cluster, .site-nav{ --text-primary:var(--t1); --text-secondary:var(--t2); --text-tertiary:var(--t2); --accent:var(--t1); color:var(--t1); }
+  .ctrl-btn, .site-nav a{ color:var(--t1) !important; }
+  .site-nav a.active{ background:rgba(var(--lg-hi),0.28); box-shadow:inset 0 1px 0 rgba(var(--lg-hi),0.5); border-radius:999px; margin:2px; }
+  :root[data-theme="light"] .ctrl-cluster, :root[data-theme="light"] .site-nav{ --text-primary:#17233f; --text-secondary:#34415a; --text-tertiary:#5a6c93; --accent:#0f2044; color:#17233f; }
+  :root[data-theme="light"] .ctrl-btn, :root[data-theme="light"] .site-nav a{ color:#17233f !important; }
 </style>
 </head>
 <body>
@@ -6102,30 +6103,8 @@ var stopLoaderOrb = function(){};
   // from clipping to white, which is what made the light border lines vanish
   // over the Middle East and Sahara. Raise toward 0xcccccc to undo.
   var GLOBE_TINT = 0xaeb8cb;
-  // Light theme: the same grayscale earth maps, re-coloured by brightness onto paper tones (pale blue-grey sea, cream land).
-  // One shared uniform flips every globe surface at once, so relief and detail are untouched and dark mode is bit-for-bit as before.
-  var paperUniform = { value: document.documentElement.getAttribute('data-theme') === 'light' ? 1 : 0 };
-  function paperGlobe(mat){
-    mat.onBeforeCompile = function(sh){
-      sh.uniforms.uPaper = paperUniform;
-      sh.fragmentShader = 'uniform float uPaper;\n' + sh.fragmentShader.replace('#include <map_fragment>',
-        '#include <map_fragment>\n' +
-        '#ifdef USE_MAP\n' +
-        '  float pl = clamp(dot(diffuseColor.rgb, vec3(0.299, 0.587, 0.114)) / 0.68, 0.0, 1.0);\n' +
-        '  vec3 pSea  = vec3(0.60, 0.66, 0.74);\n' +
-        '  vec3 pLand = vec3(0.74, 0.70, 0.60);\n' +
-        '  vec3 pHi   = vec3(0.82, 0.78, 0.69);\n' +
-        '  vec3 pc = mix(pSea, pLand, smoothstep(0.10, 0.34, pl));\n' +
-        '  pc = mix(pc, pHi, smoothstep(0.45, 0.95, pl));\n' +
-        '  pc *= 0.88 + 0.24 * pl;\n' +
-        '  diffuseColor.rgb = mix(diffuseColor.rgb, pc, uPaper);\n' +
-        '#endif');
-    };
-    mat.customProgramCacheKey = function(){ return 'paperGlobe'; };
-    return mat;
-  }
-  window.addEventListener('we-theme', function(e){ paperUniform.value = e.detail && e.detail.light ? 1 : 0; });
-  var sphereMat = paperGlobe(new THREE.MeshPhongMaterial({ map: placeholderTexture, color: GLOBE_TINT, specular: 0x111111, shininess: 4 }));
+  // The globe renders the same in both themes (light theme only changes the page and panels around it).
+  var sphereMat = new THREE.MeshPhongMaterial({ map: placeholderTexture, color: GLOBE_TINT, specular: 0x111111, shininess: 4 });
   var globeMesh = new THREE.Mesh(sphereGeo, sphereMat);
   // Corrects the offset between three.js's default sphere UV wrap and the
   // lat/lon formula used for markers below, so texture and dots line up.
@@ -6265,11 +6244,6 @@ var stopLoaderOrb = function(){};
   // Oblique rather than head-on: relief casts no shadow under frontal light.
   sunLight.position.set(-200, 175, 165);
   scene.add(sunLight);
-  // Light theme: a softer sun so the paper-toned globe keeps its relief instead of blowing out to white.
-  var ambLight = scene.children[scene.children.length - 2];
-  function paperSun(light){ sunLight.intensity = light ? 0.78 : 1.28; if(ambLight && ambLight.isAmbientLight) ambLight.intensity = light ? 0.62 : 0.55; }
-  paperSun(paperUniform.value === 1);
-  window.addEventListener('we-theme', function(e){ paperSun(!!(e.detail && e.detail.light)); });
 
   // Studio-rendered earth textures (Orb export, web-resized) — color map + tangent-space normal map.
   var loaderEl = document.getElementById('loader');
@@ -12567,7 +12541,7 @@ var stopLoaderOrb = function(){};
       THREE.MathUtils.degToRad(90 - latTop), THREE.MathUtils.degToRad(D));
     var tex = new THREE.CanvasTexture(canvas);
     tex.anisotropy = ((PHONE_GL && !WE_FLAT_PRE) ? Math.min(4, renderer.capabilities.getMaxAnisotropy()) : renderer.capabilities.getMaxAnisotropy());
-    var mat = paperGlobe(new THREE.MeshPhongMaterial({ map: tex, color: GLOBE_TINT, specular: 0x111111, shininess: 4, transparent: true, opacity: 0 }));
+    var mat = new THREE.MeshPhongMaterial({ map: tex, color: GLOBE_TINT, specular: 0x111111, shininess: 4, transparent: true, opacity: 0 });
     var mesh = new THREE.Mesh(geo, mat);
     mesh.renderOrder = -1;             // under every fill, line and marker
     mesh.raycast = function(){};       // clicks go to the countries, not the imagery
