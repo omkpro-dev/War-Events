@@ -118,6 +118,29 @@
     el.textContent = n ? (Math.min(n, Math.round(box.scrollLeft / w) + 1)) + ' / ' + n : '';
   }
 
+  // Why It Matters: bold the actor at the start of each line, show at most three lines, extra lines sit behind a "More" toggle.
+  var WHY_ACTORS = ['United States','U.S.','US','America','Russia','Ukraine','China','Taiwan','Israel','Iran','Gaza','Palestine','Palestinians','Lebanon','Syria','Yemen','Saudi Arabia','UAE','Qatar','Turkey','Egypt','Iraq','Jordan','Pakistan','India','Afghanistan','North Korea','South Korea','Japan','Germany','France','UK','Britain','United Kingdom','Poland','Italy','Spain','Sudan','South Sudan','Libya','Chad','Ethiopia','Eritrea','Somalia','Nigeria','Kenya','Congo','Venezuela','Cuba','Brazil','Mexico','Canada','Argentina','Australia','Myanmar','Philippines','Vietnam','Indonesia','Georgia','Armenia','Azerbaijan','Serbia','Kosovo','Belarus','Moldova','Hungary','Romania','Europe','European Union','EU','NATO','UN','United Nations','OPEC','Washington','Moscow','Kyiv','Kiev','Beijing','Tehran','Jerusalem','Hamas','Hezbollah','Houthis','Kremlin','White House','Pentagon','Trump','Putin','Zelenskyy','Netanyahu','Gulf states','Middle East','Western allies'];
+  var WHY_RE = new RegExp('^((?:the\\s+)?(?:' + WHY_ACTORS.map(function(a){ return a.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }).join('|') + ')(?:\'s)?(?:\\s+(?:and|&)\\s+(?:' + WHY_ACTORS.map(function(a){ return a.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }).join('|') + ')(?:\'s)?)*)(?=[\\s,.;:\'])', 'i');
+  function WEBias_why(panel){
+    if(panel.__why) return; panel.__why = true;
+    var ul = panel.querySelector('.cb-list'); if(!ul) return;
+    var lis = [].slice.call(ul.querySelectorAll('li'));
+    lis.forEach(function(li, i){
+      var text = li.textContent.replace(/\s+/g, ' ').trim(), m = WHY_RE.exec(text);
+      if(m){   // bold the actor (country, organisation or leader) the line starts with; other lines stay plain
+        li.textContent = '';
+        var k = document.createElement('strong'); k.className = 'why-k'; k.textContent = m[1];
+        li.appendChild(k); li.appendChild(document.createTextNode(text.slice(m[1].length)));
+      }
+      if(i >= 3) li.classList.add('why-extra');
+    });
+    if(lis.length > 3){
+      var more = document.createElement('button'); more.type = 'button'; more.className = 'why-more'; more.textContent = 'More';
+      more.addEventListener('click', function(){ var open = panel.classList.toggle('why-open'); more.textContent = open ? 'Less' : 'More'; });
+      panel.appendChild(more);
+    }
+  }
+
   window.WEBias = {
     // Folds the Key Points list into the summary, so the bullets continue straight on from it (Claude writes the two together).
     mergePoints: function(root){
@@ -130,7 +153,7 @@
       sum.parentNode.insertBefore(para, sum.nextSibling); kp.parentNode.removeChild(kp);
       // Why It Matters sits straight under the summary, as plain text (it belongs to the article block, so it hides with the summary on the Bias tab)
       var why = [].filter.call(root.querySelectorAll('.cb-panel'), function(p){ var h = p.querySelector('.cb-h'); return h && /why\s*it\s*matters/i.test(h.textContent); })[0];
-      if(why) para.parentNode.insertBefore(why, para.nextSibling);
+      if(why){ para.parentNode.insertBefore(why, para.nextSibling); WEBias_why(why); }
     },
     // One-line coverage summary button for under a headline ("3 outlets · 2 regions · Broad coverage"); null if we have no outlet data.
     covLine: function(story){

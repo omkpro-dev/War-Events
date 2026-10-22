@@ -68,7 +68,7 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <!-- Focus transitions (loader reveal + page changes); upload we-transition.js alongside the pages -->
 <script src="js/we-transition.js"></script>
-<script src="js/we-bias.js?v=8"></script>
+<script src="js/we-bias.js?v=10"></script>
 
 <script>
 /* Phones get the same War Events site, laid out for a small screen (CSS under
@@ -5060,6 +5060,17 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
   html.we-phone .callout-head .rc-tab + .rc-tab{ border-left:1px solid var(--pn-line) !important; }
   /* Coverage & Bias tab: no article title and no description, only the coverage content under the tabs */
   html .rc.bias-on .cb-article, html .callout-body.rc.bias-on .cb-article{ display:none !important; }
+  /* Why It Matters: a clearly secondary block: thin accent line on the left, no bullet dots, slightly smaller and softer text, bold lead words */
+  html body .callout-body .cb-glass.cb-article .cb-panel{ border-left:2px solid rgba(var(--tn),0.4) !important; padding:2px 0 2px 12px !important; margin:16px 0 0 !important; }
+  html body .callout-body .cb-article .cb-panel .cb-h{ margin:0 0 5px !important; font:600 12.5px/1.2 'Barlow',sans-serif !important; color:var(--text-secondary) !important; }
+  .cb-article .cb-panel .cb-list{ list-style:none !important; padding:0 !important; margin:0 !important; }
+  .cb-article .cb-panel .cb-list li{ padding:0 !important; margin:0 0 6px !important; font-size:0.92em; line-height:1.4; color:var(--text-secondary); }
+  .cb-article .cb-panel .cb-list li::marker, .cb-article .cb-panel .cb-list li::before{ content:none !important; }
+  .cb-article .cb-panel .cb-list li .why-k{ color:var(--tw); font-weight:700; }
+  .cb-article .cb-panel .why-extra{ display:none; }
+  .cb-article .cb-panel.why-open .why-extra{ display:list-item; }
+  .why-more{ appearance:none; border:0; background:none; padding:2px 0; color:var(--tw); font:600 12px 'Barlow',sans-serif; text-decoration:underline; text-underline-offset:3px; cursor:pointer; }
+  html body .callout-body .cb-article .cb-panel .cb-list li:nth-child(3):not(.why-extra){ display:list-item !important; }   /* an older compact rule hid the third line */
 </style>
 </head>
 <body>
