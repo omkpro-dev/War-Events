@@ -68,6 +68,7 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <!-- Focus transitions (loader reveal + page changes); upload we-transition.js alongside the pages -->
 <script src="js/we-transition.js"></script>
+<script src="js/we-bias.js"></script>
 
 <script>
 /* Phones get the same War Events site, laid out for a small screen (CSS under
@@ -4861,6 +4862,55 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
     backdrop-filter:blur(22px) saturate(var(--lg-sat)) brightness(var(--lg-bright)) !important; -webkit-backdrop-filter:blur(22px) saturate(var(--lg-sat)) brightness(var(--lg-bright)) !important;
     border-color:rgba(var(--lg-hi),calc(var(--lg-rim) * 0.45)) !important;
   }
+  /* ---- Story header: glass strip (source badge, name and time, open-source button) ---- */
+  html.we-reel:not(.we-phone) .we-reelbox .rc-head{ display:flex; align-items:center; gap:10px; margin:0 0 12px !important; padding:9px 10px !important;
+    border-radius:8px; background:rgba(var(--c1),0.07); border:1px solid rgba(var(--c1),0.16); box-shadow:inset 0 1px 0 rgba(var(--lg-hi),0.14); }
+  .we-reelbox .rc-badge{ flex:none; width:28px; height:28px; border-radius:7px; display:flex; align-items:center; justify-content:center; background:rgba(var(--c1),0.14);
+    font:700 11px/1 'Barlow',sans-serif; letter-spacing:0.02em; color:var(--tw); }
+  .we-reelbox .rc-who{ flex:1 1 auto; min-width:0; display:flex; flex-direction:column; gap:2px; }
+  .we-reelbox .rc-out{ margin:0; font:600 12.65px/1.2 'Barlow',sans-serif; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .we-reelbox .rc-time{ font:500 11px/1.2 'Barlow',sans-serif; letter-spacing:0.02em; color:var(--text-secondary); }
+  html .we-reelbox .rc-head .rc-src{ flex:none; width:28px; height:28px; padding:0; justify-content:center; border-radius:7px; font-size:14px; line-height:1;
+    background:transparent; color:var(--t1) !important; border:1px solid rgba(var(--c1),0.3); }
+  html .we-reelbox .rc-head .rc-src:hover{ background:rgba(var(--c1),0.12); }
+  /* ---- Story | Coverage & Bias switch ---- */
+  .rc-pane[hidden]{ display:none !important; }
+  .rc-tabs{ display:grid; grid-template-columns:1fr 1fr; gap:3px; padding:3px; margin:0 0 10px; border-radius:8px; background:rgba(var(--c1),0.07); border:1px solid rgba(var(--c1),0.14); }
+  .rc-tab{ appearance:none; border:0; border-radius:6px; padding:6px 8px; background:transparent; color:var(--text-secondary); font:600 12px/1.2 'Barlow',sans-serif; cursor:pointer; }
+  .rc-tab:hover{ color:var(--tw); }
+  .rc-tab.on{ background:rgba(var(--c1),0.16); color:var(--tw); box-shadow:inset 0 1px 0 rgba(var(--lg-hi),0.2); }
+  .rc-count{ display:inline-block; margin-left:4px; padding:0 6px; border-radius:9px; background:rgba(var(--c1),0.14); font-size:10.5px; }
+  .rc-pane.story > .cmod{ margin:0 0 8px !important; }
+  /* ---- Coverage & Bias pane ---- */
+  .bias-take{ margin:2px 0 6px; font:700 17px/1.3 'Newsreader',Georgia,serif; color:var(--tw); }
+  .bias-sub{ margin:0 0 10px; font:13px/1.5 Georgia,serif; color:var(--text-secondary); }
+  .bias-facts{ display:flex; margin:0 0 10px; border:1px solid rgba(var(--c1),0.16); border-radius:8px; overflow:hidden; }
+  .bias-facts > div{ flex:1; padding:8px 9px; } .bias-facts > div + div{ border-left:1px solid rgba(var(--c1),0.16); }
+  .bias-facts b{ display:block; font:700 20px/1 'Barlow Condensed',sans-serif; color:var(--tw); } .bias-facts span{ display:block; margin-top:3px; font:500 11px/1.3 'Barlow',sans-serif; color:var(--text-secondary); }
+  .bias-sec{ margin:0 0 8px; padding:10px; border-radius:8px; border:1px solid rgba(var(--c1),0.16); background:linear-gradient(160deg, rgba(var(--g1),0.10), rgba(var(--g1),0.035)); box-shadow:inset 0 1px 0 rgba(var(--lg-hi),0.12); }
+  .bias-h{ margin:0 0 8px; font:600 12.5px/1.2 'Barlow',sans-serif; color:var(--tw); } .bias-h small{ margin-left:6px; font-weight:500; font-size:10.5px; color:var(--text-secondary); }
+  .bias-balance{ display:flex; align-items:center; gap:10px; } .bias-balance p{ margin:0; font:12.5px/1.45 Georgia,serif; color:var(--text-secondary); } .bias-balance p b{ display:block; font:600 13px 'Barlow',sans-serif; color:var(--tw); }
+  .bias-score{ flex:none; position:relative; width:48px; height:48px; border-radius:50%; display:grid; place-items:center; font:700 18px 'Barlow Condensed',sans-serif; color:var(--tw);
+    background:conic-gradient(rgba(var(--c1),0.9) calc(var(--v) * 1%), rgba(var(--c1),0.14) 0); }
+  .bias-score::before{ content:''; position:absolute; inset:4px; border-radius:50%; background:var(--n3); } .bias-score span{ position:relative; }
+  .bias-rows{ display:flex; flex-direction:column; gap:1px; }
+  .bias-row{ appearance:none; display:grid; grid-template-columns:10px 1fr 70px 20px; align-items:center; gap:7px; padding:5px; border:0; border-radius:5px; background:none; color:var(--tw); text-align:left; cursor:pointer; font:500 12px 'Barlow',sans-serif; }
+  .bias-row:hover, .bias-row.on{ background:rgba(var(--c1),0.1); }
+  .bias-row i{ width:10px; height:10px; border-radius:3px; background:var(--c); }
+  .bias-bar{ height:6px; border-radius:3px; background:rgba(var(--c1),0.1); overflow:hidden; } .bias-bar span{ display:block; height:100%; background:var(--c); border-radius:3px; }
+  .bias-n{ text-align:right; font-weight:700; }
+  .bias-row.none{ color:var(--text-secondary); cursor:default; } .bias-row.none:hover{ background:none; } .bias-row.none i{ background:transparent; border:1px dashed var(--text-tertiary); }
+  .bias-gap{ margin:6px 5px 2px; font:600 11px 'Barlow',sans-serif; color:var(--text-secondary); }
+  .bias-heads{ display:flex; flex-direction:column; gap:8px; }
+  .bias-hcard{ border-left:3px solid var(--c); padding:1px 0 1px 9px; } .bias-hcard .o{ font:600 11px 'Barlow',sans-serif; color:var(--text-secondary); } .bias-hcard .o em{ font-style:normal; font-weight:500; opacity:0.85; }
+  .bias-hcard .t{ margin-top:2px; font:13px/1.4 Georgia,serif; color:var(--tw); }
+  .bias-chip{ display:inline-block; margin-left:4px; padding:0 6px; border-radius:9px; background:rgba(var(--c1),0.12); font:600 10px 'Barlow',sans-serif; color:var(--text-secondary); vertical-align:1px; }
+  .bias-pill{ display:inline-flex; align-items:center; gap:4px; margin-left:6px; padding:1px 4px 1px 8px; border-radius:10px; background:rgba(var(--c1),0.14); font:600 11px 'Barlow',sans-serif; }
+  .bias-pill[hidden]{ display:none; } .bias-x{ appearance:none; border:0; background:none; color:inherit; font-size:14px; line-height:1; cursor:pointer; padding:0 3px; }
+  .bias-more-wrap{ margin-top:8px; } .bias-more{ appearance:none; border:0; background:none; padding:2px 0; color:var(--tw); font:600 12px 'Barlow',sans-serif; text-decoration:underline; text-underline-offset:3px; cursor:pointer; }
+  .bias-own{ display:flex; height:8px; gap:2px; border-radius:4px; overflow:hidden; margin:0 0 7px; } .bias-own span{ background:var(--c); }
+  .bias-key{ display:flex; flex-wrap:wrap; gap:3px 12px; font:500 12px 'Barlow',sans-serif; color:var(--text-secondary); } .bias-key span{ display:inline-flex; align-items:center; gap:5px; } .bias-key i{ width:9px; height:9px; border-radius:2px; background:var(--c); }
+  .bias-note{ margin:7px 0 0; font:500 11.5px/1.45 'Barlow',sans-serif; color:var(--text-secondary); }
 </style>
 </head>
 <body>
@@ -11248,9 +11298,21 @@ var stopLoaderOrb = function(){};
       var body = document.getElementById('calloutBody'), c = document.createElement('article');
       c.className = 'rc'; c.setAttribute('data-i', i);
       var src = (Array.isArray(p.outlets) && p.outlets[0]) || '';
-      c.innerHTML = '<div class="rc-head"><span class="rc-out">' + esc(src) + '</span><span class="rc-time">' + esc(window.__weFmtT(p.time)) + '</span>'
-        + (p.sourceUrl ? '<a class="rc-src source-btn" href="' + esc(p.sourceUrl) + '" target="_blank" rel="noopener noreferrer">' + esc(p.sourceLabel || 'Source') + '</a>' : '') + '</div>'
+      var ini = src.length <= 4 ? src : src.replace(/^the\s+/i, '').split(/\s+/).slice(0, 2).map(function(w){ return w.charAt(0); }).join('').toUpperCase();
+      c.innerHTML = '<div class="rc-head"><span class="rc-badge" aria-hidden="true">' + esc(ini) + '</span><span class="rc-who"><span class="rc-out">' + esc(src) + '</span><span class="rc-time">' + esc(window.__weFmtT(p.time)) + '</span></span>'
+        + (p.sourceUrl ? '<a class="rc-src source-btn" href="' + esc(p.sourceUrl) + '" target="_blank" rel="noopener noreferrer" aria-label="Open source article" title="Open source article">\u2197</a>' : '') + '</div>'
         + '<div class="callout-body rc-body">' + (body ? body.innerHTML : '') + '</div>';
+      // Story | Coverage & Bias: everything after the headline block is the Story pane; Bias is filled from the story's outlet list.
+      var rb = c.querySelector('.rc-body'), art = rb && rb.querySelector('.cb-article');
+      if(art){
+        var sp = document.createElement('div'); sp.className = 'rc-pane story';
+        while(art.nextSibling) sp.appendChild(art.nextSibling);
+        var bp = document.createElement('div'); bp.className = 'rc-pane bias'; bp.hidden = true;
+        var cnt = window.WEBias ? window.WEBias.fill(bp, p) : 0;
+        var sw = document.createElement('div'); sw.className = 'rc-tabs'; sw.setAttribute('role', 'tablist');
+        sw.innerHTML = '<button type="button" class="rc-tab on" role="tab" aria-selected="true" data-t="story">Story</button><button type="button" class="rc-tab" role="tab" aria-selected="false" data-t="bias">Coverage &amp; Bias' + (cnt ? ' <span class="rc-count">' + cnt + '</span>' : '') + '</button>';
+        rb.appendChild(sw); rb.appendChild(sp); rb.appendChild(bp);
+      }
       c.querySelectorAll('.scale').forEach(function(sc){ sc.classList.add('run'); });
       c.querySelectorAll('.scale-chip').forEach(function(ch){ if(ch.dataset.target) ch.style.left = ch.dataset.target; });
       c.querySelectorAll('[hidden]').forEach(function(el){ if(el.classList.contains('cmod') && el.querySelector('.scale-chip')) el.hidden = false; });
@@ -11335,6 +11397,14 @@ var stopLoaderOrb = function(){};
         e.preventDefault(); e.stopPropagation();
         var d = (Math.abs(e.deltaY) >= Math.abs(e.deltaX) ? e.deltaY : e.deltaX) * (e.deltaMode === 1 ? 40 : e.deltaMode === 2 ? 400 : 1);
         var ab = Math.abs(d), now = performance.now(), gap = now - wEvt; wEvt = now;
+        // A story taller than the pane (e.g. the open Coverage & Bias tab) scrolls inside itself first; the next story only after its end.
+        var kids = reel.children, cur = null, rt = reel.scrollTop;
+        for(var ki = 0; ki < kids.length; ki++){ if(kids[ki].offsetTop <= rt + 1) cur = kids[ki]; else break; }
+        if(cur && !gliding){
+          var need = d > 0 ? (cur.offsetTop + cur.offsetHeight) - (rt + reel.clientHeight) : rt - cur.offsetTop;
+          if(need > 4){ reel.style.scrollSnapType = 'none'; reel.scrollTop = rt + (d > 0 ? 1 : -1) * Math.min(ab, need); wAcc = 0; return; }
+        }
+        reel.style.scrollSnapType = '';
         clearTimeout(wIdle); wIdle = setTimeout(function(){ if(performance.now() - wMoved >= COOL_MS){ wLock = false; wAcc = 0; wAbs = 0; wMin = 1e9; } }, 120);
         if(wLock){
           if(now - wMoved < COOL_MS){ wAbs = ab; if(ab < wMin) wMin = ab; return; }   // the 1 second pause after a move

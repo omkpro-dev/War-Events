@@ -667,6 +667,8 @@ def build_story(g, now):
         # pages enrich_stories.py can read the article from (Google News links for Reuters/AP can't be read)
         "textUrls": [a["url"] for a in sorted(arts, key=rank) if a.get("url") and "news.google.com" not in a["url"]][:3],
         "outlets": outlets,
+        # every article in the cluster (outlet, time, headline), oldest first: feeds the Coverage & Bias tab
+        "coverage": [{"o": a["outlet"], "t": a["time"], "h": a["title"]} for a in sorted(arts, key=lambda x: x["time"])][:24],
         "topics": [k for k, _ in topics.most_common()],
         "score": score,
         "_keys": [a["key"] for a in arts],
