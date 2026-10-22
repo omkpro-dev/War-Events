@@ -8517,10 +8517,9 @@ var stopLoaderOrb = function(){};
     if(!area){ var g = pwGroupOf(a2), sp = 0, c = g && (g.userData._bestCentroid || g.userData.centroid); if(c && g.userData.lines){ var v = new THREE.Vector3(), cn = c.clone().normalize(); g.userData.lines.forEach(function(l){ var a = l.geometry && l.geometry.attributes.position; if(!a) return; for(var i = 0; i < a.count; i += 8){ v.fromBufferAttribute(a, i).normalize(); sp = Math.max(sp, v.angleTo(cn)); } }); } area = Math.pow(sp * 6371, 2) * 2.5; }
     window.__weZoomTo(Math.max(0.3, Math.min(1.15, 0.27 + Math.sqrt(area) / 3600))); }
   function weWorldBack(){ if(weWorldZoom !== null && window.__weZoomTo){ window.__weZoomTo(weWorldZoom); weWorldZoom = null; } }
-  var pwHist = [], pwFromPane = false;   // countries opened from inside another country's pane: closing goes back to that country
+  var pwHist = [], pwFromPane = false;   // (history is no longer used to step back on close; kept so pane-opened countries still behave the same when opening)
   function pwClose(){
-    var back = pwHist.pop(), g = back && pwGroupOf(back);
-    if(g){ pwFromPane = true; pwOpen(g, true); pwFromPane = false; return; }
+    // Closing always returns to the page default, even if this country was opened from inside another country's pane.
     pwHist = []; pwSel = null; pwApply(); pwRender(); weWorldBack(); try { hideCountryCrest(); } catch(e){} }
   window.__pwOpen = pwOpen; window.__pwT = { tab:function(t){ pwSetTab(t); }, g:pwGroupOf };
   // Power: size the left panel exactly like the Live Events panel, and give it the same Close / Open handle.
