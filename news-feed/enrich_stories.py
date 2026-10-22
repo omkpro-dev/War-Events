@@ -14,7 +14,7 @@ CACHE = os.path.join(ROOT, "news-feed", "enrich_cache.json")
 KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 MODEL = os.environ.get("CLAUDE_MODEL", "claude-haiku-5-5")
 MAX_NEW = int(os.environ.get("ENRICH_MAX", "20"))  # cap API calls per run
-PROMPT_V = 6                                        # bump to re-ask Claude for every cached story
+PROMPT_V = 7                                        # bump to re-ask Claude for every cached story
 MIN_GEO = int(os.environ.get("MIN_GEO", "7"))       # stories Claude scores below this (0-10) are dropped from the site
 UA = {"User-Agent": "Mozilla/5.0 (WarEvents enrich bot)"}
 
@@ -26,7 +26,7 @@ If the article text is missing, work from the headline and outlets and never men
 
 Return ONLY a JSON object, no prose, with:
 - "summary": the lead of the story, 1-2 plain sentences (max 40 words): what happened, who, where, and the single most important fact. Neutral, factual, no speculation beyond the reporting.
-- "points": exactly 3 bullet points that CONTINUE the summary, so that the summary followed by the three bullets reads as ONE seamless account of the article. Each bullet adds the next most important fact (names, numbers, what happens next, why it matters now). Never repeat a fact already in the summary or the headline, and never start a bullet by restating the story. Plain English a 12-year-old understands, max 16 words each, no jargon.
+- "points": exactly 3 sentences that CONTINUE the summary. The site joins them into a second paragraph straight after the summary, so the summary plus these sentences must read as one or two flowing paragraphs of ordinary prose, never as a list. Each is a complete sentence ending with a full stop (max 22 words), adds the next most important facts (names, numbers, what happens next, why it matters now), and flows from the one before it: vary how sentences begin and use natural connecting words ("Meanwhile", "As a result", "That follows", "Officials said"). Never repeat a fact already in the summary or the headline, and never restate the story. Plain English a 12-year-old understands, no jargon.
 - "impact_points": 2-4 bullet points on the potential geopolitical impact: who is affected and how. Same style: very basic, max 14 words each, grounded in the reporting.
 - "geo": integer 0-10, how geopolitical this story is. 8-10 = wars, military action between or inside states, international crises, sanctions, major diplomacy, state-level energy/trade conflicts. 5-7 = significant security or political events with clear international consequences. 0-4 = domestic regulation, consumer/business news, markets, local crime, courts, elections with no international angle, human-interest. Judge the substance, not the keywords. Human-interest and personal stories score 0-3 EVEN IF set in a war zone: individual or family experiences, couples, love stories, profiles, "life under" pieces, diaries, testimonies, culture, food, sport or art in wartime, anniversaries and explainers with no new event. Score the EVENT and its consequences for states, not the setting.
 - "actors": the impact of THIS story on each country, worked out from what the article actually says.

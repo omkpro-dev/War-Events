@@ -68,7 +68,7 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <!-- Focus transitions (loader reveal + page changes); upload we-transition.js alongside the pages -->
 <script src="js/we-transition.js"></script>
-<script src="js/we-bias.js?v=3"></script>
+<script src="js/we-bias.js?v=4"></script>
 
 <script>
 /* Phones get the same War Events site, laid out for a small screen (CSS under
@@ -5031,6 +5031,7 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
   .rc.bias-on .rc-cov{ display:none; }   /* the Bias tab already shows these numbers */
   /* summary with the key points continuing straight on from it */
   .cb-article .cb-sum + .cb-list{ margin:8px 0 0 !important; }
+  html .callout-body .cb-glass.cb-article .cb-sum.cb-sum2, html .rc-body .cb-article .cb-sum.cb-sum2{ display:block !important; margin-top:12px !important; }
 </style>
 </head>
 <body>
@@ -11436,9 +11437,6 @@ var stopLoaderOrb = function(){};
         + (p.sourceUrl ? '<a class="rc-src source-btn" href="' + esc(p.sourceUrl) + '" target="_blank" rel="noopener noreferrer" aria-label="Open source article" title="Open source article">\u2197</a>' : '') + '</div>'
         + '<div class="callout-body rc-body">' + (body ? body.innerHTML : '') + '</div>';
       if(window.WEBias && window.WEBias.mergePoints) window.WEBias.mergePoints(c);
-      // Coverage summary right under the headline ("3 outlets · 2 regions · Broad coverage"); tapping it opens Coverage & Bias.
-      var ttl = c.querySelector('.cb-article .cb-title'), cl = window.WEBias && ttl ? window.WEBias.covLine(p) : null;
-      if(cl && ttl && ttl.parentNode) ttl.parentNode.insertBefore(cl, ttl.nextSibling);
       // Place goes under the outlet name in the header (it used to sit above the headline).
       var kk = c.querySelector('.cb-kicker'), who = c.querySelector('.rc-who');
       if(kk && who){ var loc = document.createElement('span'); loc.className = 'rc-loc'; loc.textContent = kk.textContent.replace(/\s*\u00b7\s*/g, ' \u00b7 ').replace(/\s+/g, ' ').trim(); who.appendChild(loc); kk.remove(); }
@@ -11663,8 +11661,6 @@ var stopLoaderOrb = function(){};
           if(kk && pl){ var loc = kk.textContent.replace(/\s*\u00b7\s*/g, ' \u00b7 ').replace(/\s+/g, ' ').trim(); if(pl.textContent !== loc) pl.textContent = loc; }
           var rep = document.querySelector('.callout .we-rep');
           if(rep && LONG[rep.textContent.trim()]) rep.textContent = LONG[rep.textContent.trim()];
-          var ph = art.querySelector('.cb-title');
-          if(ph && !art.querySelector('.rc-cov')){ var pst = window.__weStory && window.__weStory(), pp = pst && window.__wePt && window.__wePt(pst.i), pc = pp && window.WEBias.covLine(pp); if(pc) ph.parentNode.insertBefore(pc, ph.nextSibling); }
           if(!body.querySelector('.rc-tabs')){
             if(window.WEBias.mergePoints) window.WEBias.mergePoints(body);
             var st = window.__weStory && window.__weStory(), p = st && window.__wePt && window.__wePt(st.i);

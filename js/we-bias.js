@@ -127,7 +127,10 @@
       var art = root.querySelector('.cb-article'), sum = art && art.querySelector('.cb-sum'); if(!sum) return;
       var kp = [].filter.call(root.querySelectorAll('.cb-panel'), function(p){ var h = p.querySelector('.cb-h'); return h && /key\s*points/i.test(h.textContent); })[0];
       var ul = kp && kp.querySelector('.cb-list'); if(!ul) return;
-      sum.parentNode.insertBefore(ul, sum.nextSibling); kp.parentNode.removeChild(kp);
+      // the bullets become a second paragraph (their sentences joined), so the whole thing reads as one or two paragraphs, not a list
+      var parts = [].map.call(ul.querySelectorAll('li'), function(li){ var t = li.textContent.replace(/\s+/g, ' ').trim(); return t && !/[.!?]["')\u201d]?$/.test(t) ? t + '.' : t; }).filter(Boolean);
+      var para = document.createElement('span'); para.className = 'cb-sum cb-sum2'; para.textContent = parts.join(' ');
+      sum.parentNode.insertBefore(para, sum.nextSibling); kp.parentNode.removeChild(kp);
     },
     // One-line coverage summary button for under a headline ("3 outlets · 2 regions · Broad coverage"); null if we have no outlet data.
     covLine: function(story){
