@@ -130,6 +130,8 @@
       if(hb){
         hb.addEventListener('scroll', function(){ pos(pane); }, { passive:true });
         // sideways scrolling belongs to the headlines, so it must not turn the page to the next story
+        // on phones a sideways swipe over the headlines must not flip the story card
+        ['touchstart','touchmove','touchend','pointerdown','pointermove','pointerup'].forEach(function(ev){ hb.addEventListener(ev, function(e){ e.stopPropagation(); }, { passive:true }); });
         hb.addEventListener('wheel', function(e){ if(Math.abs(e.deltaX) > Math.abs(e.deltaY)) e.stopPropagation(); }, { passive:true });
       }
       return r.count;

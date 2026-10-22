@@ -5004,6 +5004,19 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
   .bias-facts > div{ padding:11px 12px 10px; }
   .bias-facts b{ font:700 26px/1 'Newsreader',Georgia,serif !important; letter-spacing:-0.01em; }
   .bias-facts span{ margin-top:7px; font:600 10.5px/1.25 'Barlow',sans-serif !important; letter-spacing:0.08em; text-transform:uppercase; }
+  /* ---- Phone story header: outlet name with the place under it, date and the open-source arrow on the right ---- */
+  html.we-phone .callout-top.we-src-mtop .callout-top-left{ display:grid !important; grid-template-columns:minmax(0,1fr) auto; grid-template-areas:"name src" "place src"; align-items:center; column-gap:10px; row-gap:1px; overflow:visible !important; }
+  html.we-phone .callout-top.we-src-mtop .we-rep-foot{ display:contents !important; }
+  html.we-phone .callout .we-rep{ grid-area:name; font:600 15px/1.2 'Barlow',sans-serif !important; color:var(--tw); text-transform:none; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  html.we-phone .callout-top.we-src-mtop #calloutPlace{ grid-area:place; font:500 12px/1.2 'Barlow',sans-serif; letter-spacing:0; text-transform:none; color:var(--text-secondary); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  html.we-phone .callout-top.we-src-mtop #calloutSource{ grid-area:src; position:relative; width:34px; height:34px; padding:0 !important; font-size:0 !important; line-height:0 !important; display:flex; align-items:center; justify-content:center;
+    background:transparent !important; border:1px solid var(--pn-line) !important; border-radius:5px !important; }
+  html.we-phone .callout-top.we-src-mtop #calloutSource::after{ content:'\2197'; font-size:16px; line-height:1; color:var(--t2); }
+  html.we-phone .callout-top.we-src-mtop #calloutPlace{ font-size:12px !important; font-weight:500 !important; }
+  html.we-phone #calloutBody .cb-article .cb-kicker{ display:none !important; }   /* the place now sits under the outlet name in the header */
+  .rc.bias-on .cb-article{ padding-bottom:0 !important; margin-bottom:6px !important; }
+  html.we-phone .we-gmenu{ background:rgba(var(--n1),0.98) !important; }
+  html.we-phone .we-gtheme{ margin-top:4px; border-top:1px solid var(--pn-line) !important; }
 </style>
 </head>
 <body>
@@ -6261,6 +6274,8 @@ var stopLoaderOrb = function(){};
   var seaUniform = { value: document.documentElement.getAttribute('data-theme') === 'light' ? 1 : 0 };
   function navySea(mat){
     mat.onBeforeCompile = function(sh){
+      // keep the shared hook that flattens everything into the phone map (it is installed on Material.prototype later)
+      var base = THREE.Material.prototype.onBeforeCompile; if(base) base.call(this, sh);
       sh.uniforms.uDay = seaUniform;
       sh.fragmentShader = 'uniform float uDay;\n' + sh.fragmentShader.replace('#include <map_fragment>',
         '#include <map_fragment>\n' +
@@ -11605,6 +11620,43 @@ var stopLoaderOrb = function(){};
     }, { capture:true, passive:false });
   })();
 
+  // Phone: same header idea as desktop (outlet name with place under it) and the Story | Coverage & Bias switch.
+  (function(){
+    var R = document.documentElement;
+    if(!R.classList.contains('we-phone')) return;
+    var body = document.getElementById('calloutBody'); if(!body || !window.WEBias) return;
+    var LONG = { 'AP':'Associated Press', 'SCMP':'South China Morning Post', 'DW':'Deutsche Welle', 'CNA':'Channel NewsAsia', 'NPR':'National Public Radio' };
+    var busy = false;
+    function apply(){
+      if(busy) return; busy = true;
+      try {
+        var art = body.querySelector('.cb-article');
+        if(art){
+          var kk = art.querySelector('.cb-kicker'), pl = document.getElementById('calloutPlace');
+          if(kk && pl){ var loc = kk.textContent.replace(/\s*\u00b7\s*/g, ' \u00b7 ').replace(/\s+/g, ' ').trim(); if(pl.textContent !== loc) pl.textContent = loc; }
+          var rep = document.querySelector('.callout .we-rep');
+          if(rep && LONG[rep.textContent.trim()]) rep.textContent = LONG[rep.textContent.trim()];
+          if(!body.querySelector('.rc-tabs')){
+            var st = window.__weStory && window.__weStory(), p = st && window.__wePt && window.__wePt(st.i);
+            if(p){
+              var sp = document.createElement('div'); sp.className = 'rc-pane story';
+              while(art.nextSibling) sp.appendChild(art.nextSibling);
+              var bp = document.createElement('div'); bp.className = 'rc-pane bias'; bp.hidden = true;
+              var cnt = window.WEBias.fill(bp, p);
+              var sw = document.createElement('div'); sw.className = 'rc-tabs'; sw.setAttribute('role', 'tablist');
+              sw.innerHTML = '<button type="button" class="rc-tab on" role="tab" aria-selected="true" data-t="story">Story</button><button type="button" class="rc-tab" role="tab" aria-selected="false" data-t="bias">Coverage &amp; Bias' + (cnt ? ' <span class="rc-count">' + cnt + '</span>' : '') + '</button>';
+              body.appendChild(sw); body.appendChild(sp); body.appendChild(bp);
+              body.classList.remove('bias-on'); body.classList.add('rc');   // lets the shared tab handler toggle the Bias view
+            }
+          }
+        }
+      } catch(e){}
+      busy = false;
+    }
+    new MutationObserver(function(){ clearTimeout(apply._t); apply._t = setTimeout(apply, 30); }).observe(body, { childList:true });
+    setTimeout(apply, 600);
+  })();
+
   // Desktop: put each tab inside its pane (one object)
   (function(){
     if(document.documentElement.classList.contains('we-phone')) return;
@@ -15869,6 +15921,14 @@ var stopLoaderOrb = function(){};
       b.addEventListener('click', function(){ if(g.soon) return; o.click(); syncGlobe(); setGMenu(false); });
       gmenu.appendChild(b);
     });
+    // Day / night switch lives here on phones (the desktop buttons are hidden at this width)
+    var themeBtn = document.getElementById('themeToggle');
+    if(themeBtn){
+      var tRow = document.createElement('button'); tRow.type = 'button'; tRow.className = 'we-gopt we-gtheme'; tRow.innerHTML = '<b></b><small></small><i></i>';
+      var syncTheme = function(){ var light = document.documentElement.getAttribute('data-theme') === 'light'; tRow.querySelector('b').textContent = light ? 'Night mode' : 'Day mode'; tRow.querySelector('small').textContent = light ? 'Switch to the dark theme' : 'Switch to the white theme'; };
+      tRow.addEventListener('click', function(){ themeBtn.click(); syncTheme(); setGMenu(false); });
+      gmenu.appendChild(tRow); syncTheme(); window.addEventListener('we-theme', syncTheme);
+    }
     document.body.appendChild(gshade); document.body.appendChild(gmenu);
     function syncGlobe(){
       var cur = opts.filter(function(o){ return o.getAttribute('aria-pressed') === 'true'; })[0] || opts[0];
