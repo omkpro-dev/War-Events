@@ -5141,6 +5141,15 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
   .callout-body:has(#calloutImpact:not([hidden])) .cb-article > .cb-panel:last-child{ margin-bottom:0 !important; border-bottom:none !important; border-bottom-left-radius:0 !important; border-bottom-right-radius:0 !important; }
   .callout-body #calloutImpact:not([hidden]){ margin-top:0 !important; border-top:1px solid rgba(255,250,240,.16) !important; border-top-left-radius:0 !important; border-top-right-radius:0 !important; background:rgba(255,250,240,.07) !important; }
   :root[data-theme="light"] .callout-body #calloutImpact:not([hidden]){ border-top-color:rgba(var(--tn),.16) !important; }
+
+  /* Tabs: no lines around the three buttons, no arrow on Source */
+  .rc-tabs, html.we-phone .callout-head .rc-tabs, html.we-reel:not(.we-phone) .we-reelbox .rc-tabs{ border:0 !important; border-bottom:0 !important; box-shadow:none !important; }
+  .rc-tabs .rc-tab, html.we-reel:not(.we-phone) .we-reelbox .rc-tab + .rc-tab, html.we-phone .callout-head .rc-tab + .rc-tab{ border:0 !important; border-left:0 !important; }
+  .rc-tabs .rc-tab-src::after{ content:none !important; }
+  /* Phone: header, ticker and sheets share the desktop panel colour */
+  html.we-phone header, html.we-phone .ticker, html.we-phone #ticker, html.we-phone .callout-box, html.we-phone .reports-panel{ background:var(--pn-bg) !important; background-image:none !important; }
+  /* Why It Matters + spectrum: identical edges so they read as one box */
+  .callout-body #calloutImpact:not([hidden]){ margin-left:2px !important; margin-right:2px !important; }
 </style>
 </head>
 <body>
@@ -15142,7 +15151,7 @@ var stopLoaderOrb = function(){};
     rep = rk >= 0 ? rep.slice(rk) : '';
     if(weRepEl){
       // just the main outlet's name, next to the Source button
-      var mainSrc = (Array.isArray(p.outlets) && p.outlets[0]) || ((rep.match(/Reported by:?\s*<\/b>\s*([^<]+?)(?:\.\s|\.?$|<)/i) || [])[1] || '');
+      var mainSrc = ((Array.isArray(p.coverage) && p.sourceUrl && (p.coverage.filter(function(c){ return c && c.u === p.sourceUrl; })[0] || {}).o) || (Array.isArray(p.outlets) && p.outlets[0])) || ((rep.match(/Reported by:?\s*<\/b>\s*([^<]+?)(?:\.\s|\.?$|<)/i) || [])[1] || '');
       weRepEl.textContent = String(mainSrc).replace(/&amp;/g, '&').trim();
     }
     if(weMediaEl) weFillMedia(p);

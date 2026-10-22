@@ -639,7 +639,8 @@ def build_story(g, now):
     if rolled:
         first = min(pool, key=lambda a: a["time"])
     outlets = []
-    for a in sorted(arts, key=rank):
+    # the outlet named on the story is always the one its Source link opens, so rep goes first
+    for a in [rep] + sorted(arts, key=rank):
         if a["outlet"] not in outlets:
             outlets.append(a["outlet"])
     topics = Counter()
@@ -665,7 +666,7 @@ def build_story(g, now):
         "isNew": now - t < timedelta(hours=NEW_HOURS),
         "sourceUrl": rep["url"], "sourceLabel": "Source",
         # pages enrich_stories.py can read the article from (Google News links for Reuters/AP can't be read)
-        "textUrls": [a["url"] for a in sorted(arts, key=rank) if a.get("url") and "news.google.com" not in a["url"]][:3],
+        "textUrls": [a["url"] for a in [rep] + sorted(arts, key=rank) if a.get("url") and "news.google.com" not in a["url"]][:3],
         "outlets": outlets,
         # every article in the cluster (outlet, time, headline), oldest first: feeds the Coverage & Bias tab
         "coverage": [dict({"o": a["outlet"], "t": a["time"], "h": a["title"]}, **({"u": a["url"]} if a.get("url") and "news.google.com" not in a["url"] else {})) for a in sorted(arts, key=lambda x: x["time"])][:24],
