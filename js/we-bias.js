@@ -227,6 +227,7 @@
     var cov = t.closest('.rc-cov');
     if(cov){ var host = cov.closest('.rc'); var bt = host && host.querySelector('.rc-tab[data-t=bias]'); if(bt) bt.click(); return; }
     var tab = t.closest('.rc-tab');
+    if(tab && tab.classList.contains('rc-tab-src')) return;   // the Source tab is a plain link
     if(tab){
       var rc = tab.closest('.rc') || (tab.closest('.callout-head') && document.getElementById('calloutBody')); if(!rc) return;   // on phones the tabs live in the header, outside the story body
       var bias = tab.dataset.t === 'bias';

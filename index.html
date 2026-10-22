@@ -68,7 +68,7 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <!-- Focus transitions (loader reveal + page changes); upload we-transition.js alongside the pages -->
 <script src="js/we-transition.js"></script>
-<script src="js/we-bias.js?v=15"></script>
+<script src="js/we-bias.js?v=16"></script>
 
 <script>
 /* Phones get the same War Events site, laid out for a small screen (CSS under
@@ -5095,6 +5095,23 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
   /* Why It Matters: regular weight, no bold lettering */
   html body .callout-body .cb-article .cb-panel .cb-list li, html body .callout-body .cb-article .cb-panel .cb-list li .why-k{ font-weight:400 !important; }
   html body .callout-body .cb-article .cb-panel .cb-list li .why-k{ color:inherit !important; }
+  /* Why It Matters back in a box: the same matt tint, outline and corners as the impact spectrum */
+  html body .callout-body .cb-glass.cb-article .cb-panel{
+    background:rgba(var(--tn),0.07) !important; border:1px solid rgba(var(--tn),0.16) !important; border-radius:5px !important; box-shadow:none !important;
+    padding:12px 14px 8px !important; margin:16px 0 0 !important; }
+  html body .callout-body .cb-article .cb-panel .cb-h{ color:var(--tw) !important; }
+  /* Three equal tabs: Story | Coverage & Bias | Source (the source tab is a link to the original article) */
+  .rc-tabs{ grid-template-columns:none !important; grid-auto-flow:column; grid-auto-columns:minmax(0,1fr); }
+  .rc-tabs .rc-tab-src{ display:flex; align-items:center; justify-content:center; text-decoration:none; }
+  .rc-tabs .rc-tab-src::after{ content:'\2197'; margin-left:5px; font-size:13px; line-height:1; }
+  /* Header: the place sits to the right of the outlet name, on one line */
+  html.we-reel:not(.we-phone) .we-reelbox .rc-who{ flex-direction:row !important; align-items:baseline; gap:10px; flex-wrap:nowrap; }
+  html.we-reel:not(.we-phone) .we-reelbox .rc-loc{ white-space:nowrap; overflow:hidden; text-overflow:ellipsis; min-width:0; }
+  html.we-phone .callout-top.we-src-mtop .callout-top-left{ grid-template-columns:auto minmax(0,1fr) !important; grid-template-areas:"name place" !important; column-gap:10px !important; }
+  html.we-phone .callout-top.we-src-mtop #calloutSource{ display:none !important; }
+  html.we-phone .callout-top.we-src-mtop #calloutPlace{ align-self:baseline; }
+  html.we-phone .callout-head .rc-tab{ white-space:nowrap; font-size:11.5px; padding:12px 4px !important; }
+  html.we-phone .callout-head .rc-tab .rc-count{ margin-left:3px; padding:0 5px; }
 </style>
 </head>
 <body>
@@ -11505,7 +11522,7 @@ var stopLoaderOrb = function(){};
       var plc = String(p.place || '').split(',')[0].toLowerCase().replace(/(^|\s)\S/g, function(m){ return m.toUpperCase(); });
       var ini = src.length <= 4 ? src : src.replace(/^the\s+/i, '').split(/\s+/).slice(0, 2).map(function(w){ return w.charAt(0); }).join('').toUpperCase();
       c.innerHTML = '<div class="rc-head"><span class="rc-who"><span class="rc-out">' + esc(LONG[src] || src) + '</span></span><span class="rc-time" title="' + esc(window.__weFmtT(p.time)) + '">' + esc(rcAgo(p.time)) + '</span>'
-        + (p.sourceUrl ? '<a class="rc-src source-btn" href="' + esc(p.sourceUrl) + '" target="_blank" rel="noopener noreferrer" aria-label="Open source article" title="Open source article">\u2197</a>' : '') + '</div>'
+        + '</div>'
         + '<div class="callout-body rc-body">' + (body ? body.innerHTML : '') + '</div>';
       if(window.WEBias && window.WEBias.mergePoints) window.WEBias.mergePoints(c);
       // Place goes under the outlet name in the header (it used to sit above the headline).
@@ -11519,7 +11536,7 @@ var stopLoaderOrb = function(){};
         var bp = document.createElement('div'); bp.className = 'rc-pane bias'; bp.hidden = true;
         var cnt = window.WEBias ? window.WEBias.fill(bp, p) : 0;
         var sw = document.createElement('div'); sw.className = 'rc-tabs'; sw.setAttribute('role', 'tablist');
-        sw.innerHTML = '<button type="button" class="rc-tab on" role="tab" aria-selected="true" data-t="story">Story</button><button type="button" class="rc-tab" role="tab" aria-selected="false" data-t="bias">Coverage &amp; Bias' + (cnt ? ' <span class="rc-count">' + cnt + '</span>' : '') + '</button>';
+        sw.innerHTML = '<button type="button" class="rc-tab on" role="tab" aria-selected="true" data-t="story">Story</button><button type="button" class="rc-tab" role="tab" aria-selected="false" data-t="bias">Coverage &amp; Bias' + (cnt ? ' <span class="rc-count">' + cnt + '</span>' : '') + '</button>' + (p.sourceUrl ? '<a class="rc-tab rc-tab-src" href="' + esc(p.sourceUrl) + '" target="_blank" rel="noopener noreferrer" title="Read the original article">Source</a>' : '');
         rb.insertBefore(sw, art); rb.appendChild(sp); rb.appendChild(bp);   // Story / Coverage & Bias sit just above the headline
       }
       c.querySelectorAll('.scale').forEach(function(sc){ sc.classList.add('run'); });
@@ -11734,6 +11751,7 @@ var stopLoaderOrb = function(){};
     var body = document.getElementById('calloutBody'); if(!body || !window.WEBias) return;
     var LONG = { 'AP':'Associated Press', 'SCMP':'South China Morning Post', 'DW':'Deutsche Welle', 'CNA':'Channel NewsAsia', 'NPR':'National Public Radio' };
     var busy = false;
+    var esc = function(x){ return String(x == null ? '' : x).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;'); };
     function apply(){
       if(busy) return; busy = true;
       try {
@@ -11752,7 +11770,7 @@ var stopLoaderOrb = function(){};
               var bp = document.createElement('div'); bp.className = 'rc-pane bias'; bp.hidden = true;
               var cnt = window.WEBias.fill(bp, p);
               var sw = document.createElement('div'); sw.className = 'rc-tabs'; sw.setAttribute('role', 'tablist');
-              sw.innerHTML = '<button type="button" class="rc-tab on" role="tab" aria-selected="true" data-t="story">Story</button><button type="button" class="rc-tab" role="tab" aria-selected="false" data-t="bias">Coverage &amp; Bias' + (cnt ? ' <span class="rc-count">' + cnt + '</span>' : '') + '</button>';
+              sw.innerHTML = '<button type="button" class="rc-tab on" role="tab" aria-selected="true" data-t="story">Story</button><button type="button" class="rc-tab" role="tab" aria-selected="false" data-t="bias">Coverage &amp; Bias' + (cnt ? ' <span class="rc-count">' + cnt + '</span>' : '') + '</button>' + (p.sourceUrl ? '<a class="rc-tab rc-tab-src" href="' + esc(p.sourceUrl) + '" target="_blank" rel="noopener noreferrer" title="Read the original article">Source</a>' : '');
               var hd = document.querySelector('.callout-head'), pg = document.getElementById('calloutProgress');
               [].forEach.call(document.querySelectorAll('.callout-head .rc-tabs'), function(o){ o.parentNode.removeChild(o); });
               if(hd){ hd.insertBefore(sw, pg || null); } else { body.insertBefore(sw, art); }
