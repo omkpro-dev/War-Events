@@ -6268,7 +6268,7 @@ var stopLoaderOrb = function(){};
         '  float dl = dot(diffuseColor.rgb, vec3(0.299, 0.587, 0.114));\n' +
         '  float blueLead = diffuseColor.b - max(diffuseColor.r, diffuseColor.g);\n' +
         '  float sea = smoothstep(0.0, 0.03, blueLead) * (1.0 - smoothstep(0.16, 0.30, dl)) * uDay;\n' +
-        '  vec3 seaCol = vec3(0.16, 0.37, 0.66) * (0.92 + 0.9 * dl);\n' +
+        '  vec3 seaCol = vec3(0.094, 0.149, 0.290);\n' +
         '  diffuseColor.rgb = mix(diffuseColor.rgb, seaCol, sea);\n' +
         '#endif');
     };
@@ -12649,8 +12649,8 @@ var stopLoaderOrb = function(){};
   // Day / night globe. Day uses the saved Blue Marble (images/globe/earth-day-*.jpg), brighter-but-softer light, and hides the grey hi-res tile overlay.
   function applyGlobeTheme(light){
     seaUniform.value = light ? 1 : 0;
-    sunLight.intensity = light ? 0.8 : 1.28;
-    scene.children.forEach(function(o){ if(o.isAmbientLight) o.intensity = light ? 0.78 : 0.55; });
+    sunLight.intensity = light ? 0 : 1.28;   // day: no sun, even light, so the map shows its true colours
+    scene.children.forEach(function(o){ if(o.isAmbientLight) o.intensity = light ? 1.0 : 0.55; });
     tileGroup.visible = !light;
     sphereMat.color.setHex(light ? 0xffffff : GLOBE_TINT);
     if(light){
