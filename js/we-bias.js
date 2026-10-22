@@ -145,15 +145,20 @@
     // Folds the Key Points list into the summary, so the bullets continue straight on from it (Claude writes the two together).
     mergePoints: function(root){
       var art = root.querySelector('.cb-article'), sum = art && art.querySelector('.cb-sum'); if(!sum) return;
+      // the bot writes the summary as one or two paragraphs separated by a blank line: make them real paragraphs, not <br><br>
+      var last = sum, chunks = sum.innerHTML.split(/(?:<br\s*\/?>\s*){2,}/i).filter(function(x){ return x.trim(); });
+      if(chunks.length > 1){
+        sum.innerHTML = chunks[0];
+        chunks.slice(1).forEach(function(h){ var sp = document.createElement('span'); sp.className = 'cb-sum cb-sum2'; sp.innerHTML = h; last.parentNode.insertBefore(sp, last.nextSibling); last = sp; });
+      }
       var panels = [].slice.call(root.querySelectorAll('.cb-panel'));
       var kp = panels.filter(function(p){ var h = p.querySelector('.cb-h'); return h && /key\s*points/i.test(h.textContent); })[0];
-      var last = sum;
       var ul = kp && kp.querySelector('.cb-list');
       if(ul){
         // older stories: the key points become a second paragraph (their sentences joined), so it reads as prose, not a list
         var parts = [].map.call(ul.querySelectorAll('li'), function(li){ var t = li.textContent.replace(/\s+/g, ' ').trim(); return t && !/[.!?]["')\u201d]?$/.test(t) ? t + '.' : t; }).filter(Boolean);
         var para = document.createElement('span'); para.className = 'cb-sum cb-sum2'; para.textContent = parts.join(' ');
-        sum.parentNode.insertBefore(para, sum.nextSibling); kp.parentNode.removeChild(kp); last = para;
+        last.parentNode.insertBefore(para, last.nextSibling); kp.parentNode.removeChild(kp); last = para;
       }
       // Why It Matters sits straight under the summary, as plain text (it belongs to the article block, so it hides with the summary on the Bias tab)
       var why = panels.filter(function(p){ var h = p.querySelector('.cb-h'); return h && /why\s*it\s*matters/i.test(h.textContent); })[0];

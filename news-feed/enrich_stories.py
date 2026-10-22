@@ -14,7 +14,7 @@ CACHE = os.path.join(ROOT, "news-feed", "enrich_cache.json")
 KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 MODEL = os.environ.get("CLAUDE_MODEL", "claude-haiku-5-5")
 MAX_NEW = int(os.environ.get("ENRICH_MAX", "20"))  # cap API calls per run
-PROMPT_V = 8                                        # bump to re-ask Claude for every cached story
+PROMPT_V = 9                                        # bump to re-ask Claude for every cached story
 MIN_GEO = int(os.environ.get("MIN_GEO", "7"))       # stories Claude scores below this (0-10) are dropped from the site
 UA = {"User-Agent": "Mozilla/5.0 (WarEvents enrich bot)"}
 
@@ -30,6 +30,7 @@ HOW TO WRITE (applies to "headline", "summary" and "impact_points"):
 - No direct quotes. If the exact words are the news, quote at most four words, in quotation marks, attributed.
 - Wire services (Reuters, AP, AFP, Bloomberg): rewrite especially heavily. Treat them as a source of facts only, and make sure nothing reads like their copy.
 - Be accurate to the sources: names, numbers, places and dates. Add nothing they do not support.
+- Never describe your own sourcing in the text (no "reporting was drawn from Reuters", "according to the articles provided", "sources say we read"). Attribute only claims, to whoever made them.
 
 Return ONLY a JSON object, no prose, with:
 - "headline": your own headline: accurate, neutral and specific, max 15 words, sentence case, no quotation marks, no clickbait, and no wording copied from any source headline.

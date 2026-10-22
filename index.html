@@ -68,7 +68,7 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <!-- Focus transitions (loader reveal + page changes); upload we-transition.js alongside the pages -->
 <script src="js/we-transition.js"></script>
-<script src="js/we-bias.js?v=11"></script>
+<script src="js/we-bias.js?v=12"></script>
 
 <script>
 /* Phones get the same War Events site, laid out for a small screen (CSS under
@@ -5083,6 +5083,13 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
   html body .callout-body .cb-article .cb-panel .cb-list li{ position:relative; padding-left:19px !important; }
   html body .callout-body .cb-article .cb-panel .cb-list li::before{ content:'' !important; position:absolute; left:1px; top:0.42em; width:12px; height:10px; background:var(--text-secondary); opacity:0.9;
     -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 500'%3E%3Cpath fill-rule='evenodd' d='M125 35L575 250L222 250Z M165 80L500 236L240 236Z'/%3E%3Cpath d='M222 250L575 250L125 465Z'/%3E%3C/svg%3E") center/contain no-repeat; mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 500'%3E%3Cpath fill-rule='evenodd' d='M125 35L575 250L222 250Z M165 80L500 236L240 236Z'/%3E%3Cpath d='M222 250L575 250L125 465Z'/%3E%3C/svg%3E") center/contain no-repeat; }
+  /* Newspaper typography: justified columns with automatic hyphenation, so lines end flush instead of ragged */
+  html body .callout-body .cb-glass.cb-article .cb-sum, html body .callout-body .cb-glass.cb-article .cb-sum.cb-sum2,
+  html body .callout-body .cb-article .cb-panel .cb-list li{
+    text-align:justify !important; text-justify:inter-word; -webkit-hyphens:auto; hyphens:auto; hyphenate-limit-chars:6 3 3; hyphenate-limit-lines:2;
+    text-wrap:pretty; line-height:1.52 !important; letter-spacing:0.003em; font-kerning:normal; font-feature-settings:'kern','liga'; }
+  html body .callout-body .cb-glass.cb-article .cb-sum{ margin-bottom:0 !important; }
+  html body .callout-body .cb-glass.cb-article .cb-sum + .cb-sum2{ margin-top:0.85em !important; }
 </style>
 </head>
 <body>
