@@ -5197,7 +5197,6 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
   html.we-phone header .logo-lockup{ align-self:center; }
   html.we-phone .we-mapbtn{ width:30px; height:30px; }
   html.we-phone .callout-top .we-share, html.we-phone .callout-top.we-src-mtop .we-share{ width:32px !important; height:32px !important; border-radius:5px !important; }
-  html.we-phone .we-lane, html.we-phone .we-lane.we-scrub{ display:none !important; }
   html.we-phone.we-nomap .callout, html.we-phone.we-nomap .right-rail{ top:var(--we-top) !important; }
   /* iPhone glass: translucent, blurred, bright hairline and top highlight */
   html.we-phone .callout-head .rc-tabs .rc-tab, html.we-phone .callout-head .rc-tab + .rc-tab{
@@ -5224,6 +5223,9 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
   html.we-phone .callout-body .cb-panel li + li, html.we-phone .callout-body .cb-list li + li{ margin-top:8px !important; }
   html.we-phone #calloutProgress{ display:none !important; }
   html.we-phone .callout-body .cb-panel ul, html.we-phone .callout-body .cb-list{ padding-left:0 !important; margin-left:0 !important; list-style:none !important; }
+
+  /* Phone sheets run edge to edge: no left/right border line */
+  html.we-phone .callout-box, html.we-phone .reports-panel, html.we-phone .country-panel{ border-left:0 !important; border-right:0 !important; }
 </style>
 </head>
 <body>
