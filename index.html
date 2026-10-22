@@ -5065,7 +5065,7 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
   html body .callout-body .cb-article .cb-panel .cb-h{ margin:0 0 5px !important; font:600 12.5px/1.2 'Barlow',sans-serif !important; color:var(--text-secondary) !important; }
   .cb-article .cb-panel .cb-list{ list-style:none !important; padding:0 !important; margin:0 !important; }
   .cb-article .cb-panel .cb-list li{ padding:0 !important; margin:0 0 6px !important; font-size:0.92em; line-height:1.4; color:var(--text-secondary); }
-  .cb-article .cb-panel .cb-list li::marker, .cb-article .cb-panel .cb-list li::before{ content:none !important; }
+  .cb-article .cb-panel .cb-list li::marker{ content:none !important; }
   .cb-article .cb-panel .cb-list li .why-k{ color:var(--tw); font-weight:700; }
   .cb-article .cb-panel .why-extra{ display:none; }
   .cb-article .cb-panel.why-open .why-extra{ display:list-item; }
@@ -5078,6 +5078,11 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
   html body #calloutImpact, html body #calloutImpact.cmod, html body .rc-pane #calloutImpact{
     background:rgba(var(--tn),0.07) !important; background-image:none !important; border:1px solid rgba(var(--tn),0.16) !important; border-radius:5px !important;
     box-shadow:none !important; backdrop-filter:none !important; -webkit-backdrop-filter:none !important; }
+  /* Why It Matters: an arrow-head marker on every line (outlined top, solid bottom) instead of a vertical line */
+  html body .callout-body .cb-glass.cb-article .cb-panel{ border-left:0 !important; padding:2px 0 2px 0 !important; }
+  html body .callout-body .cb-article .cb-panel .cb-list li{ position:relative; padding-left:19px !important; }
+  html body .callout-body .cb-article .cb-panel .cb-list li::before{ content:'' !important; position:absolute; left:1px; top:0.42em; width:12px; height:10px; background:var(--text-secondary); opacity:0.9;
+    -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 500'%3E%3Cpath fill-rule='evenodd' d='M125 35L575 250L222 250Z M165 80L500 236L240 236Z'/%3E%3Cpath d='M222 250L575 250L125 465Z'/%3E%3C/svg%3E") center/contain no-repeat; mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 500'%3E%3Cpath fill-rule='evenodd' d='M125 35L575 250L222 250Z M165 80L500 236L240 236Z'/%3E%3Cpath d='M222 250L575 250L125 465Z'/%3E%3C/svg%3E") center/contain no-repeat; }
 </style>
 </head>
 <body>
