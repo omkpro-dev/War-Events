@@ -5178,6 +5178,16 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
   html.we-phone .callout-top-left .we-roll{ animation:weRoll 7s ease-in-out infinite alternate; }
   @keyframes weRoll{ 0%,18%{ text-indent:0; } 82%,100%{ text-indent:var(--roll, 0px); } }
   html.we-phone .we-x{ top:7px !important; }
+
+  /* Phone Events + Feed use the desktop typefaces: Georgia body copy, Barlow labels */
+  html.we-phone .callout-body .cb-sum, html.we-phone .cb-sum{ font-family:Georgia,"Times New Roman",serif !important; font-size:15px !important; line-height:1.5 !important; letter-spacing:0 !important; }
+  html.we-phone .callout-body .cb-panel li, html.we-phone .cb-list li{ font-family:Georgia,"Times New Roman",serif !important; font-size:14.5px !important; line-height:1.5 !important; letter-spacing:0 !important; }
+  html.we-phone .cb-h{ font-size:13px !important; letter-spacing:0.02em !important; }
+  html.we-phone .reports-body .tweet-text{ font-family:Georgia,"Times New Roman",serif !important; font-size:14.5px !important; line-height:1.5 !important; }
+  html.we-phone .reports-panel > .we-feedhead span, html.we-phone .reports-panel > .we-feedhead b{ font-family:'Barlow',sans-serif !important; font-size:14.5px !important; text-transform:none; letter-spacing:0; }
+  html.we-phone .reports-panel > .we-feedhead span{ font-weight:700 !important; }
+  html.we-phone .reports-panel > .we-feedhead b{ font-weight:400 !important; margin-left:8px; }
+  html.we-phone .callout-top-left .we-rep{ font-size:13.5px !important; letter-spacing:0 !important; }
 </style>
 </head>
 <body>
