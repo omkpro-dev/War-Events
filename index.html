@@ -11239,18 +11239,20 @@ var stopLoaderOrb = function(){};
       if(strip){ var s2 = strip.cloneNode(false); strip.parentNode.replaceChild(s2, strip); strip = s2;   // drop the old strip handlers
         strip.addEventListener('click', function(e){ var b = e.target.closest && e.target.closest('.we-dseg'); if(b){ e.stopPropagation(); go(+b.getAttribute('data-i')); } }); }
       reel.addEventListener('scroll', onScroll, { passive:true });
-      // Wheel / trackpad: a small push (12px) moves one story straight away. A flick's fading momentum is ignored, but a
-      // NEW push is recognised at once (the scroll gets stronger again, a mouse-wheel click after a pause, or a change of
-      // direction), so quick flicks move quickly. Native scrolling is blocked; the glide keeps each story aligned.
+      // Wheel / trackpad: a small push (12px) moves exactly one story, however hard the scroll. Then everything is
+      // ignored for 1 second, and after that the rest of the same flick (its fading momentum) still is; the next
+      // NEW push (the scroll gets stronger again, a mouse-wheel click after a pause, or a change of direction) moves on.
+      var COOL_MS = 1000;
       var wAcc = 0, wLock = false, wIdle = 0, wAbs = 0, wMin = 1e9, wMoved = 0, wDir = 0, wEvt = 0;
       reel.addEventListener('wheel', function(e){
         e.preventDefault(); e.stopPropagation();
         var d = (Math.abs(e.deltaY) >= Math.abs(e.deltaX) ? e.deltaY : e.deltaX) * (e.deltaMode === 1 ? 40 : e.deltaMode === 2 ? 400 : 1);
         var ab = Math.abs(d), now = performance.now(), gap = now - wEvt; wEvt = now;
-        clearTimeout(wIdle); wIdle = setTimeout(function(){ wLock = false; wAcc = 0; wAbs = 0; wMin = 1e9; }, 120);
+        clearTimeout(wIdle); wIdle = setTimeout(function(){ if(performance.now() - wMoved >= COOL_MS){ wLock = false; wAcc = 0; wAbs = 0; wMin = 1e9; } }, 120);
         if(wLock){
+          if(now - wMoved < COOL_MS){ wAbs = ab; if(ab < wMin) wMin = ab; return; }   // the 1 second pause after a move
           if(ab < wMin) wMin = ab;
-          var fresh = now - wMoved > 140 && (gap > 90 || (ab > 4 && (d > 0 ? 1 : -1) !== wDir) || (ab > 8 && ab > wMin * 2.5 && ab > wAbs * 1.5));
+          var fresh = gap > 90 || (ab > 4 && (d > 0 ? 1 : -1) !== wDir) || (ab > 8 && ab > wMin * 2.5 && ab > wAbs * 1.5);
           if(!fresh){ wAbs = ab; return; }
           wLock = false; wAcc = 0;
         }
