@@ -5130,6 +5130,11 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
   html.we-phone.we-nomap .callout-box, html.we-phone.we-nomap.we-sheet-set .callout-box{ height:100% !important; max-height:none !important; }
   html.we-phone.we-nomap .right-rail, html.we-phone.we-nomap.we-sheet-set .right-rail{ top:calc(var(--we-top) + 8px) !important; height:auto !important; }
   html.we-phone.we-nomap .we-grab, html.we-phone.we-nomap .we-deck-count{ display:none !important; }
+
+  /* Feed cards: source sits beside the flags, time on the right of the same row */
+  .report-block .report-top{ gap:10px; margin-bottom:8px; }
+  .report-block .we-src-top{ font-family:'Barlow',sans-serif; font-size:12.65px; font-weight:400; color:var(--t1); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; min-width:0; margin-left:4px; }
+  .report-block .we-ago-top{ font-family:'Barlow',sans-serif; font-style:normal; font-weight:700; font-size:13px; color:var(--text-primary, var(--t1)); white-space:nowrap; flex:none; }
 </style>
 </head>
 <body>
@@ -14276,13 +14281,12 @@ var stopLoaderOrb = function(){};
           '<div class="report-top">' +
             '<span class="report-name-group">' + flagHtml +
               (it.subject ? '<span class="report-name">' + it.subject + '</span>' : '') +
+              '<span class="we-src we-src-top">' + sourceLine + '</span>' +
             '</span>' +
-            '<span class="report-cat' + (it.severity ? ' ' + it.severity : '') + '">' +
-              severityLabel + '</span>' +
+            '<b class="we-ago we-ago-top">' + hoursAgo(it.time) + '</b>' +
           '</div>' +
           '<' + cardTag + ' class="tweet-card"' + cardAttrs + '><div class="tweet-body">' +
             '<p class="tweet-text">' + tidyFeedText(stripTags(it.text)) + '</p>' +
-            '<p class="tweet-source-cite"><b class="we-ago">' + hoursAgo(it.time) + '</b><span class="we-src">' + sourceLine + '</span></p>' +
           '</div></' + cardTag + '>' +
         '</div>';
     }).join('');
