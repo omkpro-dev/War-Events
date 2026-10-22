@@ -224,7 +224,15 @@
         // sideways scrolling belongs to the headlines, so it must not turn the page to the next story
         // on phones a sideways swipe over the headlines must not flip the story card
         ['touchstart','touchmove','touchend','pointerdown','pointermove','pointerup'].forEach(function(ev){ hb.addEventListener(ev, function(e){ e.stopPropagation(); }, { passive:true }); });
-        hb.addEventListener('wheel', function(e){ if(Math.abs(e.deltaX) > Math.abs(e.deltaY)) e.stopPropagation(); }, { passive:true });
+        var wrapT = 0;
+        hb.addEventListener('wheel', function(e){
+          if(Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
+          e.stopPropagation();
+          // infinite: pushing past either end wraps round to the other
+          var max = hb.scrollWidth - hb.clientWidth, now = Date.now();
+          if(now - wrapT < 700) return;
+          if((e.deltaX > 0 && hb.scrollLeft >= max - 2) || (e.deltaX < 0 && hb.scrollLeft <= 2)){ wrapT = now; hb.scrollTo({ left:e.deltaX > 0 ? 0 : max, behavior:'smooth' }); }
+        }, { passive:true });
       }
       return r.count;
     }
@@ -255,7 +263,7 @@
     if(dir){
       var hb = pane.querySelector('.bias-heads'), c = hb.firstElementChild;
       if(c){ var stp = c.offsetWidth + 8, n = hb.children.length, base = hb.__target != null ? hb.__target : Math.round(hb.scrollLeft / stp);
-        var tgt = Math.max(0, Math.min(n - 1, base + dir)); hb.__target = tgt; hb.scrollTo({ left:tgt * stp, behavior:'smooth' }); }
+        var tgt = ((base + dir) % n + n) % n; hb.__target = tgt; hb.scrollTo({ left:tgt * stp, behavior:'smooth' }); }
     }
   });
 })();

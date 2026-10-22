@@ -68,7 +68,7 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <!-- Focus transitions (loader reveal + page changes); upload we-transition.js alongside the pages -->
 <script src="js/we-transition.js"></script>
-<script src="js/we-bias.js?v=19"></script>
+<script src="js/we-bias.js?v=20"></script>
 
 <script>
 /* Phones get the same War Events site, laid out for a small screen (CSS under
@@ -5117,6 +5117,19 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
   html body .callout-body .cb-article .cb-panel .cb-list li::before{ left:0 !important; margin-left:0 !important; top:0.5em !important; width:11px; height:9px; }
   html.we-phone #calloutTime, html.we-phone .we-topmeta{ text-transform:none !important; }   /* "30m ago", not "30m Ago" */
   .pw-pane .we-w{ color:var(--tw) !important; }   /* Power left pane: full ink colour, no grey (see js/we-bias.js) */
+
+  /* Phone: map off -> a plain news feeder (Events / Feed fill the screen) */
+  .we-mapbtn{ display:none; }
+  html.we-phone .we-mapbtn{ display:inline-flex; align-items:center; justify-content:center; width:34px; height:34px; margin-left:10px; padding:0; border-radius:5px; cursor:pointer; flex:0 0 auto;
+    background:var(--pn-bg, rgba(18,27,44,.82)); color:var(--t1, #fff); border:1px solid var(--pn-line, rgba(255,255,255,.28)); }
+  html.we-phone .we-mapbtn svg{ width:18px; height:18px; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; }
+  html.we-phone .we-mapbtn .off{ display:none; }
+  html.we-phone .we-mapbtn[aria-pressed="true"] .off{ display:block; }
+  html.we-phone.we-nomap .globe-layer, html.we-phone.we-nomap #globe-mount, html.we-phone.we-nomap .relation-filters, html.we-phone.we-nomap #keyDevLegend{ display:none !important; }
+  html.we-phone.we-nomap .callout{ top:calc(var(--we-top) + 8px) !important; bottom:calc(var(--we-tab) + 10px) !important; }
+  html.we-phone.we-nomap .callout-box, html.we-phone.we-nomap.we-sheet-set .callout-box{ height:100% !important; max-height:none !important; }
+  html.we-phone.we-nomap .right-rail, html.we-phone.we-nomap.we-sheet-set .right-rail{ top:calc(var(--we-top) + 8px) !important; height:auto !important; }
+  html.we-phone.we-nomap .we-grab, html.we-phone.we-nomap .we-deck-count{ display:none !important; }
 </style>
 </head>
 <body>
@@ -16394,6 +16407,23 @@ var stopLoaderOrb = function(){};
     sync(); try { window.dispatchEvent(new CustomEvent('we-theme', { detail:{ light:light } })); } catch(e){}
   });
   sync();
+})();
+</script>
+<script>
+(function(){
+  var root = document.documentElement, KEY = 'we-nomap';
+  function get(){ try{ return localStorage.getItem(KEY) === '1'; }catch(e){ return false; } }
+  function set(v){ try{ localStorage.setItem(KEY, v ? '1' : '0'); }catch(e){} }
+  function init(){
+    var lock = document.querySelector('header .logo-lockup'); if(!lock || document.querySelector('.we-mapbtn')) return;
+    var b = document.createElement('button'); b.type = 'button'; b.className = 'we-mapbtn'; b.setAttribute('aria-label', 'Show or hide the map');
+    b.innerHTML = '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.6 2.4 4 5.3 4 8.5s-1.4 6.1-4 8.5c-2.6-2.4-4-5.3-4-8.5s1.4-6.1 4-8.5z"/><path class="off" d="M4 4l16 16"/></svg>';
+    lock.parentNode.insertBefore(b, lock.nextSibling);
+    function apply(off){ root.classList.toggle('we-nomap', off); b.setAttribute('aria-pressed', off ? 'true' : 'false'); setTimeout(function(){ window.dispatchEvent(new Event('resize')); }, 50); }
+    apply(get());
+    b.addEventListener('click', function(){ var off = !root.classList.contains('we-nomap'); set(off); apply(off); });
+  }
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();
 </script>
 </body></html>
