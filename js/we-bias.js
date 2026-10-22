@@ -85,10 +85,11 @@
       html += '<section class="bias-sec"><div class="bias-h">Perspective balance <small>how many viewpoints</small></div><div class="bias-balance"><div class="bias-score" style="--v:' + score + '"><span>' + score + '</span></div>' +
         '<p><b>' + label + '</b>' + (covered === 1 ? 'Only one region has covered it.' : covered + ' regions covered it' + (topPct >= 40 ? ', but one of them did ' + topPct + '% of the reporting.' : ', with the reporting spread fairly evenly.')) + '</p></div></section>';
     }
-    var regs = Object.keys(REGIONS).filter(function(r){ return byRegion[r]; }).sort(function(a, b){ return byRegion[b] - byRegion[a]; }), maxR = byRegion[regs[0]];
-    html += '<section class="bias-sec"><div class="bias-h">Who reported it' + (hasHeads ? ' <small>tap a region to filter headlines</small>' : '') + '</div><div class="bias-rows">' +
-      regs.map(function(r){ return '<button type="button" class="bias-row" data-r="' + r + '" style="--c:' + REGIONS[r][1] + '"><i></i><span>' + esc(REGIONS[r][0]) + '</span><span class="bias-bar"><span style="width:' + (100 * byRegion[r] / maxR) + '%"></span></span><span class="bias-n">' + byRegion[r] + '</span></button>'; }).join('') +
-      '</div></section>';
+    var regs = Object.keys(REGIONS).filter(function(r){ return byRegion[r]; }).sort(function(a, b){ return byRegion[b] - byRegion[a]; });
+    // One slim bar, split by region in proportion to how many outlets each contributed (same weight as the Potential Impact scale).
+    html += '<section class="bias-sec bias-who"><div class="bias-h">Who reported it' + (hasHeads ? ' <small>tap a region to filter headlines</small>' : '') + '</div>' +
+      '<div class="bias-split">' + regs.map(function(r){ return '<button type="button" class="bias-seg bias-row" data-r="' + r + '" style="--c:' + REGIONS[r][1] + ';flex:' + byRegion[r] + '" aria-label="' + esc(REGIONS[r][0]) + ': ' + byRegion[r] + '"></button>'; }).join('') + '</div>' +
+      '<div class="bias-leg">' + regs.map(function(r){ return '<button type="button" class="bias-lg bias-row" data-r="' + r + '" style="--c:' + REGIONS[r][1] + '"><i></i>' + esc(REGIONS[r][0]) + ' <b>' + byRegion[r] + '</b></button>'; }).join('') + '</div></section>';
     if(hasHeads){
       html += '<section class="bias-sec"><div class="bias-h">Same story, different headlines <span class="bias-pill" hidden></span></div><div class="bias-heads"></div><div class="bias-more-wrap"><button type="button" class="bias-more"></button></div></section>';
     }

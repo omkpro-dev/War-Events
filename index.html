@@ -4936,6 +4936,16 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
   .we-reelbox .rc-out{ font:600 15px/1.2 'Barlow',sans-serif; }
   .we-reelbox .rc-time{ font:500 12.5px/1.2 'Barlow',sans-serif; }
   html .we-reelbox .rc-head .rc-src{ width:34px; height:34px; border-radius:6px; font-size:16px; border-color:rgba(var(--c1),0.35); }
+  /* Who reported it: one slim split bar plus a legend (replaces the per-region rows) */
+  .bias-split{ display:flex; gap:2px; height:6px; margin:4px 0 9px; }
+  .bias-split .bias-seg{ appearance:none; border:0; padding:0; border-radius:3px; background:var(--c); cursor:pointer; min-width:6px; }
+  .bias-leg{ display:flex; flex-wrap:wrap; gap:4px 12px; }
+  .bias-leg .bias-lg{ appearance:none; display:inline-flex; align-items:center; gap:5px; padding:2px 4px; border:0; border-radius:4px; background:none; color:var(--text-secondary); font:500 11.5px 'Barlow',sans-serif; cursor:pointer; }
+  .bias-leg .bias-lg i{ width:9px; height:9px; border-radius:2px; background:var(--c); } .bias-leg .bias-lg b{ color:var(--tw); font-weight:700; }
+  .bias-lg.bias-row, .bias-seg.bias-row{ display:inline-flex; grid-template-columns:none; }
+  .bias-split .bias-seg.bias-row{ display:block; }
+  .bias-leg .bias-lg:hover, .bias-leg .bias-lg.on{ background:rgba(var(--c1),0.1); color:var(--tw); }
+  .bias-split .bias-seg.on{ outline:2px solid rgba(var(--c1),0.6); outline-offset:1px; }
 </style>
 </head>
 <body>
