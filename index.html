@@ -6025,11 +6025,9 @@ var stopLoaderOrb = function(){};
   var renderer = new THREE.WebGLRenderer({ antialias:!PHONE_GL,   // desktop keeps smooth borders; the blur + idle-frame savings cover the cost
     alpha:true, powerPreference: PHONE_GL ? 'low-power' : 'high-performance' });
   var WE_FLAT_PRE = document.documentElement.classList.contains('we-phone') && !/[?&]globe=1/.test(location.search);
-  var FULL_PR = Math.min(window.devicePixelRatio||1, (PHONE_GL && !WE_FLAT_PRE) ? 1.25 : (WE_FLAT_PRE ? 3 : 2));   // flat phone map is cheap to draw, so keep it sharp
-  // Desktop globe in motion (story flights, drags, zooms) draws at 1.25x instead of 2x: under 40% of the pixels, and a moving
-  // globe looks the same. Full sharpness comes back once it has been still for a moment (see animate()).
-  var MOVE_PR = PHONE_GL ? FULL_PR : Math.min(FULL_PR, 1.25), _curPR = FULL_PR, _stillAt = 0;
-  renderer.setPixelRatio(FULL_PR);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio||1, (PHONE_GL && !WE_FLAT_PRE) ? 1.25 : (WE_FLAT_PRE ? 3 : 2)));   // flat phone map is cheap to draw, so keep it sharp
+  // Keep the pixel ratio fixed: lowering it while the globe moved showed as a blurry second on every story, and
+  // reallocating the WebGL drawing buffer twice per move risks Safari reloading the page.
   mount.appendChild(renderer.domElement);
 
   var globeGroup = new THREE.Group();
@@ -12591,10 +12589,6 @@ var stopLoaderOrb = function(){};
       var busy = (typeof dragging !== 'undefined' && dragging) || autoTransitActive || manualMomentumActive || (typeof zoomTarget !== 'undefined' && zoomTarget !== null && Math.abs(zoomTarget - zoomFactor) >= 0.0005) || (typeof zoomAnim !== 'undefined' && zoomAnim);
       if(!busy && _now - _lastFrameAt < (PHONE_GL ? 66 : 31)) return;   // idle: ~30fps (pings + lines still animate); moving: full rate
       _lastFrameAt = _now;
-      if(MOVE_PR !== FULL_PR){   // lower resolution while moving, full sharpness 200 ms after it stops
-        if(busy){ _stillAt = 0; if(_curPR !== MOVE_PR){ _curPR = MOVE_PR; renderer.setPixelRatio(MOVE_PR); } }
-        else if(_curPR !== FULL_PR){ if(!_stillAt) _stillAt = _now; else if(_now - _stillAt > 200){ _curPR = FULL_PR; renderer.setPixelRatio(FULL_PR); } }
-      }
     }
     tickFps();
     var t = clock.getElapsedTime();
