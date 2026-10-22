@@ -4851,6 +4851,16 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
   .site-nav a.active{ background:rgba(var(--lg-hi),0.28); box-shadow:inset 0 1px 0 rgba(var(--lg-hi),0.5); border-radius:999px; margin:2px; }
   :root[data-theme="light"] .ctrl-cluster, :root[data-theme="light"] .site-nav{ --text-primary:#17233f; --text-secondary:#34415a; --text-tertiary:#5a6c93; --accent:#0f2044; color:#17233f; }
   :root[data-theme="light"] .ctrl-btn, :root[data-theme="light"] .site-nav a{ color:#17233f !important; }
+  /* Scrollbars on the rounded glass panels: the scrolling area starts and stops clear of the corner curve, so the bar never runs into it. */
+  html:not(.we-phone) #reportsBody, html:not(.we-phone) .we-reelbox, html:not(.we-phone) .country-panel-body, html:not(.we-phone) #calloutScroll{ margin-block:14px; }
+  /* Side arrow tabs: same glass as the panels they belong to (they were a darker flat fill). */
+  html:not(.we-phone) .key-dev-label, html:not(.we-phone) #railTabEvents, html.we-pow:not(.we-phone) .pw-handle, html:not(.we-phone) .rail-tab{
+    background:
+      linear-gradient(160deg, rgba(var(--lg-hi),calc(var(--lg-sheen) * 0.5)), rgba(var(--lg-hi),0.02) 60%),
+      var(--lg-tint) !important;
+    backdrop-filter:blur(22px) saturate(var(--lg-sat)) brightness(var(--lg-bright)) !important; -webkit-backdrop-filter:blur(22px) saturate(var(--lg-sat)) brightness(var(--lg-bright)) !important;
+    border-color:rgba(var(--lg-hi),calc(var(--lg-rim) * 0.45)) !important;
+  }
 </style>
 </head>
 <body>
