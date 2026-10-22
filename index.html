@@ -4966,6 +4966,16 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
   html.we-reel:not(.we-phone) .we-reelbox .rc-head{ padding-top:10px !important; padding-bottom:10px !important; }
   /* Story dots: start where the article starts (just under the header strip), not at the top of the panel */
   html.we-reel:not(.we-phone):not(.we-pow) .we-dstrip{ top:68px !important; }
+  /* Story | Coverage & Bias: same look as the nav buttons in the banner (outlined bar, solid cream active tab) */
+  .rc-tabs{ gap:2px; padding:2px; margin:0 0 10px; border-radius:5px; background:rgba(var(--lg-hi),0.06); border:1px solid var(--pn-line); box-shadow:none; }
+  .rc-tab{ border-radius:3px; padding:6px 10px; font:600 12px/1.2 'Barlow',sans-serif; color:var(--t2); background:transparent; box-shadow:none; opacity:0.8; }
+  .rc-tab:hover{ opacity:1; color:var(--t2); }
+  html .rc-tabs .rc-tab.on{ background:var(--t2) !important; color:#0b1628 !important; opacity:1; box-shadow:none; }
+  html .rc-tabs .rc-tab.on .rc-count{ background:transparent; color:#0b1628 !important; border:1px solid currentColor; }
+  :root[data-theme="light"] .rc-tabs{ background:rgba(23,35,63,0.04); }
+  :root[data-theme="light"] .rc-tab{ color:#17233f; }
+  :root[data-theme="light"] .rc-tabs .rc-tab.on{ background:#17233f !important; color:#fffaf0 !important; }
+  :root[data-theme="light"] .rc-tabs .rc-tab.on .rc-count{ color:#fffaf0 !important; }
 </style>
 </head>
 <body>

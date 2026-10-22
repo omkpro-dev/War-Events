@@ -73,11 +73,9 @@
     var copies = groups.filter(function(g){ return g.length > 1; }).reduce(function(s, g){ return s + g.length; }, 0);
     var html = '';
     if(arts.length === 1){
-      html += '<h3 class="bias-take">Only one outlet has reported this</h3><p class="bias-sub">' + esc(arts[0].outlet) + ' (' + esc(arts[0].where) + ') is the only outlet we read that has covered it so far.</p>';
+      html += '<h3 class="bias-take">Only one outlet has reported this</h3>';
     } else {
       html += '<h3 class="bias-take">Mostly reported from ' + esc(top === 'west' ? 'the West' : top === 'mideast' ? 'the Middle East' : REGIONS[top][0]) + '</h3>';
-      html += '<p class="bias-sub">' + topPct + '% of the reporting came from ' + esc(REGIONS[top][0]) + '. ' +
-        (missing.length ? 'None of the outlets we read in ' + esc(missing.map(function(r){ return REGIONS[r][0]; }).join(', ').replace(/, ([^,]*)$/, ' or $1')) + ' has covered it.' : 'Every region we read has covered it.') + '</p>';
     }
     html += '<div class="bias-facts"><div><b>' + arts.length + '</b><span>outlet' + (arts.length > 1 ? 's' : '') + '</span></div><div><b>' + n + '</b><span>separate report' + (n > 1 ? 's' : '') + '</span></div><div><b>' + covered + ' of ' + nReg + '</b><span>world regions</span></div></div>';
     if(arts.length > 1){
