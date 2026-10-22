@@ -5002,8 +5002,8 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
   .hdr-right .ctrl-cluster .ctrl-btn:hover{ background:var(--t2) !important; color:var(--n0) !important; }
   /* Coverage & Bias stat boxes: serif numerals, small tracked labels */
   .bias-facts > div{ padding:11px 12px 10px; }
-  .bias-facts b{ font:700 26px/1 'Newsreader',Georgia,serif !important; letter-spacing:-0.01em; }
-  .bias-facts span{ margin-top:7px; font:600 10.5px/1.25 'Barlow',sans-serif !important; letter-spacing:0.08em; text-transform:uppercase; }
+  .bias-facts b{ font:600 26px/1 'Barlow',sans-serif !important; letter-spacing:-0.01em; }
+  .bias-facts span{ margin-top:6px; font:500 13px/1.25 'Barlow',sans-serif !important; letter-spacing:0; text-transform:none !important; }
   /* ---- Phone story header: outlet name with the place under it, date and the open-source arrow on the right ---- */
   html.we-phone .callout-top.we-src-mtop .callout-top-left{ display:grid !important; grid-template-columns:minmax(0,1fr) auto; grid-template-areas:"name src" "place src"; align-items:center; column-gap:10px; row-gap:1px; overflow:visible !important; }
   html.we-phone .callout-top.we-src-mtop .we-rep-foot{ display:contents !important; }
@@ -11478,6 +11478,8 @@ var stopLoaderOrb = function(){};
       callout.style.setProperty('height', H + 'px', 'important');
       callout.style.setProperty('max-height', avail + 'px', 'important');
     }
+    // Re-fit the pane to the story on screen (used when the Story / Coverage & Bias tab changes the card's height), without a window resize.
+    window.__weReelFit = function(){ var st = window.__weStory && window.__weStory(); if(st) fit(st.i); };
     window.__weFit = function(){ fit(cur < 0 ? 0 : cur); };
     window.addEventListener('resize', function(){ setTimeout(function(){ fit(cur < 0 ? 0 : cur); }, 80); });
     function go(i){ var k = reel.children[i]; fit(i); if(k){ aim = i; glide(k.offsetTop); } }

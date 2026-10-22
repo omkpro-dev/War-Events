@@ -148,6 +148,7 @@
       var sp = rc.querySelector('.rc-pane.story'), bp = rc.querySelector('.rc-pane.bias');
       if(sp) sp.hidden = bias; if(bp) bp.hidden = !bias;
       rc.classList.toggle('bias-on', bias);
+      if(window.__weReelFit){ setTimeout(function(){ window.__weReelFit(); }, 0); }   // re-fit the pane to the new card height
       return;
     }
     var pane = t.closest('.rc-pane.bias'); if(!pane) return;
