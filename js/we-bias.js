@@ -141,6 +141,45 @@
     }
   }
 
+  // Summary length: about 100 words in two paragraphs; anything beyond that sits behind a "More" link.
+  var ABBR = /^(?:(?:[A-Z]\.){1,4}|St|Mr|Mrs|Ms|Dr|No|Gen|Col|Sen|Rep|Lt|Jr|Sr|vs|Gov|Prof|Mt|Fr|Capt|Cmdr|Adm|Maj|Sgt)\.?$/;
+  function sentences(text){
+    var out = [], cur = '', words = text.replace(/\s+/g, ' ').trim().split(' ');
+    words.forEach(function(w, i){
+      cur += (cur ? ' ' : '') + w;
+      var end = /[.!?]["')\u201d\u2019]*$/.test(w), nextCap = i + 1 < words.length && /^["'(\u201c\u2018]?[A-Z0-9]/.test(words[i + 1]);
+      if(end && nextCap && !ABBR.test(w.replace(/["')\u201d\u2019]+$/, ''))){ out.push(cur); cur = ''; }
+    });
+    if(cur) out.push(cur);
+    return out;
+  }
+  function tidySummary(art, first, last){
+    var blocks = [first]; for(var n = first.nextElementSibling; n && n.classList.contains('cb-sum'); n = n.nextElementSibling) blocks.push(n);
+    var text = blocks.map(function(b){ return b.textContent.trim(); }).filter(Boolean).join(' ');
+    var sents = sentences(text), wc = function(t){ return t.split(' ').length; };
+    var shown = [], total = 0;
+    for(var i = 0; i < sents.length; i++){ if(shown.length >= 2 && total + wc(sents[i]) > 105) break; shown.push(sents[i]); total += wc(sents[i]); }
+    var extra = sents.slice(shown.length);
+    // split what is shown into two paragraphs at the sentence nearest the middle (by words)
+    var p1 = shown, p2 = [];
+    if(shown.length > 1){ var run = 0, cut = 1, half = total / 2; for(var j = 0; j < shown.length - 1; j++){ run += wc(shown[j]); cut = j + 1; if(run >= half) break; } p1 = shown.slice(0, cut); p2 = shown.slice(cut); }
+    var host = first.parentNode, ref = first;
+    blocks.slice(1).forEach(function(b){ if(b.parentNode) b.parentNode.removeChild(b); });
+    first.textContent = p1.join(' ');
+    var tail = first;
+    if(p2.length || extra.length){
+      var sp = document.createElement('span'); sp.className = 'cb-sum cb-sum2'; sp.textContent = p2.join(' ');
+      host.insertBefore(sp, first.nextSibling); tail = sp;
+      if(extra.length){
+        var more = document.createElement('span'); more.className = 'sum-extra'; more.textContent = (p2.length ? ' ' : '') + extra.join(' ');
+        var btn = document.createElement('button'); btn.type = 'button'; btn.className = 'sum-more'; btn.textContent = 'More';
+        btn.addEventListener('click', function(){ var open = sp.classList.toggle('sum-open'); btn.textContent = open ? 'Less' : 'More'; });
+        sp.appendChild(more); host.insertBefore(btn, sp.nextSibling); tail = btn;
+      }
+    }
+    return tail;
+  }
+
   window.WEBias = {
     // Folds the Key Points list into the summary, so the bullets continue straight on from it (Claude writes the two together).
     mergePoints: function(root){
@@ -160,6 +199,7 @@
         var para = document.createElement('span'); para.className = 'cb-sum cb-sum2'; para.textContent = parts.join(' ');
         last.parentNode.insertBefore(para, last.nextSibling); kp.parentNode.removeChild(kp); last = para;
       }
+      last = tidySummary(art, sum, last);
       // Why It Matters sits straight under the summary, as plain text (it belongs to the article block, so it hides with the summary on the Bias tab)
       var why = panels.filter(function(p){ var h = p.querySelector('.cb-h'); return h && /why\s*it\s*matters/i.test(h.textContent); })[0];
       if(why){ last.parentNode.insertBefore(why, last.nextSibling); WEBias_why(why); }

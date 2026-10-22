@@ -139,6 +139,45 @@ def items(label, url):
     return out
 
 
+KEY = os.environ.get("ANTHROPIC_API_KEY", "")
+MODEL = os.environ.get("CLAUDE_MODEL", "claude-haiku-5-5")
+FEED_MIN_GEO = int(os.environ.get("FEED_MIN_GEO", "7"))   # headlines Claude scores below this (0-10) are dropped from the Feed
+GEO_SYSTEM = """You are the geopolitics editor of a news aggregator about wars, security, diplomacy, sanctions, state-level energy and trade conflicts, international crises and major politics.
+
+You get a numbered list of headlines (outlet, headline, opening words). Score each 0-10 for how geopolitical the EVENT is. Judge the substance, not keywords.
+- 8-10: wars, military action between or inside states, international crises, sanctions, major diplomacy, state-level energy/trade conflicts.
+- 5-7: significant security or political events with clear international consequences.
+- 0-4: domestic news with no international angle, food, business, consumer and lifestyle, culture, sport, science, weather, local crime and courts, human-interest and personal stories, profiles, diaries, "life under..." pieces, explainers and anniversaries with no new event, and stories about everyday people or a single incident whose consequence stays local, even if they are set in a war zone or mention a protest, a minister or a deal. Score the event and its consequences for states, not the setting.
+
+Return ONLY JSON: {"scores": {"0": 8, "1": 2, ...}} with one integer per headline number."""
+
+
+def ai_filter(items):
+    """Drop headlines Claude scores as not geopolitical. Any problem (no key, API error, odd reply) leaves the list as it was."""
+    if not KEY or not items:
+        return items
+    try:
+        lines = "\n".join("%d. [%s] %s" % (i, x["name"], x["text"][:230]) for i, x in enumerate(items))
+        body = json.dumps({
+            "model": MODEL, "max_tokens": 1500,
+            "thinking": {"type": "disabled"}, "output_config": {"effort": "low"},
+            "system": [{"type": "text", "text": GEO_SYSTEM, "cache_control": {"type": "ephemeral", "ttl": "1h"}}],
+            "messages": [{"role": "user", "content": lines}],
+        }).encode()
+        req = urllib.request.Request("https://api.anthropic.com/v1/messages", data=body, headers={
+            "x-api-key": KEY, "anthropic-version": "2023-06-01", "content-type": "application/json"})
+        with urllib.request.urlopen(req, timeout=60) as r:
+            out = json.loads(r.read())
+        txt = "".join(b.get("text", "") for b in out.get("content", []) if b.get("type") == "text")
+        scores = json.loads(re.search(r"\{.*\}", txt, re.S).group(0)).get("scores", {})
+        kept = [x for i, x in enumerate(items) if int(scores.get(str(i), 10)) >= FEED_MIN_GEO]
+        print("relevance filter: kept %d of %d" % (len(kept), len(items)))
+        return kept or items
+    except Exception as e:
+        print("relevance filter skipped:", e)
+        return items
+
+
 def main():
     allit = [x for lab, u in FEEDS for x in items(lab, u)]
     allit.sort(key=lambda x: x["time"], reverse=True)
@@ -154,7 +193,7 @@ def main():
     out.sort(key=lambda x: x["time"], reverse=True)
     # Lesser-known / very high-volume outlets get at most 2 items, regional ones at most 5.
     out = ranking.apply_caps(out, lambda x: x["name"])
-    out = out[:30]
+    out = ai_filter(out[:60])[:30]   # AI relevance check on the newest candidates, then the 30 shown
     if out:
         json.dump(out, open(OUT, "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
     print("reports:", len(out))
