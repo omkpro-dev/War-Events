@@ -32,18 +32,10 @@
   /* light theme: values for the remaining fixed colours (dark falls back to each original value) */
   :root[data-theme="light"]{ --nx:250,246,236; --nxh:#f5efe2; --tx:23,35,63; --txh:#17233f;
     --panel:#faf6ec; --panel-border:#d9ccae; --text-secondary:#5a6c93; --text-tertiary:#8f9db5; }
-  /* glass panels: frosted paper over the globe instead of darkened glass, no legibility halo */
+  /* glass panels and clusters take their look from the shared liquid-glass block further down; light only sets ink colours here */
   :root[data-theme="light"] .reports-panel, :root[data-theme="light"] .callout-box, :root[data-theme="light"] .country-panel{
-    background:linear-gradient(160deg, rgba(255,255,255,0.62), rgba(255,255,255,0.22)), rgba(250,246,236,0.52) !important;
-    backdrop-filter:blur(26px) saturate(1.2) brightness(1.06) !important; -webkit-backdrop-filter:blur(26px) saturate(1.2) brightness(1.06) !important;
-    box-shadow:0 18px 40px rgba(70,56,24,0.16), inset 0 1px 0 rgba(255,255,255,0.7) !important;
     --text-primary:#17233f; --text-secondary:#34415a; --text-tertiary:#5a6c93;
   }
-  :root[data-theme="light"] .ctrl-cluster, :root[data-theme="light"] .site-nav{
-    background:rgba(255,253,247,0.74) !important; border-color:#d9ccae !important;
-    --text-primary:#17233f; --text-secondary:#34415a; --text-tertiary:#5a6c93; --accent:#0f2044; color:#17233f;
-  }
-  :root[data-theme="light"] .ctrl-btn, :root[data-theme="light"] .site-nav a{ color:#17233f !important; }
   :root[data-theme="light"] *{ text-shadow:none !important; }
   /* theme switch (in the top-right control cluster) */
   .theme-btn .ico-sun{ display:none; } :root[data-theme="light"] .theme-btn .ico-sun{ display:block; } :root[data-theme="light"] .theme-btn .ico-moon{ display:none; }
@@ -2331,6 +2323,31 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
     text-shadow:0 1px 3px rgba(var(--sh),0.7), 0 0 1px rgba(var(--sh),0.5);
   }
   .callout-head{ background:transparent !important; backdrop-filter:none !important; -webkit-backdrop-filter:none !important; border:none !important; box-shadow:none !important; }
+  /* iPhone-style liquid glass: heavy blur that over-saturates what's behind it, big soft corners, a bright specular rim
+     (top-left light, bottom-right bounce) and a faint sheen across the top. Same recipe in both themes; only the tint differs. */
+  :root{ --lg-tint:rgba(18,30,52,0.30); --lg-hi:255,255,255; --lg-rim:0.42; --lg-sheen:0.16; --lg-shadow:0,0,0; --lg-bright:0.9; }
+  :root[data-theme="light"]{ --lg-tint:rgba(252,248,238,0.38); --lg-rim:0.85; --lg-sheen:0.5; --lg-shadow:70,56,24; --lg-bright:1.06; }
+  .reports-panel, .callout-box, .country-panel{
+    background:
+      radial-gradient(120% 70% at 12% 0%, rgba(var(--lg-hi),var(--lg-sheen)), rgba(var(--lg-hi),0) 55%),
+      linear-gradient(160deg, rgba(var(--lg-hi),calc(var(--lg-sheen) * 0.5)), rgba(var(--lg-hi),0.02) 60%),
+      var(--lg-tint) !important;
+    backdrop-filter:blur(30px) saturate(1.9) brightness(var(--lg-bright)) !important; -webkit-backdrop-filter:blur(30px) saturate(1.9) brightness(var(--lg-bright)) !important;
+    border:1px solid rgba(var(--lg-hi),calc(var(--lg-rim) * 0.45)) !important; border-radius:22px !important;
+    box-shadow:inset 1.5px 1.5px 0 rgba(var(--lg-hi),var(--lg-rim)), inset -1px -1px 0 rgba(var(--lg-hi),calc(var(--lg-rim) * 0.3)),
+      inset 0 0 22px rgba(var(--lg-hi),0.07), 0 18px 44px rgba(var(--lg-shadow),0.28), 0 2px 6px rgba(var(--lg-shadow),0.14) !important;
+  }
+  .ctrl-cluster, .site-nav{
+    background:linear-gradient(180deg, rgba(var(--lg-hi),calc(var(--lg-sheen) + 0.28)), rgba(var(--lg-hi),0.12)), var(--lg-tint) !important;
+    backdrop-filter:blur(24px) saturate(1.9) !important; -webkit-backdrop-filter:blur(24px) saturate(1.9) !important;
+    border:1px solid rgba(var(--lg-hi),calc(var(--lg-rim) * 0.5)) !important; border-radius:999px !important;
+    box-shadow:inset 0 1.5px 0 rgba(var(--lg-hi),var(--lg-rim)), inset 0 -1px 0 rgba(var(--lg-hi),0.2), 0 8px 22px rgba(var(--lg-shadow),0.2) !important;
+  }
+  .ctrl-cluster, .site-nav{ --text-primary:var(--t1); --text-secondary:var(--t2); --text-tertiary:var(--t2); --accent:var(--t1); color:var(--t1); }
+  .ctrl-btn, .site-nav a{ color:var(--t1) !important; }
+  .site-nav a.active{ background:rgba(var(--lg-hi),0.28); box-shadow:inset 0 1px 0 rgba(var(--lg-hi),0.5); border-radius:999px; margin:2px; }
+  :root[data-theme="light"] .ctrl-cluster, :root[data-theme="light"] .site-nav{ --text-primary:#17233f; --text-secondary:#34415a; --text-tertiary:#5a6c93; --accent:#0f2044; color:#17233f; }
+  :root[data-theme="light"] .ctrl-btn, :root[data-theme="light"] .site-nav a{ color:#17233f !important; }
   .callout-body, .report-text, .cp-sections, .country-panel-note{ color:#ece5d6 !important; }
   .source-btn{ text-shadow:none; }
   .key-dev-label{ cursor:pointer; }
@@ -6096,8 +6113,8 @@ var stopLoaderOrb = function(){};
         '#ifdef USE_MAP\n' +
         '  float pl = clamp(dot(diffuseColor.rgb, vec3(0.299, 0.587, 0.114)) / 0.68, 0.0, 1.0);\n' +
         '  vec3 pSea  = vec3(0.60, 0.66, 0.74);\n' +
-        '  vec3 pLand = vec3(0.80, 0.76, 0.66);\n' +
-        '  vec3 pHi   = vec3(0.90, 0.87, 0.79);\n' +
+        '  vec3 pLand = vec3(0.74, 0.70, 0.60);\n' +
+        '  vec3 pHi   = vec3(0.82, 0.78, 0.69);\n' +
         '  vec3 pc = mix(pSea, pLand, smoothstep(0.10, 0.34, pl));\n' +
         '  pc = mix(pc, pHi, smoothstep(0.45, 0.95, pl));\n' +
         '  pc *= 0.88 + 0.24 * pl;\n' +
@@ -6248,6 +6265,11 @@ var stopLoaderOrb = function(){};
   // Oblique rather than head-on: relief casts no shadow under frontal light.
   sunLight.position.set(-200, 175, 165);
   scene.add(sunLight);
+  // Light theme: a softer sun so the paper-toned globe keeps its relief instead of blowing out to white.
+  var ambLight = scene.children[scene.children.length - 2];
+  function paperSun(light){ sunLight.intensity = light ? 0.78 : 1.28; if(ambLight && ambLight.isAmbientLight) ambLight.intensity = light ? 0.62 : 0.55; }
+  paperSun(paperUniform.value === 1);
+  window.addEventListener('we-theme', function(e){ paperSun(!!(e.detail && e.detail.light)); });
 
   // Studio-rendered earth textures (Orb export, web-resized) — color map + tangent-space normal map.
   var loaderEl = document.getElementById('loader');
