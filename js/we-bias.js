@@ -118,7 +118,7 @@
     el.textContent = n ? (Math.min(n, Math.round(box.scrollLeft / w) + 1)) + ' / ' + n : '';
   }
 
-  // Why It Matters: bold the actor at the start of each line, show at most three lines, extra lines sit behind a "More" toggle.
+  // Why It Matters: bold the actor at the start of each line, show at most three lines.
   var WHY_ACTORS = ['United States','U.S.','US','America','Russia','Ukraine','China','Taiwan','Israel','Iran','Gaza','Palestine','Palestinians','Lebanon','Syria','Yemen','Saudi Arabia','UAE','Qatar','Turkey','Egypt','Iraq','Jordan','Pakistan','India','Afghanistan','North Korea','South Korea','Japan','Germany','France','UK','Britain','United Kingdom','Poland','Italy','Spain','Sudan','South Sudan','Libya','Chad','Ethiopia','Eritrea','Somalia','Nigeria','Kenya','Congo','Venezuela','Cuba','Brazil','Mexico','Canada','Argentina','Australia','Myanmar','Philippines','Vietnam','Indonesia','Georgia','Armenia','Azerbaijan','Serbia','Kosovo','Belarus','Moldova','Hungary','Romania','Europe','European Union','EU','NATO','UN','United Nations','OPEC','Washington','Moscow','Kyiv','Kiev','Beijing','Tehran','Jerusalem','Hamas','Hezbollah','Houthis','Kremlin','White House','Pentagon','Trump','Putin','Zelenskyy','Netanyahu','Gulf states','Middle East','Western allies'];
   var WHY_RE = new RegExp('^((?:the\\s+)?(?:' + WHY_ACTORS.map(function(a){ return a.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }).join('|') + ')(?:\'s)?(?:\\s+(?:and|&)\\s+(?:' + WHY_ACTORS.map(function(a){ return a.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }).join('|') + ')(?:\'s)?)*)(?=[\\s,.;:\'])', 'i');
   function WEBias_why(panel){
@@ -132,16 +132,11 @@
         var k = document.createElement('strong'); k.className = 'why-k'; k.textContent = m[1];
         li.appendChild(k); li.appendChild(document.createTextNode(text.slice(m[1].length)));
       }
-      if(i >= 3) li.classList.add('why-extra');
+      if(i >= 3) li.classList.add('why-extra');   // at most three lines are shown
     });
-    if(lis.length > 3){
-      var more = document.createElement('button'); more.type = 'button'; more.className = 'why-more'; more.textContent = 'More';
-      more.addEventListener('click', function(){ var open = panel.classList.toggle('why-open'); more.textContent = open ? 'Less' : 'More'; });
-      panel.appendChild(more);
-    }
   }
 
-  // Summary length: about 100 words in two paragraphs; anything beyond that sits behind a "More" link.
+  // Summary length: about 100 words in two paragraphs; anything beyond that is left out.
   var ABBR = /^(?:(?:[A-Z]\.){1,4}|St|Mr|Mrs|Ms|Dr|No|Gen|Col|Sen|Rep|Lt|Jr|Sr|vs|Gov|Prof|Mt|Fr|Capt|Cmdr|Adm|Maj|Sgt)\.?$/;
   function sentences(text){
     var out = [], cur = '', words = text.replace(/\s+/g, ' ').trim().split(' ');
@@ -167,15 +162,9 @@
     blocks.slice(1).forEach(function(b){ if(b.parentNode) b.parentNode.removeChild(b); });
     first.textContent = p1.join(' ');
     var tail = first;
-    if(p2.length || extra.length){
+    if(p2.length){
       var sp = document.createElement('span'); sp.className = 'cb-sum cb-sum2'; sp.textContent = p2.join(' ');
       host.insertBefore(sp, first.nextSibling); tail = sp;
-      if(extra.length){
-        var more = document.createElement('span'); more.className = 'sum-extra'; more.textContent = (p2.length ? ' ' : '') + extra.join(' ');
-        var btn = document.createElement('button'); btn.type = 'button'; btn.className = 'sum-more'; btn.textContent = 'More';
-        btn.addEventListener('click', function(){ var open = sp.classList.toggle('sum-open'); btn.textContent = open ? 'Less' : 'More'; });
-        sp.appendChild(more); host.insertBefore(btn, sp.nextSibling); tail = btn;
-      }
     }
     return tail;
   }
