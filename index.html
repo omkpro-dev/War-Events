@@ -5095,8 +5095,6 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
   /* Why It Matters: regular weight, no bold lettering */
   html body .callout-body .cb-article .cb-panel .cb-list li, html body .callout-body .cb-article .cb-panel .cb-list li .why-k{ font-weight:400 !important; }
   html body .callout-body .cb-article .cb-panel .cb-list li .why-k{ color:inherit !important; }
-  /* Feed: newspaper-style justified text with hyphenation, like the story summary */
-  html body .reports-panel .report-block .tweet-text{ text-align:justify !important; text-justify:inter-word; -webkit-hyphens:auto; hyphens:auto; hyphenate-limit-chars:6 3 3; hyphenate-limit-lines:2; text-wrap:pretty; line-height:1.48; }
 </style>
 </head>
 <body>
@@ -9333,8 +9331,16 @@ var stopLoaderOrb = function(){};
       } else if(g.rivers) h += '<h3>Major rivers</h3><p>' + warEsc(g.rivers) + '</p>';
     return h; }
   var PH_TOTAL = /^(area|coast|oil_res|oil_bpd|gas_res|coal_prod|co2)$/;
+  // The small line above the big figure names the measure; the figure is the answer. Some picker labels read like a group or a yes/no
+  // ("Landlocked", "Fuel exporters"), which clashed with the figure shown under them, so the heading says what is measured.
+  var PH_HERO_LABEL = { landlocked:'Sea access', fuel_x:'Fuel share of goods exports', food_m:'Food share of goods imports', remit:'Remittances, share of GDP',
+    trade_gdp:'Trade, share of GDP', debt:'Government debt, share of GDP', deficit:'Budget deficit, share of GDP', rnd:'Research spending, share of GDP',
+    internet:'People online', researchers:'Researchers per million people', gdp_usd:'Economy size at market rates', low5m:'People living below 5 m',
+    patents:'Patent applications by residents', waterPc:'Fresh water per person, a year', arable:'Farmland, share of land', forest:'Forest, share of land',
+    hitech:'High-tech exports', fdi:'Foreign investment coming in' };
   function phHero(m, a2, v){
-    var h = '<div class="ec-hero"><span>' + warEsc(m[1]) + '</span><b>' + (v != null ? warEsc(m[3](v)) : m[0] === 'landlocked' ? 'Has a coastline' : 'None') + '</b><small>' + (v != null && phRank(m, a2) && !(m[5] && m[5].cat) && m[0] !== 'landlocked' ? phRank(m, a2) + ' in the world' : '') + '</small></div><p class="pw-sub">' + warEsc(m[4]) + '.</p>';
+    var noSea = m[0] === 'landlocked' && v == null;   // a country with a coastline: the picker description ("countries with no coastline...") would contradict the figure
+    var h = '<div class="ec-hero"><span>' + warEsc(PH_HERO_LABEL[m[0]] || m[1]) + '</span><b>' + (v != null ? warEsc(m[3](v)) : m[0] === 'landlocked' ? 'Has a coastline' : 'None') + '</b><small>' + (v != null && phRank(m, a2) && !(m[5] && m[5].cat) && m[0] !== 'landlocked' ? phRank(m, a2) + ' in the world' : '') + '</small></div><p class="pw-sub">' + warEsc(noSea ? 'It can reach the sea without crossing another country, so its trade does not depend on a neighbour\'s ports' : m[4]) + '.</p>';
     if((PH_TOTAL.test(m[0]) || m[0].indexOf('min:') === 0) && v){ var tot = m[0].indexOf('min:') === 0 ? 100 : phVals(m).reduce(function(a, x){ return a + x[1]; }, 0), p = v / tot * 100;
       h += '<div class="ec-share"><i style="width:' + Math.max(0.6, p).toFixed(2) + '%"></i></div><p class="pw-sub">' + (p < 0.1 ? 'Under 0.1' : p.toFixed(p < 1 ? 2 : 1)) + '% of the world total.</p>'; }
     return h;
