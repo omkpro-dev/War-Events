@@ -169,7 +169,15 @@
     return tail;
   }
 
+  // "35m ago", "2h ago", "just now"; older than a day falls back to the date (same wording as the desktop header)
+  function ago(t){
+    var d = new Date(t), ms = Date.now() - d.getTime(); if(isNaN(ms) || ms < 0) return null;
+    var m = Math.round(ms / 60000); if(m < 2) return 'just now'; if(m < 60) return m + 'm ago';
+    var h = Math.round(m / 60); return h < 24 ? h + 'h ago' : null;
+  }
+
   window.WEBias = {
+    ago: ago,
     // Folds the Key Points list into the summary, so the bullets continue straight on from it (Claude writes the two together).
     mergePoints: function(root){
       var art = root.querySelector('.cb-article'), sum = art && art.querySelector('.cb-sum'); if(!sum) return;
@@ -231,7 +239,7 @@
     if(tab){
       var rc = tab.closest('.rc') || (tab.closest('.callout-head') && document.getElementById('calloutBody')); if(!rc) return;   // on phones the tabs live in the header, outside the story body
       var bias = tab.dataset.t === 'bias';
-      [].forEach.call(rc.querySelectorAll('.rc-tab'), function(b){ var on = b === tab; b.classList.toggle('on', on); b.setAttribute('aria-selected', on); });
+      [].forEach.call((tab.closest('.rc-tabs') || rc).querySelectorAll('.rc-tab:not(.rc-tab-src)'), function(b){ var on = b === tab; b.classList.toggle('on', on); b.setAttribute('aria-selected', on); });   // the bar can live outside the card (phones)
       var sp = rc.querySelector('.rc-pane.story'), bp = rc.querySelector('.rc-pane.bias');
       if(sp) sp.hidden = bias; if(bp) bp.hidden = !bias;
       rc.classList.toggle('bias-on', bias);
@@ -250,4 +258,38 @@
         var tgt = Math.max(0, Math.min(n - 1, base + dir)); hb.__target = tgt; hb.scrollTo({ left:tgt * stp, behavior:'smooth' }); }
     }
   });
+})();
+
+/* Power left pane: all writing is the full ink colour (white at night, navy by day), never grey. Any text whose colour is a grey or a tint of the
+   ink gets the "we-w" class; coloured text (green / red scores and the like) is left alone. Re-run after every render of the pane. */
+(function(){
+  var raf = 0;
+  function isLight(){ return document.documentElement.getAttribute('data-theme') === 'light'; }
+  function ink(pane){
+    var light = isLight();
+    pane.querySelectorAll('*').forEach(function(e){
+      if(e.closest('svg') || e.tagName === 'SVG' || e.tagName === 'IMG') return;
+      var own = false; for(var i = 0; i < e.childNodes.length; i++){ var n = e.childNodes[i]; if(n.nodeType === 3 && n.textContent.trim()){ own = true; break; } }
+      if(!own) return;
+      var m = (getComputedStyle(e).color.match(/[\d.]+/g) || []).map(Number); if(m.length < 3) return;
+      var a = m.length > 3 ? m[3] : 1; if(a === 0) return;
+      var mx = Math.max(m[0], m[1], m[2]), mn = Math.min(m[0], m[1], m[2]);
+      if(mx - mn > 45) return;                                  // coloured text stays coloured
+      var L = (m[0] + m[1] + m[2]) / 3;
+      var grey = light ? (L > 25 || a < 1) : (L < 252 || a < 1);
+      // dark text on a pale chip at night, or pale text on a dark chip by day, must not be flipped
+      if(!light && L < 90 && a === 1) return;
+      if(light && L > 200 && a === 1) return;
+      e.classList.toggle('we-w', grey);
+    });
+  }
+  function run(){ raf = 0; var pane = document.querySelector('.pw-pane'); if(pane) ink(pane); }
+  function queue(){ if(!raf) raf = setTimeout(run, 60); }
+  function attach(){
+    var pane = document.querySelector('.pw-pane'); if(!pane) return false;
+    new MutationObserver(queue).observe(pane, { childList:true, subtree:true });
+    window.addEventListener('we-theme', function(){ setTimeout(run, 80); });
+    run(); return true;
+  }
+  var tries = 0, iv = setInterval(function(){ if(attach() || ++tries > 60) clearInterval(iv); }, 500);
 })();

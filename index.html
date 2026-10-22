@@ -68,7 +68,7 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <!-- Focus transitions (loader reveal + page changes); upload we-transition.js alongside the pages -->
 <script src="js/we-transition.js"></script>
-<script src="js/we-bias.js?v=16"></script>
+<script src="js/we-bias.js?v=19"></script>
 
 <script>
 /* Phones get the same War Events site, laid out for a small screen (CSS under
@@ -5115,6 +5115,8 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
   /* Why It Matters arrows: tight to the text (an older bullet rule was also pushing them 13px further left) */
   html body .callout-body .cb-article .cb-panel .cb-list li{ padding-left:17px !important; }
   html body .callout-body .cb-article .cb-panel .cb-list li::before{ left:0 !important; margin-left:0 !important; top:0.5em !important; width:11px; height:9px; }
+  html.we-phone #calloutTime, html.we-phone .we-topmeta{ text-transform:none !important; }   /* "30m ago", not "30m Ago" */
+  .pw-pane .we-w{ color:var(--tw) !important; }   /* Power left pane: full ink colour, no grey (see js/we-bias.js) */
 </style>
 </head>
 <body>
@@ -8573,6 +8575,7 @@ var stopLoaderOrb = function(){};
       if(!phData) h = '<div class="pw-head"><h2>' + tab + '</h2></div>';
       else if(pwSel){ var srcs = [];
         h = '<div class="pw-head">' + pwFlag(pwSel.a2) + '<h2>' + warEsc(pwName(pwSel.a2)) + '</h2><button type="button" class="pw-x" aria-label="Close">\u00d7</button></div><p class="pw-tabname">' + tab + '</p>' + phCountryHTML(pwSel.a2) + '<p class="pw-note">' + (PW_TOPIC === 'dynamics' ? 'UN Treaty Collection; official membership lists; War Events Active Wars and Core data.' : PW_TOPIC === 'economic' ? 'World Bank World Development Indicators.' : 'CIA World Factbook; World Bank' + (PW_TAB === 'resources' ? '; USGS' : '') + '.') + '</p>';
+        { var seenNote = false; h = h.replace(/<p class="pw-note">[\s\S]*?<\/p>/g, function(m){ if(seenNote) return ''; seenNote = true; return m; }); }   // each country pane names its data source once
       } else h = '<div class="pw-head"><h2>' + tab + '</h2></div>' + phOverviewHTML();
     } else if(pwSel){
       var a2 = pwSel.a2, body = PW_TAB === 'balance' ? pwBalanceHTML(a2) : PW_TAB === 'spheres' ? pwSpheresHTML(a2) : PW_TAB === 'buffers' ? pwBuffersHTML(a2) : pwLeverageHTML(a2);
@@ -11760,8 +11763,10 @@ var stopLoaderOrb = function(){};
       try {
         var art = body.querySelector('.cb-article');
         if(art){
+          var tmEl = document.getElementById('calloutTime'), tmP = window.__wePt && window.__weStory && window.__wePt(window.__weStory().i);
+          if(tmEl && tmP && window.WEBias.ago){ var ag = window.WEBias.ago(tmP.time); if(ag){ if(!tmEl.title) tmEl.title = tmEl.textContent; tmEl.textContent = ag; } }
           var kk = art.querySelector('.cb-kicker'), pl = document.getElementById('calloutPlace');
-          if(kk && pl){ var loc = kk.textContent.replace(/\s*\u00b7\s*/g, ' \u00b7 ').replace(/\s+/g, ' ').trim(); if(pl.textContent !== loc) pl.textContent = loc; }
+          if(kk && pl){ var loc = kk.textContent.split('\u00b7')[0].replace(/\s+/g, ' ').trim(); /* phones have room for the country only */ if(pl.textContent !== loc) pl.textContent = loc; }
           var rep = document.querySelector('.callout .we-rep');
           if(rep && LONG[rep.textContent.trim()]) rep.textContent = LONG[rep.textContent.trim()];
           if(!body.querySelector('.rc-pane')){
