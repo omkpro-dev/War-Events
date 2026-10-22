@@ -5074,6 +5074,10 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
   /* Logistics and Disasters: no Coverage & Bias tab, the panel is just the story */
   html.we-logi .rc-tabs, html.we-dis .rc-tabs{ display:none !important; }
   html.we-logi:not(.we-phone) .we-reelbox .rc-head, html.we-dis:not(.we-phone) .we-reelbox .rc-head{ margin-bottom:14px !important; }
+  /* Impact spectrum box: matt, same flat tint and outline as the Coverage & Bias boxes (no gloss, no gradient, no highlight) */
+  html body #calloutImpact, html body #calloutImpact.cmod, html body .rc-pane #calloutImpact{
+    background:rgba(var(--tn),0.07) !important; background-image:none !important; border:1px solid rgba(var(--tn),0.16) !important; border-radius:5px !important;
+    box-shadow:none !important; backdrop-filter:none !important; -webkit-backdrop-filter:none !important; }
 </style>
 </head>
 <body>
