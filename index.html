@@ -5157,7 +5157,17 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
   html.we-phone .right-rail, html.we-phone.we-nomap .right-rail{ left:0 !important; right:0 !important; bottom:0 !important; }
   html.we-phone .callout-box, html.we-phone .reports-panel{ border-radius:10px 10px 0 0 !important; padding-bottom:env(safe-area-inset-bottom) !important; }
   html.we-phone.we-nomap .callout{ top:calc(var(--we-top) + 8px) !important; }
-  html.we-phone .callout-scroll{ padding-bottom:calc(58px + env(safe-area-inset-bottom)) !important; }
+  html.we-phone .callout-scroll{ padding-bottom:calc(18px + env(safe-area-inset-bottom)) !important; }
+
+  /* Phone sheet top: same shaded strip as the desktop Events header, tabs as thin-outlined buttons */
+  html.we-phone .callout-head .callout-top{ background:rgba(255,250,240,.07) !important; border-bottom:1px solid rgba(255,250,240,.16) !important; border-radius:10px 10px 0 0;
+    margin:0 -16px 12px !important; padding:10px 62px 10px 16px !important; }
+  :root[data-theme="light"] html.we-phone .callout-head .callout-top, html.we-phone:root[data-theme="light"] .callout-head .callout-top{ background:rgba(var(--tn),.06) !important; border-bottom-color:rgba(var(--tn),.16) !important; }
+  html.we-phone .callout-head .rc-tabs{ gap:6px !important; }
+  html.we-phone .callout-head .rc-tabs .rc-tab, html.we-phone .callout-head .rc-tab + .rc-tab{ border:1px solid var(--pn-line) !important; border-radius:5px !important; }
+  html.we-phone .callout-head .rc-tabs .rc-tab-src{ border:1px solid var(--pn-line) !important; }
+  html.we-phone .reports-panel > .we-feedhead{ background:rgba(255,250,240,.07) !important; border-bottom:1px solid rgba(255,250,240,.16) !important; border-radius:10px 10px 0 0; margin:0 !important; padding:0 62px 0 16px !important; min-height:46px; display:flex; align-items:center; }
+  :root[data-theme="light"] html.we-phone .reports-panel > .we-feedhead, html.we-phone:root[data-theme="light"] .reports-panel > .we-feedhead{ background:rgba(var(--tn),.06) !important; border-bottom-color:rgba(var(--tn),.16) !important; }
 </style>
 </head>
 <body>
@@ -11631,8 +11641,9 @@ var stopLoaderOrb = function(){};
     }
     var gliding = 0;
     function glide(to){   // own easing (smooth-scroll isn't reliable in every browser)
-      cancelAnimationFrame(gliding); var from = reel.scrollTop, d = to - from, t0 = performance.now(), dur = Math.min(300, 200 + Math.abs(d) * 0.08);
-      (function step(now){ var k = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - k, 3); reel.scrollTop = from + d * e; gliding = k < 1 ? requestAnimationFrame(step) : (aim = -1, 0); })(t0);
+      cancelAnimationFrame(gliding); var from = reel.scrollTop, d = to - from, t0 = performance.now(), dur = 420;   // same length as the pane's height transition, so both settle together
+      reel.style.scrollSnapType = 'none';   // snapping fights the glide while the pane resizes: that was the shake
+      (function step(now){ var k = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - k, 3); reel.scrollTop = from + d * e; if(k < 1) gliding = requestAnimationFrame(step); else { gliding = 0; aim = -1; reel.scrollTop = to; setTimeout(function(){ if(!gliding) reel.style.scrollSnapType = ''; }, 60); } })(t0);
     }
     // The pane is as tall as the story it shows (no empty space under a short one), centred between the news wire and the bottom of the screen
     function fit(i){
@@ -11661,7 +11672,7 @@ var stopLoaderOrb = function(){};
       fit(dir > 0 ? (i + 1 < kids.length ? i + 1 : i) : (i === 0 ? kids.length - 2 : i - 1));
       // Wrapping round (last story -> first, or first -> last): a quick fade and a jump, so two stories never show at once
       var wrapTo = dir > 0 && i >= kids.length - 2 ? 0 : dir < 0 && i === 0 ? kids.length - 2 : -1;
-      if(wrapTo >= 0){ cancelAnimationFrame(gliding); gliding = 0; aim = -1; fit(wrapTo); var fo = reel.animate([{ opacity:1 }, { opacity:0 }], { duration:120, easing:'ease-out', fill:'forwards' }); fo.onfinish = function(){ busy = true; reel.scrollTop = kids[wrapTo].offsetTop; busy = false; cur = -1; onScroll(); var fi = reel.animate([{ opacity:0 }, { opacity:1 }], { duration:200, easing:'ease-in', fill:'forwards' }); fo.cancel(); fi.onfinish = function(){ fi.cancel(); }; }; return; }
+      if(wrapTo >= 0){ cancelAnimationFrame(gliding); gliding = 0; aim = -1; reel.style.scrollSnapType = ''; fit(wrapTo); var fo = reel.animate([{ opacity:1 }, { opacity:0 }], { duration:120, easing:'ease-out', fill:'forwards' }); fo.onfinish = function(){ busy = true; reel.scrollTop = kids[wrapTo].offsetTop; busy = false; cur = -1; onScroll(); var fi = reel.animate([{ opacity:0 }, { opacity:1 }], { duration:200, easing:'ease-in', fill:'forwards' }); fo.cancel(); fi.onfinish = function(){ fi.cancel(); }; }; return; }
       if(dir > 0){ if(i + 1 < kids.length){ aim = i + 1; glide(kids[i + 1].offsetTop); } }   // the last child is a copy of story 1, so this wraps
       else { if(i === 0){ var loop = kids[kids.length - 1]; reel.scrollTop = loop.offsetTop; aim = kids.length - 2; glide(kids[kids.length - 2].offsetTop); } else { aim = i - 1; glide(kids[i - 1].offsetTop); } }
     }
@@ -11692,7 +11703,7 @@ var stopLoaderOrb = function(){};
           var need = d > 0 ? (cur.offsetTop + cur.offsetHeight) - (rt + reel.clientHeight) : rt - cur.offsetTop;
           if(need > 4){ reel.style.scrollSnapType = 'none'; reel.scrollTop = rt + (d > 0 ? 1 : -1) * Math.min(ab, need); wAcc = 0; return; }
         }
-        reel.style.scrollSnapType = '';
+        if(!gliding) reel.style.scrollSnapType = '';
         clearTimeout(wIdle); wIdle = setTimeout(function(){ if(performance.now() - wMoved >= COOL_MS){ wLock = false; wAcc = 0; wAbs = 0; wMin = 1e9; } }, 120);
         if(wLock){
           if(now - wMoved < COOL_MS){ wAbs = ab; if(ab < wMin) wMin = ab; return; }   // the 1 second pause after a move
@@ -16451,6 +16462,39 @@ var stopLoaderOrb = function(){};
     b.addEventListener('click', function(){ var off = !root.classList.contains('we-nomap'); set(off); apply(off); });
   }
   if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
+})();
+</script>
+<script>
+/* Phone: pushing past the end of a story moves on to the next one (and past the top, back to the previous) */
+(function(){
+  var root = document.documentElement, sc, y0 = 0, atB = false, atT = false, lock = 0, acc = 0, accT = 0;
+  function go(dir){
+    if(Date.now() - lock < 700 || !window.__weStory || !window.__weJump) return;
+    var st = window.__weStory(); if(!st || !st.n || st.n < 2) return;
+    lock = Date.now();
+    window.__weJump((st.i + dir + st.n) % st.n);
+    setTimeout(function(){ sc = document.getElementById('calloutScroll'); if(sc){ sc.scrollTop = 0; if(sc.animate) sc.animate([{ transform:'translateY(' + (dir * 26) + 'px)', opacity:0 }, { transform:'none', opacity:1 }], { duration:260, easing:'cubic-bezier(.2,.7,.2,1)' }); } }, 30);
+  }
+  function end(el){ return el.scrollTop + el.clientHeight >= el.scrollHeight - 2; }
+  function inSheet(t){ return t && t.closest && t.closest('#calloutScroll'); }
+  document.addEventListener('touchstart', function(e){
+    if(!root.classList.contains('we-phone')) return;
+    var el = inSheet(e.target); if(!el) { sc = null; return; }
+    sc = el; y0 = e.touches[0].clientY; atB = end(el); atT = el.scrollTop <= 1;
+  }, { passive:true });
+  document.addEventListener('touchend', function(e){
+    if(!sc || !root.classList.contains('we-phone')) return;
+    var dy = (e.changedTouches[0].clientY) - y0, el = sc; sc = null;
+    if(atB && end(el) && dy < -45) go(1);
+    else if(atT && el.scrollTop <= 1 && dy > 80) go(-1);
+  }, { passive:true });
+  document.addEventListener('wheel', function(e){
+    if(!root.classList.contains('we-phone')) return;
+    var el = inSheet(e.target); if(!el) return;
+    if(e.deltaY > 0 && end(el)){ acc += e.deltaY; if(acc > 60){ acc = 0; go(1); } }
+    else if(e.deltaY < 0 && el.scrollTop <= 1){ accT += -e.deltaY; if(accT > 120){ accT = 0; go(-1); } }
+    else { acc = 0; accT = 0; }
+  }, { passive:true });
 })();
 </script>
 </body></html>
