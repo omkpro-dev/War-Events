@@ -68,7 +68,7 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <!-- Focus transitions (loader reveal + page changes); upload we-transition.js alongside the pages -->
 <script src="js/we-transition.js"></script>
-<script src="js/we-bias.js?v=4"></script>
+<script src="js/we-bias.js?v=8"></script>
 
 <script>
 /* Phones get the same War Events site, laid out for a small screen (CSS under
@@ -5032,6 +5032,34 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
   /* summary with the key points continuing straight on from it */
   .cb-article .cb-sum + .cb-list{ margin:8px 0 0 !important; }
   html .callout-body .cb-glass.cb-article .cb-sum.cb-sum2, html .rc-body .cb-article .cb-sum.cb-sum2{ display:block !important; margin-top:12px !important; }
+  /* Coverage & Bias: top of the tab is just the headline; the takeaway and numbers share one box in the normal typeface */
+  html .rc.bias-on .cb-article .cb-sum, html .rc.bias-on .cb-article .cb-sum2, html .callout-body.rc.bias-on .cb-article .cb-sum, html .callout-body.rc.bias-on .cb-article .cb-sum2{ display:none !important; }
+  .bias-sum{ padding:12px 14px 12px; }
+  .bias-sum .bias-take{ margin:0 0 10px; font:600 15px/1.25 'Barlow',sans-serif; color:var(--tw); }
+  .bias-sum .bias-facts{ display:flex; gap:6px; margin:0; border:0; border-radius:0; overflow:visible; }
+  .bias-sum .bias-facts > div{ flex:1; padding:0; border:0 !important; }
+  .bias-sum .bias-facts b{ font:600 26px/1 'Barlow',sans-serif !important; }
+  .bias-sum .bias-facts span{ margin-top:5px; font:500 13px/1.25 'Barlow',sans-serif !important; color:var(--text-secondary); text-transform:none !important; letter-spacing:0; }
+  html .rc.bias-on .callout-body .cb-glass.cb-article .cb-sum.cb-sum2, html .callout-body.rc.bias-on .cb-glass.cb-article .cb-sum.cb-sum2{ display:none !important; }
+  /* Why It Matters: plain text under the summary, no box and no divider */
+  html .cb-article .cb-panel{ background:none !important; border:0 !important; box-shadow:none !important; border-radius:0 !important; padding:0 !important; margin:14px 0 0 !important; }
+  html .rc.bias-on .cb-article .cb-panel, html .callout-body.rc.bias-on .cb-article .cb-panel{ display:none !important; }
+  .rc-tabs{ margin-top:2px; }
+  html .cb-article .cb-panel .cb-h{ display:block !important; margin:0 0 6px !important; font:600 14px/1.2 'Barlow',sans-serif !important; color:var(--tw) !important; }
+  html body .callout-body .cb-article .cb-panel .cb-h{ display:block !important; }
+  html body .callout-body .cb-glass.cb-article .cb-panel{ margin:16px 0 0 !important; padding:0 !important; }
+  /* Story | Coverage & Bias: a full-width bar flush under the source banner, running edge to edge of the panel */
+  html.we-reel:not(.we-phone) .we-reelbox .rc-head{ margin:0 !important; border-radius:0 !important; }
+  html.we-reel:not(.we-phone) .we-reelbox .rc-tabs{ margin:0 -26px 14px -16px !important; padding:0 !important; gap:0 !important; border-radius:0 !important;
+    background:none !important; border:0 !important; border-bottom:1px solid var(--pn-line) !important; }
+  html.we-reel:not(.we-phone) .we-reelbox .rc-tab{ border-radius:0 !important; padding:11px 8px !important; }
+  html.we-reel:not(.we-phone) .we-reelbox .rc-tab + .rc-tab{ border-left:1px solid var(--pn-line) !important; }
+  /* phone: the tab bar sits in the header, full width, directly under the source banner */
+  html.we-phone .callout-head .rc-tabs{ margin:0 !important; padding:0 !important; gap:0 !important; border-radius:0 !important; background:none !important; border:0 !important; border-bottom:1px solid var(--pn-line) !important; }
+  html.we-phone .callout-head .rc-tab{ border-radius:0 !important; padding:12px 8px !important; }
+  html.we-phone .callout-head .rc-tab + .rc-tab{ border-left:1px solid var(--pn-line) !important; }
+  /* Coverage & Bias tab: no article title and no description, only the coverage content under the tabs */
+  html .rc.bias-on .cb-article, html .callout-body.rc.bias-on .cb-article{ display:none !important; }
 </style>
 </head>
 <body>
@@ -11449,7 +11477,7 @@ var stopLoaderOrb = function(){};
         var cnt = window.WEBias ? window.WEBias.fill(bp, p) : 0;
         var sw = document.createElement('div'); sw.className = 'rc-tabs'; sw.setAttribute('role', 'tablist');
         sw.innerHTML = '<button type="button" class="rc-tab on" role="tab" aria-selected="true" data-t="story">Story</button><button type="button" class="rc-tab" role="tab" aria-selected="false" data-t="bias">Coverage &amp; Bias' + (cnt ? ' <span class="rc-count">' + cnt + '</span>' : '') + '</button>';
-        rb.appendChild(sw); rb.appendChild(sp); rb.appendChild(bp);
+        rb.insertBefore(sw, art); rb.appendChild(sp); rb.appendChild(bp);   // Story / Coverage & Bias sit just above the headline
       }
       c.querySelectorAll('.scale').forEach(function(sc){ sc.classList.add('run'); });
       c.querySelectorAll('.scale-chip').forEach(function(ch){ if(ch.dataset.target) ch.style.left = ch.dataset.target; });
@@ -11661,7 +11689,7 @@ var stopLoaderOrb = function(){};
           if(kk && pl){ var loc = kk.textContent.replace(/\s*\u00b7\s*/g, ' \u00b7 ').replace(/\s+/g, ' ').trim(); if(pl.textContent !== loc) pl.textContent = loc; }
           var rep = document.querySelector('.callout .we-rep');
           if(rep && LONG[rep.textContent.trim()]) rep.textContent = LONG[rep.textContent.trim()];
-          if(!body.querySelector('.rc-tabs')){
+          if(!body.querySelector('.rc-pane')){
             if(window.WEBias.mergePoints) window.WEBias.mergePoints(body);
             var st = window.__weStory && window.__weStory(), p = st && window.__wePt && window.__wePt(st.i);
             if(p){
@@ -11671,7 +11699,10 @@ var stopLoaderOrb = function(){};
               var cnt = window.WEBias.fill(bp, p);
               var sw = document.createElement('div'); sw.className = 'rc-tabs'; sw.setAttribute('role', 'tablist');
               sw.innerHTML = '<button type="button" class="rc-tab on" role="tab" aria-selected="true" data-t="story">Story</button><button type="button" class="rc-tab" role="tab" aria-selected="false" data-t="bias">Coverage &amp; Bias' + (cnt ? ' <span class="rc-count">' + cnt + '</span>' : '') + '</button>';
-              body.appendChild(sw); body.appendChild(sp); body.appendChild(bp);
+              var hd = document.querySelector('.callout-head'), pg = document.getElementById('calloutProgress');
+              [].forEach.call(document.querySelectorAll('.callout-head .rc-tabs'), function(o){ o.parentNode.removeChild(o); });
+              if(hd){ hd.insertBefore(sw, pg || null); } else { body.insertBefore(sw, art); }
+              body.appendChild(sp); body.appendChild(bp);
               body.classList.remove('bias-on'); body.classList.add('rc');   // lets the shared tab handler toggle the Bias view
             }
           }

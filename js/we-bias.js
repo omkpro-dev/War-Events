@@ -72,12 +72,9 @@
     var missing = Object.keys(REGIONS).filter(function(r){ return READ[r] && !byRegion[r]; });
     var copies = groups.filter(function(g){ return g.length > 1; }).reduce(function(s, g){ return s + g.length; }, 0);
     var html = '';
-    if(arts.length === 1){
-      html += '<h3 class="bias-take">Only one outlet has reported this</h3>';
-    } else {
-      html += '<h3 class="bias-take">Mostly reported from ' + esc(top === 'west' ? 'the West' : top === 'mideast' ? 'the Middle East' : REGIONS[top][0]) + '</h3>';
-    }
-    html += '<div class="bias-facts"><div><b>' + arts.length + '</b><span>outlet' + (arts.length > 1 ? 's' : '') + '</span></div><div><b>' + n + '</b><span>separate report' + (n > 1 ? 's' : '') + '</span></div><div><b>' + covered + ' of ' + nReg + '</b><span>world regions</span></div></div>';
+    // one box: the takeaway as its title, the three numbers underneath
+    html += '<section class="bias-sec bias-sum"><div class="bias-take">' + (arts.length === 1 ? 'Only one outlet has reported this' : 'Mostly reported from ' + esc(top === 'west' ? 'the West' : top === 'mideast' ? 'the Middle East' : REGIONS[top][0])) + '</div>';
+    html += '<div class="bias-facts"><div><b>' + arts.length + '</b><span>outlet' + (arts.length > 1 ? 's' : '') + '</span></div><div><b>' + n + '</b><span>separate report' + (n > 1 ? 's' : '') + '</span></div><div><b>' + covered + ' of ' + nReg + '</b><span>world regions</span></div></div></section>';
     if(arts.length > 1){
       var label = score >= 80 ? 'Very broad' : score >= 60 ? 'Broad, but uneven' : score >= 35 ? 'Limited' : 'Narrow';
       html += '<section class="bias-sec"><div class="bias-h">Perspective balance</div><div class="bias-balance"><div class="bias-score" style="--v:' + score + '"><span>' + score + '</span></div>' +
@@ -131,6 +128,9 @@
       var parts = [].map.call(ul.querySelectorAll('li'), function(li){ var t = li.textContent.replace(/\s+/g, ' ').trim(); return t && !/[.!?]["')\u201d]?$/.test(t) ? t + '.' : t; }).filter(Boolean);
       var para = document.createElement('span'); para.className = 'cb-sum cb-sum2'; para.textContent = parts.join(' ');
       sum.parentNode.insertBefore(para, sum.nextSibling); kp.parentNode.removeChild(kp);
+      // Why It Matters sits straight under the summary, as plain text (it belongs to the article block, so it hides with the summary on the Bias tab)
+      var why = [].filter.call(root.querySelectorAll('.cb-panel'), function(p){ var h = p.querySelector('.cb-h'); return h && /why\s*it\s*matters/i.test(h.textContent); })[0];
+      if(why) para.parentNode.insertBefore(why, para.nextSibling);
     },
     // One-line coverage summary button for under a headline ("3 outlets · 2 regions · Broad coverage"); null if we have no outlet data.
     covLine: function(story){
@@ -146,7 +146,12 @@
       if(r.arts) heads(pane, cache.get(pane));
       var hb = pane.querySelector('.bias-heads');
       if(hb){
-        hb.addEventListener('scroll', function(){ pos(pane); }, { passive:true });
+        // Always land exactly on a headline: after any scroll (arrows, swipe, trackpad) glide to the nearest card.
+        var stp = function(){ var c = hb.firstElementChild; return c ? c.offsetWidth + 8 : 1; }, snapT = 0;
+        hb.addEventListener('scroll', function(){
+          pos(pane); clearTimeout(snapT);
+          snapT = setTimeout(function(){ var i = Math.round(hb.scrollLeft / stp()), t = Math.max(0, Math.min(hb.children.length - 1, i)) * stp(); hb.__target = null; if(Math.abs(hb.scrollLeft - t) > 2) hb.scrollTo({ left:t, behavior:'smooth' }); }, 140);
+        }, { passive:true });
         // sideways scrolling belongs to the headlines, so it must not turn the page to the next story
         // on phones a sideways swipe over the headlines must not flip the story card
         ['touchstart','touchmove','touchend','pointerdown','pointermove','pointerup'].forEach(function(ev){ hb.addEventListener(ev, function(e){ e.stopPropagation(); }, { passive:true }); });
@@ -162,7 +167,7 @@
     if(cov){ var host = cov.closest('.rc'); var bt = host && host.querySelector('.rc-tab[data-t=bias]'); if(bt) bt.click(); return; }
     var tab = t.closest('.rc-tab');
     if(tab){
-      var rc = tab.closest('.rc'); if(!rc) return;
+      var rc = tab.closest('.rc') || (tab.closest('.callout-head') && document.getElementById('calloutBody')); if(!rc) return;   // on phones the tabs live in the header, outside the story body
       var bias = tab.dataset.t === 'bias';
       [].forEach.call(rc.querySelectorAll('.rc-tab'), function(b){ var on = b === tab; b.classList.toggle('on', on); b.setAttribute('aria-selected', on); });
       var sp = rc.querySelector('.rc-pane.story'), bp = rc.querySelector('.rc-pane.bias');
@@ -177,6 +182,10 @@
     if(row){ st.filter = st.filter === row.dataset.r ? null : row.dataset.r; heads(pane, st); return; }
     if(t.closest('.bias-x')){ st.filter = null; heads(pane, st); return; }
     var dir = t.closest('.bias-next') ? 1 : t.closest('.bias-prev') ? -1 : 0;
-    if(dir){ var hb = pane.querySelector('.bias-heads'), c = hb.firstElementChild; if(c) hb.scrollBy({ left:dir * (c.offsetWidth + 8), behavior:'smooth' }); }
+    if(dir){
+      var hb = pane.querySelector('.bias-heads'), c = hb.firstElementChild;
+      if(c){ var stp = c.offsetWidth + 8, n = hb.children.length, base = hb.__target != null ? hb.__target : Math.round(hb.scrollLeft / stp);
+        var tgt = Math.max(0, Math.min(n - 1, base + dir)); hb.__target = tgt; hb.scrollTo({ left:tgt * stp, behavior:'smooth' }); }
+    }
   });
 })();
