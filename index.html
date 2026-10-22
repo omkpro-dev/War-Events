@@ -4946,6 +4946,18 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
   .bias-split .bias-seg.bias-row{ display:block; }
   .bias-leg .bias-lg:hover, .bias-leg .bias-lg.on{ background:rgba(var(--c1),0.1); color:var(--tw); }
   .bias-split .bias-seg.on{ outline:2px solid rgba(var(--c1),0.6); outline-offset:1px; }
+  /* Header: source name on the left, date and time on the right beside the open button */
+  .we-reelbox .rc-head .rc-time{ margin-left:auto; font:500 13px/1 'Barlow',sans-serif; white-space:nowrap; }
+  /* Same story, different headlines: one compact row, swipe or use the arrows to move through the headlines */
+  .bias-hl .bias-h{ display:flex; align-items:center; gap:6px; }
+  .bias-nav{ margin-left:auto; display:inline-flex; align-items:center; gap:4px; font:500 11px 'Barlow',sans-serif; color:var(--text-secondary); }
+  .bias-nav button{ appearance:none; width:20px; height:20px; padding:0; border:1px solid rgba(var(--c1),0.3); border-radius:4px; background:none; color:var(--tw); font-size:14px; line-height:1; cursor:pointer; }
+  .bias-nav button:hover{ background:rgba(var(--c1),0.12); }
+  .bias-heads{ display:flex; flex-direction:row; gap:8px; overflow-x:auto; overflow-y:hidden; scroll-snap-type:x mandatory; overscroll-behavior-x:contain; scrollbar-width:none; }
+  .bias-heads::-webkit-scrollbar{ display:none; }
+  .bias-heads .bias-hcard{ flex:0 0 100%; box-sizing:border-box; scroll-snap-align:start; height:58px; overflow:hidden; }
+  .bias-heads .bias-hcard .t{ display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+  .bias-heads .bias-hcard .o{ white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 </style>
 </head>
 <body>
@@ -11336,7 +11348,7 @@ var stopLoaderOrb = function(){};
       var LONG = { 'AP':'Associated Press', 'SCMP':'South China Morning Post', 'DW':'Deutsche Welle', 'CNA':'Channel NewsAsia', 'NPR':'National Public Radio' };
       var plc = String(p.place || '').split(',')[0].toLowerCase().replace(/(^|\s)\S/g, function(m){ return m.toUpperCase(); });
       var ini = src.length <= 4 ? src : src.replace(/^the\s+/i, '').split(/\s+/).slice(0, 2).map(function(w){ return w.charAt(0); }).join('').toUpperCase();
-      c.innerHTML = '<div class="rc-head"><span class="rc-badge" aria-hidden="true">' + esc(ini) + '</span><span class="rc-who"><span class="rc-out">' + esc(LONG[src] || src) + '</span><span class="rc-time">' + esc(window.__weFmtT(p.time)) + (plc ? ' \u00b7 ' + esc(plc) : '') + '</span></span>'
+      c.innerHTML = '<div class="rc-head"><span class="rc-who"><span class="rc-out">' + esc(LONG[src] || src) + '</span></span><span class="rc-time">' + esc(window.__weFmtT(p.time)) + '</span>'
         + (p.sourceUrl ? '<a class="rc-src source-btn" href="' + esc(p.sourceUrl) + '" target="_blank" rel="noopener noreferrer" aria-label="Open source article" title="Open source article">\u2197</a>' : '') + '</div>'
         + '<div class="callout-body rc-body">' + (body ? body.innerHTML : '') + '</div>';
       // Story | Coverage & Bias: everything after the headline block is the Story pane; Bias is filled from the story's outlet list.

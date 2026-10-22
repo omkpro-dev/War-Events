@@ -91,7 +91,7 @@
       '<div class="bias-split">' + regs.map(function(r){ return '<button type="button" class="bias-seg bias-row" data-r="' + r + '" style="--c:' + REGIONS[r][1] + ';flex:' + byRegion[r] + '" aria-label="' + esc(REGIONS[r][0]) + ': ' + byRegion[r] + '"></button>'; }).join('') + '</div>' +
       '<div class="bias-leg">' + regs.map(function(r){ return '<button type="button" class="bias-lg bias-row" data-r="' + r + '" style="--c:' + REGIONS[r][1] + '"><i></i>' + esc(REGIONS[r][0]) + ' <b>' + byRegion[r] + '</b></button>'; }).join('') + '</div></section>';
     if(hasHeads){
-      html += '<section class="bias-sec"><div class="bias-h">Same story, different headlines <span class="bias-pill" hidden></span></div><div class="bias-heads"></div><div class="bias-more-wrap"><button type="button" class="bias-more"></button></div></section>';
+      html += '<section class="bias-sec bias-hl"><div class="bias-h">Same story, different headlines <span class="bias-pill" hidden></span><span class="bias-nav"><button type="button" class="bias-prev" aria-label="Previous headline">\u2039</button><span class="bias-pos"></span><button type="button" class="bias-next" aria-label="Next headline">\u203a</button></span></div><div class="bias-heads"></div></section>';
     }
     html += '<section class="bias-sec"><div class="bias-h">Who owns the outlets</div><div class="bias-own">' +
       Object.keys(OWN).map(function(k){ return '<span style="--c:' + OWN[k][1] + ';flex:' + (byOwn[k] || 0) + '"></span>'; }).join('') + '</div><div class="bias-key">' +
@@ -106,23 +106,35 @@
     var box = pane.querySelector('.bias-heads'); if(!box) return;
     var list = state.arts.filter(function(a){ return a.title && (!state.filter || a.region === state.filter); });
     var wireSize = new Map(); state.groups.forEach(function(g){ if(g.length > 1) g.forEach(function(a){ wireSize.set(a, g.length); }); });
-    var shown = list;
-    if(!state.filter && !state.all){ var seen = {}, wire = 0; shown = list.filter(function(a){ if(seen[a.region] || (wireSize.get(a) && wire)) return false; seen[a.region] = 1; if(wireSize.get(a)) wire = 1; return true; }); }
-    box.innerHTML = shown.map(function(a){
+    box.innerHTML = list.map(function(a){
       var chips = (a.own === 'govt' ? '<span class="bias-chip">Government-linked</span>' : '') + (wireSize.get(a) ? '<span class="bias-chip">Shared wire story</span>' : '');
-      return '<div class="bias-hcard" style="--c:' + REGIONS[a.region][1] + '"><div class="o">' + esc(a.outlet) + ' <em>· ' + esc(a.where) + ' · ' + esc(when(a.time)) + '</em>' + chips + '</div><div class="t">' + esc(a.title) + '</div></div>';
+      return '<div class="bias-hcard" style="--c:' + REGIONS[a.region][1] + '"><div class="o">' + esc(a.outlet) + ' <em>\u00b7 ' + esc(a.where) + ' \u00b7 ' + esc(when(a.time)) + '</em>' + chips + '</div><div class="t">' + esc(a.title) + '</div></div>';
     }).join('');
-    var pill = pane.querySelector('.bias-pill'), more = pane.querySelector('.bias-more');
-    pill.hidden = !state.filter; pill.innerHTML = state.filter ? esc(REGIONS[state.filter][0]) + ' <button type="button" class="bias-x" aria-label="Clear filter">×</button>' : '';
-    more.style.display = state.filter ? 'none' : ''; more.textContent = state.all ? 'Show one per region' : 'Show all ' + list.length + ' headlines';
+    box.scrollLeft = 0;
+    var pill = pane.querySelector('.bias-pill'); pill.hidden = !state.filter;
+    pill.innerHTML = state.filter ? esc(REGIONS[state.filter][0]) + ' <button type="button" class="bias-x" aria-label="Clear filter">\u00d7</button>' : '';
+    pane.querySelector('.bias-nav').style.display = list.length > 1 ? '' : 'none';
     [].forEach.call(pane.querySelectorAll('.bias-row[data-r]'), function(b){ b.classList.toggle('on', b.dataset.r === state.filter); });
+    pos(pane);
+  }
+  function pos(pane){
+    var box = pane.querySelector('.bias-heads'), el = pane.querySelector('.bias-pos'); if(!box || !el) return;
+    var n = box.children.length, w = box.firstElementChild ? box.firstElementChild.offsetWidth + 8 : 1;
+    el.textContent = n ? (Math.min(n, Math.round(box.scrollLeft / w) + 1)) + ' / ' + n : '';
   }
 
   window.WEBias = {
     // Fills a card's Coverage & Bias pane; returns the number of outlets (for the tab badge).
     fill: function(pane, story){
       var r = build(story); pane.innerHTML = r.html; cache.set(pane, { arts:r.arts || [], groups:r.groups || [], filter:null, all:false });
-      if(r.arts) heads(pane, cache.get(pane)); return r.count;
+      if(r.arts) heads(pane, cache.get(pane));
+      var hb = pane.querySelector('.bias-heads');
+      if(hb){
+        hb.addEventListener('scroll', function(){ pos(pane); }, { passive:true });
+        // sideways scrolling belongs to the headlines, so it must not turn the page to the next story
+        hb.addEventListener('wheel', function(e){ if(Math.abs(e.deltaX) > Math.abs(e.deltaY)) e.stopPropagation(); }, { passive:true });
+      }
+      return r.count;
     }
   };
 
@@ -143,6 +155,7 @@
     var row = t.closest('.bias-row[data-r]');
     if(row){ st.filter = st.filter === row.dataset.r ? null : row.dataset.r; heads(pane, st); return; }
     if(t.closest('.bias-x')){ st.filter = null; heads(pane, st); return; }
-    if(t.closest('.bias-more')){ st.all = !st.all; heads(pane, st); }
+    var dir = t.closest('.bias-next') ? 1 : t.closest('.bias-prev') ? -1 : 0;
+    if(dir){ var hb = pane.querySelector('.bias-heads'), c = hb.firstElementChild; if(c) hb.scrollBy({ left:dir * (c.offsetWidth + 8), behavior:'smooth' }); }
   });
 })();
