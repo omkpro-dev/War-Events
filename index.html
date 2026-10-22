@@ -5017,6 +5017,23 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
   .rc.bias-on .cb-article{ padding-bottom:0 !important; margin-bottom:6px !important; }
   html.we-phone .we-gmenu{ background:rgba(var(--n1),0.98) !important; }
   html.we-phone .we-gtheme{ margin-top:4px; border-top:1px solid var(--pn-line) !important; }
+  /* ---- Story panel: clearer hierarchy ---- */
+  /* bigger headline */
+  html .rc-body .cb-article .cb-title, html .we-reelbox .rc-body .cb-article .cb-title{ font-size:25px !important; line-height:1.2 !important; letter-spacing:-0.01em; }
+  html.we-phone #calloutBody .cb-article .cb-title{ font-size:20px !important; line-height:1.22 !important; }
+  /* coverage summary line under the headline */
+  .rc-cov{ appearance:none; display:flex; align-items:center; justify-content:space-between; gap:8px; width:100%; margin:10px 0 12px; padding:7px 10px; border:1px solid rgba(var(--tn),0.16); border-radius:5px;
+    background:rgba(var(--tn),0.05); color:var(--text-secondary); font:500 12.5px/1.2 'Barlow',sans-serif; text-align:left; cursor:pointer; }
+  .rc-cov:hover{ background:rgba(var(--tn),0.1); color:var(--tw); }
+  .rc-cov i{ font-style:normal; font-size:16px; line-height:1; }
+  /* Key Points / Why It Matters: plain headings and bullets with a divider, not boxes */
+  html .rc-pane .cb-panel{ background:none !important; border:0 !important; border-top:1px solid rgba(var(--tn),0.16) !important; border-radius:0 !important; box-shadow:none !important; padding:12px 2px 6px !important; margin:0 !important; }
+  /* story pager */
+  .rc-pager{ flex:none; display:flex; align-items:center; justify-content:center; gap:12px; padding:6px 8px; border-top:1px solid var(--pn-line); font:500 12px 'Barlow',sans-serif; color:var(--text-secondary); }
+  .rc-pager button{ appearance:none; width:26px; height:26px; padding:0; border:1px solid var(--pn-line); border-radius:5px; background:none; color:var(--t2); font-size:16px; line-height:1; cursor:pointer; }
+  .rc-pager button:hover{ background:var(--t2); color:var(--n0); }
+  html.we-phone .rc-pager{ display:none; }
+  .rc.bias-on .rc-cov{ display:none; }   /* the Bias tab already shows these numbers */
 </style>
 </head>
 <body>
@@ -11402,6 +11419,14 @@ var stopLoaderOrb = function(){};
     if(R.classList.contains('we-phone') || /view=power/.test(location.search)) return;
     var callout, box, reel, strip, n = 0, sig = '', cur = -1, busy = false, follow = 0;
     function esc(x){ return String(x == null ? '' : x).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;'); }
+    function rcAgo(t){
+      var d = new Date(t), ms = Date.now() - d.getTime();
+      if(isNaN(ms) || ms < 0) return window.__weFmtT(t);
+      var m = Math.round(ms / 60000);
+      if(m < 2) return 'just now'; if(m < 60) return m + 'm ago';
+      var h = Math.round(m / 60); if(h < 24) return h + 'h ago';
+      return window.__weFmtT(t);
+    }
     function card(i){
       var p = window.__wePt(i); window.__weRender(i);
       var body = document.getElementById('calloutBody'), c = document.createElement('article');
@@ -11410,9 +11435,12 @@ var stopLoaderOrb = function(){};
       var LONG = { 'AP':'Associated Press', 'SCMP':'South China Morning Post', 'DW':'Deutsche Welle', 'CNA':'Channel NewsAsia', 'NPR':'National Public Radio' };
       var plc = String(p.place || '').split(',')[0].toLowerCase().replace(/(^|\s)\S/g, function(m){ return m.toUpperCase(); });
       var ini = src.length <= 4 ? src : src.replace(/^the\s+/i, '').split(/\s+/).slice(0, 2).map(function(w){ return w.charAt(0); }).join('').toUpperCase();
-      c.innerHTML = '<div class="rc-head"><span class="rc-who"><span class="rc-out">' + esc(LONG[src] || src) + '</span></span><span class="rc-time">' + esc(window.__weFmtT(p.time)) + '</span>'
+      c.innerHTML = '<div class="rc-head"><span class="rc-who"><span class="rc-out">' + esc(LONG[src] || src) + '</span></span><span class="rc-time" title="' + esc(window.__weFmtT(p.time)) + '">' + esc(rcAgo(p.time)) + '</span>'
         + (p.sourceUrl ? '<a class="rc-src source-btn" href="' + esc(p.sourceUrl) + '" target="_blank" rel="noopener noreferrer" aria-label="Open source article" title="Open source article">\u2197</a>' : '') + '</div>'
         + '<div class="callout-body rc-body">' + (body ? body.innerHTML : '') + '</div>';
+      // Coverage summary right under the headline ("3 outlets · 2 regions · Broad coverage"); tapping it opens Coverage & Bias.
+      var ttl = c.querySelector('.cb-article .cb-title'), cl = window.WEBias && ttl ? window.WEBias.covLine(p) : null;
+      if(cl && ttl && ttl.parentNode) ttl.parentNode.insertBefore(cl, ttl.nextSibling);
       // Place goes under the outlet name in the header (it used to sit above the headline).
       var kk = c.querySelector('.cb-kicker'), who = c.querySelector('.rc-who');
       if(kk && who){ var loc = document.createElement('span'); loc.className = 'rc-loc'; loc.textContent = kk.textContent.replace(/\s*\u00b7\s*/g, ' \u00b7 ').replace(/\s+/g, ' ').trim(); who.appendChild(loc); kk.remove(); }
@@ -11443,12 +11471,19 @@ var stopLoaderOrb = function(){};
       window.__weRender(keep);
       reel.scrollTop = top; busy = false; cur = -1; onScroll();
       R.classList.add('we-reel');
+      if(!box.querySelector('.rc-pager')){
+        var pg = document.createElement('div'); pg.className = 'rc-pager';
+        pg.innerHTML = '<button type="button" class="rc-pg-prev" aria-label="Previous story">\u2039</button><span class="rc-pg-n"></span><button type="button" class="rc-pg-next" aria-label="Next story">\u203a</button>';
+        pg.addEventListener('click', function(e){ var b = e.target.closest && e.target.closest('button'); if(!b || !n) return; go((cur + (b.classList.contains('rc-pg-next') ? 1 : -1) + n) % n); });
+        box.appendChild(pg);
+      }
       paintStrip(); setTimeout(function(){ fit(cur < 0 ? 0 : cur); }, 60); setTimeout(function(){ fit(cur < 0 ? 0 : cur); }, 900);
     }
     function paintStrip(){
       if(!strip) return;
       if(strip.children.length !== n){ strip.innerHTML = ''; for(var i = 0; i < n; i++){ var b = document.createElement('button'); b.type = 'button'; b.className = 'we-dseg'; b.setAttribute('data-i', i); b.setAttribute('aria-label', 'Story ' + (i + 1)); strip.appendChild(b); } }
       Array.prototype.forEach.call(strip.children, function(b, i){ b.setAttribute('aria-selected', String(i === cur)); });
+      var pn = box && box.querySelector('.rc-pg-n'); if(pn) pn.textContent = (cur < 0 ? 1 : cur + 1) + ' of ' + n;
     }
     function onScroll(){
       if(busy || !reel) return;
@@ -11637,6 +11672,8 @@ var stopLoaderOrb = function(){};
           if(kk && pl){ var loc = kk.textContent.replace(/\s*\u00b7\s*/g, ' \u00b7 ').replace(/\s+/g, ' ').trim(); if(pl.textContent !== loc) pl.textContent = loc; }
           var rep = document.querySelector('.callout .we-rep');
           if(rep && LONG[rep.textContent.trim()]) rep.textContent = LONG[rep.textContent.trim()];
+          var ph = art.querySelector('.cb-title');
+          if(ph && !art.querySelector('.rc-cov')){ var pst = window.__weStory && window.__weStory(), pp = pst && window.__wePt && window.__wePt(pst.i), pc = pp && window.WEBias.covLine(pp); if(pc) ph.parentNode.insertBefore(pc, ph.nextSibling); }
           if(!body.querySelector('.rc-tabs')){
             var st = window.__weStory && window.__weStory(), p = st && window.__wePt && window.__wePt(st.i);
             if(p){

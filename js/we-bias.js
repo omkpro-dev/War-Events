@@ -96,7 +96,7 @@
       Object.keys(OWN).map(function(k){ return '<span><i style="--c:' + OWN[k][1] + '"></i>' + OWN[k][0] + ' ' + (byOwn[k] || 0) + '</span>'; }).join('') + '</div>' +
       (copies ? '<p class="bias-note">' + copies + ' outlets ran the same wire story, word for word. We count them as one report.</p>' : '') +
       '<p class="bias-note">Regions and ownership are draft ratings by War Events, based on where an outlet is based and who funds it.</p></section>';
-    return { html:html, count:arts.length, arts:arts, groups:groups };
+    return { html:html, count:arts.length, arts:arts, groups:groups, covered:covered, label:(arts.length > 1 ? (score >= 80 ? 'Very broad coverage' : score >= 60 ? 'Broad coverage' : score >= 35 ? 'Limited coverage' : 'Narrow coverage') : 'Single source') };
   }
 
   var cache = new WeakMap();
@@ -122,6 +122,14 @@
   }
 
   window.WEBias = {
+    // One-line coverage summary button for under a headline ("3 outlets · 2 regions · Broad coverage"); null if we have no outlet data.
+    covLine: function(story){
+      var r = build(story); if(!r.count) return null;
+      var b = document.createElement('button'); b.type = 'button'; b.className = 'rc-cov';
+      b.setAttribute('aria-label', 'Open coverage and bias');
+      b.innerHTML = '<span>' + r.count + (r.count === 1 ? ' outlet' : ' outlets') + ' \u00b7 ' + r.covered + (r.covered === 1 ? ' region' : ' regions') + ' \u00b7 ' + esc(r.label) + '</span><i aria-hidden="true">\u203a</i>';
+      return b;
+    },
     // Fills a card's Coverage & Bias pane; returns the number of outlets (for the tab badge).
     fill: function(pane, story){
       var r = build(story); pane.innerHTML = r.html; cache.set(pane, { arts:r.arts || [], groups:r.groups || [], filter:null, all:false });
@@ -140,6 +148,8 @@
 
   document.addEventListener('click', function(e){
     var t = e.target; if(!t.closest) return;
+    var cov = t.closest('.rc-cov');
+    if(cov){ var host = cov.closest('.rc'); var bt = host && host.querySelector('.rc-tab[data-t=bias]'); if(bt) bt.click(); return; }
     var tab = t.closest('.rc-tab');
     if(tab){
       var rc = tab.closest('.rc'); if(!rc) return;
