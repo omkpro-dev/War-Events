@@ -88,7 +88,6 @@
     var regs = Object.keys(REGIONS).filter(function(r){ return byRegion[r]; }).sort(function(a, b){ return byRegion[b] - byRegion[a]; }), maxR = byRegion[regs[0]];
     html += '<section class="bias-sec"><div class="bias-h">Who reported it' + (hasHeads ? ' <small>tap a region to filter headlines</small>' : '') + '</div><div class="bias-rows">' +
       regs.map(function(r){ return '<button type="button" class="bias-row" data-r="' + r + '" style="--c:' + REGIONS[r][1] + '"><i></i><span>' + esc(REGIONS[r][0]) + '</span><span class="bias-bar"><span style="width:' + (100 * byRegion[r] / maxR) + '%"></span></span><span class="bias-n">' + byRegion[r] + '</span></button>'; }).join('') +
-      (missing.length ? '<div class="bias-gap">Not covered</div>' + missing.map(function(r){ return '<div class="bias-row none"><i></i><span>' + esc(REGIONS[r][0]) + '</span><span class="bias-bar"></span><span class="bias-n">0</span></div>'; }).join('') : '') +
       '</div></section>';
     if(hasHeads){
       html += '<section class="bias-sec"><div class="bias-h">Same story, different headlines <span class="bias-pill" hidden></span></div><div class="bias-heads"></div><div class="bias-more-wrap"><button type="button" class="bias-more"></button></div></section>';
