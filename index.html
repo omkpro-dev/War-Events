@@ -5188,6 +5188,9 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
   html.we-phone .reports-panel > .we-feedhead span{ font-weight:700 !important; }
   html.we-phone .reports-panel > .we-feedhead b{ font-weight:400 !important; margin-left:8px; }
   html.we-phone .callout-top-left .we-rep{ font-size:13.5px !important; letter-spacing:0 !important; }
+
+  /* Phone: switching story swaps the content in place -- no fade-from-blank */
+  html.we-phone .callout-box.we-swap > *, html.we-phone .callout-box > *{ animation:none !important; }
 </style>
 </head>
 <body>
@@ -11862,7 +11865,7 @@ var stopLoaderOrb = function(){};
       } catch(e){}
       busy = false;
     }
-    new MutationObserver(function(){ clearTimeout(apply._t); apply._t = setTimeout(apply, 30); }).observe(body, { childList:true });
+    new MutationObserver(function(){ apply(); clearTimeout(apply._t); apply._t = setTimeout(apply, 30); }).observe(body, { childList:true });   // apply straight away (before the next paint) so a new story never shows its raw header/text first
     setTimeout(apply, 600);
   })();
 
@@ -16493,7 +16496,7 @@ var stopLoaderOrb = function(){};
     var st = window.__weStory(); if(!st || !st.n || st.n < 2) return;
     lock = Date.now();
     window.__weJump((st.i + dir + st.n) % st.n);
-    setTimeout(function(){ sc = document.getElementById('calloutScroll'); if(sc){ sc.scrollTop = 0; if(sc.animate) sc.animate([{ transform:'translateY(' + (dir * 26) + 'px)', opacity:0 }, { transform:'none', opacity:1 }], { duration:260, easing:'cubic-bezier(.2,.7,.2,1)' }); } }, 30);
+    sc = document.getElementById('calloutScroll'); if(sc) sc.scrollTop = 0;   // straight to the top of the new story: no fade, no flash
   }
   function end(el){ return el.scrollTop + el.clientHeight >= el.scrollHeight - 2; }
   function inSheet(t){ return t && t.closest && t.closest('#calloutScroll'); }
