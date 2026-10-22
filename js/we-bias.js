@@ -147,6 +147,7 @@
       [].forEach.call(rc.querySelectorAll('.rc-tab'), function(b){ var on = b === tab; b.classList.toggle('on', on); b.setAttribute('aria-selected', on); });
       var sp = rc.querySelector('.rc-pane.story'), bp = rc.querySelector('.rc-pane.bias');
       if(sp) sp.hidden = bias; if(bp) bp.hidden = !bias;
+      rc.classList.toggle('bias-on', bias);
       try { window.dispatchEvent(new Event('resize')); } catch(err){}
       return;
     }
