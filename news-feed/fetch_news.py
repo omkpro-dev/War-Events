@@ -668,7 +668,7 @@ def build_story(g, now):
         "textUrls": [a["url"] for a in sorted(arts, key=rank) if a.get("url") and "news.google.com" not in a["url"]][:3],
         "outlets": outlets,
         # every article in the cluster (outlet, time, headline), oldest first: feeds the Coverage & Bias tab
-        "coverage": [{"o": a["outlet"], "t": a["time"], "h": a["title"]} for a in sorted(arts, key=lambda x: x["time"])][:24],
+        "coverage": [dict({"o": a["outlet"], "t": a["time"], "h": a["title"]}, **({"u": a["url"]} if a.get("url") and "news.google.com" not in a["url"] else {})) for a in sorted(arts, key=lambda x: x["time"])][:24],
         "topics": [k for k, _ in topics.most_common()],
         "score": score,
         "_keys": [a["key"] for a in arts],

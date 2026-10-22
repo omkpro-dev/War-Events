@@ -68,7 +68,7 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <!-- Focus transitions (loader reveal + page changes); upload we-transition.js alongside the pages -->
 <script src="js/we-transition.js"></script>
-<script src="js/we-bias.js?v=10"></script>
+<script src="js/we-bias.js?v=11"></script>
 
 <script>
 /* Phones get the same War Events site, laid out for a small screen (CSS under
@@ -15059,13 +15059,13 @@ var stopLoaderOrb = function(){};
     if(weMediaEl) weFillMedia(p);
     var weImp = document.getElementById('calloutImpact'), weScroll = document.getElementById('calloutScroll');
     if(weImp && weScroll && weImp.parentNode === calloutBody) weScroll.insertBefore(weImp, calloutBody.nextSibling);   // take the impact box out before the body is rebuilt
-    if(pts.length){
-      // Claude-written bullets (enrich_stories.py): summary, key points, then the potential impact.
+    if(pts.length || (Array.isArray(p.impactPoints) && p.impactPoints.filter(Boolean).length)){
+      // Claude-written bullets (enrich_stories.py): summary, key points (if any), then the potential impact.
       var esc = function(s){ return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); };
       var li = function(a){ return a.map(function(s){ return '<li>' + esc(s) + '</li>'; }).join(''); };
       var imp = Array.isArray(p.impactPoints) ? p.impactPoints.filter(Boolean).slice(0, 4) : [];
       calloutBody.innerHTML = (sum ? '<div class="cb-glass cb-article">' + weKicker(p) + '<b class="cb-title">' + (p.headline || '') + '</b><i class="cb-rule" aria-hidden="true"></i><b class="cb-h">Summary</b><span class="cb-sum">' + sum + '</span></div>' : '')
-        + '<div class="cb-panel"><b class="cb-h">Key points</b><ul class="cb-list">' + li(pts) + '</ul></div>'
+        + (pts.length ? '<div class="cb-panel"><b class="cb-h">Key points</b><ul class="cb-list">' + li(pts) + '</ul></div>' : '')
         + (imp.length ? '<div class="cb-panel"><b class="cb-h">Why it matters</b><ul class="cb-list">' + li(imp) + '</ul></div>' : '');
     } else
     calloutBody.innerHTML = (sum ? '<div class="cb-glass cb-article">' + weKicker(p) + '<b class="cb-title">' + (p.headline || '') + '</b><i class="cb-rule" aria-hidden="true"></i><b class="cb-h">Summary</b><span class="cb-sum">' + sum + '</span></div>' : '') || '<b>What happened:</b> Placeholder summary text for this development — a two-to-three sentence explainer would go here, giving readers the key facts and context before they click through to the full story.';

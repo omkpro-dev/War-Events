@@ -14,20 +14,28 @@ CACHE = os.path.join(ROOT, "news-feed", "enrich_cache.json")
 KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 MODEL = os.environ.get("CLAUDE_MODEL", "claude-haiku-5-5")
 MAX_NEW = int(os.environ.get("ENRICH_MAX", "20"))  # cap API calls per run
-PROMPT_V = 7                                        # bump to re-ask Claude for every cached story
+PROMPT_V = 8                                        # bump to re-ask Claude for every cached story
 MIN_GEO = int(os.environ.get("MIN_GEO", "7"))       # stories Claude scores below this (0-10) are dropped from the site
 UA = {"User-Agent": "Mozilla/5.0 (WarEvents enrich bot)"}
 
 # Fixed instructions go in the (cached) system prompt and the story in the user turn, so every call
 # after the first in an hour reads the instructions from the prompt cache at a tenth of the price.
-SYSTEM = """You are a geopolitical news editor for the site War Events.
+SYSTEM = """You are a geopolitical news editor for the site War Events. War Events is an aggregator: it does not republish articles. It writes its own short synthesis of what several outlets report, and links to them.
 
-If the article text is missing, work from the headline and outlets and never mention to readers that the text was unavailable.
+You are given the headline each outlet ran and, where we could read it, the text of up to three of their articles. If text is missing, work from the headlines and never mention to readers that text was unavailable.
+
+HOW TO WRITE (applies to "headline", "summary" and "impact_points"):
+- Synthesise, do not rewrite one article. Combine what the outlets report. Prefer facts that more than one outlet confirms. Where outlets disagree, or only one outlet reports a claim, say so briefly and attribute it ("Iran says...", "Reuters reports...").
+- Original wording only. Never reuse a sentence or a distinctive phrase from any source or any source headline. Rebuild every sentence from the facts, and do not follow the order or structure of any single article.
+- No direct quotes. If the exact words are the news, quote at most four words, in quotation marks, attributed.
+- Wire services (Reuters, AP, AFP, Bloomberg): rewrite especially heavily. Treat them as a source of facts only, and make sure nothing reads like their copy.
+- Be accurate to the sources: names, numbers, places and dates. Add nothing they do not support.
 
 Return ONLY a JSON object, no prose, with:
-- "summary": the lead of the story, 1-2 plain sentences (max 40 words): what happened, who, where, and the single most important fact. Neutral, factual, no speculation beyond the reporting.
-- "points": exactly 3 sentences that CONTINUE the summary. The site joins them into a second paragraph straight after the summary, so the summary plus these sentences must read as one or two flowing paragraphs of ordinary prose, never as a list. Each is a complete sentence ending with a full stop (max 22 words), adds the next most important facts (names, numbers, what happens next, why it matters now), and flows from the one before it: vary how sentences begin and use natural connecting words ("Meanwhile", "As a result", "That follows", "Officials said"). Never repeat a fact already in the summary or the headline, and never restate the story. Plain English a 12-year-old understands, no jargon.
-- "impact_points": 2-4 bullet points on the potential geopolitical impact: who is affected and how. Same style: very basic, max 14 words each, grounded in the reporting.
+- "headline": your own headline: accurate, neutral and specific, max 15 words, sentence case, no quotation marks, no clickbait, and no wording copied from any source headline.
+- "summary": 50 to 100 plain words in one or two short paragraphs separated by a blank line: what happened, who, where, and the most important detail, written as a synthesis of the outlets. Neutral and factual, no speculation beyond the reporting.
+- "points": always an empty list [].
+- "impact_points": exactly 2 sentences on why it matters, naming who is affected and how. Each begins with the main country, group or organisation affected, then what happens to it. Plain English, max 20 words each, grounded in the reporting.
 - "geo": integer 0-10, how geopolitical this story is. 8-10 = wars, military action between or inside states, international crises, sanctions, major diplomacy, state-level energy/trade conflicts. 5-7 = significant security or political events with clear international consequences. 0-4 = domestic regulation, consumer/business news, markets, local crime, courts, elections with no international angle, human-interest. Judge the substance, not the keywords. Human-interest and personal stories score 0-3 EVEN IF set in a war zone: individual or family experiences, couples, love stories, profiles, "life under" pieces, diaries, testimonies, culture, food, sport or art in wartime, anniversaries and explainers with no new event. Score the EVENT and its consequences for states, not the setting.
 - "actors": the impact of THIS story on each country, worked out from what the article actually says.
   Step 1, WHO: every country that is a direct party (attacker and target, both sides of talks or a deal, the sanctioner and the sanctioned, the country it happens in, a country sending help), then any country the article says is clearly affected. At least 2 whenever two or more countries are involved; max 6; most affected first. Use the country, not a group (Houthis -> YE, Hezbollah -> LB, Hamas/Gaza/West Bank -> PS).
@@ -38,25 +46,39 @@ Return ONLY a JSON object, no prose, with:
     +1 slightly better off; +3 clear gain (support, leverage, a deal, relief); +5 major win.
   Judge each country from ITS OWN point of view; sides usually score differently. Do not default to 0. Do not give every country the same score.
   Format: {"code": ISO 3166-1 alpha-2 uppercase, "why": "...", "score": -5..5}
-  RULE: the map shows exactly these countries, so readers must see WHY each one is there. Include BOTH the countries at the centre of the story AND any other country the FULL ARTICLE says could be affected (knock-on effects, allies, neighbours, markets). Then make sure every one of them is explained in the text: name it (by country, people or capital, e.g. "Russia", "Russian", "Moscow") in the "summary", in a "points" bullet or in an "impact_points" line. Use up to 4 impact_points so the wider effects are covered.
-  The European Union as a bloc (EU institutions, EU sanctions, EU policy) uses the code "EU" instead of listing member states; name "the EU" or "the European Union" in the summary or the points.
+  RULE: the map shows exactly these countries, so readers must see WHY each one is there. Include BOTH the countries at the centre of the story AND any other country the FULL ARTICLE says could be affected (knock-on effects, allies, neighbours, markets). Then make sure every one of them is explained in the text: name it (by country, people or capital, e.g. "Russia", "Russian", "Moscow") in the "summary" or in an "impact_points" line. Use up to 4 impact_points so the wider effects are covered.
+  The European Union as a bloc (EU institutions, EU sanctions, EU policy) uses the code "EU" instead of listing member states; name "the EU" or "the European Union" in the summary.
 """
 
-STORY = """Story headline: {headline}
-Location: {place}
-Reported by: {outlets}
-Article text (may be partial or empty):
-{text}"""
+STORY = """Location: {place}
+What each outlet ran (outlet: its headline):
+{coverage}
+
+Article texts we could read (may be partial or empty):
+{texts}"""
 
 
-def story_text(story):
-    """The article text: from the source link, else from the other outlets covering the story."""
-    for url in [story.get("sourceUrl", "")] + story.get("textUrls", []):
-        if url and "news.google.com" not in url:
-            text = article_text(url)
-            if len(text) > 300:
-                return text
-    return ""
+def story_texts(story, limit=3):
+    """Up to `limit` readable articles from DIFFERENT outlets, so the summary can be a synthesis, not a rewrite of one."""
+    urls = []
+    for c in story.get("coverage", []):
+        u = c.get("u")
+        if u and "news.google.com" not in u and all(u != x[1] for x in urls):
+            urls.append((c.get("o", ""), u))
+    for u in [story.get("sourceUrl", "")] + story.get("textUrls", []):
+        if u and "news.google.com" not in u and all(u != x[1] for x in urls):
+            urls.append((story.get("outlets", [""])[0] if story.get("outlets") else "", u))
+    out, seen = [], set()
+    for outlet, u in urls:
+        if len(out) >= limit:
+            break
+        if outlet in seen:
+            continue
+        text = article_text(u)
+        if len(text) > 300:
+            seen.add(outlet)
+            out.append((outlet, text[:2800]))
+    return out
 
 
 def article_text(url):
@@ -78,9 +100,9 @@ def ask_claude(story):
         "thinking": {"type": "disabled"}, "output_config": {"effort": "low"},
         "system": [{"type": "text", "text": SYSTEM, "cache_control": {"type": "ephemeral", "ttl": "1h"}}],
         "messages": [{"role": "user", "content": STORY.format(
-            headline=html.unescape(story.get("headline", "")), place=story.get("place", ""),
-            outlets=", ".join(story.get("outlets", [])[:5]),
-            text=story_text(story) or "(not available)")}],
+            place=story.get("place", ""),
+            coverage="\n".join("- %s: %s" % (c.get("o", ""), html.unescape(c.get("h", ""))) for c in (story.get("coverage") or [{"o": ", ".join(story.get("outlets", [])[:5]), "h": story.get("headline", "")}])[:12]),
+            texts="\n\n".join("[%s]\n%s" % (o, t) for o, t in story_texts(story)) or "(not available)")}],
     }).encode()
     req = urllib.request.Request("https://api.anthropic.com/v1/messages", data=body, headers={
         "x-api-key": KEY, "anthropic-version": "2023-06-01", "content-type": "application/json"})
@@ -112,7 +134,7 @@ def ask_claude(story):
             return []
         out = [re.sub(r"^[\s\-\u2022*]+", "", str(x)).strip() for x in v]
         return [x for x in out if x][:n]
-    return {"v": PROMPT_V, "summary": str(data.get("summary", "")).strip(), "actors": actors, "geo": geo,
+    return {"v": PROMPT_V, "headline": re.sub(r"\s+", " ", str(data.get("headline", ""))).strip().strip("\"\u201c\u201d"), "summary": str(data.get("summary", "")).strip(), "actors": actors, "geo": geo,
             "points": bullets(data.get("points"), 3), "impact_points": bullets(data.get("impact_points"), 4)}
 
 
@@ -150,13 +172,21 @@ def main():
         reported = s.get("body", "")
         if "Reported by" in reported:
             reported = reported[reported.index("<b>Reported by"):]
+        if e.get("headline") and len(e["headline"]) > 12:
+            # War Events' own headline; the outlets' wording is not republished. Kept for reference only.
+            s.setdefault("sourceHeadline", s.get("headline", ""))
+            s["headline"] = html.escape(e["headline"], quote=False)
         if e.get("summary"):
-            s["body"] = "<b>What happened:</b> " + html.escape(e["summary"]) + ("<br><br>" + reported if reported else "")
+            paras = [html.escape(x.strip()) for x in re.split(r"\n\s*\n", e["summary"]) if x.strip()]
+            s["body"] = "<b>What happened:</b> " + "<br><br>".join(paras) + ("<br><br>" + reported if reported else "")
         if e.get("actors"):
             s["impact"] = {"actors": e["actors"]}
         if e.get("points"):
             s["points"] = e["points"]
-            s["impactPoints"] = e.get("impact_points", [])
+        else:
+            s.pop("points", None)   # the newer summaries are written as one piece, with no separate key-point list
+        if e.get("impact_points"):
+            s["impactPoints"] = e["impact_points"]
     live = {s.get("id") for s in stories}
     before = len(stories)
     stories = [s for s in stories if cache.get(s.get("id"), {}).get("geo", 10) >= MIN_GEO]
