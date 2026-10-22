@@ -5112,6 +5112,9 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
   html.we-phone .callout-top.we-src-mtop #calloutPlace{ align-self:baseline; }
   html.we-phone .callout-head .rc-tab{ white-space:nowrap; font-size:11.5px; padding:12px 4px !important; }
   html.we-phone .callout-head .rc-tab .rc-count{ margin-left:3px; padding:0 5px; }
+  /* Why It Matters arrows: tight to the text (an older bullet rule was also pushing them 13px further left) */
+  html body .callout-body .cb-article .cb-panel .cb-list li{ padding-left:17px !important; }
+  html body .callout-body .cb-article .cb-panel .cb-list li::before{ left:0 !important; margin-left:0 !important; top:0.5em !important; width:11px; height:9px; }
 </style>
 </head>
 <body>
