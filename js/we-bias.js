@@ -122,6 +122,13 @@
   }
 
   window.WEBias = {
+    // Folds the Key Points list into the summary, so the bullets continue straight on from it (Claude writes the two together).
+    mergePoints: function(root){
+      var art = root.querySelector('.cb-article'), sum = art && art.querySelector('.cb-sum'); if(!sum) return;
+      var kp = [].filter.call(root.querySelectorAll('.cb-panel'), function(p){ var h = p.querySelector('.cb-h'); return h && /key\s*points/i.test(h.textContent); })[0];
+      var ul = kp && kp.querySelector('.cb-list'); if(!ul) return;
+      sum.parentNode.insertBefore(ul, sum.nextSibling); kp.parentNode.removeChild(kp);
+    },
     // One-line coverage summary button for under a headline ("3 outlets · 2 regions · Broad coverage"); null if we have no outlet data.
     covLine: function(story){
       var r = build(story); if(!r.count) return null;

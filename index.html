@@ -68,7 +68,7 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <!-- Focus transitions (loader reveal + page changes); upload we-transition.js alongside the pages -->
 <script src="js/we-transition.js"></script>
-<script src="js/we-bias.js"></script>
+<script src="js/we-bias.js?v=3"></script>
 
 <script>
 /* Phones get the same War Events site, laid out for a small screen (CSS under
@@ -5028,12 +5028,9 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
   .rc-cov i{ font-style:normal; font-size:16px; line-height:1; }
   /* Key Points / Why It Matters: plain headings and bullets with a divider, not boxes */
   html .rc-pane .cb-panel{ background:none !important; border:0 !important; border-top:1px solid rgba(var(--tn),0.16) !important; border-radius:0 !important; box-shadow:none !important; padding:12px 2px 6px !important; margin:0 !important; }
-  /* story pager */
-  .rc-pager{ flex:none; display:flex; align-items:center; justify-content:center; gap:12px; padding:6px 8px; border-top:1px solid var(--pn-line); font:500 12px 'Barlow',sans-serif; color:var(--text-secondary); }
-  .rc-pager button{ appearance:none; width:26px; height:26px; padding:0; border:1px solid var(--pn-line); border-radius:5px; background:none; color:var(--t2); font-size:16px; line-height:1; cursor:pointer; }
-  .rc-pager button:hover{ background:var(--t2); color:var(--n0); }
-  html.we-phone .rc-pager{ display:none; }
   .rc.bias-on .rc-cov{ display:none; }   /* the Bias tab already shows these numbers */
+  /* summary with the key points continuing straight on from it */
+  .cb-article .cb-sum + .cb-list{ margin:8px 0 0 !important; }
 </style>
 </head>
 <body>
@@ -11438,6 +11435,7 @@ var stopLoaderOrb = function(){};
       c.innerHTML = '<div class="rc-head"><span class="rc-who"><span class="rc-out">' + esc(LONG[src] || src) + '</span></span><span class="rc-time" title="' + esc(window.__weFmtT(p.time)) + '">' + esc(rcAgo(p.time)) + '</span>'
         + (p.sourceUrl ? '<a class="rc-src source-btn" href="' + esc(p.sourceUrl) + '" target="_blank" rel="noopener noreferrer" aria-label="Open source article" title="Open source article">\u2197</a>' : '') + '</div>'
         + '<div class="callout-body rc-body">' + (body ? body.innerHTML : '') + '</div>';
+      if(window.WEBias && window.WEBias.mergePoints) window.WEBias.mergePoints(c);
       // Coverage summary right under the headline ("3 outlets · 2 regions · Broad coverage"); tapping it opens Coverage & Bias.
       var ttl = c.querySelector('.cb-article .cb-title'), cl = window.WEBias && ttl ? window.WEBias.covLine(p) : null;
       if(cl && ttl && ttl.parentNode) ttl.parentNode.insertBefore(cl, ttl.nextSibling);
@@ -11471,19 +11469,12 @@ var stopLoaderOrb = function(){};
       window.__weRender(keep);
       reel.scrollTop = top; busy = false; cur = -1; onScroll();
       R.classList.add('we-reel');
-      if(!box.querySelector('.rc-pager')){
-        var pg = document.createElement('div'); pg.className = 'rc-pager';
-        pg.innerHTML = '<button type="button" class="rc-pg-prev" aria-label="Previous story">\u2039</button><span class="rc-pg-n"></span><button type="button" class="rc-pg-next" aria-label="Next story">\u203a</button>';
-        pg.addEventListener('click', function(e){ var b = e.target.closest && e.target.closest('button'); if(!b || !n) return; go((cur + (b.classList.contains('rc-pg-next') ? 1 : -1) + n) % n); });
-        box.appendChild(pg);
-      }
       paintStrip(); setTimeout(function(){ fit(cur < 0 ? 0 : cur); }, 60); setTimeout(function(){ fit(cur < 0 ? 0 : cur); }, 900);
     }
     function paintStrip(){
       if(!strip) return;
       if(strip.children.length !== n){ strip.innerHTML = ''; for(var i = 0; i < n; i++){ var b = document.createElement('button'); b.type = 'button'; b.className = 'we-dseg'; b.setAttribute('data-i', i); b.setAttribute('aria-label', 'Story ' + (i + 1)); strip.appendChild(b); } }
       Array.prototype.forEach.call(strip.children, function(b, i){ b.setAttribute('aria-selected', String(i === cur)); });
-      var pn = box && box.querySelector('.rc-pg-n'); if(pn) pn.textContent = (cur < 0 ? 1 : cur + 1) + ' of ' + n;
     }
     function onScroll(){
       if(busy || !reel) return;
@@ -11675,6 +11666,7 @@ var stopLoaderOrb = function(){};
           var ph = art.querySelector('.cb-title');
           if(ph && !art.querySelector('.rc-cov')){ var pst = window.__weStory && window.__weStory(), pp = pst && window.__wePt && window.__wePt(pst.i), pc = pp && window.WEBias.covLine(pp); if(pc) ph.parentNode.insertBefore(pc, ph.nextSibling); }
           if(!body.querySelector('.rc-tabs')){
+            if(window.WEBias.mergePoints) window.WEBias.mergePoints(body);
             var st = window.__weStory && window.__weStory(), p = st && window.__wePt && window.__wePt(st.i);
             if(p){
               var sp = document.createElement('div'); sp.className = 'rc-pane story';
