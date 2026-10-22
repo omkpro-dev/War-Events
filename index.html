@@ -4960,6 +4960,8 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
   .bias-heads .bias-hcard .o{ white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
   /* Coverage & Bias tab: keep the headline, hide the article summary */
   .rc.bias-on .cb-article .cb-sum, .rc.bias-on .cb-article .cb-h, .rc.bias-on .cb-article .cb-rule{ display:none !important; }
+  /* Potential Impact: the words are visually hidden (kept for screen readers); the scale speaks for itself */
+  .cmod-title-txt{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
 </style>
 </head>
 <body>
@@ -5377,7 +5379,7 @@ var stopLoaderOrb = function(){};
 
       <!-- Pinned to the bottom of the card (outside the scroll area) so it never moves between stories. -->
       <section class="cmod" id="calloutImpact" hidden="">
-        <h4 class="cmod-title">Potential Impact
+        <h4 class="cmod-title"><span class="cmod-title-txt">Potential Impact</span>
           <!-- Desktop only for now -- see activateImpactMap()/clearImpactMap()
                for why (mobile's card covers too much of the globe for the
                lit-up countries to read). -->
