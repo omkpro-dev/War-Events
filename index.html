@@ -4962,6 +4962,10 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
   .rc.bias-on .cb-article .cb-sum, .rc.bias-on .cb-article .cb-h, .rc.bias-on .cb-article .cb-rule{ display:none !important; }
   /* Potential Impact: the words are visually hidden (kept for screen readers); the scale speaks for itself */
   .cmod-title-txt{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
+  .we-reelbox .rc-loc{ font:500 12px/1.2 'Barlow',sans-serif; color:var(--text-secondary); }
+  html.we-reel:not(.we-phone) .we-reelbox .rc-head{ padding-top:10px !important; padding-bottom:10px !important; }
+  /* Story dots: start where the article starts (just under the header strip), not at the top of the panel */
+  html.we-reel:not(.we-phone):not(.we-pow) .we-dstrip{ top:68px !important; }
 </style>
 </head>
 <body>
@@ -11355,6 +11359,9 @@ var stopLoaderOrb = function(){};
       c.innerHTML = '<div class="rc-head"><span class="rc-who"><span class="rc-out">' + esc(LONG[src] || src) + '</span></span><span class="rc-time">' + esc(window.__weFmtT(p.time)) + '</span>'
         + (p.sourceUrl ? '<a class="rc-src source-btn" href="' + esc(p.sourceUrl) + '" target="_blank" rel="noopener noreferrer" aria-label="Open source article" title="Open source article">\u2197</a>' : '') + '</div>'
         + '<div class="callout-body rc-body">' + (body ? body.innerHTML : '') + '</div>';
+      // Place goes under the outlet name in the header (it used to sit above the headline).
+      var kk = c.querySelector('.cb-kicker'), who = c.querySelector('.rc-who');
+      if(kk && who){ var loc = document.createElement('span'); loc.className = 'rc-loc'; loc.textContent = kk.textContent.replace(/\s*\u00b7\s*/g, ' \u00b7 ').replace(/\s+/g, ' ').trim(); who.appendChild(loc); kk.remove(); }
       // Story | Coverage & Bias: everything after the headline block is the Story pane; Bias is filled from the story's outlet list.
       var rb = c.querySelector('.rc-body'), art = rb && rb.querySelector('.cb-article');
       if(art){
