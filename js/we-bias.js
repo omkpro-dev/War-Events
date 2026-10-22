@@ -146,7 +146,6 @@
       var sp = rc.querySelector('.rc-pane.story'), bp = rc.querySelector('.rc-pane.bias');
       if(sp) sp.hidden = bias; if(bp) bp.hidden = !bias;
       rc.classList.toggle('bias-on', bias);
-      try { window.dispatchEvent(new Event('resize')); } catch(err){}
       return;
     }
     var pane = t.closest('.rc-pane.bias'); if(!pane) return;
