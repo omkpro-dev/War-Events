@@ -5150,6 +5150,14 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
   html.we-phone header, html.we-phone .ticker, html.we-phone #ticker, html.we-phone .callout-box, html.we-phone .reports-panel{ background:var(--pn-bg) !important; background-image:none !important; }
   /* Why It Matters + spectrum: identical edges so they read as one box */
   .callout-body #calloutImpact:not([hidden]){ margin-left:2px !important; margin-right:2px !important; }
+
+  /* Phone: the Events/Feed/Live buttons live in the header, so nothing sits at the bottom -- sheets run to the screen edge */
+  html.we-phone{ --we-tab:0px !important; }
+  html.we-phone .callout, html.we-phone.we-nomap .callout{ left:0 !important; right:0 !important; bottom:0 !important; }
+  html.we-phone .right-rail, html.we-phone.we-nomap .right-rail{ left:0 !important; right:0 !important; bottom:0 !important; }
+  html.we-phone .callout-box, html.we-phone .reports-panel{ border-radius:10px 10px 0 0 !important; padding-bottom:env(safe-area-inset-bottom) !important; }
+  html.we-phone.we-nomap .callout{ top:calc(var(--we-top) + 8px) !important; }
+  html.we-phone .callout-scroll{ padding-bottom:calc(58px + env(safe-area-inset-bottom)) !important; }
 </style>
 </head>
 <body>
