@@ -5168,6 +5168,16 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
   html.we-phone .callout-head .rc-tabs .rc-tab-src{ border:1px solid var(--pn-line) !important; }
   html.we-phone .reports-panel > .we-feedhead{ background:rgba(255,250,240,.07) !important; border-bottom:1px solid rgba(255,250,240,.16) !important; border-radius:10px 10px 0 0; margin:0 !important; padding:0 62px 0 16px !important; min-height:46px; display:flex; align-items:center; }
   :root[data-theme="light"] html.we-phone .reports-panel > .we-feedhead, html.we-phone:root[data-theme="light"] .reports-panel > .we-feedhead{ background:rgba(var(--tn),.06) !important; border-bottom-color:rgba(var(--tn),.16) !important; }
+
+  /* Phone sheet header: close button centred in the strip, thin line between outlet and place, long names roll */
+  html.we-phone .callout-head{ padding-top:0 !important; }
+  html.we-phone .callout-head .callout-top{ min-height:46px; align-items:center; box-sizing:border-box; }
+  html.we-phone .callout-top.we-src-mtop .callout-top-left{ display:flex !important; align-items:center; gap:0; min-width:0; flex:1 1 auto; overflow:hidden; }
+  html.we-phone .callout-top-left .we-rep{ order:1; flex:0 1 auto; min-width:0; max-width:62%; margin:0; padding-right:10px; overflow:hidden; white-space:nowrap !important; text-overflow:clip !important; }
+  html.we-phone .callout-top-left .callout-place{ order:2; flex:0 1 auto; min-width:0; max-width:38%; padding-left:10px; border-left:1px solid var(--pn-line); line-height:1.1; overflow:hidden; white-space:nowrap !important; text-overflow:clip !important; }
+  html.we-phone .callout-top-left .we-roll{ animation:weRoll 7s ease-in-out infinite alternate; }
+  @keyframes weRoll{ 0%,18%{ text-indent:0; } 82%,100%{ text-indent:var(--roll, 0px); } }
+  html.we-phone .we-x{ top:7px !important; }
 </style>
 </head>
 <body>
@@ -16495,6 +16505,19 @@ var stopLoaderOrb = function(){};
     else if(e.deltaY < 0 && el.scrollTop <= 1){ accT += -e.deltaY; if(accT > 120){ accT = 0; go(-1); } }
     else { acc = 0; accT = 0; }
   }, { passive:true });
+})();
+</script>
+<script>
+/* long outlet / place names in the phone header roll through their box instead of being cut off */
+(function(){
+  function roll(el){ if(!el) return; el.classList.remove('we-roll'); el.style.removeProperty('--roll'); var d = el.scrollWidth - el.clientWidth; if(d > 2){ el.style.setProperty('--roll', (-d - 2) + 'px'); el.classList.add('we-roll'); } }
+  function all(){ roll(document.querySelector('.callout-top-left .we-rep')); roll(document.getElementById('calloutPlace')); }
+  function init(){
+    var tl = document.querySelector('.callout-top-left'); if(!tl) return setTimeout(init, 800);
+    var t; new MutationObserver(function(){ clearTimeout(t); t = setTimeout(all, 60); }).observe(tl, { childList:true, subtree:true, characterData:true });
+    window.addEventListener('resize', function(){ clearTimeout(t); t = setTimeout(all, 120); }); all();
+  }
+  init();
 })();
 </script>
 </body></html>

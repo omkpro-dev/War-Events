@@ -712,6 +712,10 @@
   main > h1{ text-align:center; }
   .toolbar{ justify-content:center; }
   @media (max-width:900px){ .toolbar{ justify-content:center; } #view{ margin:0 auto; } }
+
+  /* ---- header: same size, blur and controls as the map page ---- */
+  @media (min-width:900px){ header{ zoom:0.9; } }
+  header{ backdrop-filter:blur(3px) !important; -webkit-backdrop-filter:blur(3px) !important; }
 </style>
 </head>
 <body>
