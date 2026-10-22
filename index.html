@@ -5264,6 +5264,10 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
   :root[data-theme="light"] html.we-phone .we-tabmenu, html.we-phone:root[data-theme="light"] .we-tabmenu{ background:linear-gradient(160deg, rgba(255,255,255,.98), rgba(246,246,246,.94)); border-color:rgba(15,32,68,.16); box-shadow:inset 0 1px 0 #fff, 0 10px 30px rgba(15,32,68,.18); }
   html.we-phone:root[data-theme="light"] .we-tabmenu button.on, :root[data-theme="light"] html.we-phone .we-tabmenu button.on{ background:rgba(15,32,68,.1); }
   html.we-phone .callout-head .callout-top{ margin-bottom:12px !important; }
+
+  /* Phone: a touch more room round the headline and story (equal left and right); Why It Matters text lines up with its heading */
+  html.we-phone #calloutBody.callout-body{ padding-left:6px !important; padding-right:6px !important; box-sizing:border-box; }
+  html.we-phone #calloutBody .cb-panel .cb-list > li, html.we-phone #calloutBody .cb-panel li{ padding-left:0 !important; text-indent:0 !important; }
 </style>
 </head>
 <body>
