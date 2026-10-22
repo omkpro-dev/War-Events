@@ -5226,6 +5226,44 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
 
   /* Phone sheets run edge to edge: no left/right border line */
   html.we-phone .callout-box, html.we-phone .reports-panel, html.we-phone .country-panel{ border-left:0 !important; border-right:0 !important; }
+
+  /* Phone: Story | Coverage & Bias | Source as ONE segmented glass control */
+  html.we-phone .callout-head .rc-tabs{ display:flex !important; gap:2px !important; padding:3px !important; margin:0 0 10px !important; border:1px solid rgba(255,255,255,.22) !important; border-radius:12px !important;
+    background:linear-gradient(160deg, rgba(255,255,255,.13), rgba(255,255,255,.04)) !important; -webkit-backdrop-filter:blur(18px) saturate(1.6); backdrop-filter:blur(18px) saturate(1.6);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.28), 0 2px 8px rgba(0,0,0,.18) !important; }
+  html.we-phone .callout-head .rc-tabs .rc-tab, html.we-phone .callout-head .rc-tabs .rc-tab + .rc-tab, html.we-phone .callout-head .rc-tabs .rc-tab-src{
+    flex:1 1 0; min-width:0; background:none !important; border:0 !important; box-shadow:none !important; -webkit-backdrop-filter:none !important; backdrop-filter:none !important; border-radius:9px !important; padding:9px 4px !important; }
+  html.we-phone .callout-head .rc-tabs .rc-tab.on{ background:linear-gradient(160deg, rgba(255,255,255,.92), rgba(240,233,218,.8)) !important; box-shadow:inset 0 1px 0 rgba(255,255,255,.9), 0 1px 6px rgba(0,0,0,.25) !important; }
+  :root[data-theme="light"] html.we-phone .callout-head .rc-tabs, html.we-phone:root[data-theme="light"] .callout-head .rc-tabs{ background:linear-gradient(160deg, rgba(255,255,255,.85), rgba(255,255,255,.5)) !important; border-color:rgba(15,32,68,.16) !important; box-shadow:inset 0 1px 0 #fff, 0 2px 8px rgba(15,32,68,.08) !important; }
+  html.we-phone:root[data-theme="light"] .callout-head .rc-tabs .rc-tab, :root[data-theme="light"] html.we-phone .callout-head .rc-tabs .rc-tab{ background:none !important; border:0 !important; box-shadow:none !important; }
+  html.we-phone:root[data-theme="light"] .callout-head .rc-tabs .rc-tab.on, :root[data-theme="light"] html.we-phone .callout-head .rc-tabs .rc-tab.on{ background:linear-gradient(160deg, #1d3566, #0f2044) !important; box-shadow:0 1px 6px rgba(15,32,68,.3) !important; }
+  /* Phone banner: exactly as tall as the share / close buttons (32px), nothing extra */
+  html.we-phone .callout-head{ padding-top:0 !important; }
+  html.we-phone .callout-head .callout-top, html.we-phone .callout-head .callout-top.we-src-mtop{ height:34px !important; min-height:0 !important; box-sizing:border-box; margin:0 -16px 10px !important; padding:0 56px 0 16px !important; align-items:center; }
+  html.we-phone .callout-top .callout-top-right{ height:32px; align-items:center; gap:8px; }
+  html.we-phone .callout-top .we-share, html.we-phone .callout-top.we-src-mtop .we-share{ width:32px !important; height:32px !important; margin:0 !important; }
+  html.we-phone .we-x{ top:2px !important; right:12px !important; width:32px !important; height:32px !important; }
+
+  html.we-phone .callout > .we-x{ top:2px !important; right:12px !important; }
+  html.we-phone .right-rail > .we-x{ top:2px !important; right:12px !important; }
+  html.we-phone .reports-panel > .we-feedhead{ min-height:34px !important; height:34px; padding-right:56px !important; }
+
+  /* Phone: Story / Coverage & Bias / Source collapse into one button in the banner (same style as the close button) */
+  html.we-phone .callout-head .rc-tabs{ display:none !important; }
+  html.we-phone .we-tabsel{ display:inline-flex; align-items:center; gap:6px; flex:none; height:32px; margin:0 8px 0 4px; padding:0 9px 0 11px; cursor:pointer; background:transparent; color:var(--t1); font:600 12px/1 'Barlow',sans-serif;
+    border:1px solid var(--pn-line); border-radius:5px; white-space:nowrap; }
+  html.we-phone .we-tabsel svg{ width:10px; height:10px; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; transition:transform .2s ease; }
+  html.we-phone .we-tabsel[aria-expanded="true"] svg{ transform:rotate(180deg); }
+  html.we-phone .we-tabmenu{ position:fixed; z-index:80; min-width:176px; padding:5px; border-radius:12px; border:1px solid rgba(255,255,255,.22);
+    background:linear-gradient(160deg, rgba(255,255,255,.16), rgba(255,255,255,.06)), rgba(18,27,44,.94); -webkit-backdrop-filter:blur(22px) saturate(1.6); backdrop-filter:blur(22px) saturate(1.6);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.28), 0 10px 30px rgba(0,0,0,.35); display:none; }
+  html.we-phone .we-tabmenu.open{ display:block; }
+  html.we-phone .we-tabmenu button{ display:flex; width:100%; align-items:center; justify-content:space-between; gap:12px; padding:11px 12px; border:0; border-radius:8px; background:none; color:var(--t1); font:600 13.5px/1 'Barlow',sans-serif; cursor:pointer; text-align:left; }
+  html.we-phone .we-tabmenu button.on{ background:rgba(255,255,255,.16); }
+  html.we-phone .we-tabmenu button small{ font:500 11px/1 'Barlow',sans-serif; opacity:.7; }
+  :root[data-theme="light"] html.we-phone .we-tabmenu, html.we-phone:root[data-theme="light"] .we-tabmenu{ background:linear-gradient(160deg, rgba(255,255,255,.98), rgba(246,246,246,.94)); border-color:rgba(15,32,68,.16); box-shadow:inset 0 1px 0 #fff, 0 10px 30px rgba(15,32,68,.18); }
+  html.we-phone:root[data-theme="light"] .we-tabmenu button.on, :root[data-theme="light"] html.we-phone .we-tabmenu button.on{ background:rgba(15,32,68,.1); }
+  html.we-phone .callout-head .callout-top{ margin-bottom:12px !important; }
 </style>
 </head>
 <body>
@@ -16566,6 +16604,40 @@ var stopLoaderOrb = function(){};
     window.addEventListener('resize', function(){ clearTimeout(t); t = setTimeout(all, 120); }); all();
   }
   init();
+})();
+</script>
+<script>
+/* Phone: one banner button chooses Story / Coverage & Bias / Source (drives the existing tab buttons) */
+(function(){
+  var root = document.documentElement, btn, menu, lab;
+  function tabs(){ return document.querySelectorAll('.callout-head .rc-tabs .rc-tab'); }
+  function names(){ var o = []; [].forEach.call(tabs(), function(t){ o.push({ el:t, txt:(t.querySelector('.rc-count') ? t.firstChild.textContent : t.textContent).replace(/\s+/g, ' ').trim(), n:(t.querySelector('.rc-count')||{}).textContent, src:t.classList.contains('rc-tab-src'), on:t.classList.contains('on') }); }); return o; }
+  function sync(){
+    if(!btn) return; var cur = names().filter(function(x){ return x.on; })[0], nt = cur ? cur.txt : 'Story'; if(lab.textContent !== nt) lab.textContent = nt;   /* only when it changed: the observer below watches this subtree */
+    if(menu.classList.contains('open')) build();
+  }
+  function close(){ menu.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); }
+  function build(){
+    menu.innerHTML = ''; names().forEach(function(x){
+      var b = document.createElement('button'); b.type = 'button'; if(x.on) b.className = 'on';
+      b.innerHTML = '<span></span>' + (x.n ? '<small>' + x.n + '</small>' : (x.src ? '<small>opens article</small>' : ''));
+      b.firstChild.textContent = x.txt; b.addEventListener('click', function(e){ e.stopPropagation(); close(); x.el.click(); setTimeout(sync, 30); });
+      menu.appendChild(b);
+    });
+  }
+  function init(){
+    var top = document.querySelector('.callout-head .callout-top'); if(!top || !document.querySelector('.callout-head .rc-tabs')) return setTimeout(init, 700);
+    if(document.querySelector('.we-tabsel')) return;
+    btn = document.createElement('button'); btn.type = 'button'; btn.className = 'we-tabsel'; btn.setAttribute('aria-haspopup', 'menu'); btn.setAttribute('aria-expanded', 'false');
+    btn.innerHTML = '<span>Story</span><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg>'; lab = btn.firstChild;
+    menu = document.createElement('div'); menu.className = 'we-tabmenu'; menu.setAttribute('role', 'menu'); document.body.appendChild(menu);
+    var right = top.querySelector('.callout-top-right'); top.insertBefore(btn, right || null);
+    btn.addEventListener('click', function(e){ e.stopPropagation(); if(menu.classList.contains('open')){ close(); return; } build(); var r = btn.getBoundingClientRect(); menu.style.top = (r.bottom + 6) + 'px'; menu.style.right = Math.max(8, window.innerWidth - r.right) + 'px'; menu.classList.add('open'); btn.setAttribute('aria-expanded', 'true'); });
+    document.addEventListener('click', function(){ if(menu.classList.contains('open')) close(); });
+    new MutationObserver(function(ms){ if(ms.every(function(m){ return btn.contains(m.target); })) return; if(!top.contains(btn)){ var t2 = document.querySelector('.callout-head .callout-top'); if(t2) t2.insertBefore(btn, t2.querySelector('.callout-top-right') || null); } sync(); }).observe(document.querySelector('.callout-head'), { childList:true, subtree:true, attributes:true, attributeFilter:['class'] });
+    sync();
+  }
+  if(root.classList.contains('we-phone')) init();
 })();
 </script>
 </body></html>
