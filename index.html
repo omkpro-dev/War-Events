@@ -11191,12 +11191,12 @@ var stopLoaderOrb = function(){};
       var probe = reel.scrollTop + reel.clientHeight * 0.3, idx = 0;
       for(var i = 0; i < kids.length; i++){ if(kids[i].offsetTop <= probe) idx = i; else break; }
       idx = idx % n;
-      if(idx !== cur){ cur = idx; paintStrip(); fit(cur); clearTimeout(follow); follow = setTimeout(function(){ if(window.__weStory().i !== cur) window.__weJump(cur); }, 260); }
+      if(idx !== cur){ cur = idx; paintStrip(); fit(cur); clearTimeout(follow); follow = setTimeout(function(){ if(window.__weStory().i !== cur) window.__weJump(cur); }, 140); }
     }
     var gliding = 0;
     function glide(to){   // own easing (smooth-scroll isn't reliable in every browser)
-      cancelAnimationFrame(gliding); var from = reel.scrollTop, d = to - from, t0 = performance.now(), dur = Math.min(520, 260 + Math.abs(d) * 0.35);
-      (function step(now){ var k = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - k, 3); reel.scrollTop = from + d * e; gliding = k < 1 ? requestAnimationFrame(step) : 0; })(t0);
+      cancelAnimationFrame(gliding); var from = reel.scrollTop, d = to - from, t0 = performance.now(), dur = Math.min(300, 200 + Math.abs(d) * 0.08);
+      (function step(now){ var k = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - k, 3); reel.scrollTop = from + d * e; gliding = k < 1 ? requestAnimationFrame(step) : (aim = -1, 0); })(t0);
     }
     // The pane is as tall as the story it shows (no empty space under a short one), centred between the news wire and the bottom of the screen
     function fit(i){
@@ -11213,16 +11213,18 @@ var stopLoaderOrb = function(){};
     }
     window.__weFit = function(){ fit(cur < 0 ? 0 : cur); };
     window.addEventListener('resize', function(){ setTimeout(function(){ fit(cur < 0 ? 0 : cur); }, 80); });
-    function go(i){ var k = reel.children[i]; fit(i); if(k) reel.scrollTo({ top:k.offsetTop, behavior:'smooth' }); }
+    function go(i){ var k = reel.children[i]; fit(i); if(k){ aim = i; glide(k.offsetTop); } }
+    var aim = -1;   // story the list is gliding to; a flick during the glide moves on from there, not from where it is now
     function step(dir){
       var kids = reel.children, top = reel.scrollTop, i = 0;
-      for(var j = 0; j < kids.length; j++){ if(kids[j].offsetTop <= top + 2) i = j; else break; }
+      if(gliding && aim >= 0) i = aim;
+      else for(var j = 0; j < kids.length; j++){ if(kids[j].offsetTop <= top + 2) i = j; else break; }
       fit(dir > 0 ? (i + 1 < kids.length ? i + 1 : i) : (i === 0 ? kids.length - 2 : i - 1));
       // Wrapping round (last story -> first, or first -> last): a quick fade and a jump, so two stories never show at once
       var wrapTo = dir > 0 && i >= kids.length - 2 ? 0 : dir < 0 && i === 0 ? kids.length - 2 : -1;
-      if(wrapTo >= 0){ fit(wrapTo); var fo = reel.animate([{ opacity:1 }, { opacity:0 }], { duration:120, easing:'ease-out', fill:'forwards' }); fo.onfinish = function(){ busy = true; reel.scrollTop = kids[wrapTo].offsetTop; busy = false; cur = -1; onScroll(); var fi = reel.animate([{ opacity:0 }, { opacity:1 }], { duration:200, easing:'ease-in', fill:'forwards' }); fo.cancel(); fi.onfinish = function(){ fi.cancel(); }; }; return; }
-      if(dir > 0){ if(i + 1 < kids.length) reel.scrollTo({ top:kids[i + 1].offsetTop, behavior:'smooth' }); }   // the last child is a copy of story 1, so this wraps
-      else { if(i === 0){ var loop = kids[kids.length - 1]; reel.scrollTop = loop.offsetTop; reel.scrollTo({ top:kids[kids.length - 2].offsetTop, behavior:'smooth' }); } else reel.scrollTo({ top:kids[i - 1].offsetTop, behavior:'smooth' }); }
+      if(wrapTo >= 0){ cancelAnimationFrame(gliding); gliding = 0; aim = -1; fit(wrapTo); var fo = reel.animate([{ opacity:1 }, { opacity:0 }], { duration:120, easing:'ease-out', fill:'forwards' }); fo.onfinish = function(){ busy = true; reel.scrollTop = kids[wrapTo].offsetTop; busy = false; cur = -1; onScroll(); var fi = reel.animate([{ opacity:0 }, { opacity:1 }], { duration:200, easing:'ease-in', fill:'forwards' }); fo.cancel(); fi.onfinish = function(){ fi.cancel(); }; }; return; }
+      if(dir > 0){ if(i + 1 < kids.length){ aim = i + 1; glide(kids[i + 1].offsetTop); } }   // the last child is a copy of story 1, so this wraps
+      else { if(i === 0){ var loop = kids[kids.length - 1]; reel.scrollTop = loop.offsetTop; aim = kids.length - 2; glide(kids[kids.length - 2].offsetTop); } else { aim = i - 1; glide(kids[i - 1].offsetTop); } }
     }
     function init(){
       callout = document.getElementById('callout'); box = callout && callout.querySelector('.callout-box');
@@ -11233,16 +11235,25 @@ var stopLoaderOrb = function(){};
       if(strip){ var s2 = strip.cloneNode(false); strip.parentNode.replaceChild(s2, strip); strip = s2;   // drop the old strip handlers
         strip.addEventListener('click', function(e){ var b = e.target.closest && e.target.closest('.we-dseg'); if(b){ e.stopPropagation(); go(+b.getAttribute('data-i')); } }); }
       reel.addEventListener('scroll', onScroll, { passive:true });
-      // One scroll gesture = exactly one story (native scrolling is blocked; snapping keeps it aligned).
-      var wAcc = 0, wLock = false, wIdle = 0, wLast = 0;
+      // Wheel / trackpad: a small push (12px) moves one story straight away. A flick's fading momentum is ignored, but a
+      // NEW push is recognised at once (the scroll gets stronger again, a mouse-wheel click after a pause, or a change of
+      // direction), so quick flicks move quickly. Native scrolling is blocked; the glide keeps each story aligned.
+      var wAcc = 0, wLock = false, wIdle = 0, wAbs = 0, wMin = 1e9, wMoved = 0, wDir = 0, wEvt = 0;
       reel.addEventListener('wheel', function(e){
         e.preventDefault(); e.stopPropagation();
         var d = (Math.abs(e.deltaY) >= Math.abs(e.deltaX) ? e.deltaY : e.deltaX) * (e.deltaMode === 1 ? 40 : e.deltaMode === 2 ? 400 : 1);
-        clearTimeout(wIdle); wIdle = setTimeout(function(){ wLock = false; wAcc = 0; }, 200);
-        if(wLock || performance.now() - wLast < 550) return;   // one story per gesture, and never two moves within half a second
+        var ab = Math.abs(d), now = performance.now(), gap = now - wEvt; wEvt = now;
+        clearTimeout(wIdle); wIdle = setTimeout(function(){ wLock = false; wAcc = 0; wAbs = 0; wMin = 1e9; }, 120);
+        if(wLock){
+          if(ab < wMin) wMin = ab;
+          var fresh = now - wMoved > 140 && (gap > 90 || (ab > 4 && (d > 0 ? 1 : -1) !== wDir) || (ab > 8 && ab > wMin * 2.5 && ab > wAbs * 1.5));
+          if(!fresh){ wAbs = ab; return; }
+          wLock = false; wAcc = 0;
+        }
+        wAbs = ab;
         if(wAcc && (d > 0) !== (wAcc > 0)) wAcc = 0;
-        wAcc += d; if(Math.abs(wAcc) < 30) return;
-        wLock = true; wLast = performance.now(); var dir = wAcc > 0 ? 1 : -1; wAcc = 0; step(dir);
+        wAcc += d; if(Math.abs(wAcc) < (e.deltaMode ? 1 : 12)) return;
+        wDir = wAcc > 0 ? 1 : -1; wAcc = 0; wLock = true; wMoved = now; wMin = ab; step(wDir);
       }, { passive:false });
       // Settle: when scrolling stops near a story's edge, glide to it. Past 70% of a story = the next one; within the first 30% = back to its top.
       var settleT = 0;
