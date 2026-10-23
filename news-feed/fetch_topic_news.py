@@ -29,6 +29,7 @@ TOPICS = {
 }
 NOW = dt.datetime.now(dt.timezone.utc)
 MAX_AGE_H = 96
+DIS_MAX_AGE_H = 72   # disaster news older than this is no longer current and drops off
 
 # (outlet, url, specialist?)  specialist = the outlet only covers this topic, so the summary may carry the match
 LOGI_FEEDS = [
@@ -201,9 +202,9 @@ def key_dev_ids(cache):
     return [d.get("id") for d in kept if d.get("id") is not None]
 
 
-def save(name, items, extra=None):
+def save(name, items, extra=None, allow_empty=False):
     path = os.path.join(OUT, name)
-    if not items and os.path.exists(path):
+    if not items and os.path.exists(path) and not allow_empty:
         print(f"{name}: nothing new, keeping previous file")
         return
     with open(path, "w", encoding="utf-8") as f:
@@ -248,8 +249,9 @@ if __name__ == "__main__":
         save("logistics_feed.json", logi, {"storyIds": ids} if ids is not None else None)
         print("Disasters:")
         items = ai_keep(collect(DIS_FEEDS, DIS_RE, NOT_DIS), "disasters", cache["disasters"]) + from_alerts()   # live alerts are on topic by definition
+        items = [x for x in items if (NOW - when(x["publishedAt"])).total_seconds() <= DIS_MAX_AGE_H * 3600] if all(when(x["publishedAt"]) for x in items) else items
         items.sort(key=lambda x: x["publishedAt"], reverse=True)
-        save("disasters_feed.json", items[:80])
+        save("disasters_feed.json", items[:80], allow_empty=True)   # an empty day writes an empty feed rather than keeping stale stories
         for t in cache:                      # keep the cache small
             if len(cache[t]) > 4000:
                 cache[t] = dict(list(cache[t].items())[-3000:])

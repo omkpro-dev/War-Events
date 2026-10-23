@@ -413,6 +413,22 @@ def air():
     return out
 
 
+EVENT_MAX_DAYS = 3   # a GDACS event not updated for this long is no longer active
+
+
+def event_current(e):
+    t = e.get("to") or e.get("from")
+    if not t:
+        return True
+    try:
+        d = dt.datetime.fromisoformat(str(t).replace("Z", "+00:00"))
+        if d.tzinfo is None:
+            d = d.replace(tzinfo=dt.timezone.utc)
+    except Exception:
+        return True
+    return (NOW - d) <= dt.timedelta(days=EVENT_MAX_DAYS)
+
+
 def main():
     os.makedirs(OUT, exist_ok=True)
     path = os.path.join(OUT, "disasters.json")
@@ -430,6 +446,7 @@ def main():
     st = storms(gd)
     match_relief(gd, rel)
     fr, fsrc = fires(gd_fires)
+    gd = [e for e in gd if event_current(e)]   # events with no update for days are over: they come off the map
     data = {
         "updated": NOW.strftime("%Y-%m-%dT%H:%M:%SZ"),
         "events": [{k: v for k, v in e.items() if not k.startswith("_") and k not in ("eventid", "episodeid")} for e in gd if e["type"] not in ("TC",)],
