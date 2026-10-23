@@ -738,7 +738,6 @@
     .we-gbtn{ height:30px !important; border:1px solid rgba(255,255,255,0.28) !important; border-radius:5px !important; background:rgba(18,30,52,0.3) !important; padding:0 10px !important; font-size:13px !important; }
   }
   /* day palette: header styled directly, the page itself is recoloured (flags, charts and chips keep their own colours) */
-  :root[data-theme="light"]{ --bg:#111111; --panel:#151515; --panel2:#191919; --line:#35383f; --line2:#454a55; }
   :root[data-theme="light"] html, :root[data-theme="light"] body{ background:#eeeeee; }
   :root[data-theme="light"] header{ background:rgba(238,238,238,0.82) !important; border-bottom-color:#c9cfdb !important; color:#0f2044; }
   :root[data-theme="light"] .we-war{ background:#0f2044 !important; color:#eeeeee !important; }
@@ -749,8 +748,62 @@
   :root[data-theme="light"] .globe-opt:hover:not([disabled]){ background:rgba(15,32,68,0.08); color:#0f2044; }
   :root[data-theme="light"] .globe-opt[aria-pressed="true"]{ background:#0f2044; color:#eeeeee; }
   :root[data-theme="light"] .ctrl-btn, :root[data-theme="light"] .we-themebtn, :root[data-theme="light"] .we-gbtn{ color:#0f2044 !important; border-color:rgba(15,32,68,0.28) !important; background:rgba(15,32,68,0.05) !important; }
-  :root[data-theme="light"] body > *:not(header):not(script):not(style):not(.we-gshade):not(.we-gmenu){ filter:invert(1) hue-rotate(180deg); }
-  :root[data-theme="light"] body > *:not(header) img{ filter:invert(1) hue-rotate(180deg); }
+
+  /* ===== Day palette: same eggshell (#eeeeee) and deep navy ink as the Live page ===== */
+  :root[data-theme="light"]{ --bg:#eeeeee; --panel:#eeeeee; --panel2:#e6e8ec; --line:#cfd5df; --line2:#b9c1d0; --accent:#0f2044; --fg:#0f2044; --body:#17233f; --mid:#4c5c7a; --dim:#7a89a3;
+    --glass:rgba(238,238,238,0.9); --glass-b:rgba(15,32,68,0.22); --glass-hi:inset 0 1px 0 rgba(255,255,255,0.7); --box-b:rgba(15,32,68,0.28); --box-bg:rgba(15,32,68,0.05); color-scheme:light; }
+  :root[data-theme="light"] html, :root[data-theme="light"] body{ background:#eeeeee; color:#17233f; }
+  :root[data-theme="light"] .bgdots{ background-image:radial-gradient(rgba(15,32,68,0.08) 1.3px, transparent 1.3px); }
+  :root[data-theme="light"] main, :root[data-theme="light"] .foot{ color:#17233f; }
+  :root[data-theme="light"] h1, :root[data-theme="light"] h2, :root[data-theme="light"] h3{ color:#0f2044; }
+  /* text that the dark page forces to cream */
+  :root[data-theme="light"] .c-name, :root[data-theme="light"] .next-name, :root[data-theme="light"] .vs-n, :root[data-theme="light"] .row .nm b, :root[data-theme="light"] .strip b, :root[data-theme="light"] .vs-v, :root[data-theme="light"] .row .val b, :root[data-theme="light"] .bloc-t b, :root[data-theme="light"] .c-type, :root[data-theme="light"] .next-type, :root[data-theme="light"] .next-type .nd, :root[data-theme="light"] .row .nm small, :root[data-theme="light"] .vs-p, :root[data-theme="light"] .vs-v small, :root[data-theme="light"] .bloc-t, :root[data-theme="light"] .sp-ticks, :root[data-theme="light"] .row .val small, :root[data-theme="light"] .cal .y, :root[data-theme="light"] .cp-key span, :root[data-theme="light"] .lede, :root[data-theme="light"] .sum p, :root[data-theme="light"] .next .sum p, :root[data-theme="light"] .card p, :root[data-theme="light"] .card li, :root[data-theme="light"] .c-foot, :root[data-theme="light"] .c-foot a{ color:#17233f !important; }
+  :root[data-theme="light"] .c-name, :root[data-theme="light"] .next-name, :root[data-theme="light"] .vs-n, :root[data-theme="light"] .row .nm b, :root[data-theme="light"] .strip b, :root[data-theme="light"] .vs-v, :root[data-theme="light"] .row .val b, :root[data-theme="light"] .bloc-t b{ color:#0f2044 !important; }
+  :root[data-theme="light"] .cp-key em, :root[data-theme="light"] .c-note, :root[data-theme="light"] .cp-info, :root[data-theme="light"] .foot, :root[data-theme="light"] .c-foot{ color:#4c5c7a !important; }
+  :root[data-theme="light"] .c-foot a{ text-decoration-color:rgba(15,32,68,.35) !important; }
+  /* buttons, tabs, chips: navy ink, navy when selected */
+  :root[data-theme="light"] .seg button, :root[data-theme="light"] .tabs button, :root[data-theme="light"] .chip, :root[data-theme="light"] .toggle, :root[data-theme="light"] .more, :root[data-theme="light"] .strip button{ color:#34415a !important; border-color:rgba(15,32,68,0.28); background:rgba(15,32,68,0.05) !important; }
+  :root[data-theme="light"] .seg button, :root[data-theme="light"] .tabs button{ background:transparent !important; }
+  :root[data-theme="light"] .seg button:hover:not([aria-pressed="true"]), :root[data-theme="light"] .tabs button:hover:not([aria-selected="true"]), :root[data-theme="light"] .chip:hover, :root[data-theme="light"] .toggle:hover, :root[data-theme="light"] .more:hover, :root[data-theme="light"] .strip button:hover{ background:rgba(15,32,68,0.09) !important; color:#0f2044 !important; }
+  :root[data-theme="light"] .seg button[aria-pressed="true"], :root[data-theme="light"] .tabs button[aria-selected="true"], :root[data-theme="light"] .chip[aria-pressed="true"], :root[data-theme="light"] .toggle[aria-pressed="true"]{ background:#0f2044 !important; color:#eeeeee !important; border-color:#0f2044 !important; }
+  :root[data-theme="light"] .seg, :root[data-theme="light"] .tabs{ background:rgba(15,32,68,0.05) !important; border-color:rgba(15,32,68,0.28) !important; }
+  :root[data-theme="light"] .chip.key[aria-pressed="true"] i, :root[data-theme="light"] .toggle[aria-pressed="true"] i{ background:#eeeeee !important; border-color:#eeeeee !important; }
+  /* cards and panels */
+  :root[data-theme="light"] .card, :root[data-theme="light"] .next, :root[data-theme="light"] .strip button, :root[data-theme="light"] .count div{ background:rgba(238,238,238,0.9) !important; border-color:rgba(15,32,68,0.22) !important; box-shadow:inset 0 1px 0 rgba(255,255,255,0.8), 0 6px 18px rgba(15,32,68,0.08) !important; backdrop-filter:none; -webkit-backdrop-filter:none; }
+  :root[data-theme="light"] .vs-i, :root[data-theme="light"] .cal, :root[data-theme="light"] .cp-info, :root[data-theme="light"] .sp-none, :root[data-theme="light"] .c-note{ background:rgba(15,32,68,0.04) !important; border-color:rgba(15,32,68,0.18) !important; box-shadow:none !important; }
+  :root[data-theme="light"] .cal .m{ background:#0f2044 !important; color:#eeeeee !important; }
+  :root[data-theme="light"] .cal.res .m, :root[data-theme="light"] .pill.res{ background:var(--gold) !important; color:#0f2044 !important; }
+  :root[data-theme="light"] .pill{ color:#0f2044 !important; border-color:rgba(15,32,68,0.4) !important; background:transparent !important; }
+  :root[data-theme="light"] .pill.soon{ background:#0f2044 !important; color:#eeeeee !important; border-color:#0f2044 !important; }
+  :root[data-theme="light"] .pill.key{ color:#b3262d !important; border-color:rgba(179,38,45,.45) !important; }
+  :root[data-theme="light"] .row, :root[data-theme="light"] .c-foot{ border-color:rgba(15,32,68,0.12) !important; }
+  :root[data-theme="light"] .row .bar, :root[data-theme="light"] .bloc-bar, :root[data-theme="light"] .bloc-bar span.other, :root[data-theme="light"] .vs-q{ background:rgba(15,32,68,0.08); }
+  :root[data-theme="light"] .flag{ background:#dfe3ea; box-shadow:0 0 0 1px rgba(15,32,68,.2); }
+  :root[data-theme="light"] .lede{ color:#17233f !important; }
+  :root[data-theme="light"] .toolbar{ background:linear-gradient(#eeeeee 82%, rgba(238,238,238,0)); }
+  /* compass and spectrum charts */
+  :root[data-theme="light"] .cp-ring, :root[data-theme="light"] .cp-grid{ stroke:rgba(15,32,68,.1); }
+  :root[data-theme="light"] .cp-outer, :root[data-theme="light"] .cp-axis, :root[data-theme="light"] .cp-tick{ stroke:rgba(15,32,68,.35) !important; }
+  :root[data-theme="light"] .cp-axbg, :root[data-theme="light"] .cp-lab rect, :root[data-theme="light"] .sp-lab{ fill:#eeeeee; background:#eeeeee; }
+  :root[data-theme="light"] .cp-lab text{ fill:#0f2044 !important; stroke:rgba(238,238,238,.9); }
+  :root[data-theme="light"] .cp-q{ fill:rgba(15,32,68,.6) !important; }
+  :root[data-theme="light"] .cp-pt .core, :root[data-theme="light"] .cp-pt.main .core{ stroke:#0f2044 !important; }
+  :root[data-theme="light"] .cp-pt.sel .core{ stroke:#0f2044 !important; }
+  :root[data-theme="light"] .cp-key i{ box-shadow:0 0 0 1.5px #eeeeee; }
+  :root[data-theme="light"] .sp-lab{ border-color:rgba(15,32,68,.3); color:#0f2044; }
+  :root[data-theme="light"] .sp-lab.lead{ background:#0f2044; color:#eeeeee; }
+  :root[data-theme="light"] .sp-lab.lead small{ color:#cfd5df; }
+  :root[data-theme="light"] .sp-stem, :root[data-theme="light"] .sp-tk{ background:rgba(15,32,68,.3); }
+  :root[data-theme="light"] .sp-dot{ border-color:rgba(15,32,68,.35); box-shadow:0 0 0 2.5px #eeeeee; }
+
+  :root[data-theme="light"] .card svg rect[fill="#0c172b"]{ fill:#e6e8ec; }
+  :root[data-theme="light"] .sum-more, :root[data-theme="light"] .bloc-ml, :root[data-theme="light"] .tg, :root[data-theme="light"] .tg.inc, :root[data-theme="light"] .vs-q, :root[data-theme="light"] .pn, :root[data-theme="light"] .c-foot span{ color:#17233f !important; }
+  :root[data-theme="light"] .tg{ background:rgba(15,32,68,.08) !important; }
+  :root[data-theme="light"] .tg.won{ background:var(--gold) !important; color:#0f2044 !important; }
+  :root[data-theme="light"] .sum-more{ color:#0f2044 !important; text-decoration-color:rgba(15,32,68,.4); }
+  :root[data-theme="light"] .sp-majl, :root[data-theme="light"] .dn{ color:#b3262d !important; }
+  :root[data-theme="light"] .up{ color:#17754f !important; }
+  :root[data-theme="light"] .sp-maj{ border-left-color:rgba(179,38,45,.7) !important; }
 </style>
 </head>
 <body>
