@@ -5323,6 +5323,17 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
     font-family:Georgia,"Times New Roman",serif !important; font-size:16.5px !important; font-weight:400 !important; line-height:1.52 !important; letter-spacing:0 !important;
     color:inherit !important; text-align:justify; hyphens:auto; -webkit-hyphens:auto; font-style:normal !important; }
   html.we-phone body #calloutBody .cb-panel li, html.we-phone body #calloutBody .cb-panel li *{ color:var(--txh, #ebe5d8) !important; }
+
+  /* Phone banner: Story / Coverage / Source as three separate buttons, same style as the close button */
+  html.we-phone .we-tabsel{ display:none !important; }
+  html.we-phone .we-tabgrp{ display:flex; gap:6px; margin:0 auto 0 0; min-width:0; }
+  html.we-phone .we-tabgrp .we-tg{ height:32px; padding:0 10px; background:transparent; color:var(--t1); border:1px solid var(--pn-line); border-radius:5px; font:600 12px/1 'Barlow',sans-serif; white-space:nowrap; cursor:pointer; }
+  html.we-phone .we-tabgrp .we-tg.on{ background:#f0e9da; color:#0b1628; border-color:#f0e9da; }
+  html.we-phone:root[data-theme="light"] .we-tabgrp .we-tg.on, :root[data-theme="light"] html.we-phone .we-tabgrp .we-tg.on{ background:#0f2044; color:#ffffff; border-color:#0f2044; }
+
+  html.we-phone .callout .we-tabgrp .we-tg{ color:var(--t1) !important; }
+  html.we-phone .callout .we-tabgrp .we-tg.on{ color:#0b1628 !important; background:#f0e9da !important; border-color:#f0e9da !important; }
+  html.we-phone:root[data-theme="light"] .callout .we-tabgrp .we-tg.on{ color:#ffffff !important; background:#0f2044 !important; border-color:#0f2044 !important; }
 </style>
 </head>
 <body>
@@ -16674,6 +16685,17 @@ var stopLoaderOrb = function(){};
   function sync(){
     if(!btn) return; var cur = names().filter(function(x){ return x.on; })[0], nt = cur ? cur.txt : 'Story'; if(lab.textContent !== nt) lab.textContent = nt;   /* only when it changed: the observer below watches this subtree */
     if(menu.classList.contains('open')) build();
+    buildGroup();
+  }
+  function buildGroup(){
+    var grp = document.querySelector('.we-tabgrp'); if(!grp) return;
+    var ns = names(), key = ns.map(function(x){ return x.txt + (x.on ? '*' : '') + (x.n || ''); }).join('|');
+    if(grp.getAttribute('data-k') === key) return; grp.setAttribute('data-k', key); grp.innerHTML = '';
+    ns.forEach(function(x){
+      var b = document.createElement('button'); b.type = 'button'; b.className = 'we-tg' + (x.on ? ' on' : ''); b.textContent = x.txt.replace(/\s*&\s*Bias/i, '');
+      b.addEventListener('click', function(e){ e.stopPropagation(); x.el.click(); setTimeout(sync, 30); });
+      grp.appendChild(b);
+    });
   }
   function close(){ menu.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); }
   function build(){
@@ -16691,9 +16713,10 @@ var stopLoaderOrb = function(){};
     btn.innerHTML = '<span>Story</span><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg>'; lab = btn.firstChild;
     menu = document.createElement('div'); menu.className = 'we-tabmenu'; menu.setAttribute('role', 'menu'); document.body.appendChild(menu);
     var right = top.querySelector('.callout-top-right'); top.insertBefore(btn, right || null);
+    var grp = document.createElement('div'); grp.className = 'we-tabgrp'; top.insertBefore(grp, right || null);
     btn.addEventListener('click', function(e){ e.stopPropagation(); if(menu.classList.contains('open')){ close(); return; } build(); var r = btn.getBoundingClientRect(); menu.style.top = (r.bottom + 6) + 'px'; menu.style.right = Math.max(8, window.innerWidth - r.right) + 'px'; menu.classList.add('open'); btn.setAttribute('aria-expanded', 'true'); });
     document.addEventListener('click', function(){ if(menu.classList.contains('open')) close(); });
-    new MutationObserver(function(ms){ if(ms.every(function(m){ return btn.contains(m.target); })) return; if(!top.contains(btn)){ var t2 = document.querySelector('.callout-head .callout-top'); if(t2) t2.insertBefore(btn, t2.querySelector('.callout-top-right') || null); } sync(); }).observe(document.querySelector('.callout-head'), { childList:true, subtree:true, attributes:true, attributeFilter:['class'] });
+    new MutationObserver(function(ms){ if(ms.every(function(m){ return btn.contains(m.target) || grp.contains(m.target); })) return; if(!top.contains(btn)){ var t2 = document.querySelector('.callout-head .callout-top'); if(t2){ var rr = t2.querySelector('.callout-top-right') || null; t2.insertBefore(btn, rr); t2.insertBefore(grp, rr); } } sync(); }).observe(document.querySelector('.callout-head'), { childList:true, subtree:true, attributes:true, attributeFilter:['class'] });
     sync();
   }
   if(root.classList.contains('we-phone')) init();
