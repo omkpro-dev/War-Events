@@ -5300,6 +5300,10 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
 
   html.we-phone #calloutBody .cb-article > .cb-panel{ padding-left:0 !important; padding-right:0 !important; }
   html.we-phone #calloutBody #calloutImpact:not([hidden]){ padding-left:0 !important; padding-right:0 !important; margin-left:2px !important; margin-right:2px !important; }
+
+  /* Phone: thin blue line between the summary and Why It Matters */
+  html.we-phone #calloutBody .cb-article > .cb-panel{ border-top:1px solid #4a86e8 !important; margin-top:16px !important; padding-top:14px !important; }
+  html.we-phone:root[data-theme="light"] #calloutBody .cb-article > .cb-panel, :root[data-theme="light"] html.we-phone #calloutBody .cb-article > .cb-panel{ border-top:1px solid #2b5bc0 !important; }
 </style>
 </head>
 <body>
