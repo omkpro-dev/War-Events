@@ -5317,6 +5317,12 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
 
   /* Phone: summary text 10% larger (15px -> 16.5px) */
   html.we-phone body #calloutBody .cb-sum{ font-size:16.5px !important; }
+
+  /* Phone: Why It Matters text is styled exactly like the summary */
+  html.we-phone body #calloutBody .cb-panel li, html.we-phone body #calloutBody .cb-panel li *{
+    font-family:Georgia,"Times New Roman",serif !important; font-size:16.5px !important; font-weight:400 !important; line-height:1.52 !important; letter-spacing:0 !important;
+    color:inherit !important; text-align:justify; hyphens:auto; -webkit-hyphens:auto; font-style:normal !important; }
+  html.we-phone body #calloutBody .cb-panel li, html.we-phone body #calloutBody .cb-panel li *{ color:var(--txh, #ebe5d8) !important; }
 </style>
 </head>
 <body>
