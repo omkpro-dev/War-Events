@@ -69,6 +69,7 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
 <!-- Focus transitions (loader reveal + page changes); upload we-transition.js alongside the pages -->
 <script src="js/we-transition.js"></script>
 <script src="js/we-bias.js?v=20"></script>
+<script src="js/we-settings.js?v=3"></script>
 
 <script>
 /* Phones get the same War Events site, laid out for a small screen (CSS under
@@ -5356,6 +5357,18 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
 
   /* Phone banner: with the map and day/night buttons the three tab buttons stay at 74px on every phone width, so Live is never cut off */
   html.we-phone{ --we-hbtn:74px !important; }
+
+  /* Phone banner order: logo, day/night, map, page dropdown, Events / Feed, then Settings on the far right */
+  html.we-phone header{ gap:6px !important; }
+  html.we-phone header .we-tabbar{ display:contents !important; }
+  html.we-phone header .logo-lockup{ order:0; }
+  html.we-phone header .we-themebtn{ order:1; margin:0 !important; }
+  html.we-phone header .we-mapbtn{ order:2; margin:0 !important; }
+  html.we-phone header .we-tabbar > .we-gbtn{ order:3; width:auto !important; min-width:0 !important; padding:0 8px !important; gap:5px !important; }
+  html.we-phone header .we-gbtn > svg:not(.chev){ display:none !important; }
+  html.we-phone header .we-tabbar > .we-tab:not([hidden]):not(.we-relbtn){ order:4; width:auto !important; padding:0 8px !important; }
+  html.we-phone header .we-tabbar > .we-tab svg{ display:none !important; }
+  html.we-phone header .we-setbtn{ order:9; margin-left:auto !important; }
 </style>
 </head>
 <body>
