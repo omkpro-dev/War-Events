@@ -44,7 +44,7 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
 
 <script>/* Colour theme: apply the reader's saved choice before the page draws (no dark flash for light readers). */ (function(){ try { if(localStorage.getItem('we-theme') === 'light') document.documentElement.setAttribute('data-theme', 'light'); } catch(e){} })();</script>
 <meta charset="utf-8">
-<script>/* Live data is read straight from GitHub, so robot updates show without a new Vercel deploy. */ var LIVE_DATA = 'https://raw.githubusercontent.com/omkpro-dev/War-Events/main/'; /* News + wire bots publish to their own one-commit branches so main's history stays small. */ var NEWS_DATA = 'https://raw.githubusercontent.com/omkpro-dev/War-Events/news-data/'; var WIRE_DATA = 'https://raw.githubusercontent.com/omkpro-dev/War-Events/wire-data/'; var PROFILES_DATA = 'https://raw.githubusercontent.com/omkpro-dev/War-Events/profiles-data/';</script>
+<script>/* Live data is read straight from GitHub, so robot updates show without a new Vercel deploy. */ /* only our own images (same site, or the Unsplash demo covers) are ever loaded: never an outlet's photo */ function weSafeCover(u){ return (typeof u === 'string' && (/^\/(?!\/)/.test(u) || /^images\//.test(u) || u.indexOf(location.origin) === 0 || /^https:\/\/images\.unsplash\.com\//.test(u))) ? u : ''; } var LIVE_DATA = 'https://raw.githubusercontent.com/omkpro-dev/War-Events/main/'; /* News + wire bots publish to their own one-commit branches so main's history stays small. */ var NEWS_DATA = 'https://raw.githubusercontent.com/omkpro-dev/War-Events/news-data/'; var WIRE_DATA = 'https://raw.githubusercontent.com/omkpro-dev/War-Events/wire-data/'; var PROFILES_DATA = 'https://raw.githubusercontent.com/omkpro-dev/War-Events/profiles-data/';</script>
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
@@ -5860,7 +5860,7 @@ var stopLoaderOrb = function(){};
     if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', add); else add();
   })();
   </script>
-  <div class="we-legal"><a href="/privacy">Privacy</a><span aria-hidden="true">·</span><span>© <span class="we-legal-yr">2026</span> Omar Kharoti</span></div>
+  <div class="we-legal"><a href="/privacy">Privacy</a><span aria-hidden="true">·</span><a href="/takedown">Copyright &amp; takedown</a><span aria-hidden="true">·</span><span>© <span class="we-legal-yr">2026</span> Omar Kharoti</span></div>
   <script>
   (function(){
     var y = String(new Date().getFullYear());
@@ -6906,7 +6906,7 @@ var stopLoaderOrb = function(){};
       v.addEventListener('loadeddata', videoDone, { once:true });
       v.addEventListener('error', videoDone, { once:true }); // one bad clip can't hang the loader
       v.src = p.coverVideo;
-    } else if(p.cover){
+    } else if(weSafeCover(p.cover)){
       manager.itemStart(p.cover);
       var img = new Image();
       img.onload = img.onerror = function(){ manager.itemEnd(p.cover); };
@@ -15291,8 +15291,8 @@ var stopLoaderOrb = function(){};
       calloutCoverImg.removeAttribute('src');
       calloutCoverVid.play().catch(function(){}); // some browsers block autoplay
       calloutCover.hidden = false;
-    } else if(p.cover){
-      calloutCoverImg.src = p.cover;
+    } else if(weSafeCover(p.cover)){
+      calloutCoverImg.src = weSafeCover(p.cover);
       calloutCoverImg.hidden = false;
       calloutCoverVid.hidden = true;
       calloutCoverVid.removeAttribute('src');
@@ -15308,7 +15308,7 @@ var stopLoaderOrb = function(){};
       calloutCoverImg.removeAttribute('src');
       calloutCoverVid.removeAttribute('src');
     }
-    calloutCover.classList.toggle('is-emblem', !p.coverVideo && !p.cover && !calloutCover.hidden);
+    calloutCover.classList.toggle('is-emblem', !p.coverVideo && !weSafeCover(p.cover) && !calloutCover.hidden);
     // Drives which .callout positioning rule applies (see .callout.has-cover
     // in the min-width:900px block) -- fixed-top only makes sense with a
     // cover behind the card to clear; centered is right when there's none.
@@ -15462,7 +15462,7 @@ var stopLoaderOrb = function(){};
   var weMediaWaiting = null;
   function weFillMedia(p){
     if(!weMediaEl) return;
-    var mImg = weMediaEl.querySelector('img'), src = p.cover || '', kind = p.cover ? 'photo' : '';
+    var mImg = weMediaEl.querySelector('img'), src = weSafeCover(p.cover) || '', kind = src ? 'photo' : '';
     if(!src){
       var f = weStoryFeature(p);
       if(f){ try { src = weOutlineURL(f); kind = 'outline'; } catch(e){} }

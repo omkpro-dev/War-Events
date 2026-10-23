@@ -35,7 +35,7 @@ BREAK_MAJOR = 2        # ...of which at least this many are major (tier 1-2) new
 BREAK_BOOST = 3.0      # breaking stories rank as if this many times more important (and sit at the top)
 FRESH_HALF_LIFE = 18   # hours: how fast an older story gives up its place to newer ones
 MIN_SCORE = 6          # outlet credit (tier 1 = 4, tier 2 = 3, tier 3 = 1.5 each), +2 if a major outlet, +topic strength (max 4)
-USE_COVERS = os.environ.get("USE_COVERS", "1") != "0"
+USE_COVERS = os.environ.get("USE_COVERS", "0") == "1"   # outlets' photos are off: only our own map, flags and emblems are shown
 NEWSAPI_KEY = os.environ.get("NEWSAPI_KEY", "").strip()
 GNEWS_KEY = os.environ.get("GNEWS_KEY", "").strip()
 UA = "WarEventsNewsBot/1.0 (+https://www.warevents.com)"

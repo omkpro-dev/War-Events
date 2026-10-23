@@ -13,6 +13,7 @@ import sys as _sys
 _sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))) if os.path.basename(os.path.dirname(os.path.abspath(__file__))) == "news-feed" else os.path.dirname(os.path.abspath(__file__)), "news-feed"))
 from dedupe import dedupe, same_story, tokens as story_tokens
 import outlets as ranking
+import ai_rewrite
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "latest_reports.json")
@@ -178,6 +179,28 @@ def ai_filter(items):
         return items
 
 
+def own_words(out):
+    """Every item shows an original one-sentence summary, never the outlet's headline or snippet.
+    Summaries already written on an earlier run are reused (matched by link); new ones are written now; items that cannot be rewritten are left out."""
+    prev = {}
+    try:
+        for x in json.load(open(OUT, encoding="utf-8")):
+            if x.get("ownWords") and x.get("permalink"):
+                prev[x["permalink"]] = x["text"]
+    except Exception:
+        pass
+    new = [x for x in out if x["permalink"] not in prev]
+    done = ai_rewrite.rewrite([{"outlet": x["name"], "headline": x["text"].split(" — ")[0], "snippet": x["text"].split(" — ", 1)[1] if " — " in x["text"] else ""} for x in new]) if new else []
+    fresh = {x["permalink"]: t for x, t in zip(new, done) if t}
+    kept = []
+    for x in out:
+        t = prev.get(x["permalink"]) or fresh.get(x["permalink"])
+        if t:
+            x = dict(x, text=t, ownWords=True); kept.append(x)
+    print("own-words summaries: %d reused, %d new, %d dropped" % (sum(1 for x in out if x["permalink"] in prev), len(fresh), len(out) - len(kept)))
+    return kept
+
+
 def main():
     allit = [x for lab, u in FEEDS for x in items(lab, u)]
     allit.sort(key=lambda x: x["time"], reverse=True)
@@ -194,7 +217,15 @@ def main():
     # Lesser-known / very high-volume outlets get at most 2 items, regional ones at most 5.
     out = ranking.apply_caps(out, lambda x: x["name"])
     out = ai_filter(out[:60])[:30]   # AI relevance check on the newest candidates, then the 30 shown
-    if out:
+    out = own_words(out)
+    if not out:
+        try:   # nothing could be written in our own words: keep the last good file, but never leave outlet wording published
+            if any(x.get("ownWords") for x in json.load(open(OUT, encoding="utf-8"))):
+                print("keeping the previous own-words feed")
+                return
+        except Exception:
+            pass
+    if out or os.path.exists(OUT):
         json.dump(out, open(OUT, "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
     print("reports:", len(out))
 

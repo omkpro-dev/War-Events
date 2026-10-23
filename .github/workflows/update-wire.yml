@@ -8,6 +8,7 @@ on:
     paths:
       - "fetch_rss_feeds.py"
       - "news-feed/fetch_latest_reports.py"
+      - "news-feed/ai_rewrite.py"
       - ".github/workflows/update-wire.yml"
 
 permissions:
@@ -38,6 +39,8 @@ jobs:
             git reset -q
           fi
       - name: Top banner (WIRE ticker)
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: python fetch_rss_feeds.py
         continue-on-error: true
       - name: FEED panel (latest reports)

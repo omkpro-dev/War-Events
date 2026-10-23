@@ -117,6 +117,29 @@ def parse_feed(label, data):
     return items
 
 
+def own_words(items):
+    """The ticker shows a short original headline of our own, never the outlet's. Rewrites from an earlier run are reused (matched by link)."""
+    sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "news-feed"))
+    import ai_rewrite
+    prev = {}
+    try:
+        for x in json.load(open(OUT_FILE, encoding="utf-8")):
+            if x.get("ownWords") and x.get("link"):
+                prev[x["link"]] = x["title"]["rendered"]
+    except Exception:
+        pass
+    new = [i for i in items if i["link"] not in prev]
+    done = ai_rewrite.rewrite([{"outlet": i["source"], "headline": i["title"], "snippet": ""} for i in new], max_words=14) if new else []
+    fresh = {i["link"]: t for i, t in zip(new, done) if t}
+    out = []
+    for i in items:
+        t = prev.get(i["link"]) or fresh.get(i["link"])
+        if t:
+            out.append(dict(i, title=t))
+    print("ticker own-words: %d reused, %d new, %d dropped" % (len(items) - len(new), len(fresh), len(items) - len(out)))
+    return out
+
+
 def main():
     now = datetime.now(timezone.utc)
     collected, seen = [], set()
@@ -157,14 +180,19 @@ def main():
 
     # Same shape as a WordPress REST posts response, which is what the
     # ticker in index.html parses (title.rendered, link, first term name).
+    shown = own_words(collected[:MAX_ITEMS])
+    if not shown:
+        print("Nothing could be written in our own words -- leaving the existing wire_ticker.json in place.", file=sys.stderr)
+        return 1
     out = [{
         "title": {"rendered": i["title"]},
+        "ownWords": True,
         "link": i["link"],
         "date": i["date"].isoformat() if i["date"] else None,
-        "image": i["image"],
+        "image": None,   # outlets' photos are never used
         "tags": i["tags"],
         "_embedded": {"wp:term": [[{"name": i["source"]}]]},
-    } for i in collected[:MAX_ITEMS]]
+    } for i in shown]
 
     # Write to a temp file then swap, so the site never reads a half-written file.
     fd, tmp = tempfile.mkstemp(dir=os.path.dirname(OUT_FILE), suffix=".json")
