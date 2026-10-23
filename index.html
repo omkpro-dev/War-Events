@@ -5337,6 +5337,22 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
 
   /* Phone: Coverage & Bias view starts a line below the banner, like the story does */
   html.we-phone #calloutBody .rc-pane.bias{ padding-top:16px !important; }
+
+  /* Phone, map off: every control that lives on the map goes with it (legends, filters, topic bar, pop-ups, Power info sheet) */
+  html.we-phone.we-nomap .lg-legend, html.we-phone.we-nomap .dz-legend, html.we-phone.we-nomap .war-legend, html.we-phone.we-nomap .pw-bar-top,
+  html.we-phone.we-nomap .pw-pane, html.we-phone.we-nomap .pw-grab, html.we-phone.we-nomap .pw-handle, html.we-phone.we-nomap .lg-pop, html.we-phone.we-nomap .war-pop, html.we-phone.we-nomap .dz-pop,
+  html.we-phone.we-nomap .relation-filters, html.we-phone.we-nomap .we-relmenu, html.we-phone.we-nomap .we-relbtn, html.we-phone.we-nomap #keyDevLegend, html.we-phone.we-nomap .status-line,
+  html.we-phone.we-nomap #countryLeaderSvg, html.we-phone.we-nomap .impact-map-btn{ display:none !important; }
+
+  /* Phone banner: day/night button, same shape and size as the map toggle */
+  .we-themebtn{ display:none; }
+  html.we-phone .we-themebtn{ display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px; margin-left:6px; padding:0; border-radius:5px; cursor:pointer; flex:0 0 auto;
+    background:var(--pn-bg, rgba(18,27,44,.82)); color:var(--t1, #fff); border:1px solid var(--pn-line, rgba(255,255,255,.28)); }
+  html.we-phone .we-themebtn svg{ width:16px; height:16px; fill:none; stroke:currentColor; stroke-width:1.5; stroke-linecap:round; }
+  html.we-phone .we-themebtn .ico-moon path{ fill:currentColor; stroke:none; }
+  html.we-phone .we-themebtn .ico-sun{ display:none; }
+  html.we-phone:root[data-theme="light"] .we-themebtn .ico-sun{ display:block; } html.we-phone:root[data-theme="light"] .we-themebtn .ico-moon{ display:none; }
+  html.we-phone .we-mapbtn{ margin-left:8px; }
 </style>
 </head>
 <body>
@@ -16626,6 +16642,10 @@ var stopLoaderOrb = function(){};
     var b = document.createElement('button'); b.type = 'button'; b.className = 'we-mapbtn'; b.setAttribute('aria-label', 'Show or hide the map');
     b.innerHTML = '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.6 2.4 4 5.3 4 8.5s-1.4 6.1-4 8.5c-2.6-2.4-4-5.3-4-8.5s1.4-6.1 4-8.5z"/><path class="off" d="M4 4l16 16"/></svg>';
     lock.parentNode.insertBefore(b, lock.nextSibling);
+    var tb = document.createElement('button'); tb.type = 'button'; tb.className = 'we-themebtn'; tb.setAttribute('aria-label', 'Switch between day and night');
+    tb.innerHTML = '<svg class="ico-moon" viewBox="0 0 16 16" aria-hidden="true"><path d="M13.5 10.2A5.8 5.8 0 0 1 5.8 2.5a5.8 5.8 0 1 0 7.7 7.7z"></path></svg><svg class="ico-sun" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="3"></circle><path d="M8 1.2v1.6M8 13.2v1.6M1.2 8h1.6M13.2 8h1.6M3.2 3.2l1.1 1.1M11.7 11.7l1.1 1.1M3.2 12.8l1.1-1.1M11.7 4.3l1.1-1.1"></path></svg>';
+    b.parentNode.insertBefore(tb, b.nextSibling);
+    tb.addEventListener('click', function(){ var t = document.getElementById('themeToggle'); if(t) t.click(); });
     function apply(off){ root.classList.toggle('we-nomap', off); b.setAttribute('aria-pressed', off ? 'true' : 'false'); setTimeout(function(){ window.dispatchEvent(new Event('resize')); }, 50); }
     apply(get());
     b.addEventListener('click', function(){ var off = !root.classList.contains('we-nomap'); set(off); apply(off); });
