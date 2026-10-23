@@ -5346,13 +5346,16 @@ body{ -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; } 
 
   /* Phone banner: day/night button, same shape and size as the map toggle */
   .we-themebtn{ display:none; }
-  html.we-phone .we-themebtn{ display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px; margin-left:6px; padding:0; border-radius:5px; cursor:pointer; flex:0 0 auto;
+  html.we-phone .we-themebtn{ display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px; margin-left:4px; padding:0; border-radius:5px; cursor:pointer; flex:0 0 auto;
     background:var(--pn-bg, rgba(18,27,44,.82)); color:var(--t1, #fff); border:1px solid var(--pn-line, rgba(255,255,255,.28)); }
   html.we-phone .we-themebtn svg{ width:16px; height:16px; fill:none; stroke:currentColor; stroke-width:1.5; stroke-linecap:round; }
   html.we-phone .we-themebtn .ico-moon path{ fill:currentColor; stroke:none; }
   html.we-phone .we-themebtn .ico-sun{ display:none; }
   html.we-phone:root[data-theme="light"] .we-themebtn .ico-sun{ display:block; } html.we-phone:root[data-theme="light"] .we-themebtn .ico-moon{ display:none; }
-  html.we-phone .we-mapbtn{ margin-left:8px; }
+  html.we-phone .we-mapbtn{ margin-left:6px; }
+
+  /* Phone banner: with the map and day/night buttons the three tab buttons stay at 74px on every phone width, so Live is never cut off */
+  html.we-phone{ --we-hbtn:74px !important; }
 </style>
 </head>
 <body>

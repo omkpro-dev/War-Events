@@ -729,7 +729,7 @@
   .we-themebtn{ display:none; }
   @media (max-width:899px){ .hdr-right{ display:none; } }
   @media (max-width:820px){
-    header{ padding:12px 10px 10px !important; padding-top:calc(12px + env(safe-area-inset-top)) !important; min-height:0; height:auto; gap:0; }
+    header{ padding:13px 10px 14px !important; min-height:0 !important; height:57px; gap:0; box-sizing:border-box; }
     .we-mark{ font-size:22px !important; height:30px !important; }
     .we-themebtn{ display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px; margin-left:8px; padding:0; border-radius:5px; cursor:pointer; flex:0 0 auto;
       background:rgba(18,30,52,0.3); color:#f0e9da; border:1px solid rgba(255,255,255,0.28); }
@@ -804,6 +804,13 @@
   :root[data-theme="light"] .sp-majl, :root[data-theme="light"] .dn{ color:#b3262d !important; }
   :root[data-theme="light"] .up{ color:#17754f !important; }
   :root[data-theme="light"] .sp-maj{ border-left-color:rgba(179,38,45,.7) !important; }
+
+  /* phone: the same compact W | E logo as every other page */
+  @media (max-width:820px){
+    .we-mark .we-war, .we-mark .we-events{ font-size:0 !important; letter-spacing:0 !important; padding:0 6px !important; }
+    .we-mark .we-war::before{ content:'W'; font-size:19px; letter-spacing:0; }
+    .we-mark .we-events::before{ content:'E'; font-size:19px; letter-spacing:0; }
+  }
 </style>
 </head>
 <body>
