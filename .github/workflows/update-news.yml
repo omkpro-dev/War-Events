@@ -46,6 +46,12 @@ jobs:
         continue-on-error: true
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      - name: Push to Vandict
+        run: python news-feed/push_to_vandict.py
+        continue-on-error: true
+        env:
+          VANDICT_INGEST_URL: ${{ secrets.VANDICT_INGEST_URL }}
+          VANDICT_INGEST_KEY: ${{ secrets.VANDICT_INGEST_KEY }}
       - name: Fetch one story per country
         run: python news-feed/fetch_country_news.py
         continue-on-error: true
