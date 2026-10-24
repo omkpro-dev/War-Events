@@ -35,6 +35,12 @@ jobs:
           FIRMS_MAP_KEY: ${{ secrets.FIRMS_MAP_KEY }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           CLAUDE_MODEL: claude-haiku-5-5
+      - name: Push to Vandict
+        run: FEED_PATH=data/disasters.json python news-feed/push_to_vandict.py --source gdacs-disasters
+        continue-on-error: true
+        env:
+          VANDICT_INGEST_URL: ${{ secrets.VANDICT_INGEST_URL }}
+          VANDICT_INGEST_KEY: ${{ secrets.VANDICT_INGEST_KEY }}
       - name: Publish to disasters-data branch (one commit, no history build-up, no site redeploy)
         working-directory: dz-out
         run: |

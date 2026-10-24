@@ -67,6 +67,12 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           CLAUDE_MODEL: claude-haiku-5-5
+      - name: Push to Vandict
+        run: FEED_PATH=data/logistics.json python news-feed/push_to_vandict.py --source cable-incidents
+        continue-on-error: true
+        env:
+          VANDICT_INGEST_URL: ${{ secrets.VANDICT_INGEST_URL }}
+          VANDICT_INGEST_KEY: ${{ secrets.VANDICT_INGEST_KEY }}
       - name: Publish to logistics-data branch (one commit, no history build-up)
         run: |
           python3 -c "import json, os; p = 'data/logistics.json'; d = json.load(open(p)); d['baseSha'] = os.environ['MAIN_SHA']; json.dump(d, open(p, 'w'), ensure_ascii=False, separators=(',', ':'))"

@@ -14,7 +14,7 @@ CACHE = os.path.join(ROOT, "news-feed", "enrich_cache.json")
 KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 MODEL = os.environ.get("CLAUDE_MODEL", "claude-haiku-5-5")
 MAX_NEW = int(os.environ.get("ENRICH_MAX", "20"))  # cap API calls per run
-PROMPT_V = 10                                        # bump to re-ask Claude for every cached story
+PROMPT_V = 11                                        # bump to re-ask Claude for every cached story
 MIN_GEO = int(os.environ.get("MIN_GEO", "7"))       # stories Claude scores below this (0-10) are dropped from the site
 UA = {"User-Agent": "Mozilla/5.0 (WarEvents enrich bot)"}
 
@@ -38,6 +38,7 @@ Return ONLY a JSON object, no prose, with:
 - "points": always an empty list [].
 - "impact_points": exactly 2 sentences on why it matters, naming who is affected and how. Each begins with the main country, group or organisation affected, then what happens to it. Plain English, max 20 words each, grounded in the reporting.
 - "geo": integer 0-10, how geopolitical this story is. 8-10 = wars, military action between or inside states, international crises, sanctions, major diplomacy, state-level energy/trade conflicts. 5-7 = significant security or political events with clear international consequences. 0-4 = domestic regulation, consumer/business news, markets, local crime, courts, elections with no international angle, human-interest. Judge the substance, not the keywords. Human-interest and personal stories score 0-3 EVEN IF set in a war zone: individual or family experiences, couples, love stories, profiles, "life under" pieces, diaries, testimonies, culture, food, sport or art in wartime, anniversaries and explainers with no new event. Score the EVENT and its consequences for states, not the setting.
+- "severity": integer 1-5, how serious the EVENT itself is, on this scale: 1 = statements, diplomacy, talks or votes; 2 = protests, unrest, sanctions or threats; 3 = disruption or a non-lethal attack (infrastructure, cyber, blockade, seizure, arrests); 4 = a lethal attack or fighting; 5 = mass casualties, or a strategic shock (a major chokepoint closed, a capital attacked, a new war). Judge what happened, not the tone of the coverage. If unsure between two levels, choose the lower.
 - "actors": the impact of THIS story on each country, worked out from what the article actually says.
   Step 1, WHO: every country that is a direct party (attacker and target, both sides of talks or a deal, the sanctioner and the sanctioned, the country it happens in, a country sending help), then any country the article says is clearly affected. At least 2 whenever two or more countries are involved; max 6; most affected first. Use the country, not a group (Houthis -> YE, Hezbollah -> LB, Hamas/Gaza/West Bank -> PS).
   Step 2, WHY: for each country write one short reason (max 12 words) from the article: what this story does to that country.
@@ -116,12 +117,14 @@ def ask_claude(story):
         geo = max(0, min(10, int(data.get("geo", 10))))
     except Exception:
         geo = 10
+    sev = data.get("severity")
+    severity = sev if isinstance(sev, int) and not isinstance(sev, bool) and 1 <= sev <= 5 else None
     def bullets(v, n):
         if not isinstance(v, list):
             return []
         out = [re.sub(r"^[\s\-\u2022*]+", "", str(x)).strip() for x in v]
         return [x for x in out if x][:n]
-    return {"v": PROMPT_V, "headline": re.sub(r"\s+", " ", str(data.get("headline", ""))).strip().strip("\"\u201c\u201d"), "summary": str(data.get("summary", "")).strip(), "actors": actors, "geo": geo,
+    return {"v": PROMPT_V, "headline": re.sub(r"\s+", " ", str(data.get("headline", ""))).strip().strip("\"\u201c\u201d"), "summary": str(data.get("summary", "")).strip(), "actors": actors, "geo": geo, "severity": severity,
             "points": bullets(data.get("points"), 3), "impact_points": bullets(data.get("impact_points"), 4)}
 
 
@@ -174,6 +177,8 @@ def main():
             s.pop("points", None)   # the newer summaries are written as one piece, with no separate key-point list
         if e.get("impact_points"):
             s["impactPoints"] = e["impact_points"]
+        if e.get("severity"):
+            s["severity"] = e["severity"]   # Vandict's 1-5 scale; the site ignores it
     live = {s.get("id") for s in stories}
     before = len(stories)
     stories = [s for s in stories if cache.get(s.get("id"), {}).get("geo", 10) >= MIN_GEO]

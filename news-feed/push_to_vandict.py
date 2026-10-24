@@ -4,6 +4,10 @@ Runs as the last step of the warevents "Update news stories" workflow. Standard 
 only, so the workflow installs nothing. It never fails the workflow: whatever happens
 it exits 0 and prints one line. It never prints the key.
 
+Usage: push_to_vandict.py [--source NAME]
+  --source NAME  send to that source's ingest address instead (gdacs-disasters, cable-incidents,
+                 wire-reports); the same URL secret is used with its last part replaced.
+
 Environment:
   VANDICT_INGEST_URL  full ingest URL, e.g. https://<host>/v1/ingest/legacy-key-developments
   VANDICT_INGEST_KEY  the ingest key (a GitHub secret)
@@ -22,6 +26,9 @@ def main(argv: list[str] | None = None) -> int:
     if not url or not key:
         print("vandict: skipped (no VANDICT_INGEST_URL/KEY)")
         return 0
+    args = list(argv or [])
+    if "--source" in args and args.index("--source") + 1 < len(args):
+        url = url.rstrip("/").rsplit("/", 1)[0] + "/" + args[args.index("--source") + 1]
     try:
         with open(os.environ.get("FEED_PATH", "key_developments.json"), "rb") as f:
             body = f.read()
