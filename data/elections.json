@@ -1,0 +1,5471 @@
+{
+ "updated": "2026-10-24T09:32:17Z",
+ "elections": [
+  {
+   "id": "se-2026-gen",
+   "country": "Sweden",
+   "code": "SE",
+   "type": "General",
+   "date": "2026-09-13",
+   "approx": false,
+   "dateNote": "Riksdag rejected Andersson as PM on 15 Oct; government formation ongoing",
+   "status": "result",
+   "seats": "349 seats",
+   "stakes": "The centre-left bloc won a narrow 176-173 majority, ending the right-wing Tido arrangement backed by the Sweden Democrats, but divisions between the Left and Centre parties have stalled government formation.",
+   "contenders": [
+    {
+     "name": "Social Democrats",
+     "leader": "Magdalena Andersson",
+     "short": "S",
+     "pos": 0.35,
+     "posLabel": "Centre-left",
+     "poll": 28.1,
+     "seatsWon": 99,
+     "incumbent": false,
+     "color": "#E8112D",
+     "auth": 0.4
+    },
+    {
+     "name": "Moderates",
+     "leader": "Ulf Kristersson",
+     "short": "M",
+     "pos": 0.65,
+     "posLabel": "Centre-right",
+     "poll": 19.9,
+     "seatsWon": 70,
+     "incumbent": true,
+     "color": "#52BDEC",
+     "auth": 0.5
+    },
+    {
+     "name": "Sweden Democrats",
+     "leader": "Jimmie Akesson",
+     "short": "SD",
+     "pos": 0.84,
+     "posLabel": "Far right",
+     "poll": 17.5,
+     "seatsWon": 62,
+     "incumbent": false,
+     "color": "#DDDD00",
+     "auth": 0.78
+    },
+    {
+     "name": "Left Party",
+     "leader": "Nooshi Dadgostar",
+     "short": "V",
+     "pos": 0.15,
+     "posLabel": "Left",
+     "poll": 8.2,
+     "seatsWon": 30,
+     "incumbent": false,
+     "color": "#AF0000",
+     "auth": 0.25
+    },
+    {
+     "name": "Centre Party",
+     "leader": "Elisabeth Thand Ringqvist",
+     "short": "C",
+     "pos": 0.55,
+     "posLabel": "Centre",
+     "poll": 7.1,
+     "seatsWon": 25,
+     "incumbent": false,
+     "color": "#009933",
+     "auth": 0.3
+    },
+    {
+     "name": "Christian Democrats",
+     "leader": "Ebba Busch",
+     "short": "KD",
+     "pos": 0.7,
+     "posLabel": "Right",
+     "poll": 6.2,
+     "seatsWon": 22,
+     "incumbent": true,
+     "color": "#000077",
+     "auth": 0.68
+    }
+   ],
+   "pollNote": "Final result",
+   "winner": "Social Democrats (centre-left bloc majority)",
+   "sources": [
+    "https://www.mappr.co/sweden-election/",
+    "https://www.usnews.com/news/world/articles/2026-10-15/swedish-parliament-votes-against-social-democrats-leader-as-pm-as-expected"
+   ],
+   "region": "Europe",
+   "major": true,
+   "refreshed": "2026-10-20"
+  },
+  {
+   "id": "ru-2026-duma",
+   "country": "Russia",
+   "code": "RU",
+   "type": "Legislative (State Duma)",
+   "date": "2026-09-18",
+   "approx": false,
+   "dateNote": "Voting held 18-20 Sep 2026",
+   "status": "result",
+   "seats": "450 seats",
+   "stakes": "United Russia extended its supermajority in a wartime vote held without genuine opposition, consolidating Kremlin control of the legislature; Western governments do not regard the vote as free or fair.",
+   "contenders": [
+    {
+     "name": "United Russia",
+     "leader": "Dmitry Medvedev",
+     "short": "UR",
+     "pos": 0.72,
+     "posLabel": "Right",
+     "poll": 57.83,
+     "seatsWon": 355,
+     "incumbent": true,
+     "color": "#2862B3",
+     "auth": 0.9
+    },
+    {
+     "name": "Communist Party",
+     "leader": "Gennady Zyuganov",
+     "short": "CPRF",
+     "pos": 0.15,
+     "posLabel": "Left",
+     "poll": 13.81,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#D50000",
+     "auth": 0.82
+    },
+    {
+     "name": "Liberal Democratic Party",
+     "leader": "Leonid Slutsky",
+     "short": "LDPR",
+     "pos": 0.88,
+     "posLabel": "Far right",
+     "poll": 8.98,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#2C5AA0",
+     "auth": 0.88
+    },
+    {
+     "name": "New People",
+     "leader": "Alexey Nechayev",
+     "short": "NP",
+     "pos": 0.6,
+     "posLabel": "Centre-right",
+     "poll": 7.96,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#00B6E0",
+     "auth": 0.6
+    },
+    {
+     "name": "A Just Russia",
+     "leader": "Sergey Mironov",
+     "short": "SRZP",
+     "pos": 0.35,
+     "posLabel": "Centre-left",
+     "poll": 4.96,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#FFB300",
+     "auth": 0.72
+    }
+   ],
+   "pollNote": "Preliminary result",
+   "winner": "United Russia",
+   "sources": [
+    "https://www.trtworld.com/article/d007edc36e76",
+    "https://futureuae.com/en-US/Mainpage/Item/11291/the-continued-dominance-of-united-russia-reading-the-results-of-russias-2026-state-duma-elections"
+   ],
+   "region": "Europe",
+   "major": true,
+   "refreshed": "2026-10-13"
+  },
+  {
+   "id": "ma-2026-parl",
+   "country": "Morocco",
+   "code": "MA",
+   "type": "Parliamentary",
+   "date": "2026-09-23",
+   "approx": false,
+   "dateNote": "King appointed PAM's Fatima Ezzahra El Mansouri head of government on 29 Sep 2026; turnout 38%",
+   "status": "result",
+   "seats": "395 House of Representatives seats",
+   "stakes": "PAM overtook outgoing premier Aziz Akhannouch's RNI in a fragmented vote with record-low turnout, while the Islamist PJD staged a comeback; El Mansouri became Morocco's first female head of government.",
+   "contenders": [
+    {
+     "name": "Authenticity and Modernity Party (PAM)",
+     "leader": "Fatima Ezzahra El Mansouri",
+     "short": "PAM",
+     "pos": 0.6,
+     "auth": 0.45,
+     "posLabel": "Centre-right",
+     "poll": null,
+     "seatsWon": 97,
+     "incumbent": true,
+     "color": "#1d6fb8"
+    },
+    {
+     "name": "National Rally of Independents (RNI)",
+     "leader": "Mohamed Chaouki",
+     "short": "RNI",
+     "pos": 0.65,
+     "auth": 0.5,
+     "posLabel": "Centre-right",
+     "poll": null,
+     "seatsWon": 66,
+     "incumbent": true,
+     "color": "#2a5ca8"
+    },
+    {
+     "name": "Istiqlal Party",
+     "leader": "Nizar Baraka",
+     "short": "Istiqlal",
+     "pos": 0.6,
+     "auth": 0.6,
+     "posLabel": "Centre-right",
+     "poll": null,
+     "seatsWon": 65,
+     "incumbent": true,
+     "color": "#c8102e"
+    },
+    {
+     "name": "Justice and Development Party (PJD)",
+     "leader": "Abdelilah Benkirane",
+     "short": "PJD",
+     "pos": 0.6,
+     "auth": 0.72,
+     "posLabel": "Right (Islamist)",
+     "poll": null,
+     "seatsWon": 54,
+     "incumbent": false,
+     "color": "#3a7d44"
+    },
+    {
+     "name": "Popular Movement (MP)",
+     "leader": "Mohamed Ouzzine",
+     "short": "MP",
+     "pos": 0.6,
+     "auth": 0.55,
+     "posLabel": "Centre-right",
+     "poll": null,
+     "seatsWon": 29,
+     "incumbent": false,
+     "color": "#7aa33c"
+    },
+    {
+     "name": "Socialist Union of Popular Forces (USFP)",
+     "leader": "Driss Lachgar",
+     "short": "USFP",
+     "pos": 0.35,
+     "auth": 0.4,
+     "posLabel": "Centre-left",
+     "poll": null,
+     "seatsWon": 26,
+     "incumbent": false,
+     "color": "#d81b60"
+    }
+   ],
+   "pollNote": "Final result",
+   "winner": "Authenticity and Modernity Party (PAM)",
+   "sources": [
+    "https://www.moroccoworldnews.com/2026/09/339827/morocco-confirms-pam-as-election-winner-with-97-seats-rni-second-with-66/",
+    "https://www.aljazeera.com/news/2026/9/24/moroccos-elections-fragmentation-disengagement-and-pjds-major-return",
+    "https://www.timeslive.co.za/news/africa/2026-09-29-moroccos-king-appoints-first-woman-prime-minister-following-election/"
+   ],
+   "region": "North Africa",
+   "major": true,
+   "refreshed": "2026-10-06"
+  },
+  {
+   "id": "lv-2026-parl",
+   "country": "Latvia",
+   "code": "LV",
+   "type": "Parliamentary",
+   "date": "2026-10-03",
+   "approx": false,
+   "dateNote": "",
+   "status": "result",
+   "seats": "100 seats",
+   "stakes": "PM Andris Kulbergs's centre-right United List won a record victory, keeping a firmly pro-Ukraine government in a NATO frontline state, while Russia-friendly populist parties gained in the east.",
+   "contenders": [
+    {
+     "name": "United List",
+     "leader": "Andris Kulbergs",
+     "short": "AS",
+     "pos": 0.65,
+     "posLabel": "Centre-right",
+     "poll": 35.8,
+     "seatsWon": 41,
+     "incumbent": true,
+     "color": "#1B5E20",
+     "auth": 0.5
+    },
+    {
+     "name": "Latvia First",
+     "leader": "Ainars Slesers",
+     "short": "LPV",
+     "pos": 0.78,
+     "posLabel": "Right",
+     "poll": 13.3,
+     "seatsWon": 17,
+     "incumbent": false,
+     "color": "#8B0000",
+     "auth": 0.75
+    },
+    {
+     "name": "Sovereign Power",
+     "leader": "",
+     "short": "SV",
+     "pos": 0.78,
+     "posLabel": "Right",
+     "poll": 11.9,
+     "seatsWon": 15,
+     "incumbent": false,
+     "color": "#6D4C41",
+     "auth": 0.72
+    },
+    {
+     "name": "National Alliance",
+     "leader": "Ilze Indriksone",
+     "short": "NA",
+     "pos": 0.84,
+     "posLabel": "Far right",
+     "poll": 9.0,
+     "seatsWon": 10,
+     "incumbent": false,
+     "color": "#7B1E2B",
+     "auth": 0.8
+    },
+    {
+     "name": "The Progressives",
+     "leader": "Andris Suvajevs",
+     "short": "PRO",
+     "pos": 0.3,
+     "posLabel": "Centre-left",
+     "poll": 8.0,
+     "seatsWon": 10,
+     "incumbent": false,
+     "color": "#E4002B",
+     "auth": 0.3
+    },
+    {
+     "name": "New Unity",
+     "leader": "Arvils Aseradens",
+     "short": "JV",
+     "pos": 0.62,
+     "posLabel": "Centre-right",
+     "poll": 6.4,
+     "seatsWon": 7,
+     "incumbent": true,
+     "color": "#6CBE45",
+     "auth": 0.48
+    }
+   ],
+   "pollNote": "Final result",
+   "winner": "United List",
+   "sources": [
+    "https://politpro.eu/en/latvia/election/parliament/2026",
+    "https://www.osw.waw.pl/en/publikacje/analyses/2026-10-06/latvian-parliamentary-election-historic-victory-united-list"
+   ],
+   "region": "Europe",
+   "major": true,
+   "refreshed": "2026-09-29"
+  },
+  {
+   "id": "ba-2026-gen",
+   "country": "Bosnia and Herzegovina",
+   "code": "BA",
+   "type": "General (Presidency and parliament)",
+   "date": "2026-10-04",
+   "approx": false,
+   "dateNote": "Presidency: Becirovic (Bosniak), Cvijanovic (Serb), Filipovic (Croat)",
+   "status": "result",
+   "seats": "3-member Presidency, 42-seat House of Representatives",
+   "stakes": "Record-low turnout returned largely familiar ethnic parties; Dodik's SNSD kept control in Republika Srpska, sustaining secessionist pressure that tests the Dayton settlement and the EU path.",
+   "contenders": [
+    {
+     "name": "Party of Democratic Action",
+     "leader": "Bakir Izetbegovic",
+     "short": "SDA",
+     "pos": 0.65,
+     "posLabel": "Centre-right",
+     "poll": 21.4,
+     "seatsWon": 9,
+     "incumbent": false,
+     "color": "#00A651",
+     "auth": 0.65
+    },
+    {
+     "name": "Alliance of Independent Social Democrats",
+     "leader": "Milorad Dodik",
+     "short": "SNSD",
+     "pos": 0.72,
+     "posLabel": "Right",
+     "poll": 14.3,
+     "seatsWon": 6,
+     "incumbent": true,
+     "color": "#003F87",
+     "auth": 0.85
+    },
+    {
+     "name": "Social Democratic Party",
+     "leader": "Nermin Niksic",
+     "short": "SDP",
+     "pos": 0.35,
+     "posLabel": "Centre-left",
+     "poll": 11.9,
+     "seatsWon": 5,
+     "incumbent": true,
+     "color": "#E2001A",
+     "auth": 0.35
+    },
+    {
+     "name": "Croatian Democratic Union of BiH",
+     "leader": "Dragan Covic",
+     "short": "HDZ BiH",
+     "pos": 0.72,
+     "posLabel": "Right",
+     "poll": 9.5,
+     "seatsWon": 4,
+     "incumbent": true,
+     "color": "#1E3A8A",
+     "auth": 0.72
+    }
+   ],
+   "pollNote": "Preliminary result",
+   "winner": "Presidency: Denis Becirovic, Zeljka Cvijanovic, Darijana Filipovic",
+   "sources": [
+    "https://www.freiheit.org/western-balkans/general-elections-2026-new-technology-familiar-outcomes",
+    "https://europeanwesternbalkans.com/2026/10/05/what-are-the-preliminary-results-of-bihs-general-elections/"
+   ],
+   "region": "Europe",
+   "major": true,
+   "refreshed": "2026-09-22"
+  },
+  {
+   "id": "br-2026-gen-r1",
+   "country": "Brazil",
+   "code": "BR",
+   "type": "General (first round)",
+   "date": "2026-10-04",
+   "approx": false,
+   "dateNote": "No majority: runoff on 25 Oct between Flavio Bolsonaro and Lula",
+   "status": "result",
+   "seats": "President, 513 Chamber of Deputies seats, 54 of 81 Senate seats",
+   "stakes": "Latin America's largest economy split almost evenly between Lula's left and the Bolsonaro right, with implications for Amazon policy, BRICS and relations with Washington.",
+   "contenders": [
+    {
+     "name": "Flavio Bolsonaro",
+     "leader": "Liberal Party (PL)",
+     "short": "F. Bolsonaro",
+     "pos": 0.82,
+     "posLabel": "Right",
+     "poll": 47.03,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#1b3a8c",
+     "auth": 0.85
+    },
+    {
+     "name": "Luiz Inacio Lula da Silva",
+     "leader": "Workers' Party (PT)",
+     "short": "Lula",
+     "pos": 0.3,
+     "posLabel": "Centre-left",
+     "poll": 45.16,
+     "seatsWon": null,
+     "incumbent": true,
+     "color": "#c4122f",
+     "auth": 0.4
+    },
+    {
+     "name": "Augusto Cury",
+     "leader": "Avante",
+     "short": "Cury",
+     "pos": 0.6,
+     "posLabel": "Centre-right",
+     "poll": 2.89,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#ef6c00",
+     "auth": 0.55
+    },
+    {
+     "name": "Renan Santos",
+     "leader": "Missao",
+     "short": "R. Santos",
+     "pos": 0.75,
+     "posLabel": "Right",
+     "poll": 2.24,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#5d4037",
+     "auth": 0.75
+    },
+    {
+     "name": "Ronaldo Caiado",
+     "leader": "Social Democratic Party (PSD)",
+     "short": "Caiado",
+     "pos": 0.7,
+     "posLabel": "Right",
+     "poll": 2.18,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#f2a900",
+     "auth": 0.72
+    }
+   ],
+   "pollNote": "Final result",
+   "winner": null,
+   "sources": [
+    "https://www.riotimesonline.com/brazil-election-first-round-results-lula-flavio-2026/",
+    "https://www.washingtonpost.com/world/2026/10/04/bolsonaro-lula-head-runoff-5-takeaways-brazils-election/"
+   ],
+   "region": "Americas",
+   "major": true,
+   "refreshed": "2026-09-15"
+  },
+  {
+   "id": "bg-2026-pres",
+   "country": "Bulgaria",
+   "code": "BG",
+   "type": "Presidential, 1st round",
+   "date": "2026-10-25",
+   "approx": false,
+   "dateNote": "Runoff 1 Nov 2026 if needed",
+   "status": "upcoming",
+   "seats": "President (5-year term)",
+   "stakes": "Incumbent head of state Iliana Yotova, backed by PM Rumen Radev's Progressive Bulgaria, is the frontrunner; critics fear a Russia-friendly tilt in both offices of an EU and NATO member.",
+   "contenders": [
+    {
+     "name": "Iliana Yotova",
+     "leader": "Independent (Progressive Bulgaria, BSP)",
+     "short": "Yotova",
+     "pos": 0.38,
+     "auth": 0.6,
+     "posLabel": "Centre-left",
+     "poll": 43.4,
+     "seatsWon": null,
+     "incumbent": true,
+     "color": "#C8102E",
+     "trend": -3.5,
+     "series": [
+      [
+       "2026-10-10",
+       46.9
+      ],
+      [
+       "2026-10-17",
+       46.9
+      ],
+      [
+       "2026-10-24",
+       43.4
+      ]
+     ]
+    },
+    {
+     "name": "Andrei Gyurov",
+     "leader": "Independent (initiative committee)",
+     "short": "Gyurov",
+     "pos": 0.6,
+     "auth": 0.4,
+     "posLabel": "Centre-right",
+     "poll": 28.9,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#004A99",
+     "trend": 3.6,
+     "series": [
+      [
+       "2026-10-10",
+       25.3
+      ],
+      [
+       "2026-10-17",
+       25.3
+      ],
+      [
+       "2026-10-24",
+       28.9
+      ]
+     ]
+    },
+    {
+     "name": "Kostadin Kostadinov",
+     "leader": "Revival",
+     "short": "Vazrazhdane",
+     "pos": 0.9,
+     "auth": 0.88,
+     "posLabel": "Far right",
+     "poll": 10.2,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#C1A35F",
+     "trend": 1.4,
+     "series": [
+      [
+       "2026-10-10",
+       8.8
+      ],
+      [
+       "2026-10-17",
+       8.8
+      ],
+      [
+       "2026-10-24",
+       10.2
+      ]
+     ]
+    }
+   ],
+   "pollNote": "1 poll, 19 Oct 2026",
+   "winner": null,
+   "sources": [
+    "https://myara.bg/electoral-snapshot-october-bnr-1946/"
+   ],
+   "region": "Europe",
+   "major": true,
+   "polling": {
+    "unit": "pct",
+    "n": 1,
+    "from": "2026-10-19",
+    "to": "2026-10-19",
+    "method": "pollsters",
+    "checked": "2026-10-24",
+    "pollsters": [
+     "Myara"
+    ]
+   },
+   "checked": "2026-10-24",
+   "refreshed": "2026-10-19"
+  },
+  {
+   "id": "rs-2026-parl",
+   "country": "Serbia",
+   "code": "RS",
+   "type": "Parliamentary (snap)",
+   "date": "2026-10-25",
+   "approx": false,
+   "dateNote": "Single-round vote; no runoff",
+   "status": "upcoming",
+   "seats": "250 seats",
+   "stakes": "After two years of student-led protests, Aleksandar Vucic resigned the presidency to lead his list and seek the premiership; the vote tests his grip on power and Serbia's balance between the EU and Russia.",
+   "contenders": [
+    {
+     "name": "Aleksandar Vucic - United Serbia",
+     "leader": "Aleksandar Vucic",
+     "short": "SNS",
+     "pos": 0.7,
+     "auth": 0.85,
+     "posLabel": "Right",
+     "poll": 44.1,
+     "seatsWon": null,
+     "incumbent": true,
+     "color": "#0D47A1",
+     "trend": null,
+     "series": [
+      [
+       "2026-08-08",
+       47.1
+      ],
+      [
+       "2026-09-26",
+       48.6
+      ],
+      [
+       "2026-10-03",
+       48.6
+      ],
+      [
+       "2026-10-10",
+       44.1
+      ],
+      [
+       "2026-10-17",
+       44.1
+      ],
+      [
+       "2026-10-24",
+       44.1
+      ]
+     ]
+    },
+    {
+     "name": "Student List - Students Win",
+     "leader": "Ilija Srdanovic",
+     "short": "Students",
+     "pos": 0.5,
+     "auth": 0.3,
+     "posLabel": "Big tent",
+     "poll": 42.8,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#B71C1C",
+     "trend": null,
+     "series": [
+      [
+       "2026-08-08",
+       30.7
+      ],
+      [
+       "2026-09-26",
+       37.1
+      ],
+      [
+       "2026-10-03",
+       37.1
+      ],
+      [
+       "2026-10-10",
+       42.8
+      ],
+      [
+       "2026-10-17",
+       42.8
+      ],
+      [
+       "2026-10-24",
+       42.8
+      ]
+     ]
+    },
+    {
+     "name": "European Serbia",
+     "leader": "Marinika Tepic, Zdravko Ponos",
+     "short": "ES",
+     "pos": 0.42,
+     "auth": 0.35,
+     "posLabel": "Centre",
+     "poll": 2.9,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#FFCC00",
+     "trend": null,
+     "series": [
+      [
+       "2026-09-26",
+       3.6
+      ],
+      [
+       "2026-10-03",
+       3.6
+      ],
+      [
+       "2026-10-10",
+       2.9
+      ],
+      [
+       "2026-10-17",
+       2.9
+      ],
+      [
+       "2026-10-24",
+       2.9
+      ]
+     ]
+    },
+    {
+     "name": "Socialist Party of Serbia",
+     "leader": "Ivica Dacic",
+     "short": "SPS",
+     "pos": 0.3,
+     "auth": 0.7,
+     "posLabel": "Centre-left",
+     "poll": 3.4,
+     "seatsWon": null,
+     "incumbent": true,
+     "color": "#E53935",
+     "trend": null,
+     "series": [
+      [
+       "2026-08-08",
+       5.0
+      ],
+      [
+       "2026-09-26",
+       4.9
+      ],
+      [
+       "2026-10-03",
+       4.9
+      ],
+      [
+       "2026-10-10",
+       3.4
+      ],
+      [
+       "2026-10-17",
+       3.4
+      ],
+      [
+       "2026-10-24",
+       3.4
+      ]
+     ]
+    }
+   ],
+   "pollNote": "Average of 2 polls, 20 Sep – 5 Oct 2026",
+   "winner": null,
+   "sources": [
+    "https://n1info.rs/vesti/jesenje-istrazivanje-nspm-studentska-lista-u-blagoj-prednosti-u-odnosu-na-sns/",
+    "https://www.danas.rs/vesti/politika/izbori26/istrazivanje-faktor-plus/"
+   ],
+   "region": "Europe",
+   "major": true,
+   "polling": {
+    "unit": "pct",
+    "n": 2,
+    "from": "2026-09-20",
+    "to": "2026-10-05",
+    "method": "pollsters",
+    "checked": "2026-10-24",
+    "pollsters": [
+     "Faktor plus",
+     "Various pollsters (N1)"
+    ]
+   },
+   "checked": "2026-10-24",
+   "refreshed": "2026-10-19"
+  },
+  {
+   "id": "br-2026-pres-r2",
+   "country": "Brazil",
+   "code": "BR",
+   "type": "Presidential runoff",
+   "date": "2026-10-25",
+   "approx": false,
+   "dateNote": "First round 4 Oct: Flavio Bolsonaro 47.03%, Lula 45.16% of valid votes",
+   "status": "upcoming",
+   "seats": "President",
+   "stakes": "Decides whether Lula wins a fourth term or the Bolsonaro family returns to power, shaping Brazil's climate, trade and foreign-policy course.",
+   "contenders": [
+    {
+     "name": "Flavio Bolsonaro",
+     "leader": "Liberal Party (PL)",
+     "short": "F. Bolsonaro",
+     "pos": 0.82,
+     "auth": 0.85,
+     "posLabel": "Right",
+     "poll": 47.7,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#1b3a8c",
+     "trend": null,
+     "series": [
+      [
+       "2026-10-17",
+       47.0
+      ],
+      [
+       "2026-10-24",
+       47.7
+      ]
+     ]
+    },
+    {
+     "name": "Luiz Inacio Lula da Silva",
+     "leader": "Workers' Party (PT)",
+     "short": "Lula",
+     "pos": 0.3,
+     "auth": 0.4,
+     "posLabel": "Centre-left",
+     "poll": 47.2,
+     "seatsWon": null,
+     "incumbent": true,
+     "color": "#c4122f",
+     "trend": null,
+     "series": [
+      [
+       "2026-10-17",
+       45.0
+      ],
+      [
+       "2026-10-24",
+       47.2
+      ]
+     ]
+    }
+   ],
+   "pollNote": "Average of 2 polls, 20–22 Oct 2026",
+   "winner": null,
+   "sources": [
+    "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/10/22/datafolha-rejeicao-22-outubro.ghtml",
+    "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/10/21/quaest-presidente-21-outubro.ghtml"
+   ],
+   "region": "Americas",
+   "major": true,
+   "checked": "2026-10-24",
+   "polling": {
+    "checked": "2026-10-24",
+    "method": "pollsters",
+    "n": 2,
+    "from": "2026-10-20",
+    "to": "2026-10-22",
+    "unit": "pct",
+    "pollsters": [
+     "Datafolha",
+     "Quaest"
+    ]
+   },
+   "refreshed": "2026-10-19"
+  },
+  {
+   "id": "il-2026-leg",
+   "country": "Israel",
+   "code": "IL",
+   "type": "Legislative",
+   "date": "2026-10-27",
+   "approx": false,
+   "dateNote": "Latest legal date; Supreme Court on 2 Oct overturned election-committee bans on the Joint List and Ra'am",
+   "status": "upcoming",
+   "seats": "120 Knesset seats",
+   "stakes": "First general election since the 7 October 2023 attack and the Gaza war; decides whether Benjamin Netanyahu's right-wing and religious coalition keeps power, shaping policy on Gaza, Iran and the West Bank.",
+   "contenders": [
+    {
+     "name": "Yashar",
+     "leader": "Gadi Eisenkot",
+     "short": "Yashar",
+     "pos": 0.55,
+     "auth": 0.45,
+     "posLabel": "Centre",
+     "poll": 21.5,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#3a7bd5"
+    },
+    {
+     "name": "Likud",
+     "leader": "Benjamin Netanyahu",
+     "short": "Likud",
+     "pos": 0.75,
+     "auth": 0.72,
+     "posLabel": "Right",
+     "poll": 19.0,
+     "seatsWon": null,
+     "incumbent": true,
+     "color": "#1f5fbf"
+    },
+    {
+     "name": "Yashar",
+     "leader": "Gadi Eisenkot",
+     "short": "Yashar",
+     "pos": 0.55,
+     "auth": 0.45,
+     "posLabel": "Centre",
+     "poll": 21.0,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#3a7bd5"
+    },
+    {
+     "name": "Together (Bennett-Lapid)",
+     "leader": "Naftali Bennett",
+     "short": "Together",
+     "pos": 0.6,
+     "auth": 0.45,
+     "posLabel": "Centre-right",
+     "poll": 11.3,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#00a3e0"
+    },
+    {
+     "name": "The Democrats",
+     "leader": "Yair Golan",
+     "short": "Democrats",
+     "pos": 0.25,
+     "auth": 0.25,
+     "posLabel": "Left",
+     "poll": 9.0,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#d62828"
+    },
+    {
+     "name": "Otzma Yehudit",
+     "leader": "Itamar Ben-Gvir",
+     "short": "Otzma",
+     "pos": 0.95,
+     "auth": 0.9,
+     "posLabel": "Far right",
+     "poll": 8.0,
+     "seatsWon": null,
+     "incumbent": true,
+     "color": "#8b5a00"
+    },
+    {
+     "name": "Yisrael Beiteinu",
+     "leader": "Avigdor Lieberman",
+     "short": "YB",
+     "pos": 0.7,
+     "auth": 0.55,
+     "posLabel": "Right",
+     "poll": 7.8,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#2b3a8c"
+    }
+   ],
+   "pollNote": "Seat projections, average of 4 polls, 12–18 Oct 2026",
+   "winner": null,
+   "sources": [
+    "https://israelvote.meforum.org/",
+    "https://www.jpost.com/israel-election-2026/article-912004",
+    "https://haaretz.com/israel-news/elections/2026-10-18/ty-article/israeli-election-poll-new-far-right-party-sinks-under-threshold-smotrich-gains/000001a1-505c-da7f-a7a5-dcffffe30000",
+    "https://www.britannica.com/event/2026-Israeli-Elections"
+   ],
+   "region": "Middle East",
+   "major": true,
+   "checked": "2026-10-24",
+   "polling": {
+    "checked": "2026-10-24"
+   },
+   "refreshed": "2026-10-19"
+  },
+  {
+   "id": "us-2026-midterms",
+   "country": "United States",
+   "code": "US",
+   "type": "Midterms",
+   "date": "2026-11-03",
+   "approx": false,
+   "dateNote": "Tuesday; early voting in many states beforehand",
+   "status": "upcoming",
+   "seats": "435 House seats, 35 Senate seats",
+   "stakes": "Control of Congress for the second half of Donald Trump's term, deciding how much of his agenda on tariffs, immigration and spending can pass.",
+   "contenders": [
+    {
+     "name": "Democratic Party",
+     "leader": "Hakeem Jeffries (House) / Chuck Schumer (Senate)",
+     "short": "Democrats",
+     "pos": 0.35,
+     "auth": 0.38,
+     "posLabel": "Centre-left",
+     "poll": 50.0,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#1f5fbf",
+     "trend": 0.1,
+     "series": [
+      [
+       "2026-08-02",
+       48.1
+      ],
+      [
+       "2026-08-09",
+       48.3
+      ],
+      [
+       "2026-08-16",
+       47.9
+      ],
+      [
+       "2026-08-23",
+       47.6
+      ],
+      [
+       "2026-08-30",
+       47.0
+      ],
+      [
+       "2026-09-06",
+       47.6
+      ],
+      [
+       "2026-09-13",
+       49.8
+      ],
+      [
+       "2026-09-20",
+       49.0
+      ],
+      [
+       "2026-09-27",
+       50.0
+      ],
+      [
+       "2026-10-04",
+       49.5
+      ],
+      [
+       "2026-10-11",
+       49.4
+      ],
+      [
+       "2026-10-18",
+       49.6
+      ]
+     ]
+    },
+    {
+     "name": "Republican Party",
+     "leader": "Mike Johnson (House) / John Thune (Senate)",
+     "short": "Republicans",
+     "pos": 0.75,
+     "auth": 0.75,
+     "posLabel": "Right",
+     "poll": 42.0,
+     "seatsWon": null,
+     "incumbent": true,
+     "color": "#d2232a",
+     "trend": 0.3,
+     "series": [
+      [
+       "2026-08-02",
+       41.8
+      ],
+      [
+       "2026-08-09",
+       41.9
+      ],
+      [
+       "2026-08-16",
+       41.6
+      ],
+      [
+       "2026-08-23",
+       41.4
+      ],
+      [
+       "2026-08-30",
+       41.4
+      ],
+      [
+       "2026-09-06",
+       41.4
+      ],
+      [
+       "2026-09-13",
+       42.3
+      ],
+      [
+       "2026-09-20",
+       41.0
+      ],
+      [
+       "2026-09-27",
+       41.5
+      ],
+      [
+       "2026-10-04",
+       41.7
+      ],
+      [
+       "2026-10-11",
+       41.7
+      ],
+      [
+       "2026-10-18",
+       42.0
+      ]
+     ]
+    }
+   ],
+   "pollNote": "Average of 36 polls, 9 Sep – 14 Oct 2026",
+   "winner": null,
+   "sources": [
+    "https://www.realclearpolling.com/polls/state-of-the-union/generic-congressional-vote",
+    "https://cnn.com/2026/10/18/politics/live-news/midterm-election-congress"
+   ],
+   "region": "Americas",
+   "major": true,
+   "polling": {
+    "unit": "pct",
+    "n": 36,
+    "from": "2026-09-09",
+    "to": "2026-10-14",
+    "method": "seed",
+    "checked": "2026-10-18"
+   },
+   "checked": "2026-10-19",
+   "refreshed": "2026-10-19"
+  },
+  {
+   "id": "nz-2026-gen",
+   "country": "New Zealand",
+   "code": "NZ",
+   "type": "General",
+   "date": "2026-11-07",
+   "approx": false,
+   "dateNote": "Enrol by 25 Oct; official results 27 Nov",
+   "status": "upcoming",
+   "seats": "120 seats (MMP)",
+   "stakes": "Tests Christopher Luxon's National-ACT-NZ First coalition against a Labour-Green bloc. Recent polls show neither bloc clearly ahead, leaving the Opportunity Party as a possible kingmaker.",
+   "contenders": [
+    {
+     "name": "National",
+     "leader": "Christopher Luxon",
+     "short": "NAT",
+     "pos": 0.65,
+     "auth": 0.52,
+     "posLabel": "Centre-right",
+     "poll": 28.4,
+     "seatsWon": null,
+     "incumbent": true,
+     "color": "#00529f"
+    },
+    {
+     "name": "Labour",
+     "leader": "Chris Hipkins",
+     "short": "LAB",
+     "pos": 0.35,
+     "auth": 0.38,
+     "posLabel": "Centre-left",
+     "poll": 28.3,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#d82a20"
+    },
+    {
+     "name": "Green",
+     "leader": "Marama Davidson and Chloe Swarbrick",
+     "short": "GRN",
+     "pos": 0.2,
+     "auth": 0.2,
+     "posLabel": "Left",
+     "poll": 14.8,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#098137"
+    },
+    {
+     "name": "NZ First",
+     "leader": "Winston Peters",
+     "short": "NZF",
+     "pos": 0.7,
+     "auth": 0.68,
+     "posLabel": "Right",
+     "poll": 10.5,
+     "seatsWon": null,
+     "incumbent": true,
+     "color": "#000000"
+    },
+    {
+     "name": "ACT",
+     "leader": "David Seymour",
+     "short": "ACT",
+     "pos": 0.75,
+     "auth": 0.3,
+     "posLabel": "Right",
+     "poll": 9.3,
+     "seatsWon": null,
+     "incumbent": true,
+     "color": "#fdc82f"
+    },
+    {
+     "name": "Opportunity",
+     "leader": "Qiulae Wong",
+     "short": "TOP",
+     "pos": 0.5,
+     "auth": 0.25,
+     "posLabel": "Centre",
+     "poll": 6.3,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#32dac3"
+    }
+   ],
+   "pollNote": "Average of 2 polls, 1–12 Oct 2026",
+   "winner": null,
+   "sources": [
+    "https://elections.nz/media-and-news/2026/key-dates-for-2026-general-election",
+    "https://www.1news.co.nz/2026/10/13/poll-hipkins-and-luxon-now-neck-and-neck-opportunity-on-track-for-10-mps/",
+    "https://www.nzherald.co.nz/nz/politics/support-rises-for-nz-first-and-labour-in-latest-taxpayers-union-curia-poll/E3BZME653NBDLCU2IMZURSYMLA/"
+   ],
+   "region": "Oceania",
+   "major": true,
+   "checked": "2026-10-19",
+   "polling": {
+    "checked": "2026-10-19"
+   },
+   "refreshed": "2026-10-19"
+  },
+  {
+   "id": "es-2026-gen",
+   "country": "Spain",
+   "code": "ES",
+   "type": "General (snap)",
+   "date": "2026-11-29",
+   "approx": false,
+   "dateNote": "Called by Pedro Sanchez on 5 Oct 2026; date confirmed for 29 Nov",
+   "status": "upcoming",
+   "seats": "350 Congress seats, plus Senate",
+   "stakes": "Sanchez called an early vote after Congress rejected his housing decrees. Polls point to a PP-led government that would need Vox, bringing the far right into government in a major EU economy.",
+   "contenders": [
+    {
+     "name": "People's Party",
+     "leader": "Alberto Nunez Feijoo",
+     "short": "PP",
+     "pos": 0.68,
+     "auth": 0.6,
+     "posLabel": "Centre-right",
+     "poll": 31.9,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#1D84CE",
+     "trend": -0.7,
+     "series": [
+      [
+       "2026-08-02",
+       32.3
+      ],
+      [
+       "2026-08-09",
+       32.8
+      ],
+      [
+       "2026-08-16",
+       32.7
+      ],
+      [
+       "2026-08-23",
+       32.9
+      ],
+      [
+       "2026-08-30",
+       31.8
+      ],
+      [
+       "2026-09-06",
+       32.0
+      ],
+      [
+       "2026-09-13",
+       32.4
+      ],
+      [
+       "2026-09-20",
+       32.3
+      ],
+      [
+       "2026-09-27",
+       33.1
+      ],
+      [
+       "2026-10-04",
+       32.5
+      ],
+      [
+       "2026-10-11",
+       31.8
+      ],
+      [
+       "2026-10-18",
+       31.8
+      ]
+     ]
+    },
+    {
+     "name": "Spanish Socialist Workers' Party",
+     "leader": "Pedro Sanchez",
+     "short": "PSOE",
+     "pos": 0.33,
+     "auth": 0.35,
+     "posLabel": "Centre-left",
+     "poll": 26.5,
+     "seatsWon": null,
+     "incumbent": true,
+     "color": "#E30613",
+     "trend": 0.2,
+     "series": [
+      [
+       "2026-08-02",
+       26.6
+      ],
+      [
+       "2026-08-09",
+       26.1
+      ],
+      [
+       "2026-08-16",
+       26.1
+      ],
+      [
+       "2026-08-23",
+       26.0
+      ],
+      [
+       "2026-08-30",
+       26.3
+      ],
+      [
+       "2026-09-06",
+       26.4
+      ],
+      [
+       "2026-09-13",
+       26.2
+      ],
+      [
+       "2026-09-20",
+       26.1
+      ],
+      [
+       "2026-09-27",
+       25.9
+      ],
+      [
+       "2026-10-04",
+       26.4
+      ],
+      [
+       "2026-10-11",
+       26.5
+      ],
+      [
+       "2026-10-18",
+       26.6
+      ]
+     ]
+    },
+    {
+     "name": "Vox",
+     "leader": "Santiago Abascal",
+     "short": "Vox",
+     "pos": 0.9,
+     "auth": 0.85,
+     "posLabel": "Far right",
+     "poll": 19.0,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#63BE21",
+     "trend": 0.1,
+     "series": [
+      [
+       "2026-08-02",
+       17.8
+      ],
+      [
+       "2026-08-09",
+       17.8
+      ],
+      [
+       "2026-08-16",
+       18.0
+      ],
+      [
+       "2026-08-23",
+       18.1
+      ],
+      [
+       "2026-08-30",
+       18.3
+      ],
+      [
+       "2026-09-06",
+       18.3
+      ],
+      [
+       "2026-09-13",
+       18.5
+      ],
+      [
+       "2026-09-20",
+       18.6
+      ],
+      [
+       "2026-09-27",
+       18.2
+      ],
+      [
+       "2026-10-04",
+       18.7
+      ],
+      [
+       "2026-10-11",
+       18.7
+      ],
+      [
+       "2026-10-18",
+       18.7
+      ]
+     ]
+    },
+    {
+     "name": "Sumar",
+     "leader": "",
+     "short": "Sumar",
+     "pos": 0.18,
+     "auth": 0.2,
+     "posLabel": "Left",
+     "poll": 6.4,
+     "seatsWon": null,
+     "incumbent": true,
+     "color": "#E51C55",
+     "trend": 0.3,
+     "series": [
+      [
+       "2026-08-02",
+       6.3
+      ],
+      [
+       "2026-08-09",
+       6.2
+      ],
+      [
+       "2026-08-16",
+       6.2
+      ],
+      [
+       "2026-08-23",
+       6.2
+      ],
+      [
+       "2026-08-30",
+       6.4
+      ],
+      [
+       "2026-09-06",
+       6.3
+      ],
+      [
+       "2026-09-13",
+       6.3
+      ],
+      [
+       "2026-09-20",
+       6.3
+      ],
+      [
+       "2026-09-27",
+       6.0
+      ],
+      [
+       "2026-10-04",
+       6.1
+      ],
+      [
+       "2026-10-11",
+       6.4
+      ],
+      [
+       "2026-10-18",
+       6.5
+      ]
+     ]
+    }
+   ],
+   "pollNote": "Average of 17 polls, 21 Sep – 17 Oct 2026",
+   "winner": null,
+   "sources": [
+    "https://en.ara.cat/politics/what-do-the-polls-for-the-spanish-elections-of-november-29th-say_1_5874100.html",
+    "https://www.poliwave.com/es/gen/polls",
+    "https://edition.cnn.com/2026/10/05/europe/spain-leader-calls-snap-election-intl-hnk"
+   ],
+   "region": "Europe",
+   "major": true,
+   "polling": {
+    "unit": "pct",
+    "n": 17,
+    "from": "2026-09-21",
+    "to": "2026-10-17",
+    "method": "seed",
+    "checked": "2026-10-18"
+   },
+   "checked": "2026-10-19",
+   "refreshed": "2026-10-19"
+  },
+  {
+   "id": "ch-2026-ref",
+   "country": "Switzerland",
+   "code": "CH",
+   "type": "Referendum",
+   "date": "2026-11-29",
+   "approx": false,
+   "dateNote": "Four federal questions on one ballot",
+   "status": "upcoming",
+   "seats": "4 federal proposals",
+   "stakes": "Voters decide on a 0.4-point VAT rise to help fund the 13th pension, looser war-materiel export rules for partner states in conflict, a fireworks restriction and joint taxation of married couples.",
+   "contenders": [
+    {
+     "name": "Yes (VAT rise for 13th pension)",
+     "leader": "Federal Council and parliament",
+     "short": "Yes",
+     "pos": 0.5,
+     "auth": null,
+     "posLabel": "Nonpartisan",
+     "poll": 36.0,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#2E7D32"
+    },
+    {
+     "name": "No (VAT rise for 13th pension)",
+     "leader": "Referendum committee",
+     "short": "No",
+     "pos": 0.5,
+     "auth": null,
+     "posLabel": "Nonpartisan",
+     "poll": 60.0,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#C62828"
+    }
+   ],
+   "pollNote": "No polls yet",
+   "winner": null,
+   "sources": [
+    "https://www.swissinfo.ch/eng/swiss-democracy/in-the-first-referendum-poll-three-out-of-four-proposals-are-rejected/92212831",
+    "https://www.admin.ch/en/popular-vote-on-29-november-2026",
+    "https://lenews.ch/2026/10/15/swiss-voters-to-decide-on-four-federal-proposals-in-november/"
+   ],
+   "region": "Europe",
+   "major": false,
+   "polling": {
+    "method": "manual",
+    "checked": "2026-10-18"
+   },
+   "checked": "2026-10-19",
+   "refreshed": "2026-10-19"
+  },
+  {
+   "id": "rs-2026-pres",
+   "country": "Serbia",
+   "code": "RS",
+   "type": "Presidential (early)",
+   "date": "2026-12-01",
+   "approx": true,
+   "dateNote": "Must be held by 27 Dec 2026; date not yet set",
+   "status": "upcoming",
+   "seats": "President",
+   "stakes": "Vucic's resignation forces an early presidential vote, held separately from the parliamentary election on 25 October. It will show whether the ruling SNS can keep the presidency as he moves to the premiership.",
+   "contenders": [
+    {
+     "name": "SNS-backed candidate (TBA)",
+     "leader": "Serbian Progressive Party",
+     "short": "SNS",
+     "pos": 0.7,
+     "auth": 0.85,
+     "posLabel": "Right",
+     "poll": null,
+     "seatsWon": null,
+     "incumbent": true,
+     "color": "#0D47A1"
+    },
+    {
+     "name": "Student movement candidate (TBA)",
+     "leader": "Student movement",
+     "short": "Students",
+     "pos": 0.5,
+     "auth": 0.3,
+     "posLabel": "Big tent",
+     "poll": null,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#B71C1C"
+    }
+   ],
+   "pollNote": "No polls yet",
+   "winner": null,
+   "sources": [
+    "https://www.osw.waw.pl/en/publikacje/analyses/2026-09-28/serbias-president-vucic-resigns-a-one-man-show",
+    "https://www.intellinews.com/serbia-s-brnabic-takes-over-as-acting-president-after-vucic-resignation-471622/",
+    "https://theconversation.com/serbias-president-has-resigned-but-intends-to-remain-in-control-293032"
+   ],
+   "region": "Europe",
+   "major": true,
+   "polling": {
+    "method": "manual",
+    "checked": "2026-10-18"
+   },
+   "checked": "2026-10-19",
+   "refreshed": "2026-10-19"
+  },
+  {
+   "id": "ch-2027-nuclear-referendum",
+   "country": "Switzerland",
+   "code": "CH",
+   "type": "Referendum",
+   "date": "2027-02-28",
+   "approx": true,
+   "dateNote": "Earliest possible date; not yet confirmed, pending validation of signatures",
+   "status": "upcoming",
+   "seats": "",
+   "stakes": "Voters would decide whether to lift the ban on building new nuclear power plants, which parliament approved in June 2026. Supporters cite winter electricity security and climate goals; opponents cite cost, radioactive waste and the growth of renewables.",
+   "contenders": [
+    {
+     "name": "Swiss People's Party",
+     "leader": "",
+     "short": "SVP",
+     "pos": 0.75,
+     "auth": 0.7,
+     "posLabel": "Right",
+     "poll": null,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#008000"
+    },
+    {
+     "name": "Social Democratic Party",
+     "leader": "",
+     "short": "SP",
+     "pos": 0.2,
+     "auth": 0.3,
+     "posLabel": "Left",
+     "poll": null,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#e30613"
+    },
+    {
+     "name": "FDP.The Liberals",
+     "leader": "",
+     "short": "FDP",
+     "pos": 0.62,
+     "auth": 0.35,
+     "posLabel": "Centre-right",
+     "poll": null,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#0056a2"
+    },
+    {
+     "name": "Greens",
+     "leader": "Lisa Mazzone",
+     "short": "Greens",
+     "pos": 0.15,
+     "auth": 0.1,
+     "posLabel": "Left",
+     "poll": null,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#65b32e"
+    },
+    {
+     "name": "Green Liberal Party",
+     "leader": "Jürg Grossen",
+     "short": "GLP",
+     "pos": 0.55,
+     "auth": 0.25,
+     "posLabel": "Centre",
+     "poll": null,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#c4d600"
+    }
+   ],
+   "pollNote": "No polls yet",
+   "winner": null,
+   "sources": [
+    "https://www.swissinfo.ch/eng/climate-solutions/referendum-against-new-nuclear-power-stations-submitted-in-bern/92175124",
+    "https://www.bluewin.ch/en/news/over-131-000-signatures-nuclear-power-opponents-likely-to-force-a-referendum-li.3626109",
+    "https://www.bluewin.ch/en/news/switzerland/parliament-lifts-ban-on-new-nuclear-power-plants-li.3257535"
+   ],
+   "region": "Europe",
+   "major": true,
+   "checked": "2026-10-20",
+   "refreshed": "2026-10-20"
+  },
+  {
+   "id": "ee-2027-parl",
+   "country": "Estonia",
+   "code": "EE",
+   "type": "Parliamentary",
+   "date": "2027-03-07",
+   "approx": false,
+   "dateNote": "Advance voting 1–6 Mar 2027",
+   "status": "upcoming",
+   "seats": "101 seats",
+   "stakes": "Isamaa leads the latest polling trend ahead of the Centre Party, while Prime Minister Kristen Michal's Reform Party has fallen to about 13 percent. The result could bring a change of government in this NATO frontline state bordering Russia.",
+   "contenders": [
+    {
+     "name": "Isamaa",
+     "leader": "Urmas Reinsalu",
+     "short": "I",
+     "pos": 0.7,
+     "auth": 0.7,
+     "posLabel": "Right",
+     "poll": 22.9,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#009CE1",
+     "trend": -0.1,
+     "series": [
+      [
+       "2026-08-02",
+       24.9
+      ],
+      [
+       "2026-08-09",
+       28.8
+      ],
+      [
+       "2026-08-16",
+       23.2
+      ],
+      [
+       "2026-08-23",
+       25.3
+      ],
+      [
+       "2026-08-30",
+       24.1
+      ],
+      [
+       "2026-09-06",
+       24.1
+      ],
+      [
+       "2026-09-13",
+       24.1
+      ],
+      [
+       "2026-09-20",
+       24.1
+      ],
+      [
+       "2026-09-27",
+       27.6
+      ],
+      [
+       "2026-10-04",
+       27.6
+      ],
+      [
+       "2026-10-11",
+       27.6
+      ],
+      [
+       "2026-10-18",
+       27.6
+      ]
+     ]
+    },
+    {
+     "name": "Centre Party",
+     "leader": "Mihhail Kolvart",
+     "short": "K",
+     "pos": 0.42,
+     "auth": 0.55,
+     "posLabel": "Centre",
+     "poll": 21.2,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#007557",
+     "trend": 0.1,
+     "series": [
+      [
+       "2026-08-02",
+       22.0
+      ],
+      [
+       "2026-08-09",
+       21.3
+      ],
+      [
+       "2026-08-16",
+       21.0
+      ],
+      [
+       "2026-08-23",
+       22.7
+      ],
+      [
+       "2026-08-30",
+       20.5
+      ],
+      [
+       "2026-09-06",
+       20.5
+      ],
+      [
+       "2026-09-13",
+       20.5
+      ],
+      [
+       "2026-09-20",
+       20.5
+      ],
+      [
+       "2026-09-27",
+       19.1
+      ],
+      [
+       "2026-10-04",
+       19.1
+      ],
+      [
+       "2026-10-11",
+       19.1
+      ],
+      [
+       "2026-10-18",
+       19.1
+      ]
+     ]
+    },
+    {
+     "name": "Social Democratic Party",
+     "leader": "Lauri Laanemets",
+     "short": "SDE",
+     "pos": 0.3,
+     "auth": 0.3,
+     "posLabel": "Centre-left",
+     "poll": 15.2,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#E10600",
+     "trend": 0.0,
+     "series": [
+      [
+       "2026-08-02",
+       15.1
+      ],
+      [
+       "2026-08-09",
+       13.7
+      ],
+      [
+       "2026-08-16",
+       14.6
+      ],
+      [
+       "2026-08-23",
+       14.2
+      ],
+      [
+       "2026-08-30",
+       18.2
+      ],
+      [
+       "2026-09-06",
+       18.2
+      ],
+      [
+       "2026-09-13",
+       18.2
+      ],
+      [
+       "2026-09-20",
+       18.2
+      ],
+      [
+       "2026-09-27",
+       14.4
+      ],
+      [
+       "2026-10-04",
+       14.4
+      ],
+      [
+       "2026-10-11",
+       14.4
+      ],
+      [
+       "2026-10-18",
+       14.4
+      ]
+     ]
+    },
+    {
+     "name": "Conservative People's Party",
+     "leader": "Martin Helme",
+     "short": "EKRE",
+     "pos": 0.9,
+     "auth": 0.88,
+     "posLabel": "Far right",
+     "poll": 14.7,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#0077C8",
+     "trend": -0.0,
+     "series": [
+      [
+       "2026-08-02",
+       12.8
+      ],
+      [
+       "2026-08-09",
+       13.9
+      ],
+      [
+       "2026-08-16",
+       13.6
+      ],
+      [
+       "2026-08-23",
+       12.0
+      ],
+      [
+       "2026-08-30",
+       12.1
+      ],
+      [
+       "2026-09-06",
+       12.1
+      ],
+      [
+       "2026-09-13",
+       12.1
+      ],
+      [
+       "2026-09-20",
+       12.1
+      ],
+      [
+       "2026-09-27",
+       14.2
+      ],
+      [
+       "2026-10-04",
+       14.2
+      ],
+      [
+       "2026-10-11",
+       14.2
+      ],
+      [
+       "2026-10-18",
+       14.2
+      ]
+     ]
+    },
+    {
+     "name": "Reform Party",
+     "leader": "Kristen Michal",
+     "short": "RE",
+     "pos": 0.62,
+     "auth": 0.35,
+     "posLabel": "Centre-right",
+     "poll": 12.8,
+     "seatsWon": null,
+     "incumbent": true,
+     "color": "#FFDE00",
+     "trend": -0.1,
+     "series": [
+      [
+       "2026-08-02",
+       14.0
+      ],
+      [
+       "2026-08-09",
+       12.2
+      ],
+      [
+       "2026-08-16",
+       12.3
+      ],
+      [
+       "2026-08-23",
+       12.7
+      ],
+      [
+       "2026-08-30",
+       12.9
+      ],
+      [
+       "2026-09-06",
+       12.9
+      ],
+      [
+       "2026-09-13",
+       12.9
+      ],
+      [
+       "2026-09-20",
+       12.9
+      ],
+      [
+       "2026-09-27",
+       12.4
+      ],
+      [
+       "2026-10-04",
+       12.4
+      ],
+      [
+       "2026-10-11",
+       12.4
+      ],
+      [
+       "2026-10-18",
+       12.4
+      ]
+     ]
+    }
+   ],
+   "pollNote": "Average of 2 polls, 12 Aug – 27 Sep 2026",
+   "winner": null,
+   "sources": [
+    "https://politpro.eu/en/estonia/election/parliament/2027",
+    "https://www.valimised.ee/en/riigikogu-elections-2027",
+    "https://news.err.ee/1610167078/eesti-200-to-decide-sunday-on-running-with-greens-at-riigikogu-election"
+   ],
+   "region": "Europe",
+   "major": true,
+   "polling": {
+    "unit": "pct",
+    "n": 2,
+    "from": "2026-08-12",
+    "to": "2026-09-27",
+    "method": "seed",
+    "checked": "2026-10-18"
+   },
+   "checked": "2026-10-19",
+   "refreshed": "2026-10-19"
+  },
+  {
+   "id": "fr-2027-pres",
+   "country": "France",
+   "code": "FR",
+   "type": "Presidential, 1st round",
+   "date": "2027-04-18",
+   "approx": false,
+   "dateNote": "Runoff 2 May 2027",
+   "status": "upcoming",
+   "seats": "President (5-year term)",
+   "stakes": "With Emmanuel Macron barred from a third term, the far-right National Rally leads every poll, raising the prospect of a eurosceptic president with control of a nuclear power's foreign policy.",
+   "contenders": [
+    {
+     "name": "Marine Le Pen",
+     "leader": "National Rally",
+     "short": "RN",
+     "pos": 0.88,
+     "auth": 0.85,
+     "posLabel": "Far right",
+     "poll": 36.2,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#0D378A",
+     "trend": 1.1,
+     "series": [
+      [
+       "2026-08-02",
+       33.4
+      ],
+      [
+       "2026-08-09",
+       33.4
+      ],
+      [
+       "2026-08-16",
+       33.4
+      ],
+      [
+       "2026-08-23",
+       34.5
+      ],
+      [
+       "2026-08-30",
+       33.8
+      ],
+      [
+       "2026-09-06",
+       32.9
+      ],
+      [
+       "2026-09-13",
+       32.9
+      ],
+      [
+       "2026-09-20",
+       32.6
+      ],
+      [
+       "2026-09-27",
+       33.6
+      ],
+      [
+       "2026-10-04",
+       33.2
+      ],
+      [
+       "2026-10-11",
+       34.8
+      ],
+      [
+       "2026-10-18",
+       34.3
+      ]
+     ]
+    },
+    {
+     "name": "Jean-Luc Melenchon",
+     "leader": "La France Insoumise",
+     "short": "LFI",
+     "pos": 0.12,
+     "auth": 0.4,
+     "posLabel": "Left",
+     "poll": 17.1,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#CC2443",
+     "trend": -0.3,
+     "series": [
+      [
+       "2026-08-02",
+       16.2
+      ],
+      [
+       "2026-08-09",
+       16.2
+      ],
+      [
+       "2026-08-16",
+       16.2
+      ],
+      [
+       "2026-08-23",
+       16.2
+      ],
+      [
+       "2026-08-30",
+       15.3
+      ],
+      [
+       "2026-09-06",
+       15.9
+      ],
+      [
+       "2026-09-13",
+       16.1
+      ],
+      [
+       "2026-09-20",
+       16.8
+      ],
+      [
+       "2026-09-27",
+       17.0
+      ],
+      [
+       "2026-10-04",
+       16.5
+      ],
+      [
+       "2026-10-11",
+       17.4
+      ],
+      [
+       "2026-10-18",
+       16.1
+      ]
+     ]
+    },
+    {
+     "name": "Edouard Philippe",
+     "leader": "Horizons",
+     "short": "HOR",
+     "pos": 0.62,
+     "auth": 0.45,
+     "posLabel": "Centre-right",
+     "poll": 15.8,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#0080C9",
+     "trend": -1.0,
+     "series": [
+      [
+       "2026-08-02",
+       17.2
+      ],
+      [
+       "2026-08-09",
+       17.2
+      ],
+      [
+       "2026-08-16",
+       17.2
+      ],
+      [
+       "2026-08-23",
+       14.7
+      ],
+      [
+       "2026-08-30",
+       15.5
+      ],
+      [
+       "2026-09-06",
+       16.7
+      ],
+      [
+       "2026-09-13",
+       15.0
+      ],
+      [
+       "2026-09-20",
+       15.9
+      ],
+      [
+       "2026-09-27",
+       14.4
+      ],
+      [
+       "2026-10-04",
+       14.9
+      ],
+      [
+       "2026-10-11",
+       15.3
+      ],
+      [
+       "2026-10-18",
+       13.9
+      ]
+     ]
+    },
+    {
+     "name": "Raphael Glucksmann",
+     "leader": "Place Publique",
+     "short": "PP",
+     "pos": 0.35,
+     "auth": 0.3,
+     "posLabel": "Centre-left",
+     "poll": 13.3,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#E4007C",
+     "trend": 1.7,
+     "series": [
+      [
+       "2026-08-02",
+       10.0
+      ],
+      [
+       "2026-08-09",
+       10.0
+      ],
+      [
+       "2026-08-16",
+       10.0
+      ],
+      [
+       "2026-08-23",
+       10.1
+      ],
+      [
+       "2026-08-30",
+       10.9
+      ],
+      [
+       "2026-09-06",
+       11.4
+      ],
+      [
+       "2026-09-13",
+       10.4
+      ],
+      [
+       "2026-09-20",
+       10.8
+      ],
+      [
+       "2026-09-27",
+       10.2
+      ],
+      [
+       "2026-10-04",
+       10.4
+      ],
+      [
+       "2026-10-11",
+       10.0
+      ],
+      [
+       "2026-10-18",
+       12.1
+      ]
+     ]
+    },
+    {
+     "name": "Bruno Retailleau",
+     "leader": "The Republicans",
+     "short": "LR",
+     "pos": 0.72,
+     "auth": 0.68,
+     "posLabel": "Right",
+     "poll": 7.2,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#0066CC",
+     "trend": -0.9,
+     "series": [
+      [
+       "2026-08-02",
+       7.7
+      ],
+      [
+       "2026-08-09",
+       7.7
+      ],
+      [
+       "2026-08-16",
+       7.7
+      ],
+      [
+       "2026-08-23",
+       6.4
+      ],
+      [
+       "2026-08-30",
+       6.3
+      ],
+      [
+       "2026-09-06",
+       6.8
+      ],
+      [
+       "2026-09-13",
+       6.9
+      ],
+      [
+       "2026-09-20",
+       7.1
+      ],
+      [
+       "2026-09-27",
+       7.2
+      ],
+      [
+       "2026-10-04",
+       7.2
+      ],
+      [
+       "2026-10-11",
+       6.9
+      ],
+      [
+       "2026-10-18",
+       6.3
+      ]
+     ]
+    }
+   ],
+   "pollNote": "Average of 8 polls, 9 Sep – 16 Oct 2026",
+   "winner": null,
+   "sources": [
+    "https://www.france24.com/en/france/20260928-poll-shows-french-far-right-leader-marine-le-pen-widening-lead-ahead-of-2027-presidential-vote",
+    "https://www.connexionfrance.com/news/latest-poll-shows-marine-le-pen-widening-lead-in-2027-election/821510",
+    "https://www.usnews.com/news/world/articles/2026-10-14/le-pen-and-melenchon-gain-momentum-ahead-of-french-2027-election-poll-shows"
+   ],
+   "region": "Europe",
+   "major": true,
+   "polling": {
+    "unit": "pct",
+    "n": 8,
+    "from": "2026-09-09",
+    "to": "2026-10-16",
+    "method": "seed",
+    "checked": "2026-10-18"
+   },
+   "checked": "2026-10-19",
+   "refreshed": "2026-10-19"
+  },
+  {
+   "id": "fi-2027-parl",
+   "country": "Finland",
+   "code": "FI",
+   "type": "Parliamentary",
+   "date": "2027-04-18",
+   "approx": false,
+   "dateNote": "",
+   "status": "upcoming",
+   "seats": "200 seats",
+   "stakes": "The opposition Social Democrats lead over PM Petteri Orpo's coalition, which includes the nationalist Finns Party; NATO's newest frontline member with Russia faces a likely change of government.",
+   "contenders": [
+    {
+     "name": "Social Democratic Party",
+     "leader": "Antti Lindtman",
+     "short": "SDP",
+     "pos": 0.33,
+     "auth": 0.38,
+     "posLabel": "Centre-left",
+     "poll": 22.6,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#E11931",
+     "trend": -0.3,
+     "series": [
+      [
+       "2026-08-02",
+       23.6
+      ],
+      [
+       "2026-08-09",
+       23.8
+      ],
+      [
+       "2026-08-16",
+       23.8
+      ],
+      [
+       "2026-08-23",
+       23.8
+      ],
+      [
+       "2026-08-30",
+       23.8
+      ],
+      [
+       "2026-09-06",
+       22.9
+      ],
+      [
+       "2026-09-13",
+       22.9
+      ],
+      [
+       "2026-09-20",
+       23.2
+      ],
+      [
+       "2026-09-27",
+       23.2
+      ],
+      [
+       "2026-10-04",
+       23.2
+      ],
+      [
+       "2026-10-11",
+       22.8
+      ],
+      [
+       "2026-10-18",
+       22.8
+      ]
+     ]
+    },
+    {
+     "name": "Finns Party",
+     "leader": "Riikka Purra",
+     "short": "PS",
+     "pos": 0.82,
+     "auth": 0.8,
+     "posLabel": "Far right",
+     "poll": 16.6,
+     "seatsWon": null,
+     "incumbent": true,
+     "color": "#FFDE55",
+     "trend": 0.9,
+     "series": [
+      [
+       "2026-08-02",
+       14.3
+      ],
+      [
+       "2026-08-09",
+       15.3
+      ],
+      [
+       "2026-08-16",
+       15.3
+      ],
+      [
+       "2026-08-23",
+       14.8
+      ],
+      [
+       "2026-08-30",
+       14.8
+      ],
+      [
+       "2026-09-06",
+       15.8
+      ],
+      [
+       "2026-09-13",
+       15.8
+      ],
+      [
+       "2026-09-20",
+       15.4
+      ],
+      [
+       "2026-09-27",
+       15.4
+      ],
+      [
+       "2026-10-04",
+       15.4
+      ],
+      [
+       "2026-10-11",
+       16.2
+      ],
+      [
+       "2026-10-18",
+       16.2
+      ]
+     ]
+    },
+    {
+     "name": "National Coalition",
+     "leader": "Petteri Orpo",
+     "short": "KOK",
+     "pos": 0.65,
+     "auth": 0.45,
+     "posLabel": "Centre-right",
+     "poll": 16.2,
+     "seatsWon": null,
+     "incumbent": true,
+     "color": "#006288",
+     "trend": -0.3,
+     "series": [
+      [
+       "2026-08-02",
+       16.9
+      ],
+      [
+       "2026-08-09",
+       16.9
+      ],
+      [
+       "2026-08-16",
+       16.9
+      ],
+      [
+       "2026-08-23",
+       16.6
+      ],
+      [
+       "2026-08-30",
+       16.6
+      ],
+      [
+       "2026-09-06",
+       16.9
+      ],
+      [
+       "2026-09-13",
+       16.9
+      ],
+      [
+       "2026-09-20",
+       16.6
+      ],
+      [
+       "2026-09-27",
+       16.6
+      ],
+      [
+       "2026-10-04",
+       16.6
+      ],
+      [
+       "2026-10-11",
+       16.3
+      ],
+      [
+       "2026-10-18",
+       16.3
+      ]
+     ]
+    },
+    {
+     "name": "Left Alliance",
+     "leader": "Minja Koskela",
+     "short": "VAS",
+     "pos": 0.15,
+     "auth": 0.25,
+     "posLabel": "Left",
+     "poll": 12.7,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#F00A64",
+     "trend": 0.6,
+     "series": [
+      [
+       "2026-08-02",
+       11.5
+      ],
+      [
+       "2026-08-09",
+       10.6
+      ],
+      [
+       "2026-08-16",
+       10.6
+      ],
+      [
+       "2026-08-23",
+       11.1
+      ],
+      [
+       "2026-08-30",
+       11.1
+      ],
+      [
+       "2026-09-06",
+       11.6
+      ],
+      [
+       "2026-09-13",
+       11.6
+      ],
+      [
+       "2026-09-20",
+       11.6
+      ],
+      [
+       "2026-09-27",
+       11.6
+      ],
+      [
+       "2026-10-04",
+       11.6
+      ],
+      [
+       "2026-10-11",
+       12.2
+      ],
+      [
+       "2026-10-18",
+       12.2
+      ]
+     ]
+    },
+    {
+     "name": "Centre Party",
+     "leader": "Antti Kaikkonen",
+     "short": "KESK",
+     "pos": 0.52,
+     "auth": 0.55,
+     "posLabel": "Centre",
+     "poll": 12.5,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#01954B",
+     "trend": -0.8,
+     "series": [
+      [
+       "2026-08-02",
+       13.7
+      ],
+      [
+       "2026-08-09",
+       12.9
+      ],
+      [
+       "2026-08-16",
+       12.9
+      ],
+      [
+       "2026-08-23",
+       13.5
+      ],
+      [
+       "2026-08-30",
+       13.5
+      ],
+      [
+       "2026-09-06",
+       13.6
+      ],
+      [
+       "2026-09-13",
+       13.6
+      ],
+      [
+       "2026-09-20",
+       13.6
+      ],
+      [
+       "2026-09-27",
+       13.6
+      ],
+      [
+       "2026-10-04",
+       13.6
+      ],
+      [
+       "2026-10-11",
+       12.8
+      ],
+      [
+       "2026-10-18",
+       12.8
+      ]
+     ]
+    },
+    {
+     "name": "Green League",
+     "leader": "Sofia Virta",
+     "short": "VIHR",
+     "pos": 0.3,
+     "auth": 0.15,
+     "posLabel": "Centre-left",
+     "poll": 8.2,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#61BF1A",
+     "trend": -0.1,
+     "series": [
+      [
+       "2026-08-02",
+       8.7
+      ],
+      [
+       "2026-08-09",
+       9.0
+      ],
+      [
+       "2026-08-16",
+       9.0
+      ],
+      [
+       "2026-08-23",
+       8.8
+      ],
+      [
+       "2026-08-30",
+       8.8
+      ],
+      [
+       "2026-09-06",
+       8.4
+      ],
+      [
+       "2026-09-13",
+       8.4
+      ],
+      [
+       "2026-09-20",
+       8.5
+      ],
+      [
+       "2026-09-27",
+       8.5
+      ],
+      [
+       "2026-10-04",
+       8.5
+      ],
+      [
+       "2026-10-11",
+       8.4
+      ],
+      [
+       "2026-10-18",
+       8.4
+      ]
+     ]
+    }
+   ],
+   "pollNote": "Average of 2 polls, 14 Sep – 5 Oct 2026",
+   "winner": null,
+   "sources": [
+    "https://vaaliennuste.fi/",
+    "https://politpro.eu/en/finland"
+   ],
+   "region": "Europe",
+   "major": true,
+   "polling": {
+    "unit": "pct",
+    "n": 2,
+    "from": "2026-09-14",
+    "to": "2026-10-05",
+    "method": "seed",
+    "checked": "2026-10-18"
+   },
+   "checked": "2026-10-19",
+   "refreshed": "2026-10-19"
+  },
+  {
+   "id": "gr-2027-parl",
+   "country": "Greece",
+   "code": "GR",
+   "type": "Parliamentary",
+   "date": "2027-05-01",
+   "approx": true,
+   "dateNote": "PM says spring 2027; legal deadline 25 Jul 2027",
+   "status": "upcoming",
+   "seats": "300 seats",
+   "stakes": "Kyriakos Mitsotakis seeks a third term but New Democracy polls near 30%, short of a majority, while Alexis Tsipras's new left party has become the main challenger.",
+   "contenders": [
+    {
+     "name": "New Democracy",
+     "leader": "Kyriakos Mitsotakis",
+     "short": "ND",
+     "pos": 0.65,
+     "posLabel": "Centre-right",
+     "poll": 29.7,
+     "seatsWon": null,
+     "incumbent": true,
+     "color": "#1C4E9D",
+     "auth": 0.6,
+     "trend": -0.2,
+     "series": [
+      [
+       "2026-08-02",
+       29.7
+      ],
+      [
+       "2026-08-09",
+       29.8
+      ],
+      [
+       "2026-08-16",
+       29.7
+      ],
+      [
+       "2026-08-23",
+       30.1
+      ],
+      [
+       "2026-08-30",
+       29.7
+      ],
+      [
+       "2026-09-06",
+       29.1
+      ],
+      [
+       "2026-09-13",
+       29.6
+      ],
+      [
+       "2026-09-20",
+       29.9
+      ],
+      [
+       "2026-09-27",
+       29.9
+      ],
+      [
+       "2026-10-04",
+       29.9
+      ],
+      [
+       "2026-10-11",
+       29.9
+      ],
+      [
+       "2026-10-18",
+       29.7
+      ]
+     ]
+    },
+    {
+     "name": "Hellenic Left Coalition",
+     "leader": "Alexis Tsipras",
+     "short": "ELAS",
+     "pos": 0.25,
+     "posLabel": "Left",
+     "poll": 16.1,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#C2185B",
+     "auth": 0.3,
+     "trend": -0.2,
+     "series": [
+      [
+       "2026-08-02",
+       17.4
+      ],
+      [
+       "2026-08-09",
+       17.2
+      ],
+      [
+       "2026-08-16",
+       17.3
+      ],
+      [
+       "2026-08-23",
+       17.1
+      ],
+      [
+       "2026-08-30",
+       16.2
+      ],
+      [
+       "2026-09-06",
+       15.5
+      ],
+      [
+       "2026-09-13",
+       16.8
+      ],
+      [
+       "2026-09-20",
+       16.5
+      ],
+      [
+       "2026-09-27",
+       16.6
+      ],
+      [
+       "2026-10-04",
+       16.3
+      ],
+      [
+       "2026-10-11",
+       16.2
+      ],
+      [
+       "2026-10-18",
+       16.1
+      ]
+     ]
+    },
+    {
+     "name": "PASOK-KINAL",
+     "leader": "Nikos Androulakis",
+     "short": "PASOK",
+     "pos": 0.35,
+     "posLabel": "Centre-left",
+     "poll": 13.0,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#2DB34A",
+     "auth": 0.4,
+     "trend": 0.4,
+     "series": [
+      [
+       "2026-08-02",
+       11.0
+      ],
+      [
+       "2026-08-09",
+       11.1
+      ],
+      [
+       "2026-08-16",
+       11.0
+      ],
+      [
+       "2026-08-23",
+       11.1
+      ],
+      [
+       "2026-08-30",
+       11.2
+      ],
+      [
+       "2026-09-06",
+       13.2
+      ],
+      [
+       "2026-09-13",
+       12.0
+      ],
+      [
+       "2026-09-20",
+       12.3
+      ],
+      [
+       "2026-09-27",
+       12.1
+      ],
+      [
+       "2026-10-04",
+       12.6
+      ],
+      [
+       "2026-10-11",
+       13.0
+      ],
+      [
+       "2026-10-18",
+       13.0
+      ]
+     ]
+    },
+    {
+     "name": "Greek Solution",
+     "leader": "Kyriakos Velopoulos",
+     "short": "EL",
+     "pos": 0.92,
+     "posLabel": "Far right",
+     "poll": 7.2,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#4682B4",
+     "auth": 0.92,
+     "trend": -0.6,
+     "series": [
+      [
+       "2026-08-02",
+       8.4
+      ],
+      [
+       "2026-08-09",
+       8.5
+      ],
+      [
+       "2026-08-16",
+       8.7
+      ],
+      [
+       "2026-08-23",
+       8.8
+      ],
+      [
+       "2026-08-30",
+       9.9
+      ],
+      [
+       "2026-09-06",
+       9.4
+      ],
+      [
+       "2026-09-13",
+       9.2
+      ],
+      [
+       "2026-09-20",
+       8.0
+      ],
+      [
+       "2026-09-27",
+       7.6
+      ],
+      [
+       "2026-10-04",
+       7.8
+      ],
+      [
+       "2026-10-11",
+       7.4
+      ],
+      [
+       "2026-10-18",
+       7.2
+      ]
+     ]
+    },
+    {
+     "name": "Communist Party of Greece",
+     "leader": "Dimitris Koutsoumpas",
+     "short": "KKE",
+     "pos": 0.05,
+     "posLabel": "Far left",
+     "poll": 7.0,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#E30613",
+     "auth": 0.85,
+     "trend": 0.3,
+     "series": [
+      [
+       "2026-08-02",
+       6.9
+      ],
+      [
+       "2026-08-09",
+       6.9
+      ],
+      [
+       "2026-08-16",
+       7.0
+      ],
+      [
+       "2026-08-23",
+       6.6
+      ],
+      [
+       "2026-08-30",
+       6.8
+      ],
+      [
+       "2026-09-06",
+       7.0
+      ],
+      [
+       "2026-09-13",
+       7.5
+      ],
+      [
+       "2026-09-20",
+       7.1
+      ],
+      [
+       "2026-09-27",
+       6.8
+      ],
+      [
+       "2026-10-04",
+       6.7
+      ],
+      [
+       "2026-10-11",
+       6.6
+      ],
+      [
+       "2026-10-18",
+       7.0
+      ]
+     ]
+    },
+    {
+     "name": "Course of Freedom",
+     "leader": "Zoe Konstantopoulou",
+     "short": "PE",
+     "pos": 0.2,
+     "posLabel": "Left",
+     "poll": 4.5,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#8E44AD",
+     "auth": 0.35,
+     "trend": 0.0,
+     "series": [
+      [
+       "2026-08-02",
+       4.4
+      ],
+      [
+       "2026-08-09",
+       4.4
+      ],
+      [
+       "2026-08-16",
+       4.4
+      ],
+      [
+       "2026-08-23",
+       4.2
+      ],
+      [
+       "2026-08-30",
+       3.4
+      ],
+      [
+       "2026-09-06",
+       3.1
+      ],
+      [
+       "2026-09-13",
+       4.0
+      ],
+      [
+       "2026-09-20",
+       4.7
+      ],
+      [
+       "2026-09-27",
+       4.9
+      ],
+      [
+       "2026-10-04",
+       4.5
+      ],
+      [
+       "2026-10-11",
+       4.3
+      ],
+      [
+       "2026-10-18",
+       4.5
+      ]
+     ]
+    }
+   ],
+   "pollNote": "Average of 11 polls, 10 Sep – 14 Oct 2026",
+   "winner": null,
+   "sources": [
+    "https://greekreporter.com/2026/09/06/greek-pm-mitsotakis-elections-spring/"
+   ],
+   "region": "Europe",
+   "major": true,
+   "polling": {
+    "unit": "pct",
+    "n": 11,
+    "from": "2026-09-10",
+    "to": "2026-10-14",
+    "method": "seed",
+    "checked": "2026-10-18"
+   },
+   "refreshed": "2026-10-20",
+   "checked": "2026-10-20"
+  },
+  {
+   "id": "me-2027-parl",
+   "country": "Montenegro",
+   "code": "ME",
+   "type": "Parliamentary",
+   "date": "2027-06-01",
+   "approx": true,
+   "dateNote": "Due before 30 Jun 2027; date not set",
+   "status": "upcoming",
+   "seats": "81 seats",
+   "stakes": "A leading EU accession candidate votes with PM Milojko Spajic's Europe Now! trailing the former ruling DPS and the pro-Serbian For the Future of Montenegro in polls.",
+   "contenders": [
+    {
+     "name": "Democratic Party of Socialists",
+     "leader": "Danijel Zivkovic",
+     "short": "DPS",
+     "pos": 0.4,
+     "posLabel": "Centre-left",
+     "poll": 26.3,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#E2001A",
+     "auth": 0.5
+    },
+    {
+     "name": "For the Future of Montenegro",
+     "leader": "Andrija Mandic",
+     "short": "ZBCG",
+     "pos": 0.82,
+     "posLabel": "Right",
+     "poll": 22.6,
+     "seatsWon": null,
+     "incumbent": true,
+     "color": "#1F3A93",
+     "auth": 0.8
+    },
+    {
+     "name": "Europe Now!",
+     "leader": "Milojko Spajic",
+     "short": "PES",
+     "pos": 0.5,
+     "posLabel": "Centre",
+     "poll": 20.2,
+     "seatsWon": null,
+     "incumbent": true,
+     "color": "#2E7D32",
+     "auth": 0.45
+    },
+    {
+     "name": "Bosniak Party",
+     "leader": "Ervin Ibrahimovic",
+     "short": "BS",
+     "pos": 0.6,
+     "posLabel": "Centre-right",
+     "poll": 6.7,
+     "seatsWon": null,
+     "incumbent": true,
+     "color": "#007A33",
+     "auth": 0.55
+    },
+    {
+     "name": "Democratic Montenegro",
+     "leader": "Aleksa Becic",
+     "short": "DCG",
+     "pos": 0.55,
+     "posLabel": "Centre",
+     "poll": 6.4,
+     "seatsWon": null,
+     "incumbent": true,
+     "color": "#F7941D",
+     "auth": 0.5
+    }
+   ],
+   "pollNote": "1 poll, Apr 2026",
+   "winner": null,
+   "sources": [
+    "https://politpro.eu/en/montenegro/elections"
+   ],
+   "region": "Europe",
+   "major": true,
+   "polling": {
+    "unit": "pct",
+    "method": "manual",
+    "checked": "2026-10-18",
+    "stale": true
+   },
+   "refreshed": "2026-10-13",
+   "checked": "2026-10-20"
+  },
+  {
+   "id": "ch-2027-eu-ref",
+   "country": "Switzerland",
+   "code": "CH",
+   "type": "Referendum (EU package, optional)",
+   "date": "2027-06-01",
+   "approx": true,
+   "dateNote": "Planned for June 2027; date not yet set by Federal Council",
+   "status": "upcoming",
+   "seats": "",
+   "stakes": "Voters decide whether to approve the Bilaterals III package of updated and new EU agreements, including rules on free movement of people and dispute settlement. Approval would shape Switzerland's relationship with the EU for the next decade.",
+   "contenders": [
+    {
+     "name": "Federal Council (backs the package)",
+     "leader": "Guy Parmelin",
+     "short": "FC",
+     "pos": 0.5,
+     "auth": 0.3,
+     "posLabel": "Centre",
+     "poll": null,
+     "seatsWon": null,
+     "incumbent": true,
+     "color": "#555555"
+    },
+    {
+     "name": "Swiss People's Party (opposes)",
+     "leader": "",
+     "short": "SVP",
+     "pos": 0.85,
+     "auth": 0.7,
+     "posLabel": "Far right",
+     "poll": null,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#2e8b57"
+    }
+   ],
+   "pollNote": "No polls yet",
+   "winner": null,
+   "sources": [
+    "https://www.nzz.ch/schweiz/befuerworter-wollen-eu-paket-im-rekordtempo-durchpauken-ld.10025595",
+    "https://www.swissinfo.ch/eng/swiss-politics/what-lies-ahead-for-switzerland-the-major-political-issues-of-2026/90680803"
+   ],
+   "region": "Europe",
+   "major": true,
+   "checked": "2026-10-19",
+   "refreshed": "2026-10-19"
+  },
+  {
+   "id": "mn-2027-pres",
+   "country": "Mongolia",
+   "code": "MN",
+   "type": "Presidential",
+   "date": "2027-06-01",
+   "approx": true,
+   "dateNote": "Usually held in the first half of June; date not set",
+   "status": "upcoming",
+   "seats": "",
+   "stakes": "Incumbent Ukhnaagiin Khurelsukh is term-limited; the race between the ruling MPP and the Democratic Party sets the tone for Mongolia's democracy sandwiched between Russia and China.",
+   "contenders": [
+    {
+     "name": "Mongolian People's Party nominee (TBD)",
+     "leader": "Mongolian People's Party",
+     "short": "MPP",
+     "pos": 0.4,
+     "posLabel": "Centre-left",
+     "poll": null,
+     "seatsWon": null,
+     "incumbent": true,
+     "color": "#d32f2f",
+     "auth": 0.6
+    },
+    {
+     "name": "Democratic Party nominee (TBD)",
+     "leader": "Democratic Party",
+     "short": "DP",
+     "pos": 0.62,
+     "posLabel": "Centre-right",
+     "poll": null,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#1565c0",
+     "auth": 0.45
+    },
+    {
+     "name": "HUN Party nominee (TBD)",
+     "leader": "HUN Party",
+     "short": "HUN",
+     "pos": 0.5,
+     "posLabel": "Centre",
+     "poll": null,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#f57c00",
+     "auth": 0.45
+    }
+   ],
+   "pollNote": "No polls yet",
+   "winner": null,
+   "sources": [],
+   "region": "East Asia",
+   "major": false,
+   "polling": {
+    "method": "manual",
+    "checked": "2026-10-18"
+   },
+   "refreshed": "2026-09-29",
+   "checked": "2026-10-20"
+  },
+  {
+   "id": "mx-2027-leg",
+   "country": "Mexico",
+   "code": "MX",
+   "type": "Legislative",
+   "date": "2027-06-06",
+   "approx": false,
+   "dateNote": "",
+   "status": "upcoming",
+   "seats": "500 Chamber of Deputies seats",
+   "stakes": "First midterm test for President Claudia Sheinbaum; Morena and allies seek to keep their supermajority in the Chamber of Deputies.",
+   "contenders": [
+    {
+     "name": "Morena",
+     "leader": "Ariadna Montiel Reyes",
+     "short": "Morena",
+     "pos": 0.25,
+     "posLabel": "Left",
+     "poll": 40.7,
+     "seatsWon": null,
+     "incumbent": true,
+     "color": "#a0002c",
+     "auth": 0.62,
+     "trend": -0.2,
+     "series": [
+      [
+       "2026-08-02",
+       39.2
+      ],
+      [
+       "2026-08-09",
+       37.3
+      ],
+      [
+       "2026-08-16",
+       37.9
+      ],
+      [
+       "2026-08-23",
+       37.9
+      ],
+      [
+       "2026-08-30",
+       38.0
+      ],
+      [
+       "2026-09-06",
+       38.0
+      ],
+      [
+       "2026-09-13",
+       38.0
+      ],
+      [
+       "2026-09-20",
+       38.0
+      ],
+      [
+       "2026-09-27",
+       37.5
+      ],
+      [
+       "2026-10-04",
+       40.9
+      ],
+      [
+       "2026-10-11",
+       41.2
+      ],
+      [
+       "2026-10-18",
+       41.2
+      ]
+     ]
+    },
+    {
+     "name": "National Action Party (PAN)",
+     "leader": "Jorge Romero Herrera",
+     "short": "PAN",
+     "pos": 0.7,
+     "posLabel": "Centre-right",
+     "poll": 16.3,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#0057a8",
+     "auth": 0.62,
+     "trend": -0.1,
+     "series": [
+      [
+       "2026-08-02",
+       17.7
+      ],
+      [
+       "2026-08-09",
+       13.9
+      ],
+      [
+       "2026-08-16",
+       14.4
+      ],
+      [
+       "2026-08-23",
+       14.4
+      ],
+      [
+       "2026-08-30",
+       14.8
+      ],
+      [
+       "2026-09-06",
+       14.8
+      ],
+      [
+       "2026-09-13",
+       14.8
+      ],
+      [
+       "2026-09-20",
+       15.0
+      ],
+      [
+       "2026-09-27",
+       15.1
+      ],
+      [
+       "2026-10-04",
+       16.5
+      ],
+      [
+       "2026-10-11",
+       16.7
+      ],
+      [
+       "2026-10-18",
+       17.1
+      ]
+     ]
+    },
+    {
+     "name": "Ecologist Green Party (PVEM)",
+     "leader": "Karen Castrejon Trujillo",
+     "short": "PVEM",
+     "pos": 0.5,
+     "posLabel": "Big tent",
+     "poll": 4.8,
+     "seatsWon": null,
+     "incumbent": true,
+     "color": "#3aa935",
+     "auth": 0.55,
+     "trend": 0.0,
+     "series": [
+      [
+       "2026-08-02",
+       5.2
+      ],
+      [
+       "2026-08-09",
+       5.2
+      ],
+      [
+       "2026-08-16",
+       4.9
+      ],
+      [
+       "2026-08-23",
+       4.9
+      ],
+      [
+       "2026-08-30",
+       4.4
+      ],
+      [
+       "2026-09-06",
+       4.4
+      ],
+      [
+       "2026-09-13",
+       4.4
+      ],
+      [
+       "2026-09-20",
+       4.4
+      ],
+      [
+       "2026-09-27",
+       4.5
+      ],
+      [
+       "2026-10-04",
+       4.8
+      ],
+      [
+       "2026-10-11",
+       4.8
+      ],
+      [
+       "2026-10-18",
+       4.9
+      ]
+     ]
+    },
+    {
+     "name": "Labor Party (PT)",
+     "leader": "Alberto Anaya",
+     "short": "PT",
+     "pos": 0.2,
+     "posLabel": "Left",
+     "poll": 2.7,
+     "seatsWon": null,
+     "incumbent": true,
+     "color": "#d52b1e",
+     "auth": 0.6,
+     "trend": 0.0,
+     "series": [
+      [
+       "2026-08-02",
+       3.5
+      ],
+      [
+       "2026-08-09",
+       3.7
+      ],
+      [
+       "2026-08-16",
+       2.9
+      ],
+      [
+       "2026-08-23",
+       2.9
+      ],
+      [
+       "2026-08-30",
+       2.6
+      ],
+      [
+       "2026-09-06",
+       2.6
+      ],
+      [
+       "2026-09-13",
+       2.6
+      ],
+      [
+       "2026-09-20",
+       2.6
+      ],
+      [
+       "2026-09-27",
+       2.6
+      ],
+      [
+       "2026-10-04",
+       2.7
+      ],
+      [
+       "2026-10-11",
+       2.7
+      ],
+      [
+       "2026-10-18",
+       2.8
+      ]
+     ]
+    },
+    {
+     "name": "Institutional Revolutionary Party (PRI)",
+     "leader": "Alejandro Moreno",
+     "short": "PRI",
+     "pos": 0.55,
+     "posLabel": "Centre",
+     "poll": 13.4,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#00843d",
+     "auth": 0.6,
+     "trend": -0.2,
+     "series": [
+      [
+       "2026-08-02",
+       11.9
+      ],
+      [
+       "2026-08-09",
+       9.9
+      ],
+      [
+       "2026-08-16",
+       10.2
+      ],
+      [
+       "2026-08-23",
+       10.2
+      ],
+      [
+       "2026-08-30",
+       10.7
+      ],
+      [
+       "2026-09-06",
+       10.7
+      ],
+      [
+       "2026-09-13",
+       10.7
+      ],
+      [
+       "2026-09-20",
+       10.8
+      ],
+      [
+       "2026-09-27",
+       10.8
+      ],
+      [
+       "2026-10-04",
+       13.5
+      ],
+      [
+       "2026-10-11",
+       13.8
+      ],
+      [
+       "2026-10-18",
+       14.2
+      ]
+     ]
+    },
+    {
+     "name": "Citizens' Movement (MC)",
+     "leader": "Jorge Maynez",
+     "short": "MC",
+     "pos": 0.4,
+     "posLabel": "Centre-left",
+     "poll": 12.0,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#ff8300",
+     "auth": 0.38,
+     "trend": -0.1,
+     "series": [
+      [
+       "2026-08-02",
+       10.3
+      ],
+      [
+       "2026-08-09",
+       10.3
+      ],
+      [
+       "2026-08-16",
+       9.8
+      ],
+      [
+       "2026-08-23",
+       9.8
+      ],
+      [
+       "2026-08-30",
+       10.8
+      ],
+      [
+       "2026-09-06",
+       10.8
+      ],
+      [
+       "2026-09-13",
+       10.8
+      ],
+      [
+       "2026-09-20",
+       10.8
+      ],
+      [
+       "2026-09-27",
+       11.0
+      ],
+      [
+       "2026-10-04",
+       12.1
+      ],
+      [
+       "2026-10-11",
+       12.3
+      ],
+      [
+       "2026-10-18",
+       12.3
+      ]
+     ]
+    }
+   ],
+   "pollNote": "Average of 6 polls, 5 Aug – 29 Sep 2026",
+   "winner": null,
+   "sources": [],
+   "region": "Americas",
+   "major": true,
+   "polling": {
+    "unit": "pct",
+    "n": 6,
+    "from": "2026-08-05",
+    "to": "2026-09-29",
+    "method": "seed",
+    "checked": "2026-10-18"
+   },
+   "refreshed": "2026-09-22",
+   "checked": "2026-10-20"
+  },
+  {
+   "id": "sk-2027-parl",
+   "country": "Slovakia",
+   "code": "SK",
+   "type": "Parliamentary",
+   "date": "2027-09-01",
+   "approx": true,
+   "dateNote": "Due by late Sep 2027; date not set",
+   "status": "upcoming",
+   "seats": "150 seats",
+   "stakes": "Liberal Progressive Slovakia narrowly leads Robert Fico's Smer, whose government has softened support for Ukraine and clashed with Brussels over rule of law; the result shapes Slovakia's alignment with Hungary.",
+   "contenders": [
+    {
+     "name": "Progressive Slovakia",
+     "leader": "Michal Simecka",
+     "short": "PS",
+     "pos": 0.42,
+     "posLabel": "Centre",
+     "poll": 19.1,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#00BDFF",
+     "auth": 0.25,
+     "trend": 0.0,
+     "series": [
+      [
+       "2026-08-02",
+       19.7
+      ],
+      [
+       "2026-08-09",
+       19.7
+      ],
+      [
+       "2026-08-16",
+       20.2
+      ],
+      [
+       "2026-08-23",
+       19.1
+      ],
+      [
+       "2026-08-30",
+       19.1
+      ],
+      [
+       "2026-09-06",
+       19.1
+      ],
+      [
+       "2026-09-13",
+       19.4
+      ],
+      [
+       "2026-09-20",
+       19.4
+      ],
+      [
+       "2026-09-27",
+       19.1
+      ],
+      [
+       "2026-10-04",
+       19.1
+      ],
+      [
+       "2026-10-11",
+       19.1
+      ],
+      [
+       "2026-10-18",
+       19.1
+      ]
+     ]
+    },
+    {
+     "name": "Direction - Social Democracy",
+     "leader": "Robert Fico",
+     "short": "Smer",
+     "pos": 0.3,
+     "posLabel": "Centre-left",
+     "poll": 17.4,
+     "seatsWon": null,
+     "incumbent": true,
+     "color": "#D82222",
+     "auth": 0.78,
+     "trend": 0.5,
+     "series": [
+      [
+       "2026-08-02",
+       17.0
+      ],
+      [
+       "2026-08-09",
+       16.8
+      ],
+      [
+       "2026-08-16",
+       17.2
+      ],
+      [
+       "2026-08-23",
+       17.6
+      ],
+      [
+       "2026-08-30",
+       17.6
+      ],
+      [
+       "2026-09-06",
+       17.6
+      ],
+      [
+       "2026-09-13",
+       17.0
+      ],
+      [
+       "2026-09-20",
+       17.0
+      ],
+      [
+       "2026-09-27",
+       17.0
+      ],
+      [
+       "2026-10-04",
+       17.0
+      ],
+      [
+       "2026-10-11",
+       17.4
+      ],
+      [
+       "2026-10-18",
+       17.4
+      ]
+     ]
+    },
+    {
+     "name": "Republic",
+     "leader": "Milan Uhrik",
+     "short": "REP",
+     "pos": 0.92,
+     "posLabel": "Far right",
+     "poll": 12.6,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#1C2A48",
+     "auth": 0.9,
+     "trend": 0.9,
+     "series": [
+      [
+       "2026-08-02",
+       10.9
+      ],
+      [
+       "2026-08-09",
+       11.0
+      ],
+      [
+       "2026-08-16",
+       11.3
+      ],
+      [
+       "2026-08-23",
+       11.1
+      ],
+      [
+       "2026-08-30",
+       11.1
+      ],
+      [
+       "2026-09-06",
+       11.1
+      ],
+      [
+       "2026-09-13",
+       13.2
+      ],
+      [
+       "2026-09-20",
+       13.2
+      ],
+      [
+       "2026-09-27",
+       11.7
+      ],
+      [
+       "2026-10-04",
+       11.7
+      ],
+      [
+       "2026-10-11",
+       12.6
+      ],
+      [
+       "2026-10-18",
+       12.6
+      ]
+     ]
+    },
+    {
+     "name": "Slovakia",
+     "leader": "Igor Matovic",
+     "short": "S",
+     "pos": 0.6,
+     "posLabel": "Centre-right",
+     "poll": 9.1,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#BED62F",
+     "auth": 0.55,
+     "trend": -0.1,
+     "series": [
+      [
+       "2026-08-02",
+       8.4
+      ],
+      [
+       "2026-08-09",
+       8.5
+      ],
+      [
+       "2026-08-16",
+       8.2
+      ],
+      [
+       "2026-08-23",
+       8.3
+      ],
+      [
+       "2026-08-30",
+       8.3
+      ],
+      [
+       "2026-09-06",
+       8.3
+      ],
+      [
+       "2026-09-13",
+       8.8
+      ],
+      [
+       "2026-09-20",
+       8.8
+      ],
+      [
+       "2026-09-27",
+       9.2
+      ],
+      [
+       "2026-10-04",
+       9.2
+      ],
+      [
+       "2026-10-11",
+       9.1
+      ],
+      [
+       "2026-10-18",
+       9.1
+      ]
+     ]
+    },
+    {
+     "name": "Freedom and Solidarity",
+     "leader": "Branislav Grohling",
+     "short": "SaS",
+     "pos": 0.65,
+     "posLabel": "Centre-right",
+     "poll": 8.1,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#A6CE39",
+     "auth": 0.25,
+     "trend": 0.1,
+     "series": [
+      [
+       "2026-08-02",
+       8.3
+      ],
+      [
+       "2026-08-09",
+       8.2
+      ],
+      [
+       "2026-08-16",
+       8.2
+      ],
+      [
+       "2026-08-23",
+       8.2
+      ],
+      [
+       "2026-08-30",
+       8.2
+      ],
+      [
+       "2026-09-06",
+       8.2
+      ],
+      [
+       "2026-09-13",
+       7.4
+      ],
+      [
+       "2026-09-20",
+       7.4
+      ],
+      [
+       "2026-09-27",
+       8.0
+      ],
+      [
+       "2026-10-04",
+       8.0
+      ],
+      [
+       "2026-10-11",
+       8.1
+      ],
+      [
+       "2026-10-18",
+       8.1
+      ]
+     ]
+    },
+    {
+     "name": "Voice - Social Democracy",
+     "leader": "Matus Sutaj Estok",
+     "short": "Hlas",
+     "pos": 0.38,
+     "posLabel": "Centre-left",
+     "poll": 6.9,
+     "seatsWon": null,
+     "incumbent": true,
+     "color": "#5A2D82",
+     "auth": 0.62,
+     "trend": -0.8,
+     "series": [
+      [
+       "2026-08-02",
+       8.0
+      ],
+      [
+       "2026-08-09",
+       8.2
+      ],
+      [
+       "2026-08-16",
+       7.5
+      ],
+      [
+       "2026-08-23",
+       7.9
+      ],
+      [
+       "2026-08-30",
+       7.9
+      ],
+      [
+       "2026-09-06",
+       7.9
+      ],
+      [
+       "2026-09-13",
+       7.6
+      ],
+      [
+       "2026-09-20",
+       7.6
+      ],
+      [
+       "2026-09-27",
+       7.7
+      ],
+      [
+       "2026-10-04",
+       7.7
+      ],
+      [
+       "2026-10-11",
+       6.9
+      ],
+      [
+       "2026-10-18",
+       6.9
+      ]
+     ]
+    }
+   ],
+   "pollNote": "Average of 4 polls, 7 Sep – 5 Oct 2026",
+   "winner": null,
+   "sources": [
+    "https://politpro.eu/en/slovakia"
+   ],
+   "region": "Europe",
+   "major": true,
+   "polling": {
+    "unit": "pct",
+    "n": 4,
+    "from": "2026-09-07",
+    "to": "2026-10-05",
+    "method": "seed",
+    "checked": "2026-10-18"
+   },
+   "refreshed": "2026-09-15",
+   "checked": "2026-10-20"
+  },
+  {
+   "id": "pl-2027-parl",
+   "country": "Poland",
+   "code": "PL",
+   "type": "Parliamentary",
+   "date": "2027-10-01",
+   "approx": true,
+   "dateNote": "Due by 11 Nov 2027; President sets date (Oct-Nov Sundays/holidays)",
+   "status": "upcoming",
+   "seats": "460 Sejm + 100 Senate seats",
+   "stakes": "Donald Tusk's pro-EU coalition leads but may lack a majority, while a combined right including two far-right Confederations could return; key for Ukraine support and EU rule-of-law politics.",
+   "contenders": [
+    {
+     "name": "Civic Coalition",
+     "leader": "Donald Tusk",
+     "short": "KO",
+     "pos": 0.55,
+     "posLabel": "Centre",
+     "poll": 32.6,
+     "seatsWon": null,
+     "incumbent": true,
+     "color": "#F68D2E",
+     "auth": 0.35,
+     "trend": 1.4,
+     "series": [
+      [
+       "2026-08-02",
+       28.8
+      ],
+      [
+       "2026-08-09",
+       28.7
+      ],
+      [
+       "2026-08-16",
+       29.8
+      ],
+      [
+       "2026-08-23",
+       28.3
+      ],
+      [
+       "2026-08-30",
+       28.2
+      ],
+      [
+       "2026-09-06",
+       30.0
+      ],
+      [
+       "2026-09-13",
+       29.7
+      ],
+      [
+       "2026-09-20",
+       30.7
+      ],
+      [
+       "2026-09-27",
+       31.5
+      ],
+      [
+       "2026-10-04",
+       31.2
+      ],
+      [
+       "2026-10-11",
+       31.5
+      ],
+      [
+       "2026-10-18",
+       32.6
+      ]
+     ]
+    },
+    {
+     "name": "Law and Justice",
+     "leader": "Jaroslaw Kaczynski",
+     "short": "PiS",
+     "pos": 0.78,
+     "posLabel": "Right",
+     "poll": 21.1,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#263778",
+     "auth": 0.8,
+     "trend": 1.2,
+     "series": [
+      [
+       "2026-08-02",
+       20.3
+      ],
+      [
+       "2026-08-09",
+       19.6
+      ],
+      [
+       "2026-08-16",
+       20.2
+      ],
+      [
+       "2026-08-23",
+       19.5
+      ],
+      [
+       "2026-08-30",
+       20.5
+      ],
+      [
+       "2026-09-06",
+       20.5
+      ],
+      [
+       "2026-09-13",
+       18.8
+      ],
+      [
+       "2026-09-20",
+       18.8
+      ],
+      [
+       "2026-09-27",
+       20.2
+      ],
+      [
+       "2026-10-04",
+       19.9
+      ],
+      [
+       "2026-10-11",
+       19.6
+      ],
+      [
+       "2026-10-18",
+       21.1
+      ]
+     ]
+    },
+    {
+     "name": "Confederation Liberty and Independence",
+     "leader": "Slawomir Mentzen",
+     "short": "KWiN",
+     "pos": 0.88,
+     "posLabel": "Far right",
+     "poll": 13.0,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#122B43",
+     "auth": 0.65,
+     "trend": -0.9,
+     "series": [
+      [
+       "2026-08-02",
+       12.2
+      ],
+      [
+       "2026-08-09",
+       12.5
+      ],
+      [
+       "2026-08-16",
+       13.2
+      ],
+      [
+       "2026-08-23",
+       13.5
+      ],
+      [
+       "2026-08-30",
+       13.8
+      ],
+      [
+       "2026-09-06",
+       14.1
+      ],
+      [
+       "2026-09-13",
+       14.0
+      ],
+      [
+       "2026-09-20",
+       13.5
+      ],
+      [
+       "2026-09-27",
+       13.6
+      ],
+      [
+       "2026-10-04",
+       13.9
+      ],
+      [
+       "2026-10-11",
+       13.5
+      ],
+      [
+       "2026-10-18",
+       13.0
+      ]
+     ]
+    },
+    {
+     "name": "Confederation of the Polish Crown",
+     "leader": "Grzegorz Braun",
+     "short": "KKP",
+     "pos": 0.95,
+     "posLabel": "Far right",
+     "poll": 8.9,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#C9A227",
+     "auth": 0.92,
+     "trend": 0.5,
+     "series": [
+      [
+       "2026-08-02",
+       8.9
+      ],
+      [
+       "2026-08-09",
+       8.8
+      ],
+      [
+       "2026-08-16",
+       9.2
+      ],
+      [
+       "2026-08-23",
+       8.7
+      ],
+      [
+       "2026-08-30",
+       8.8
+      ],
+      [
+       "2026-09-06",
+       8.1
+      ],
+      [
+       "2026-09-13",
+       7.7
+      ],
+      [
+       "2026-09-20",
+       9.3
+      ],
+      [
+       "2026-09-27",
+       8.6
+      ],
+      [
+       "2026-10-04",
+       8.4
+      ],
+      [
+       "2026-10-11",
+       8.0
+      ],
+      [
+       "2026-10-18",
+       8.9
+      ]
+     ]
+    },
+    {
+     "name": "New Left",
+     "leader": "Wlodzimierz Czarzasty",
+     "short": "Lewica",
+     "pos": 0.28,
+     "posLabel": "Centre-left",
+     "poll": 6.4,
+     "seatsWon": null,
+     "incumbent": true,
+     "color": "#D2001F",
+     "auth": 0.2,
+     "trend": -1.1,
+     "series": [
+      [
+       "2026-08-02",
+       7.0
+      ],
+      [
+       "2026-08-09",
+       7.2
+      ],
+      [
+       "2026-08-16",
+       6.9
+      ],
+      [
+       "2026-08-23",
+       6.2
+      ],
+      [
+       "2026-08-30",
+       6.7
+      ],
+      [
+       "2026-09-06",
+       7.0
+      ],
+      [
+       "2026-09-13",
+       7.0
+      ],
+      [
+       "2026-09-20",
+       7.8
+      ],
+      [
+       "2026-09-27",
+       7.7
+      ],
+      [
+       "2026-10-04",
+       7.5
+      ],
+      [
+       "2026-10-11",
+       6.5
+      ],
+      [
+       "2026-10-18",
+       6.4
+      ]
+     ]
+    }
+   ],
+   "pollNote": "Average of 8 polls, 19 Sep – 13 Oct 2026",
+   "winner": null,
+   "sources": [
+    "https://www.polsatnews.pl/wiadomosc/2026-10-15/zaciety-boj-miedzy-konfederacjami-w-najnowszym-sondazu-morawiecki-poza-sejmem/"
+   ],
+   "region": "Europe",
+   "major": true,
+   "polling": {
+    "unit": "pct",
+    "n": 8,
+    "from": "2026-09-19",
+    "to": "2026-10-13",
+    "method": "seed",
+    "checked": "2026-10-18"
+   },
+   "refreshed": "2026-10-20",
+   "checked": "2026-10-20"
+  },
+  {
+   "id": "it-2027-gen",
+   "country": "Italy",
+   "code": "IT",
+   "type": "General",
+   "date": "2027-10-01",
+   "approx": true,
+   "dateNote": "Parliament's term ends; must be held by 22 Dec 2027; government says October 2027",
+   "status": "upcoming",
+   "seats": "400 Chamber + 200 Senate seats",
+   "stakes": "Giorgia Meloni seeks re-election after a full term; polls show her Brothers of Italy leading but a combined centre-left ahead of the centre-right coalition.",
+   "contenders": [
+    {
+     "name": "Brothers of Italy",
+     "leader": "Giorgia Meloni",
+     "short": "FdI",
+     "pos": 0.8,
+     "posLabel": "Right",
+     "poll": 27.3,
+     "seatsWon": null,
+     "incumbent": true,
+     "color": "#003366",
+     "auth": 0.8,
+     "trend": 0.5,
+     "series": [
+      [
+       "2026-08-02",
+       27.3
+      ],
+      [
+       "2026-08-09",
+       26.8
+      ],
+      [
+       "2026-08-16",
+       26.8
+      ],
+      [
+       "2026-08-23",
+       26.8
+      ],
+      [
+       "2026-08-30",
+       26.6
+      ],
+      [
+       "2026-09-06",
+       26.4
+      ],
+      [
+       "2026-09-13",
+       26.5
+      ],
+      [
+       "2026-09-20",
+       26.6
+      ],
+      [
+       "2026-09-27",
+       26.5
+      ],
+      [
+       "2026-10-04",
+       26.8
+      ],
+      [
+       "2026-10-11",
+       27.2
+      ],
+      [
+       "2026-10-18",
+       27.3
+      ]
+     ]
+    },
+    {
+     "name": "Democratic Party",
+     "leader": "Elly Schlein",
+     "short": "PD",
+     "pos": 0.33,
+     "posLabel": "Centre-left",
+     "poll": 20.4,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#E2001A",
+     "auth": 0.32,
+     "trend": -0.1,
+     "series": [
+      [
+       "2026-08-02",
+       21.2
+      ],
+      [
+       "2026-08-09",
+       21.3
+      ],
+      [
+       "2026-08-16",
+       21.3
+      ],
+      [
+       "2026-08-23",
+       21.3
+      ],
+      [
+       "2026-08-30",
+       21.3
+      ],
+      [
+       "2026-09-06",
+       21.4
+      ],
+      [
+       "2026-09-13",
+       21.3
+      ],
+      [
+       "2026-09-20",
+       21.2
+      ],
+      [
+       "2026-09-27",
+       20.7
+      ],
+      [
+       "2026-10-04",
+       20.6
+      ],
+      [
+       "2026-10-11",
+       20.4
+      ],
+      [
+       "2026-10-18",
+       20.4
+      ]
+     ]
+    },
+    {
+     "name": "Five Star Movement",
+     "leader": "Giuseppe Conte",
+     "short": "M5S",
+     "pos": 0.38,
+     "posLabel": "Centre-left",
+     "poll": 12.6,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#FFD700",
+     "auth": 0.45,
+     "trend": -0.2,
+     "series": [
+      [
+       "2026-08-02",
+       12.9
+      ],
+      [
+       "2026-08-09",
+       12.5
+      ],
+      [
+       "2026-08-16",
+       12.5
+      ],
+      [
+       "2026-08-23",
+       12.5
+      ],
+      [
+       "2026-08-30",
+       12.3
+      ],
+      [
+       "2026-09-06",
+       12.3
+      ],
+      [
+       "2026-09-13",
+       12.3
+      ],
+      [
+       "2026-09-20",
+       12.3
+      ],
+      [
+       "2026-09-27",
+       12.8
+      ],
+      [
+       "2026-10-04",
+       12.8
+      ],
+      [
+       "2026-10-11",
+       12.7
+      ],
+      [
+       "2026-10-18",
+       12.6
+      ]
+     ]
+    },
+    {
+     "name": "Forza Italia",
+     "leader": "Antonio Tajani",
+     "short": "FI",
+     "pos": 0.65,
+     "posLabel": "Centre-right",
+     "poll": 7.4,
+     "seatsWon": null,
+     "incumbent": true,
+     "color": "#0087DC",
+     "auth": 0.55,
+     "trend": 0.0,
+     "series": [
+      [
+       "2026-08-02",
+       7.7
+      ],
+      [
+       "2026-08-09",
+       7.5
+      ],
+      [
+       "2026-08-16",
+       7.5
+      ],
+      [
+       "2026-08-23",
+       7.5
+      ],
+      [
+       "2026-08-30",
+       7.4
+      ],
+      [
+       "2026-09-06",
+       7.4
+      ],
+      [
+       "2026-09-13",
+       7.5
+      ],
+      [
+       "2026-09-20",
+       7.5
+      ],
+      [
+       "2026-09-27",
+       7.4
+      ],
+      [
+       "2026-10-04",
+       7.3
+      ],
+      [
+       "2026-10-11",
+       7.3
+      ],
+      [
+       "2026-10-18",
+       7.4
+      ]
+     ]
+    },
+    {
+     "name": "National Future",
+     "leader": "Roberto Vannacci",
+     "short": "FN",
+     "pos": 0.92,
+     "posLabel": "Far right",
+     "poll": 7.4,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#4B3621",
+     "auth": 0.88,
+     "trend": -0.4,
+     "series": [
+      [
+       "2026-08-02",
+       6.8
+      ],
+      [
+       "2026-08-09",
+       7.0
+      ],
+      [
+       "2026-08-16",
+       7.0
+      ],
+      [
+       "2026-08-23",
+       7.1
+      ],
+      [
+       "2026-08-30",
+       7.3
+      ],
+      [
+       "2026-09-06",
+       7.4
+      ],
+      [
+       "2026-09-13",
+       7.5
+      ],
+      [
+       "2026-09-20",
+       7.6
+      ],
+      [
+       "2026-09-27",
+       7.9
+      ],
+      [
+       "2026-10-04",
+       7.8
+      ],
+      [
+       "2026-10-11",
+       7.6
+      ],
+      [
+       "2026-10-18",
+       7.4
+      ]
+     ]
+    },
+    {
+     "name": "Greens and Left Alliance",
+     "leader": "Angelo Bonelli, Nicola Fratoianni",
+     "short": "AVS",
+     "pos": 0.15,
+     "posLabel": "Left",
+     "poll": 6.4,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#C0392B",
+     "auth": 0.2,
+     "trend": -0.2,
+     "series": [
+      [
+       "2026-08-02",
+       6.3
+      ],
+      [
+       "2026-08-09",
+       6.6
+      ],
+      [
+       "2026-08-16",
+       6.6
+      ],
+      [
+       "2026-08-23",
+       6.6
+      ],
+      [
+       "2026-08-30",
+       6.7
+      ],
+      [
+       "2026-09-06",
+       6.5
+      ],
+      [
+       "2026-09-13",
+       6.6
+      ],
+      [
+       "2026-09-20",
+       6.5
+      ],
+      [
+       "2026-09-27",
+       6.5
+      ],
+      [
+       "2026-10-04",
+       6.5
+      ],
+      [
+       "2026-10-11",
+       6.3
+      ],
+      [
+       "2026-10-18",
+       6.4
+      ]
+     ]
+    }
+   ],
+   "pollNote": "Average of 16 polls, 6 Sep – 15 Oct 2026",
+   "winner": null,
+   "sources": [
+    "https://www.ansa.it/english/news/politics/2026/09/25/general-election-to-take-place-october-2027-says-valditara_8273e744-63fc-441b-8281-775fbefb07e3.html"
+   ],
+   "region": "Europe",
+   "major": true,
+   "polling": {
+    "unit": "pct",
+    "n": 16,
+    "from": "2026-09-06",
+    "to": "2026-10-15",
+    "method": "seed",
+    "checked": "2026-10-18"
+   },
+   "refreshed": "2026-10-13",
+   "checked": "2026-10-20"
+  },
+  {
+   "id": "si-2027-pres",
+   "country": "Slovenia",
+   "code": "SI",
+   "type": "Presidential, 1st round",
+   "date": "2027-10-01",
+   "approx": true,
+   "dateNote": "Due by Oct-Nov 2027; date not set; runoff if needed",
+   "status": "upcoming",
+   "seats": "President (5-year term)",
+   "stakes": "Incumbent liberal independent Natasa Pirc Musar is eligible for a second term but undeclared; former president Borut Pahor has not ruled out a return.",
+   "contenders": [
+    {
+     "name": "Natasa Pirc Musar",
+     "leader": "Independent (undeclared)",
+     "short": "Pirc Musar",
+     "pos": 0.4,
+     "posLabel": "Centre-left",
+     "poll": null,
+     "seatsWon": null,
+     "incumbent": true,
+     "color": "#5B9BD5",
+     "auth": 0.35
+    },
+    {
+     "name": "Borut Pahor",
+     "leader": "Independent (potential)",
+     "short": "Pahor",
+     "pos": 0.4,
+     "posLabel": "Centre-left",
+     "poll": null,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#E2001A",
+     "auth": 0.45
+    },
+    {
+     "name": "Alen Koman",
+     "leader": "The Guard - Catholic National Party",
+     "short": "Koman",
+     "pos": 0.9,
+     "posLabel": "Far right",
+     "poll": null,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#4B3621",
+     "auth": 0.85
+    }
+   ],
+   "pollNote": "No polls yet",
+   "winner": null,
+   "sources": [],
+   "region": "Europe",
+   "major": false,
+   "polling": {
+    "method": "manual",
+    "checked": "2026-10-18"
+   },
+   "refreshed": "2026-10-06",
+   "checked": "2026-10-20"
+  },
+  {
+   "id": "ch-2027-fed",
+   "country": "Switzerland",
+   "code": "CH",
+   "type": "Parliamentary (federal)",
+   "date": "2027-10-24",
+   "approx": false,
+   "dateNote": "",
+   "status": "upcoming",
+   "seats": "200 National Council + 46 Council of States seats",
+   "stakes": "The national-conservative SVP is polling near 30%; the election comes as Switzerland debates ratifying a new treaty package with the EU, which the SVP opposes.",
+   "contenders": [
+    {
+     "name": "Swiss People's Party",
+     "leader": "Marcel Dettling",
+     "short": "SVP",
+     "pos": 0.8,
+     "posLabel": "Right",
+     "poll": 29.9,
+     "seatsWon": null,
+     "incumbent": true,
+     "color": "#3F7F3F",
+     "auth": 0.75,
+     "trend": null,
+     "series": [
+      [
+       "2026-09-20",
+       29.9
+      ],
+      [
+       "2026-09-27",
+       29.9
+      ],
+      [
+       "2026-10-04",
+       29.9
+      ],
+      [
+       "2026-10-11",
+       29.9
+      ],
+      [
+       "2026-10-18",
+       29.9
+      ]
+     ]
+    },
+    {
+     "name": "Social Democratic Party",
+     "leader": "Mattea Meyer, Cedric Wermuth",
+     "short": "SP",
+     "pos": 0.25,
+     "posLabel": "Centre-left",
+     "poll": 19.3,
+     "seatsWon": null,
+     "incumbent": true,
+     "color": "#E3001B",
+     "auth": 0.25,
+     "trend": null,
+     "series": [
+      [
+       "2026-09-20",
+       19.3
+      ],
+      [
+       "2026-09-27",
+       19.3
+      ],
+      [
+       "2026-10-04",
+       19.3
+      ],
+      [
+       "2026-10-11",
+       19.3
+      ],
+      [
+       "2026-10-18",
+       19.3
+      ]
+     ]
+    },
+    {
+     "name": "FDP.The Liberals",
+     "leader": "Susanne Vincenz-Stauffacher, Benjamin Muhlemann",
+     "short": "FDP",
+     "pos": 0.65,
+     "posLabel": "Centre-right",
+     "poll": 13.3,
+     "seatsWon": null,
+     "incumbent": true,
+     "color": "#0064B4",
+     "auth": 0.32,
+     "trend": null,
+     "series": [
+      [
+       "2026-09-20",
+       13.3
+      ],
+      [
+       "2026-09-27",
+       13.3
+      ],
+      [
+       "2026-10-04",
+       13.3
+      ],
+      [
+       "2026-10-11",
+       13.3
+      ],
+      [
+       "2026-10-18",
+       13.3
+      ]
+     ]
+    },
+    {
+     "name": "The Centre",
+     "leader": "Philipp Bregy",
+     "short": "Mitte",
+     "pos": 0.52,
+     "posLabel": "Centre",
+     "poll": 12.6,
+     "seatsWon": null,
+     "incumbent": true,
+     "color": "#F28B00",
+     "auth": 0.5,
+     "trend": null,
+     "series": [
+      [
+       "2026-09-20",
+       12.6
+      ],
+      [
+       "2026-09-27",
+       12.6
+      ],
+      [
+       "2026-10-04",
+       12.6
+      ],
+      [
+       "2026-10-11",
+       12.6
+      ],
+      [
+       "2026-10-18",
+       12.6
+      ]
+     ]
+    },
+    {
+     "name": "Green Party",
+     "leader": "Lisa Mazzone",
+     "short": "GPS",
+     "pos": 0.2,
+     "posLabel": "Left",
+     "poll": 10.3,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#84B414",
+     "auth": 0.15,
+     "trend": null,
+     "series": [
+      [
+       "2026-09-20",
+       10.3
+      ],
+      [
+       "2026-09-27",
+       10.3
+      ],
+      [
+       "2026-10-04",
+       10.3
+      ],
+      [
+       "2026-10-11",
+       10.3
+      ],
+      [
+       "2026-10-18",
+       10.3
+      ]
+     ]
+    },
+    {
+     "name": "Green Liberal Party",
+     "leader": "Jurg Grossen",
+     "short": "GLP",
+     "pos": 0.48,
+     "posLabel": "Centre",
+     "poll": 7.1,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#A6CE39",
+     "auth": 0.25,
+     "trend": null,
+     "series": [
+      [
+       "2026-09-20",
+       7.1
+      ],
+      [
+       "2026-09-27",
+       7.1
+      ],
+      [
+       "2026-10-04",
+       7.1
+      ],
+      [
+       "2026-10-11",
+       7.1
+      ],
+      [
+       "2026-10-18",
+       7.1
+      ]
+     ]
+    }
+   ],
+   "pollNote": "1 poll, 16 Sep 2026",
+   "winner": null,
+   "sources": [
+    "https://www.ch.ch/en/votes-and-elections/votes/vote-and-election-calendar",
+    "https://politpro.eu/en/switzerland"
+   ],
+   "region": "Europe",
+   "major": true,
+   "polling": {
+    "unit": "pct",
+    "n": 1,
+    "from": "2026-09-16",
+    "to": "2026-09-16",
+    "method": "seed",
+    "checked": "2026-10-18"
+   },
+   "refreshed": "2026-09-29",
+   "checked": "2026-10-20"
+  },
+  {
+   "id": "ar-2027-gen",
+   "country": "Argentina",
+   "code": "AR",
+   "type": "General",
+   "date": "2027-10-24",
+   "approx": false,
+   "dateNote": "Runoff likely 21 Nov 2027 if needed",
+   "status": "upcoming",
+   "seats": "President, 130 of 257 Deputies, 24 of 72 Senators",
+   "stakes": "Javier Milei seeks re-election as a referendum on his libertarian shock therapy, against a Peronist opposition seeking a comeback.",
+   "contenders": [
+    {
+     "name": "Javier Milei",
+     "leader": "La Libertad Avanza (LLA)",
+     "short": "Milei",
+     "pos": 0.82,
+     "posLabel": "Right",
+     "poll": null,
+     "seatsWon": null,
+     "incumbent": true,
+     "color": "#6a1b9a",
+     "auth": 0.3
+    },
+    {
+     "name": "Axel Kicillof",
+     "leader": "Fuerza Patria (Peronist)",
+     "short": "Kicillof",
+     "pos": 0.3,
+     "posLabel": "Centre-left",
+     "poll": null,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#29b6f6",
+     "auth": 0.6
+    },
+    {
+     "name": "Juan Schiaretti",
+     "leader": "Provincias Unidas",
+     "short": "Schiaretti",
+     "pos": 0.5,
+     "posLabel": "Centre",
+     "poll": null,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#ff7043",
+     "auth": 0.45
+    }
+   ],
+   "pollNote": "No polling average yet",
+   "winner": null,
+   "sources": [],
+   "region": "Americas",
+   "major": true,
+   "polling": {
+    "checked": "2026-10-19"
+   },
+   "refreshed": "2026-09-22",
+   "checked": "2026-10-20"
+  },
+  {
+   "id": "tw-2028-pres",
+   "country": "Taiwan",
+   "code": "TW",
+   "type": "Presidential and Legislative Yuan (parliamentary)",
+   "date": "2028-01-01",
+   "approx": true,
+   "dateNote": "January 2028; exact day not confirmed",
+   "status": "upcoming",
+   "seats": "President and vice president; 113 Legislative Yuan seats",
+   "stakes": "Decides whether the ruling DPP keeps the presidency for a second term or power passes to the opposition, with major implications for cross-strait policy. Control of the legislature is also at stake.",
+   "contenders": [
+    {
+     "name": "Democratic Progressive Party",
+     "leader": "Lai Ching-te",
+     "short": "DPP",
+     "pos": 0.35,
+     "auth": 0.4,
+     "posLabel": "Centre-left",
+     "poll": null,
+     "seatsWon": null,
+     "incumbent": true,
+     "color": "#1B9431"
+    },
+    {
+     "name": "Kuomintang",
+     "leader": "Cheng Li-wun",
+     "short": "KMT",
+     "pos": 0.65,
+     "auth": 0.45,
+     "posLabel": "Centre-right",
+     "poll": null,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#000095"
+    },
+    {
+     "name": "Taiwan People's Party",
+     "leader": "Huang Kuo-chang",
+     "short": "TPP",
+     "pos": 0.5,
+     "auth": 0.45,
+     "posLabel": "Centre",
+     "poll": null,
+     "seatsWon": null,
+     "incumbent": false,
+     "color": "#28C8C8"
+    }
+   ],
+   "pollNote": "No polls yet",
+   "winner": null,
+   "sources": [
+    "https://www.lloydsbanktrade.com/en/market-potential/taiwan/political-context",
+    "https://atlasinstitute.org/how-the-2028-taiwanese-elections-could-determine-beijings-calculus-in-the-taiwan-strait/"
+   ],
+   "region": "East Asia",
+   "major": true,
+   "checked": "2026-10-19",
+   "polling": {
+    "checked": "2026-10-19"
+   },
+   "refreshed": "2026-10-19"
+  }
+ ],
+ "discovered": "2026-10-19"
+}

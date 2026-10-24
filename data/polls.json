@@ -1,0 +1,125 @@
+{
+ "bg-2026-pres": [
+  {
+   "pollster": "Myara",
+   "date": "2026-10-04",
+   "sample": 1000,
+   "unit": "pct",
+   "values": {
+    "Yotova": 46.9,
+    "Gyurov": 25.3,
+    "Vazrazhdane": 8.8
+   },
+   "url": "https://myara.bg/electoral-snapshot-beginning-october-1918/",
+   "added": "2026-10-20"
+  },
+  {
+   "pollster": "Myara",
+   "date": "2026-10-19",
+   "sample": 1009,
+   "unit": "pct",
+   "values": {
+    "Yotova": 43.4,
+    "Gyurov": 28.9,
+    "Vazrazhdane": 10.2
+   },
+   "url": "https://myara.bg/electoral-snapshot-october-bnr-1946/",
+   "added": "2026-10-23"
+  }
+ ],
+ "rs-2026-parl": [
+  {
+   "pollster": "Faktor plus",
+   "date": "2026-04-30",
+   "sample": 1000,
+   "unit": "pct",
+   "values": {
+    "SNS": 46.4,
+    "Students": 28.7,
+    "ES": 8.6,
+    "SPS": 5.0
+   },
+   "url": "https://www.danas.rs/vesti/politika/istrazivanje-javnog-mnjenja/",
+   "added": "2026-10-20"
+  },
+  {
+   "pollster": "Faktor plus",
+   "date": "2026-06-27",
+   "sample": 1200,
+   "unit": "pct",
+   "values": {
+    "SNS": 47.1,
+    "Students": 30.7,
+    "SPS": 5.0
+   },
+   "url": "https://www.danas.rs/vesti/politika/faktor-plus-objavio-novo-istrazivanje-studentska-lista-raste-neki-iz-opozicije-ispod-cenzusa/",
+   "added": "2026-10-21"
+  },
+  {
+   "pollster": "Faktor plus",
+   "date": "2026-09-20",
+   "sample": null,
+   "unit": "pct",
+   "values": {
+    "SNS": 48.6,
+    "Students": 37.1,
+    "ES": 3.6,
+    "SPS": 4.9
+   },
+   "url": "https://www.danas.rs/vesti/politika/izbori26/istrazivanje-faktor-plus/",
+   "added": "2026-10-20"
+  },
+  {
+   "pollster": "Various pollsters (N1)",
+   "date": "2026-10-05",
+   "sample": 1050,
+   "unit": "pct",
+   "values": {
+    "SNS": 42.7,
+    "Students": 44.6,
+    "ES": 2.7,
+    "SPS": 2.9
+   },
+   "url": "https://n1info.rs/vesti/jesenje-istrazivanje-nspm-studentska-lista-u-blagoj-prednosti-u-odnosu-na-sns/",
+   "added": "2026-10-21"
+  }
+ ],
+ "br-2026-pres-r2": [
+  {
+   "pollster": "Datafolha",
+   "date": "2026-10-14",
+   "sample": 2520,
+   "unit": "pct",
+   "values": {
+    "F. Bolsonaro": 47.0,
+    "Lula": 45.0
+   },
+   "url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/10/17/datafolha-reducao-da-maioridade-penal-tem-apoio-de-89percent-dos-eleitores-de-flavio-e-70percent-dos-de-lula.ghtml",
+   "added": "2026-10-21"
+  },
+  {
+   "pollster": "Quaest",
+   "date": "2026-10-20",
+   "sample": 2154,
+   "unit": "pct",
+   "values": {
+    "F. Bolsonaro": 45.0,
+    "Lula": 44.0
+   },
+   "url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/10/21/quaest-presidente-21-outubro.ghtml",
+   "added": "2026-10-23"
+  },
+  {
+   "pollster": "Datafolha",
+   "date": "2026-10-22",
+   "sample": 2154,
+   "unit": "pct",
+   "values": {
+    "F. Bolsonaro": 50.0,
+    "Lula": 50.0
+   },
+   "url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/10/22/datafolha-rejeicao-22-outubro.ghtml",
+   "added": "2026-10-23"
+  }
+ ]
+}
