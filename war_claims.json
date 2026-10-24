@@ -1,0 +1,1244 @@
+[
+ {
+  "id": "4de97950ee802e8f-none",
+  "articleId": "4de97950ee802e8f",
+  "conflict": "yemen",
+  "status": "none"
+ },
+ {
+  "id": "7e81afa93b2677d9-none",
+  "articleId": "7e81afa93b2677d9",
+  "conflict": "yemen",
+  "status": "none"
+ },
+ {
+  "id": "85c47b7239a00b64-0",
+  "articleId": "85c47b7239a00b64",
+  "conflict": "ukraine",
+  "url": "https://www.aljazeera.com/news/2026/10/16/ukraine-repels-russian-forces-as-us-support-wavers-energy-strikes-escalate?traffic_source=rss",
+  "outlet": "Al Jazeera",
+  "publishedAt": "2026-10-16T17:28:41.000Z",
+  "title": "Ukraine advances in occupied Donetsk as Trump hands Putin diesel deal",
+  "place": "Donetsk",
+  "adminHint": null,
+  "gainer": "ukraine",
+  "loser": "russia",
+  "kind": "advance",
+  "claimedBy": "unclear",
+  "quote": "Ukraine's 'Operation Vivaldi' reclaimed more occupied territory in Donetsk",
+  "voice": "reported",
+  "wire": null,
+  "confidence": 0.5,
+  "status": "pending",
+  "extractedAt": "2026-10-16T23:50:55.067Z"
+ },
+ {
+  "id": "4a8b2d9d768e6ffe-0",
+  "articleId": "4a8b2d9d768e6ffe",
+  "conflict": "ethiopia",
+  "url": "https://www.france24.com/en/africa/20261016-ethiopia-announces-interim-government-tigray-calls-for-polls-six-months",
+  "outlet": "© Filmon Equar Hailu, AP",
+  "publishedAt": "2026-10-16T13:05:23.000Z",
+  "title": "Ethiopia announces interim government in Tigray, aims for polls in six months",
+  "place": "Tigray",
+  "adminHint": null,
+  "gainer": "endf",
+  "loser": "tplf",
+  "kind": "capture",
+  "claimedBy": "gainer",
+  "quote": "the northern Tigray region previously controlled by the Tigray People's Liberation Front",
+  "voice": "attributed",
+  "wire": "AP",
+  "confidence": 0.7,
+  "status": "pending",
+  "extractedAt": "2026-10-16T23:50:56.352Z"
+ },
+ {
+  "id": "9c23f486da3bd912-none",
+  "articleId": "9c23f486da3bd912",
+  "conflict": "yemen",
+  "status": "none"
+ },
+ {
+  "id": "9a7274279f3f7315-none",
+  "articleId": "9a7274279f3f7315",
+  "conflict": "ethiopia",
+  "status": "none"
+ },
+ {
+  "id": "f801e1e4869f0975-none",
+  "articleId": "f801e1e4869f0975",
+  "conflict": "ukraine",
+  "status": "none"
+ },
+ {
+  "id": "a10fef8c5fd89ca0-none",
+  "articleId": "a10fef8c5fd89ca0",
+  "conflict": "yemen",
+  "status": "none"
+ },
+ {
+  "id": "0aa683616f049267-none",
+  "articleId": "0aa683616f049267",
+  "conflict": "ukraine",
+  "status": "none"
+ },
+ {
+  "id": "f1070baa6f1fd21f-none",
+  "articleId": "f1070baa6f1fd21f",
+  "conflict": "ethiopia",
+  "status": "none"
+ },
+ {
+  "id": "e84fc1bf58d10607-none",
+  "articleId": "e84fc1bf58d10607",
+  "conflict": "somalia",
+  "status": "none"
+ },
+ {
+  "id": "fe517373b368f02e-none",
+  "articleId": "fe517373b368f02e",
+  "conflict": "sudan",
+  "status": "none"
+ },
+ {
+  "id": "6fea3e7d834d68af-none",
+  "articleId": "6fea3e7d834d68af",
+  "conflict": "iran",
+  "status": "none"
+ },
+ {
+  "id": "a037cafc3f55a453-none",
+  "articleId": "a037cafc3f55a453",
+  "conflict": "myanmar",
+  "status": "none"
+ },
+ {
+  "id": "0fa27a78d6e20871-none",
+  "articleId": "0fa27a78d6e20871",
+  "conflict": "syria",
+  "status": "none"
+ },
+ {
+  "id": "9346f5111c625ed8-none",
+  "articleId": "9346f5111c625ed8",
+  "conflict": "israel",
+  "status": "none"
+ },
+ {
+  "id": "d61bce70520940e3-none",
+  "articleId": "d61bce70520940e3",
+  "conflict": "yemen",
+  "status": "none"
+ },
+ {
+  "id": "9c676a87767795a9-none",
+  "articleId": "9c676a87767795a9",
+  "conflict": "ukraine",
+  "status": "none"
+ },
+ {
+  "id": "c2df49a9d586b2db-none",
+  "articleId": "c2df49a9d586b2db",
+  "conflict": "ukraine",
+  "status": "none"
+ },
+ {
+  "id": "0aa93c707baec9de-none",
+  "articleId": "0aa93c707baec9de",
+  "conflict": "ethiopia",
+  "status": "none"
+ },
+ {
+  "id": "baf755564e41e3ac-none",
+  "articleId": "baf755564e41e3ac",
+  "conflict": "ukraine",
+  "status": "none"
+ },
+ {
+  "id": "b50cb83febbad468-none",
+  "articleId": "b50cb83febbad468",
+  "conflict": "ukraine",
+  "status": "none"
+ },
+ {
+  "id": "fb443181ef00c272-none",
+  "articleId": "fb443181ef00c272",
+  "conflict": "iran",
+  "status": "none"
+ },
+ {
+  "id": "bd4a4a522a8f4581-none",
+  "articleId": "bd4a4a522a8f4581",
+  "conflict": "ukraine",
+  "status": "none"
+ },
+ {
+  "id": "f97c268dfbc37dea-none",
+  "articleId": "f97c268dfbc37dea",
+  "conflict": "ukraine",
+  "status": "none"
+ },
+ {
+  "id": "277a3278df47aa46-none",
+  "articleId": "277a3278df47aa46",
+  "conflict": "yemen",
+  "status": "none"
+ },
+ {
+  "id": "ce6bc1aba9d1485a-none",
+  "articleId": "ce6bc1aba9d1485a",
+  "conflict": "ukraine",
+  "status": "none"
+ },
+ {
+  "id": "78341b3e3cff9edf-none",
+  "articleId": "78341b3e3cff9edf",
+  "conflict": "iran",
+  "status": "none"
+ },
+ {
+  "id": "8a9a7ef02a013af5-none",
+  "articleId": "8a9a7ef02a013af5",
+  "conflict": "ukraine",
+  "status": "none"
+ },
+ {
+  "id": "f5923ccb3a14531c-none",
+  "articleId": "f5923ccb3a14531c",
+  "conflict": "ukraine",
+  "status": "none"
+ },
+ {
+  "id": "ec140153b6d20b1a-none",
+  "articleId": "ec140153b6d20b1a",
+  "conflict": "somalia",
+  "status": "none"
+ },
+ {
+  "id": "acf778f711d97a88-none",
+  "articleId": "acf778f711d97a88",
+  "conflict": "myanmar",
+  "status": "none"
+ },
+ {
+  "id": "66a00a46ee676a20-none",
+  "articleId": "66a00a46ee676a20",
+  "conflict": "somalia",
+  "status": "none"
+ },
+ {
+  "id": "cbcda4320127d912-0",
+  "articleId": "cbcda4320127d912",
+  "conflict": "ukraine",
+  "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE8xR1dnbGNzVEtEMkFrMlhDb0ZCRHBkZUEtVHByLTZVQXBaLUkxS1lMQjAtakl0WW9tcGJkZVljcGxOSkNVS0MwcVNwX1pTdERpbE93SkxWSGxzUmE0NGl3V1REZTIxT19BNl96QUJn?oc=5",
+  "outlet": "CGTN",
+  "publishedAt": "2026-10-17T10:01:18.000Z",
+  "title": "UKRAINE’S GENERAL STAFF REJECTS RUSSIA'S CLAIM THAT RUSSIAN FORCES HAVE CAPTURED MORE THAN 1,800 SQ KM OF UKRAINIAN TERRITORY AND 92 SETTLEMENTS SINCE SEPT 1",
+  "place": "Ukraine (territory and 92 settlements claimed by Russia)",
+  "adminHint": null,
+  "gainer": "russia",
+  "loser": "ukraine",
+  "kind": "denial",
+  "claimedBy": "gainer",
+  "quote": "UKRAINE'S GENERAL STAFF REJECTS RUSSIA'S CLAIM THAT RUSSIAN FORCES HAVE CAPTURED MORE THAN 1,800 SQ KM OF UKRAINIAN TERRITORY AND 92 SETTLEMENTS SINCE SEPT 1",
+  "voice": "attributed",
+  "wire": null,
+  "confidence": 0.5,
+  "status": "pending",
+  "extractedAt": "2026-10-18T00:16:17.832Z"
+ },
+ {
+  "id": "14f7892f6534259d-0",
+  "articleId": "14f7892f6534259d",
+  "conflict": "ukraine",
+  "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxOQjFkbm5qdVB4N1AzZ3owZHlONGNBM0ZUUVhvVi13NDR0dzY5S3RUZUZWVGZEa0hBSVNDdTRaaVYzcV94M3pjQXVvbzJDNHRLU0x4ZEVhVmRzd2VqRDdYbkVPSF93ZmYxSEhIWTZsZ1ZDUnVOazV4d2tMVElLa1hzNzlBZ0doeXZTcm1ZczUwLUk0alR0V05xWFhfQnBEakppYW1TUEljQU1EaVBpV3lEVVFfNTFLbWdEa1Q1Tk9nYklfNjc4M0N1cnNsV05ROFBuZXF5QUVvUlQ?oc=5",
+  "outlet": "巴士的報",
+  "publishedAt": "2026-10-18T04:19:00.000Z",
+  "title": "Russia claims seizing more Ukrainian settlements, Ukraine says downing 1396 Russian drones",
+  "place": "Ukrainian settlements",
+  "adminHint": null,
+  "gainer": "russia",
+  "loser": "ukraine",
+  "kind": "capture",
+  "claimedBy": "gainer",
+  "quote": "Russia claims seizing more Ukrainian settlements",
+  "voice": "attributed",
+  "wire": null,
+  "confidence": 0.45,
+  "status": "pending",
+  "extractedAt": "2026-10-18T05:01:28.790Z"
+ },
+ {
+  "id": "5f3549990e4d0a3d-0",
+  "articleId": "5f3549990e4d0a3d",
+  "conflict": "syria",
+  "url": "https://www.middleeasteye.net/live-blog/live-blog-update/israeli-forces-advance-syrias-quneitra-province-al-jazeera-reports",
+  "outlet": "Middle East Eye",
+  "publishedAt": "2026-10-18T06:51:51.000Z",
+  "title": "Israeli forces advance into Syria's Quneitra province, Al Jazeera reports",
+  "place": "Quneitra province",
+  "adminHint": "Quneitra",
+  "gainer": null,
+  "loser": null,
+  "kind": "advance",
+  "claimedBy": "unclear",
+  "quote": "Israeli forces advance into Syria's Quneitra province, Al Jazeera reports",
+  "voice": "attributed",
+  "wire": null,
+  "confidence": 0.4,
+  "status": "pending",
+  "extractedAt": "2026-10-18T07:01:31.798Z"
+ },
+ {
+  "id": "667ceaf8eba11109-0",
+  "articleId": "667ceaf8eba11109",
+  "conflict": "somalia",
+  "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE9vSWltaHlyZWstSXhpZWdYbnVJV2hwS0lVVkNPVF9yV19BazlwejZWdFpsZllhY1llTlJaUjdlLVJCd01XMF9ONExsbS1jZ3kwRzVWc0tHcE9uaVdHNXdjQjk2b0RSbmox?oc=5",
+  "outlet": "kulu-media.com",
+  "publishedAt": "2026-10-18T09:45:08.000Z",
+  "title": "Laftagareen Forces Seize Diinsoor in Somalia",
+  "place": "Diinsoor",
+  "adminHint": null,
+  "gainer": "govt",
+  "loser": "shabaab",
+  "kind": "capture",
+  "claimedBy": "unclear",
+  "quote": "Laftagareen Forces Seize Diinsoor in Somalia",
+  "voice": "reported",
+  "wire": null,
+  "confidence": 0.6,
+  "status": "pending",
+  "extractedAt": "2026-10-18T10:01:28.956Z"
+ },
+ {
+  "id": "db329b5fac3aec42-none",
+  "articleId": "db329b5fac3aec42",
+  "conflict": "somalia",
+  "status": "none"
+ },
+ {
+  "id": "6d495b526d368794-none",
+  "articleId": "6d495b526d368794",
+  "conflict": "ukraine",
+  "status": "none"
+ },
+ {
+  "id": "9bee70db2268d49f-0",
+  "articleId": "9bee70db2268d49f",
+  "conflict": "ukraine",
+  "url": "https://news.google.com/rss/articles/CBMikwJBVV95cUxQaWQ4RnNsN0p0YzZMNXJyMFFZX21FMXpBSjJ0YWdOd2phYzNFUm9tT0xOUTRqY1hKUW5SY25ia01pTUF0WWIxTVJfRGJBOXJrVmQ2RzVKM2J0RUJaazdQZ1NYbkp0cW5jamlDTkh2MEphRU4wdjZHRjZHWUtIQ3FDV2FBTmh6bURVQUkteS1NcGI2d0N3WmFsdTlQR09zNDRsZHFhWkxCMjJncjFUU3l1UEZIUG9RaU5LX0Y4ZUNzYl80T2pCaUFxeDM3NGplM1lWSTU5a0xsN3R1MXRpcm1pWXZDWXVnTDN6NG9JSi04MzRPRHNhNUtlVVltQTV1NzdmTkpPNjYtYlhpbm1ib3VvcWFjcw?oc=5",
+  "outlet": "Euromaidan Press",
+  "publishedAt": "2026-10-18T13:42:03.000Z",
+  "title": "Ukraine retook Kolodiazi north of Lyman as its drones hit 200-plus Russian vehicles in Operation Vivaldi’s last phase, Ukrainian drone officer says",
+  "place": "Kolodiazi",
+  "adminHint": "north of Lyman",
+  "gainer": "ukraine",
+  "loser": "russia",
+  "kind": "capture",
+  "claimedBy": "gainer",
+  "quote": "Ukraine retook Kolodiazi north of Lyman",
+  "voice": "attributed",
+  "wire": null,
+  "confidence": 0.7,
+  "status": "pending",
+  "extractedAt": "2026-10-18T14:16:07.929Z"
+ },
+ {
+  "id": "5a0595d802c942b0-none",
+  "articleId": "5a0595d802c942b0",
+  "conflict": "ukraine",
+  "status": "none"
+ },
+ {
+  "id": "fc2071e57c5b2958-0",
+  "articleId": "fc2071e57c5b2958",
+  "conflict": "ukraine",
+  "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNVnhFRU1HTmg2djdpVXRpZVJBVFNaTFRpS0JEV1JjLVFwMWQxMllDZlZVMzREeEl0VGZhQzVRQjZ2ajIwamwzek0xUXZIbFZoYzlCQXFmdzJvR2lwcWV2MFZIY2pQdU4xeHBaRlRRUHF2elBKR2NWY3B3SERyS0ljb2VWaGVRclJoQW5NM0ZhQkhseTNoTV9aLXZOakhJSlVibk56VjFkYUc5NXFDZVNTT0xzNXlUMEwyQ0ltWGk1cUNOZXgtLVE1WGtaWnhiYWhVXzV3?oc=5",
+  "outlet": "shelter.in.ua",
+  "publishedAt": "2026-10-18T16:24:36.000Z",
+  "title": "“Our front line is strong”: Zelenskyy refuted Russia’s claims that it had captured Dobropillia and was advancing toward Zaporizhzhia",
+  "place": "Dobropillia",
+  "adminHint": null,
+  "gainer": "russia",
+  "loser": "ukraine",
+  "kind": "capture",
+  "claimedBy": "gainer",
+  "quote": "Zelenskyy refuted Russia's claims that it had captured Dobropillia",
+  "voice": "attributed",
+  "wire": null,
+  "confidence": 0.6,
+  "status": "pending",
+  "extractedAt": "2026-10-18T16:46:12.611Z"
+ },
+ {
+  "id": "fc2071e57c5b2958-1",
+  "articleId": "fc2071e57c5b2958",
+  "conflict": "ukraine",
+  "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNVnhFRU1HTmg2djdpVXRpZVJBVFNaTFRpS0JEV1JjLVFwMWQxMllDZlZVMzREeEl0VGZhQzVRQjZ2ajIwamwzek0xUXZIbFZoYzlCQXFmdzJvR2lwcWV2MFZIY2pQdU4xeHBaRlRRUHF2elBKR2NWY3B3SERyS0ljb2VWaGVRclJoQW5NM0ZhQkhseTNoTV9aLXZOakhJSlVibk56VjFkYUc5NXFDZVNTT0xzNXlUMEwyQ0ltWGk1cUNOZXgtLVE1WGtaWnhiYWhVXzV3?oc=5",
+  "outlet": "shelter.in.ua",
+  "publishedAt": "2026-10-18T16:24:36.000Z",
+  "title": "“Our front line is strong”: Zelenskyy refuted Russia’s claims that it had captured Dobropillia and was advancing toward Zaporizhzhia",
+  "place": "Zaporizhzhia",
+  "adminHint": null,
+  "gainer": "russia",
+  "loser": "ukraine",
+  "kind": "advance",
+  "claimedBy": "gainer",
+  "quote": "was advancing toward Zaporizhzhia",
+  "voice": "attributed",
+  "wire": null,
+  "confidence": 0.5,
+  "status": "pending",
+  "extractedAt": "2026-10-18T16:46:12.611Z"
+ },
+ {
+  "id": "fc2071e57c5b2958-2",
+  "articleId": "fc2071e57c5b2958",
+  "conflict": "ukraine",
+  "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNVnhFRU1HTmg2djdpVXRpZVJBVFNaTFRpS0JEV1JjLVFwMWQxMllDZlZVMzREeEl0VGZhQzVRQjZ2ajIwamwzek0xUXZIbFZoYzlCQXFmdzJvR2lwcWV2MFZIY2pQdU4xeHBaRlRRUHF2elBKR2NWY3B3SERyS0ljb2VWaGVRclJoQW5NM0ZhQkhseTNoTV9aLXZOakhJSlVibk56VjFkYUc5NXFDZVNTT0xzNXlUMEwyQ0ltWGk1cUNOZXgtLVE1WGtaWnhiYWhVXzV3?oc=5",
+  "outlet": "shelter.in.ua",
+  "publishedAt": "2026-10-18T16:24:36.000Z",
+  "title": "“Our front line is strong”: Zelenskyy refuted Russia’s claims that it had captured Dobropillia and was advancing toward Zaporizhzhia",
+  "place": "Dobropillia",
+  "adminHint": null,
+  "gainer": "ukraine",
+  "loser": "russia",
+  "kind": "denial",
+  "claimedBy": "loser",
+  "quote": "\"Our front line is strong\": Zelenskyy refuted Russia's claims",
+  "voice": "attributed",
+  "wire": null,
+  "confidence": 0.6,
+  "status": "pending",
+  "extractedAt": "2026-10-18T16:46:12.611Z"
+ },
+ {
+  "id": "7cb29ab598682bf8-none",
+  "articleId": "7cb29ab598682bf8",
+  "conflict": "ukraine",
+  "status": "none"
+ },
+ {
+  "id": "6f466fcb4df16d47-none",
+  "articleId": "6f466fcb4df16d47",
+  "conflict": "ukraine",
+  "status": "none"
+ },
+ {
+  "id": "36a1b3fbf520c071-none",
+  "articleId": "36a1b3fbf520c071",
+  "conflict": "ukraine",
+  "status": "none"
+ },
+ {
+  "id": "bcb99689df008ec4-none",
+  "articleId": "bcb99689df008ec4",
+  "conflict": "ukraine",
+  "status": "none"
+ },
+ {
+  "id": "72beddd8b86b6470-0",
+  "articleId": "72beddd8b86b6470",
+  "conflict": "iran",
+  "url": "https://peakoil.com/publicpolicy/us-and-iran-both-claim-control-of-strait-of-hormuz-amid-attacks-on-vessels",
+  "outlet": "peakoil.com",
+  "publishedAt": "2026-10-18T18:30:00Z",
+  "title": "US and Iran both claim control of Strait of Hormuz amid attacks on vessels | Peak Oil News and Message Boards",
+  "place": "Strait of Hormuz",
+  "adminHint": null,
+  "gainer": null,
+  "loser": null,
+  "kind": "contested",
+  "claimedBy": "unclear",
+  "quote": "US and Iran both claim control of Strait of Hormuz",
+  "voice": "attributed",
+  "wire": null,
+  "confidence": 0.6,
+  "status": "pending",
+  "extractedAt": "2026-10-18T20:16:11.650Z"
+ },
+ {
+  "id": "ce201444fea8dd18-none",
+  "articleId": "ce201444fea8dd18",
+  "conflict": "ukraine",
+  "status": "none"
+ },
+ {
+  "id": "ab485cd9a120f3b3-0",
+  "articleId": "ab485cd9a120f3b3",
+  "conflict": "ukraine",
+  "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQejlCUVB2U2p5RExlREZOVHhsYlRiOFVabExoM3ZKSlcyeWVMVWtHWFdLNkVaeGpOdk9WWUU1YWJ0NVFkVVJ0aWFPdEJxV1hWLTlYWDlJLWNhbGVjNmpDbm1fRHhvWXpjNXQzVmp3OUsxdGdGTllKdkE2YWl4Z2tqMlpKQ0JpZGNBMWRZZV9qYjVYU3M?oc=5",
+  "outlet": "shelter.in.ua",
+  "publishedAt": "2026-10-18T20:55:00.000Z",
+  "title": "The Ukrainian Armed Forces have refuted Russia's claims that it captured Malokaterynivka",
+  "place": "Malokaterynivka",
+  "adminHint": null,
+  "gainer": "russia",
+  "loser": "ukraine",
+  "kind": "denial",
+  "claimedBy": "gainer",
+  "quote": "The Ukrainian Armed Forces have refuted Russia's claims that it captured Malokaterynivka",
+  "voice": "attributed",
+  "wire": null,
+  "confidence": 0.85,
+  "status": "pending",
+  "extractedAt": "2026-10-18T21:16:09.150Z"
+ },
+ {
+  "id": "3f5ca2769202300c-none",
+  "articleId": "3f5ca2769202300c",
+  "conflict": "ukraine",
+  "status": "none"
+ },
+ {
+  "id": "67062057895ee1d7-0",
+  "articleId": "67062057895ee1d7",
+  "conflict": "ukraine",
+  "url": "https://kyivindependent.com/zelensky-ukraine-has-retaken-more-territory-than-russia-captured-this-fall/",
+  "outlet": "Kyiv Independent",
+  "publishedAt": "2026-10-18T22:34:19.000Z",
+  "title": "Zelensky: Ukraine has retaken more territory than Russia captured this fall",
+  "place": "Ukraine",
+  "adminHint": null,
+  "gainer": "ukraine",
+  "loser": "russia",
+  "kind": "contested",
+  "claimedBy": "gainer",
+  "quote": "Since the start of fall, our warriors have liberated more territory than the Russians have managed to capture.",
+  "voice": "attributed",
+  "wire": null,
+  "confidence": 0.3,
+  "status": "pending",
+  "extractedAt": "2026-10-18T22:46:10.657Z"
+ },
+ {
+  "id": "b17dc137d95b55a5-none",
+  "articleId": "b17dc137d95b55a5",
+  "conflict": "israel",
+  "status": "none"
+ },
+ {
+  "id": "1a0e8eb3d823fc63-none",
+  "articleId": "1a0e8eb3d823fc63",
+  "conflict": "drc",
+  "status": "none"
+ },
+ {
+  "id": "307d22a74328b37d-none",
+  "articleId": "307d22a74328b37d",
+  "conflict": "ukraine",
+  "status": "none"
+ },
+ {
+  "id": "2a27f4871e541a1e-none",
+  "articleId": "2a27f4871e541a1e",
+  "conflict": "ukraine",
+  "status": "none"
+ },
+ {
+  "id": "855890a272c0db77-none",
+  "articleId": "855890a272c0db77",
+  "conflict": "ukraine",
+  "status": "none"
+ },
+ {
+  "id": "97240268d9de1f29-none",
+  "articleId": "97240268d9de1f29",
+  "conflict": "ukraine",
+  "status": "none"
+ },
+ {
+  "id": "b8e4eb2ca85e6f5f-none",
+  "articleId": "b8e4eb2ca85e6f5f",
+  "conflict": "yemen",
+  "status": "none"
+ },
+ {
+  "id": "138cbc31015d1b0e-none",
+  "articleId": "138cbc31015d1b0e",
+  "conflict": "yemen",
+  "status": "none"
+ },
+ {
+  "id": "150135c2290e0c4b-0",
+  "articleId": "150135c2290e0c4b",
+  "conflict": "iran",
+  "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQOV9UNFVQdV9XdUNna2gyZm1kWGw4V1RBeVpZVF9qZUowT0lBY1VGUU90bEdwUnc4cXVhMDFKWjdZVU9ScGNQXzk5bzl4WFotYy1NM2JPV012QzNPNkhSbGREanNpTE1iNkJVTGZfTXFiWGF6bFZZQXN3aENycDBNaXJZbllyLW9yV0V1ekxR?oc=5",
+  "outlet": "PressReader",
+  "publishedAt": "2026-10-19T04:10:11.000Z",
+  "title": "US, Iran both claim control of Hormuz amid vessel attacks",
+  "place": "Strait of Hormuz",
+  "adminHint": null,
+  "gainer": null,
+  "loser": null,
+  "kind": "contested",
+  "claimedBy": "unclear",
+  "quote": "US, Iran both claim control of Hormuz",
+  "voice": "attributed",
+  "wire": null,
+  "confidence": 0.5,
+  "status": "pending",
+  "extractedAt": "2026-10-19T13:31:22.133Z"
+ },
+ {
+  "id": "14567dff483525c8-none",
+  "articleId": "14567dff483525c8",
+  "conflict": "ukraine",
+  "status": "none"
+ },
+ {
+  "id": "754ab62ee1bcbcbc-none",
+  "articleId": "754ab62ee1bcbcbc",
+  "conflict": "ukraine",
+  "status": "none"
+ },
+ {
+  "id": "26d6f908227ef95e-none",
+  "articleId": "26d6f908227ef95e",
+  "conflict": "drc",
+  "status": "none"
+ },
+ {
+  "id": "83338e2175d45ed3-none",
+  "articleId": "83338e2175d45ed3",
+  "conflict": "drc",
+  "status": "none"
+ },
+ {
+  "id": "095501001441b2dd-none",
+  "articleId": "095501001441b2dd",
+  "conflict": "iran",
+  "status": "none"
+ },
+ {
+  "id": "f66b5021246d2987-none",
+  "articleId": "f66b5021246d2987",
+  "conflict": "somalia",
+  "status": "none"
+ },
+ {
+  "id": "e418fe962bcd57f6-none",
+  "articleId": "e418fe962bcd57f6",
+  "conflict": "ukraine",
+  "status": "none"
+ },
+ {
+  "id": "d8449a6fb4059def-none",
+  "articleId": "d8449a6fb4059def",
+  "conflict": "yemen",
+  "status": "none"
+ },
+ {
+  "id": "6ff924b689a593a0-none",
+  "articleId": "6ff924b689a593a0",
+  "conflict": "ukraine",
+  "status": "none"
+ },
+ {
+  "id": "fa7cf1b793ed358f-none",
+  "articleId": "fa7cf1b793ed358f",
+  "conflict": "ukraine",
+  "status": "none"
+ },
+ {
+  "id": "aa1f831cee1ed152-none",
+  "articleId": "aa1f831cee1ed152",
+  "conflict": "sahel",
+  "status": "none"
+ },
+ {
+  "id": "b11443e683b645cb-none",
+  "articleId": "b11443e683b645cb",
+  "conflict": "israel",
+  "status": "none"
+ },
+ {
+  "id": "731ef0b2af6a499b-none",
+  "articleId": "731ef0b2af6a499b",
+  "conflict": "ukraine",
+  "status": "none"
+ },
+ {
+  "id": "b618c584a984482c-none",
+  "articleId": "b618c584a984482c",
+  "conflict": "ukraine",
+  "status": "none"
+ },
+ {
+  "id": "b429884f421fbf40-none",
+  "articleId": "b429884f421fbf40",
+  "conflict": "ukraine",
+  "status": "none"
+ },
+ {
+  "id": "9f64746f76751e05-none",
+  "articleId": "9f64746f76751e05",
+  "conflict": "israel",
+  "status": "none"
+ },
+ {
+  "id": "dfd0a55edefd7f21-none",
+  "articleId": "dfd0a55edefd7f21",
+  "conflict": "israel",
+  "status": "none"
+ },
+ {
+  "id": "77cff7f786aaa43c-none",
+  "articleId": "77cff7f786aaa43c",
+  "conflict": "yemen",
+  "status": "none"
+ },
+ {
+  "id": "354c8fe4516fae0a-none",
+  "articleId": "354c8fe4516fae0a",
+  "conflict": "ukraine",
+  "status": "none"
+ },
+ {
+  "id": "7f941567bdada441-none",
+  "articleId": "7f941567bdada441",
+  "conflict": "israel",
+  "status": "none"
+ },
+ {
+  "id": "8842fa479c6fef47-none",
+  "articleId": "8842fa479c6fef47",
+  "conflict": "drc",
+  "status": "none"
+ },
+ {
+  "id": "d4865572b9b67b62-0",
+  "articleId": "d4865572b9b67b62",
+  "conflict": "ukraine",
+  "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOZ1ZuNFZqZnYzVVNGV19HMFhWdHFwenB1cE5XVXdJMWMyVGJYWHNBR3hKMGZYWkEwZ1lfcVNVcTV4SE9qREU2QTd3MUVFQVp0LTlZSjExSXNQRGo3MjRzRXdURmU3bk9yYTEwMlJUaEt6UnRMcVNNc08yV2czeEdZOXRlTnpiMEpj?oc=5",
+  "outlet": "Mezha.net",
+  "publishedAt": "2026-10-20T13:26:14.000Z",
+  "title": "Budanov Denies Russian Forces Have Captured Dobropillia",
+  "place": "Dobropillia",
+  "adminHint": null,
+  "gainer": "russia",
+  "loser": "ukraine",
+  "kind": "denial",
+  "claimedBy": "unclear",
+  "quote": "Budanov Denies Russian Forces Have Captured Dobropillia",
+  "voice": "attributed",
+  "wire": null,
+  "confidence": 0.8,
+  "status": "pending",
+  "extractedAt": "2026-10-20T19:31:22.835Z"
+ },
+ {
+  "id": "0d78f86a5474ac5f-none",
+  "articleId": "0d78f86a5474ac5f",
+  "conflict": "ukraine",
+  "status": "none"
+ },
+ {
+  "id": "551a0cd871ae829c-none",
+  "articleId": "551a0cd871ae829c",
+  "conflict": "ukraine",
+  "status": "none"
+ },
+ {
+  "id": "76a39b6da67321bd-none",
+  "articleId": "76a39b6da67321bd",
+  "conflict": "ukraine",
+  "status": "none"
+ },
+ {
+  "id": "b5c3d2c106cac1b4-none",
+  "articleId": "b5c3d2c106cac1b4",
+  "conflict": "ukraine",
+  "status": "none"
+ },
+ {
+  "id": "cf1af7e9ac8a7012-none",
+  "articleId": "cf1af7e9ac8a7012",
+  "conflict": "somalia",
+  "status": "none"
+ },
+ {
+  "id": "68d0a97256ecdf5d-none",
+  "articleId": "68d0a97256ecdf5d",
+  "conflict": "yemen",
+  "status": "none"
+ },
+ {
+  "id": "7c11eb0e402bcd20-none",
+  "articleId": "7c11eb0e402bcd20",
+  "conflict": "ukraine",
+  "status": "none"
+ },
+ {
+  "id": "ae9c8ac182539a58-none",
+  "articleId": "ae9c8ac182539a58",
+  "conflict": "ukraine",
+  "status": "none"
+ },
+ {
+  "id": "1cda75b8bb6839b8-0",
+  "articleId": "1cda75b8bb6839b8",
+  "conflict": "ukraine",
+  "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxQQW1PZUpIWS1VYjVDYm0tNXhsakN3M3Y2WmEyYmpET1V5SF9jY081LXR6Zk5HVU5Sbk5BRVYtT0pUdVFDa2RibWFnRmNTSXJnSU40RVE3WGh5SU00d0dHSVdNelhhQW1PWDYwZVFUR0RZc1BWTUtiR2doYVBhQUdJTmQ4akZNTElCSXN4bUdZdWQ4bW14M3FfUGZaZ0d6blY5Y2FfSGZ6YldrZ9IBnwFBVV95cUxPR1Q4b01mcFhtXzQ5ZUtPNTkwOThyaHNCbFNWdWxDaHVWdkdQWU1ZNTlFUUNGcU56NHRwMjdkVkExRFFHQzAybDg4RFppTWJoWXFHejg0aFpWMGVEV21GbU5WLUV2VE45amlnNnNvMGRKNnNEX08wcEhrbkxhMXVON1lmblo5R1NqaGJWUHNjUXV4NGo4d2tiTHNIUmh1amc?oc=5",
+  "outlet": "The New Voice of Ukraine",
+  "publishedAt": "2026-10-22T05:39:00.000Z",
+  "title": "Russian forces advance toward Rai-Oleksandrivka and Vilne in Donetsk Oblast",
+  "place": "Rai-Oleksandrivka",
+  "adminHint": "Donetsk Oblast",
+  "gainer": "russia",
+  "loser": "ukraine",
+  "kind": "advance",
+  "claimedBy": "unclear",
+  "quote": "Russian forces advance toward Rai-Oleksandrivka and Vilne in Donetsk Oblast",
+  "voice": "reported",
+  "wire": null,
+  "confidence": 0.6,
+  "status": "pending",
+  "extractedAt": "2026-10-22T06:01:28.920Z"
+ },
+ {
+  "id": "1cda75b8bb6839b8-1",
+  "articleId": "1cda75b8bb6839b8",
+  "conflict": "ukraine",
+  "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxQQW1PZUpIWS1VYjVDYm0tNXhsakN3M3Y2WmEyYmpET1V5SF9jY081LXR6Zk5HVU5Sbk5BRVYtT0pUdVFDa2RibWFnRmNTSXJnSU40RVE3WGh5SU00d0dHSVdNelhhQW1PWDYwZVFUR0RZc1BWTUtiR2doYVBhQUdJTmQ4akZNTElCSXN4bUdZdWQ4bW14M3FfUGZaZ0d6blY5Y2FfSGZ6YldrZ9IBnwFBVV95cUxPR1Q4b01mcFhtXzQ5ZUtPNTkwOThyaHNCbFNWdWxDaHVWdkdQWU1ZNTlFUUNGcU56NHRwMjdkVkExRFFHQzAybDg4RFppTWJoWXFHejg0aFpWMGVEV21GbU5WLUV2VE45amlnNnNvMGRKNnNEX08wcEhrbkxhMXVON1lmblo5R1NqaGJWUHNjUXV4NGo4d2tiTHNIUmh1amc?oc=5",
+  "outlet": "The New Voice of Ukraine",
+  "publishedAt": "2026-10-22T05:39:00.000Z",
+  "title": "Russian forces advance toward Rai-Oleksandrivka and Vilne in Donetsk Oblast",
+  "place": "Vilne",
+  "adminHint": "Donetsk Oblast",
+  "gainer": "russia",
+  "loser": "ukraine",
+  "kind": "advance",
+  "claimedBy": "unclear",
+  "quote": "Russian forces advance toward Rai-Oleksandrivka and Vilne in Donetsk Oblast",
+  "voice": "reported",
+  "wire": null,
+  "confidence": 0.6,
+  "status": "pending",
+  "extractedAt": "2026-10-22T06:01:28.920Z"
+ },
+ {
+  "id": "d9613094d2e4ed0b-none",
+  "articleId": "d9613094d2e4ed0b",
+  "conflict": "syria",
+  "status": "none"
+ },
+ {
+  "id": "aebd71207c2b049f-none",
+  "articleId": "aebd71207c2b049f",
+  "conflict": "somalia",
+  "status": "none"
+ },
+ {
+  "id": "bf5983fd734268a4-none",
+  "articleId": "bf5983fd734268a4",
+  "conflict": "ukraine",
+  "status": "none"
+ },
+ {
+  "id": "730cc8799212a14d-0",
+  "articleId": "730cc8799212a14d",
+  "conflict": "ukraine",
+  "url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxPUWZUY21CeVQzSnNZZmdWUGd1cWExTHlpcHVjQS1qdlRfR2s1N3ZvUXlOc202ZjRLd0h5RVpGRXNSaFFLU3g4cDlva0VWREFtaXJyQ3YxSHdiWG44cWtIdnpleTdZQXhUVlpkMml0S0tGU0dHQzV4MlNVRFVHRzRHZl9TNDZ3Sm8tWmRSYXRjN3VoQzNWcVJfR3RxTXk4SnRjaUEzVm5mMllRN3FKZnZOX1JDbmdEVFZoZUVhVkNQRlZ1WlVqZkhwUGc1cXBEYjRBZWZrWlp0NWxqOF9wbnp6SFFB0gHiAUFVX3lxTE9RZlRjbUJ5VDNKc1lmZ1ZQZ3VxYTFMeWlwdWNBLWp2VF9HazU3dm9ReU5zbTZmNEt3SHlFWkZFc1JoUUtTeDhwOW9rRVZEQW1pcnJDdjFId2JYbjhxa0h2emV5N1lBeFRWWmQyaXRLS0ZTR0dDNXgyU1VEVUdHNEdmX1M0NndKby1aZFJhdGM3dWhDM1ZxUl9HdHFNeThKdGNpQTNWbmYyWVE3cUpmdk5fUkNuZ0RUVmhlRWFWQ1BGVnVaVWpmSHBQZzVxcERiNEFlZmtaWnQ1bGo4X3BuenpIUUE?oc=5",
+  "outlet": "Ukrinform",
+  "publishedAt": "2026-10-22T08:48:00.000Z",
+  "title": "Russian forces spreading false claims of capturing settlements in Zaporizhzhia region – military",
+  "place": "Zaporizhzhia region (unspecified settlements)",
+  "adminHint": "Zaporizhzhia region",
+  "gainer": "russia",
+  "loser": "ukraine",
+  "kind": "denial",
+  "claimedBy": "gainer",
+  "quote": "Russian forces spreading false claims of capturing settlements in Zaporizhzhia region – military",
+  "voice": "attributed",
+  "wire": null,
+  "confidence": 0.4,
+  "status": "pending",
+  "extractedAt": "2026-10-22T09:01:31.780Z"
+ },
+ {
+  "id": "496719da94cf4390-none",
+  "articleId": "496719da94cf4390",
+  "conflict": "sudan",
+  "status": "none"
+ },
+ {
+  "id": "2bcc77808746d7d4-0",
+  "articleId": "2bcc77808746d7d4",
+  "conflict": "sudan",
+  "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE9OQlBFRU9nUk81Z01oYkpyMjYxalFUUUloV21uT3p4bXJ0SGxkajBVX3dmLXdySE9yWTF0Y082VEdWVE5qa2tFZEp2MTBQUGkt?oc=5",
+  "outlet": "Sudan Tribune",
+  "publishedAt": "2026-10-22T11:30:02.000Z",
+  "title": "Sudanese army recaptures strategic military base in Blue Nile region from RSF alliance",
+  "place": "strategic military base in Blue Nile region",
+  "adminHint": "Blue Nile",
+  "gainer": "saf",
+  "loser": "rsf",
+  "kind": "capture",
+  "claimedBy": "gainer",
+  "quote": "Sudanese army recaptures strategic military base in Blue Nile region from RSF alliance",
+  "voice": "reported",
+  "wire": null,
+  "confidence": 0.35,
+  "status": "pending",
+  "extractedAt": "2026-10-22T12:16:09.073Z"
+ },
+ {
+  "id": "7e22b197ee9ce215-0",
+  "articleId": "7e22b197ee9ce215",
+  "conflict": "sudan",
+  "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE5NTEF0MDNxdl96YmpHWTRWdW1SN3NtNE9IdDhSWllBX1BhR1M2SkYzWEFlQW13cHV3ZlZrcndRZGxsTkZTeUxieUcyRFV3TWFtVlpqNTZwVDA?oc=5",
+  "outlet": "Ahram Online",
+  "publishedAt": "2026-10-22T13:19:11.000Z",
+  "title": "Sudanese army recaptures strategic military base in Blue Nile region - War in Sudan - World",
+  "place": "strategic military base in Blue Nile region",
+  "adminHint": "Blue Nile",
+  "gainer": "saf",
+  "loser": null,
+  "kind": "capture",
+  "claimedBy": "gainer",
+  "quote": "Sudanese army recaptures strategic military base in Blue Nile region",
+  "voice": "reported",
+  "wire": null,
+  "confidence": 0.4,
+  "status": "pending",
+  "extractedAt": "2026-10-22T14:31:22.383Z"
+ },
+ {
+  "id": "062e048cbfe62113-0",
+  "articleId": "062e048cbfe62113",
+  "conflict": "ethiopia",
+  "url": "https://www.france24.com/en/tv-shows/perspective/20261022-ethiopia-eritrea-is-there-a-risk-of-a-wider-conflict",
+  "outlet": "France 24",
+  "publishedAt": "2026-10-22T15:40:42.000Z",
+  "title": "Ethiopia-Eritrea: Is there a risk of a wider conflict?",
+  "place": "Zalambessa",
+  "adminHint": null,
+  "gainer": "endf",
+  "loser": null,
+  "kind": "capture",
+  "claimedBy": "unclear",
+  "quote": "With Ethiopia now having taken control of the border town of Zalambessa",
+  "voice": "reported",
+  "wire": null,
+  "confidence": 0.7,
+  "status": "pending",
+  "extractedAt": "2026-10-22T15:46:13.233Z"
+ },
+ {
+  "id": "c91cc70698262551-none",
+  "articleId": "c91cc70698262551",
+  "conflict": "sudan",
+  "status": "none"
+ },
+ {
+  "id": "2e1e4263c28735f6-none",
+  "articleId": "2e1e4263c28735f6",
+  "conflict": "ukraine",
+  "status": "none"
+ },
+ {
+  "id": "42e756a695e2b280-0",
+  "articleId": "42e756a695e2b280",
+  "conflict": "ethiopia",
+  "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTFBRVHAtSWh4Q0FzWXU1bkhHbGVRVEVzWlpfMkIwdlVsdTFVMzJVX3ZPcURZc3lHckQzdWRLN2tGbjRRclZRY1ZyWGx0VTN5UU5XTllobG1aUWlMRGFXMWNVTlhNM2d6MTBFSVc5S3AwVEs1UnUxbHc?oc=5",
+  "outlet": "https://kulu-media.com/",
+  "publishedAt": "2026-10-22T19:40:12.000Z",
+  "title": "Tigray Fighting Continues as Federal Forces Retake Nirak",
+  "place": "Nirak",
+  "adminHint": null,
+  "gainer": "endf",
+  "loser": null,
+  "kind": "capture",
+  "claimedBy": "gainer",
+  "quote": "Federal Forces Retake Nirak",
+  "voice": "reported",
+  "wire": null,
+  "confidence": 0.5,
+  "status": "pending",
+  "extractedAt": "2026-10-22T19:46:10.559Z"
+ },
+ {
+  "id": "5122f213287f6c02-none",
+  "articleId": "5122f213287f6c02",
+  "conflict": "iran",
+  "status": "none"
+ },
+ {
+  "id": "5b73e4b25006d008-none",
+  "articleId": "5b73e4b25006d008",
+  "conflict": "ukraine",
+  "status": "none"
+ },
+ {
+  "id": "9e0d044d534e2a19-0",
+  "articleId": "9e0d044d534e2a19",
+  "conflict": "ethiopia",
+  "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE04cFNWbUJkQ0xQWXNyby1BSGlWWjluTHpiRzk2ejBFcElwN25nQ2lYT2VmNklKNG9aaVFBR1pFVHFVVVE2aXc?oc=5",
+  "outlet": "Mereja",
+  "publishedAt": "2026-10-22T18:10:00.000Z",
+  "title": "Fano says it seized Debre Zebit and Agrit in North Wollo’s Meket, as an eyewitness tells DW of days of heavy fighting near Sanqa",
+  "place": "Debre Zebit",
+  "adminHint": "Meket, North Wollo",
+  "gainer": "fano",
+  "loser": null,
+  "kind": "capture",
+  "claimedBy": "gainer",
+  "quote": "Fano says it seized Debre Zebit and Agrit in North Wollo’s Meket",
+  "voice": "attributed",
+  "wire": null,
+  "confidence": 0.8,
+  "status": "pending",
+  "extractedAt": "2026-10-23T02:46:14.243Z"
+ },
+ {
+  "id": "9e0d044d534e2a19-1",
+  "articleId": "9e0d044d534e2a19",
+  "conflict": "ethiopia",
+  "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE04cFNWbUJkQ0xQWXNyby1BSGlWWjluTHpiRzk2ejBFcElwN25nQ2lYT2VmNklKNG9aaVFBR1pFVHFVVVE2aXc?oc=5",
+  "outlet": "Mereja",
+  "publishedAt": "2026-10-22T18:10:00.000Z",
+  "title": "Fano says it seized Debre Zebit and Agrit in North Wollo’s Meket, as an eyewitness tells DW of days of heavy fighting near Sanqa",
+  "place": "Agrit",
+  "adminHint": "Meket, North Wollo",
+  "gainer": "fano",
+  "loser": null,
+  "kind": "capture",
+  "claimedBy": "gainer",
+  "quote": "Fano says it seized Debre Zebit and Agrit in North Wollo’s Meket",
+  "voice": "attributed",
+  "wire": null,
+  "confidence": 0.8,
+  "status": "pending",
+  "extractedAt": "2026-10-23T02:46:14.243Z"
+ },
+ {
+  "id": "9e0d044d534e2a19-2",
+  "articleId": "9e0d044d534e2a19",
+  "conflict": "ethiopia",
+  "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE04cFNWbUJkQ0xQWXNyby1BSGlWWjluTHpiRzk2ejBFcElwN25nQ2lYT2VmNklKNG9aaVFBR1pFVHFVVVE2aXc?oc=5",
+  "outlet": "Mereja",
+  "publishedAt": "2026-10-22T18:10:00.000Z",
+  "title": "Fano says it seized Debre Zebit and Agrit in North Wollo’s Meket, as an eyewitness tells DW of days of heavy fighting near Sanqa",
+  "place": "Sanqa",
+  "adminHint": "Meket, North Wollo",
+  "gainer": null,
+  "loser": null,
+  "kind": "contested",
+  "claimedBy": "unclear",
+  "quote": "an eyewitness tells DW of days of heavy fighting near Sanqa",
+  "voice": "attributed",
+  "wire": null,
+  "confidence": 0.3,
+  "status": "pending",
+  "extractedAt": "2026-10-23T02:46:14.243Z"
+ },
+ {
+  "id": "2c1aa2c907e01959-none",
+  "articleId": "2c1aa2c907e01959",
+  "conflict": "ethiopia",
+  "status": "none"
+ },
+ {
+  "id": "8085a697af54fd6e-none",
+  "articleId": "8085a697af54fd6e",
+  "conflict": "yemen",
+  "status": "none"
+ },
+ {
+  "id": "2ae266950d9c806e-none",
+  "articleId": "2ae266950d9c806e",
+  "conflict": "israel",
+  "status": "none"
+ },
+ {
+  "id": "615e565853c35926-none",
+  "articleId": "615e565853c35926",
+  "conflict": "ukraine",
+  "status": "none"
+ },
+ {
+  "id": "7f200ce770c5add7-none",
+  "articleId": "7f200ce770c5add7",
+  "conflict": "ukraine",
+  "status": "none"
+ },
+ {
+  "id": "77a37b9cd09ff818-none",
+  "articleId": "77a37b9cd09ff818",
+  "conflict": "israel",
+  "status": "none"
+ },
+ {
+  "id": "038ec55d6e9710b6-0",
+  "articleId": "038ec55d6e9710b6",
+  "conflict": "sudan",
+  "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxQZ1h6TC1GSkZYTFVxTmY4b3dVUVBsaGhYRmM5bmVYb2RIclJwd25uOTVzbXFTamoyaGZTbE00NnNDRVZZME1VZ01jTzduUGNNVWllUTZ4UWNOSU1fTGtISHJCdlRzQzdqLTJfdVhtQlpqaE16N3BQSWllMm9EdE1iZVhYT241Y08xbmRoazRGN0NEWDd2cmxHLUVxcWhOYkxzemx1aWgxVFhqd3VxRVV4WGRNNkgzU3l3V1h1VGt6ZnpyTXZKaEdEOEhYT18zTURQa2NpbWMxMDI5cXNydkhJ?oc=5",
+  "outlet": "Facebook",
+  "publishedAt": "2026-10-23T06:50:40.000Z",
+  "title": "#Daily_Brief: #Sudanese army recaptures strategic base near #Ethiopian border from RSF-SPLM-N alliance Addis Abeba — Sudan’s army has recaptured the strategic Bukuri military base and the Uklili area in the Blue Nile region following clashes with an alli",
+  "place": "Bukuri military base",
+  "adminHint": "Blue Nile",
+  "gainer": "saf",
+  "loser": "rsf",
+  "kind": "capture",
+  "claimedBy": "unclear",
+  "quote": "Sudan’s army has recaptured the strategic Bukuri military base and the Uklili area in the Blue Nile region",
+  "voice": "reported",
+  "wire": null,
+  "confidence": 0.6,
+  "status": "pending",
+  "extractedAt": "2026-10-23T19:01:34.331Z"
+ },
+ {
+  "id": "038ec55d6e9710b6-1",
+  "articleId": "038ec55d6e9710b6",
+  "conflict": "sudan",
+  "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxQZ1h6TC1GSkZYTFVxTmY4b3dVUVBsaGhYRmM5bmVYb2RIclJwd25uOTVzbXFTamoyaGZTbE00NnNDRVZZME1VZ01jTzduUGNNVWllUTZ4UWNOSU1fTGtISHJCdlRzQzdqLTJfdVhtQlpqaE16N3BQSWllMm9EdE1iZVhYT241Y08xbmRoazRGN0NEWDd2cmxHLUVxcWhOYkxzemx1aWgxVFhqd3VxRVV4WGRNNkgzU3l3V1h1VGt6ZnpyTXZKaEdEOEhYT18zTURQa2NpbWMxMDI5cXNydkhJ?oc=5",
+  "outlet": "Facebook",
+  "publishedAt": "2026-10-23T06:50:40.000Z",
+  "title": "#Daily_Brief: #Sudanese army recaptures strategic base near #Ethiopian border from RSF-SPLM-N alliance Addis Abeba — Sudan’s army has recaptured the strategic Bukuri military base and the Uklili area in the Blue Nile region following clashes with an alli",
+  "place": "Uklili",
+  "adminHint": "Blue Nile",
+  "gainer": "saf",
+  "loser": "rsf",
+  "kind": "capture",
+  "claimedBy": "unclear",
+  "quote": "Sudan’s army has recaptured the strategic Bukuri military base and the Uklili area in the Blue Nile region",
+  "voice": "reported",
+  "wire": null,
+  "confidence": 0.6,
+  "status": "pending",
+  "extractedAt": "2026-10-23T19:01:34.331Z"
+ },
+ {
+  "id": "1cc92da836328471-none",
+  "articleId": "1cc92da836328471",
+  "conflict": "ukraine",
+  "status": "none"
+ },
+ {
+  "id": "e5219638d4ca07cb-0",
+  "articleId": "e5219638d4ca07cb",
+  "conflict": "ethiopia",
+  "url": "https://www.aljazeera.com/news/2026/10/23/tigray-official-urges-rebels-to-disarm?traffic_source=rss",
+  "outlet": "Al Jazeera",
+  "publishedAt": "2026-10-23T19:55:44.000Z",
+  "title": "Tigray official urges rebels to disarm",
+  "place": "Mekelle",
+  "adminHint": "Tigray",
+  "gainer": null,
+  "loser": "tplf",
+  "kind": "capture",
+  "claimedBy": "unclear",
+  "quote": "government-allied forces who seized Ethiopia's Tigray capital",
+  "voice": "reported",
+  "wire": null,
+  "confidence": 0.6,
+  "status": "pending",
+  "extractedAt": "2026-10-23T20:16:12.548Z"
+ },
+ {
+  "id": "82dbb97035b8c5ba-none",
+  "articleId": "82dbb97035b8c5ba",
+  "conflict": "israel",
+  "status": "none"
+ },
+ {
+  "id": "31a1303aafaecf78-none",
+  "articleId": "31a1303aafaecf78",
+  "conflict": "ukraine",
+  "status": "none"
+ },
+ {
+  "id": "5224ad3a89dbda6a-0",
+  "articleId": "5224ad3a89dbda6a",
+  "conflict": "sudan",
+  "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNOGdWaWp2Yzl3LWVTQWF3anJDZ0cxQ2lUTUVwTTYwVFpkdGhKSENrQTZyRTFUa0o2VmVhbGd1UzZIRW10TXQtVm1GNnhEQ2NmSkh6NnhlbndfMWJ0TGJyUzh0SXpxZDEtUVM2ektmdk1xQnEyVHRWWFpEOE1hWGRpRVNDZ1VycDZmcVgzWUpGY1JzTHVFdDBaN3BmX2Vic2ZZQzMyWmM1RTZ4WFp1?oc=5",
+  "outlet": "The Taiwan Times",
+  "publishedAt": "2026-10-23T13:47:04.000Z",
+  "title": "Sudanese Armed Forces Recapture Strategic Bukuri Base in Blue Nile State",
+  "place": "Bukuri",
+  "adminHint": "Blue Nile State",
+  "gainer": "saf",
+  "loser": null,
+  "kind": "capture",
+  "claimedBy": "unclear",
+  "quote": "Sudanese Armed Forces Recapture Strategic Bukuri Base in Blue Nile State",
+  "voice": "reported",
+  "wire": null,
+  "confidence": 0.5,
+  "status": "pending",
+  "extractedAt": "2026-10-24T05:24:53.544Z"
+ },
+ {
+  "id": "4597bd0ed80a3703-none",
+  "articleId": "4597bd0ed80a3703",
+  "conflict": "somalia",
+  "status": "none"
+ },
+ {
+  "id": "bcff2b4f7a541921-none",
+  "articleId": "bcff2b4f7a541921",
+  "conflict": "ukraine",
+  "status": "none"
+ },
+ {
+  "id": "7b80ccf0782eaa55-0",
+  "articleId": "7b80ccf0782eaa55",
+  "conflict": "somalia",
+  "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxNUHl1V0xUMV9LYjFzLTBBeTRfNE1sSUQzdGYtNXBNUGwtZU85QjBVcEtoS3hMcHdCc0doSFNWRjJzclhCc0dNUlk3MlYzc2lYeXJteVYtdi12dE1ZZ2dVUU1uMUFSX1diVnhkSkFNZkJ3MDlnOTBYRmFTYk9nbE40LXg5bnpZVjVSajNPWk41V0NSSFY3WWIyQ1JpN2VmTUtvbl9FdUF3UW0zb3kwVDlRVjROZm5iU3RIY2tLOA?oc=5",
+  "outlet": "Hiiraan Online",
+  "publishedAt": "2026-10-23T22:14:25.000Z",
+  "title": "Jubaland takes control of Beled-Hawo after Janan hands over forces",
+  "place": "Beled-Hawo",
+  "adminHint": "Gedo",
+  "gainer": null,
+  "loser": null,
+  "kind": "capture",
+  "claimedBy": "unclear",
+  "quote": "Jubaland takes control of Beled-Hawo after Janan hands over forces",
+  "voice": "reported",
+  "wire": null,
+  "confidence": 0.5,
+  "status": "pending",
+  "extractedAt": "2026-10-24T11:16:09.277Z"
+ },
+ {
+  "id": "ff4e96b1008e3dc2-none",
+  "articleId": "ff4e96b1008e3dc2",
+  "conflict": "afpak",
+  "status": "none"
+ },
+ {
+  "id": "6ddedb9062e3ff40-none",
+  "articleId": "6ddedb9062e3ff40",
+  "conflict": "ukraine",
+  "status": "none"
+ },
+ {
+  "id": "b011ba53be57a756-none",
+  "articleId": "b011ba53be57a756",
+  "conflict": "ukraine",
+  "status": "none"
+ },
+ {
+  "id": "2fe2de0bae4017da-none",
+  "articleId": "2fe2de0bae4017da",
+  "conflict": "ukraine",
+  "status": "none"
+ },
+ {
+  "id": "1dfdc4f841cb9762-none",
+  "articleId": "1dfdc4f841cb9762",
+  "conflict": "somalia",
+  "status": "none"
+ },
+ {
+  "id": "3b18f7021d718912-none",
+  "articleId": "3b18f7021d718912",
+  "conflict": "iran",
+  "status": "none"
+ }
+]
