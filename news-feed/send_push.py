@@ -34,6 +34,9 @@ MAX_AGE_H = float(os.environ.get("PUSH_MAX_AGE_H", "3"))
 MAX_PER_DAY = int(os.environ.get("PUSH_MAX_PER_DAY", "5"))
 GAP_MIN = float(os.environ.get("PUSH_GAP_MIN", "60"))
 DRY_RUN = os.environ.get("PUSH_DRY_RUN") == "1"
+# The feed phones could already download before this run (the previous run's). Only stories in it are pushed,
+# so the tapped alert finds its story. Unset (running by hand): no such check.
+PUBLISHED = os.environ.get("PUBLISHED_FEED_PATH")
 
 
 def parse_time(s):
@@ -106,9 +109,16 @@ def main():
     seen = set(st["seen"])
     recent = [s for s in st["sent"] if now - s["at"] < 24 * 3600]
 
+    published = None
+    if PUBLISHED:
+        try:
+            published = {p.get("id") for p in json.loads(Path(PUBLISHED).read_text()) if isinstance(p, dict)}
+        except Exception:
+            published = set()
     candidates = [
         s for s in stories
         if s.get("id") and s["id"] not in seen
+        and (published is None or s["id"] in published)
         and s.get("score", 0) >= MIN_SCORE
         and now - parse_time(s.get("time", "")) < MAX_AGE_H * 3600
     ]

@@ -33,8 +33,13 @@ jobs:
           if git ls-remote --exit-code --heads origin news-data >/dev/null 2>&1; then
             git fetch --depth=1 origin news-data
             git checkout FETCH_HEAD -- key_developments.json news-feed/seen_articles.json data/country_news.json news-feed/enrich_cache.json || true
+            # The push script's memory of what it already sent (missing until the first push run publishes it).
+            git checkout FETCH_HEAD -- news-feed/push_sent.json 2>/dev/null || true
             git reset -q
           fi
+          # The feed as phones can already download it: a push only goes out for a story that was in it, so
+          # tapping the alert never opens "no longer in the feed" while the new feed is still on its way.
+          cp key_developments.json "$RUNNER_TEMP/published_feed.json" 2>/dev/null || echo "[]" > "$RUNNER_TEMP/published_feed.json"
       - name: Fetch stories
         run: python news-feed/fetch_news.py
         env:
@@ -52,13 +57,21 @@ jobs:
         env:
           VANDICT_INGEST_URL: ${{ secrets.VANDICT_INGEST_URL }}
           VANDICT_INGEST_KEY: ${{ secrets.VANDICT_INGEST_KEY }}
+      - name: Push alert to the iPhone app (major stories only)
+        run: |
+          pip install --quiet google-auth requests
+          python news-feed/send_push.py
+        continue-on-error: true
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          PUBLISHED_FEED_PATH: ${{ runner.temp }}/published_feed.json
       - name: Fetch one story per country
         run: python news-feed/fetch_country_news.py
         continue-on-error: true
       - name: Publish to news-data branch (one commit, no history build-up)
         run: |
           mkdir -p /tmp/pub && cd "$GITHUB_WORKSPACE"
-          for f in key_developments.json news-feed/seen_articles.json data/country_news.json news-feed/enrich_cache.json; do
+          for f in key_developments.json news-feed/seen_articles.json data/country_news.json news-feed/enrich_cache.json news-feed/push_sent.json; do
             [ -f "$f" ] && mkdir -p "/tmp/pub/$(dirname "$f")" && cp "$f" "/tmp/pub/$f"
           done
           cd /tmp/pub

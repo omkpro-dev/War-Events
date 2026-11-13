@@ -635,7 +635,16 @@ def build_story(g, now):
     # shown by its latest reporting, not frozen at the first article, or it sinks off the page.
     rolled = (parse_time(newest["time"]) - parse_time(first["time"])) > timedelta(hours=ROLL_HOURS)
     pool = [a for a in arts if parse_time(newest["time"]) - parse_time(a["time"]) <= timedelta(hours=ROLL_HOURS)] if rolled else arts
-    rep = min(pool, key=lambda a: (rank(a), a["time"]))
+    # The lead article (headline, Source link, "Read original") must be about the story's main event. Articles
+    # that match few others in the group were only pulled in loosely (a related angle, a reaction), so the lead
+    # comes from the ones most alike, and a written article beats a video page.
+    toks = [story_tokens(a["title"]) for a in pool]
+    alike = [sum(1 for j in range(len(pool)) if j != i and same_story(toks[i], toks[j], pool[i]["place"] == pool[j]["place"]))
+             for i in range(len(pool))]
+    best = max(alike) if alike else 0
+    core = [a for a, n in zip(pool, alike) if n >= best * 0.5] if best else pool
+    written = [a for a in core if "/video/" not in (a.get("url") or "")] or core
+    rep = min(written, key=lambda a: (rank(a), a["time"]))
     if rolled:
         first = min(pool, key=lambda a: a["time"])
     outlets = []
@@ -685,6 +694,27 @@ def build_story(g, now):
     if cover:
         s["cover"] = cover
     return s
+
+
+def carry_ids(stories, previous):
+    """Keep each story's id from one run to the next. A story is named after its first article, and as a long
+    story rolls on (or its first articles age out) that article changes, so the id would too: the app then
+    re-alerts the same story, links to it stop working, and the summaries cache keyed by id is redone. A new
+    story that shares articles (outlet and headline) with a story in the previous feed keeps that story's id."""
+    owners = {}
+    for p in previous if isinstance(previous, list) else []:
+        if isinstance(p, dict) and p.get("auto") and p.get("id"):
+            for c in p.get("coverage") or []:
+                owners.setdefault((c.get("o"), c.get("h")), p["id"])
+    taken = set()
+    # Strongest first, so when two new stories both share articles with one old story, the bigger keeps its id.
+    for s in sorted(stories, key=lambda s: s["score"], reverse=True):
+        votes = Counter(owners[k] for k in ((c.get("o"), c.get("h")) for c in s["coverage"]) if k in owners)
+        for pid, _ in votes.most_common():
+            if pid not in taken:
+                s["id"] = pid
+                break
+        taken.add(s["id"])
 
 
 def load_remove():
@@ -773,6 +803,7 @@ def main():
     recent = [a for a in kept if parse_time(a["time"]) >= show_after]
     rules = load_remove()
     stories = [build_story(g, now) for g in cluster(recent)]
+    carry_ids(stories, load_json(OUTPUT, []))
     stories = [s for s in stories if s["score"] >= MIN_SCORE and not removed(s, rules)]
     # Stories Claude already judged not geopolitical (enrich_stories.py drops them later anyway)
     # must not take one of the slots, or fresh stories get squeezed out.
