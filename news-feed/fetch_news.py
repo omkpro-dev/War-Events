@@ -15,7 +15,7 @@ from email.utils import parsedate_to_datetime
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
-from gazetteer import PLACES, locate  # noqa: E402
+from gazetteer import PLACES, article_place, country_of  # noqa: E402
 import outlets as ranking  # noqa: E402  (outlet tiers + per-outlet caps)
 
 ROOT = os.path.dirname(HERE)
@@ -580,7 +580,7 @@ def qualify(a, now):
     topics = topic_hits(title, desc)
     if not topics:
         return None
-    place = locate(title) or locate(desc)
+    place = article_place(title, desc)
     if not place:
         return None
     cover = a.get("cover") if USE_COVERS else None
@@ -609,22 +609,35 @@ def cluster(arts):
         tk = story_tokens(a["title"])
         best, best_j = None, 0.0
         for g in groups:
-            same_place = a["place"] in g["places"]
+            same_place = country_of(a["place"]) in g["places"]   # same country, so a sharper pin never splits a story
             if not any(same_story(tk, m, same_place) for m in g["tokens"]):
                 continue
             j = max(jaccard(tk, m) for m in g["tokens"]) + (0.2 if same_place else 0)
             if j > best_j:
                 best, best_j = g, j
         if best:
-            best["arts"].append(a); best["tokens"].append(tk); best["places"].add(a["place"])
+            best["arts"].append(a); best["tokens"].append(tk); best["places"].add(country_of(a["place"]))
         else:
-            groups.append({"arts": [a], "tokens": [tk], "places": {a["place"]}})
+            groups.append({"arts": [a], "tokens": [tk], "places": {country_of(a["place"])}})
     return groups
 
 
 def rank(a):
     # best-ranked outlet first: tier, then the PRIORITY order within it
     return (ranking.tier(a["outlet"]), PRIORITY.index(a["outlet"]) if a["outlet"] in PRIORITY else len(PRIORITY))
+
+
+def story_place(arts):
+    """The story's pin. Headlines mostly name a country, so a plain majority lands on the capital; a city or
+    region that several articles agree on (2+, or a third of them, and at least half the top vote) wins."""
+    votes = Counter(PLACES[a["place"]]["label"] for a in arts)
+    top_label, top_n = votes.most_common(1)[0]
+    sharp = sorted(((n, -i, l) for i, (l, n) in enumerate(votes.items()) if PLACES[l]["spec"] >= 2), reverse=True)
+    if sharp:
+        n, _, label = sharp[0]
+        if (n >= 2 or n * 3 >= len(arts)) and n * 2 >= top_n:
+            return PLACES[label]
+    return PLACES[top_label]
 
 
 def build_story(g, now):
@@ -639,7 +652,7 @@ def build_story(g, now):
     # that match few others in the group were only pulled in loosely (a related angle, a reaction), so the lead
     # comes from the ones most alike, and a written article beats a video page.
     toks = [story_tokens(a["title"]) for a in pool]
-    alike = [sum(1 for j in range(len(pool)) if j != i and same_story(toks[i], toks[j], pool[i]["place"] == pool[j]["place"]))
+    alike = [sum(1 for j in range(len(pool)) if j != i and same_story(toks[i], toks[j], country_of(pool[i]["place"]) == country_of(pool[j]["place"])))
              for i in range(len(pool))]
     best = max(alike) if alike else 0
     core = [a for a, n in zip(pool, alike) if n >= best * 0.5] if best else pool
@@ -658,7 +671,7 @@ def build_story(g, now):
     # Big, established newsrooms count for more; a story only a small outlet carries rarely makes the cut.
     score = round(sum(ranking.weight(o) for o in outlets) + min(4, sum(topics.values()))
                   + (2 if any(ranking.tier(o) == 1 for o in outlets) else 0), 1)
-    place = PLACES[Counter(a["place"] for a in arts).most_common(1)[0][0]]
+    place = story_place(arts)
     t = parse_time(first["time"])
     body = "<b>Reported by:</b> " + html.escape(rep["outlet"])
     others = [o for o in outlets if o != rep["outlet"]]
@@ -794,6 +807,9 @@ def main():
             store[q["key"]] = q
             added += 1
     keep_after = now - timedelta(hours=STORE_HOURS)
+    for a in store.values():   # a place renamed in the gazetteer (accents added) keeps its stored articles
+        if a.get("place") in PLACES:
+            a["place"] = PLACES[a["place"]]["label"]
     kept = [a for a in store.values()
             if a.get("place") in PLACES and (parse_time(a.get("time")) or now) >= keep_after]
     kept.sort(key=lambda a: a["time"], reverse=True)

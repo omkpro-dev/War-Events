@@ -46,7 +46,7 @@ export const PLACES = [
   { conflict: 'yemen', name: 'Riyadh', aliases: ['riyadh'], lat: 24.7136, lng: 46.6753, kind: 'city' },
   { conflict: 'yemen', name: 'Jizan', aliases: ['jizan', 'jazan'], lat: 16.8892, lng: 42.5511, kind: 'city' },
   { conflict: 'yemen', name: 'Eilat', aliases: ['eilat'], lat: 29.5577, lng: 34.9519, kind: 'city' },
-  { conflict: 'yemen', name: 'Bab el-Mandeb', aliases: ['bab el-mandeb', 'bab al-mandab', 'bab-el-mandeb'], lat: 12.6, lng: 43.33, kind: 'sea' },
+  { conflict: 'yemen', name: 'Bab el-Mandeb', aliases: ['bab el-mandeb', 'bab al-mandab', 'bab al-mandeb', 'bab-el-mandeb'], lat: 12.6, lng: 43.33, kind: 'sea' },
 
   // Sudan
   { conflict: 'sudan', name: 'Khartoum', aliases: ['khartoum'], lat: 15.5007, lng: 32.5599, kind: 'city' },
@@ -140,4 +140,23 @@ export const PLACES = [
   { conflict: 'somalia', name: 'Mogadishu', aliases: ['mogadishu'], lat: 2.0469, lng: 45.3182, kind: 'city' },
   { conflict: 'somalia', name: 'Kismayo', aliases: ['kismayo', 'kismaayo'], lat: -0.3582, lng: 42.5454, kind: 'city' },
   { conflict: 'somalia', name: 'Baidoa', aliases: ['baidoa'], lat: 3.1138, lng: 43.6498, kind: 'city' },
+
+  // Regions (governorates, states, oblasts). Kept last: the tagger takes the first place in this list, so a
+  // city named in the same story still wins; a region only replaces the bare country pin. Territory claims
+  // are often reported by region ("a mountain range in Al-Jawf"), so they need these to reach the map.
+  // Coordinates are rough region centres.
+  { conflict: 'yemen', name: 'Al-Jawf', aliases: ['al-jawf', 'al jawf', 'jawf'], lat: 16.2, lng: 44.8, kind: 'region' },
+  { conflict: 'sudan', name: 'North Kordofan', aliases: ['north kordofan'], lat: 14.0, lng: 29.5, kind: 'region' },
+  { conflict: 'sudan', name: 'West Kordofan', aliases: ['west kordofan'], lat: 11.5, lng: 28.0, kind: 'region' },
+  { conflict: 'sudan', name: 'South Kordofan', aliases: ['south kordofan'], lat: 11.0, lng: 30.0, kind: 'region' },
+  { conflict: 'sudan', name: 'Blue Nile', aliases: ['blue nile state', 'blue nile'], lat: 11.3, lng: 34.2, kind: 'region' },
+  { conflict: 'sudan', name: 'North Darfur', aliases: ['north darfur'], lat: 15.5, lng: 25.0, kind: 'region' },
+  { conflict: 'ukraine', name: 'Donetsk Region', aliases: ['donetsk region', 'donetsk oblast'], lat: 48.3, lng: 37.8, kind: 'region' },
+  { conflict: 'ukraine', name: 'Luhansk Region', aliases: ['luhansk region', 'luhansk oblast'], lat: 48.9, lng: 39.0, kind: 'region' },
+  { conflict: 'ukraine', name: 'Zaporizhzhia Region', aliases: ['zaporizhzhia region', 'zaporizhzhia oblast'], lat: 47.4, lng: 35.6, kind: 'region' },
+  { conflict: 'ukraine', name: 'Kharkiv Region', aliases: ['kharkiv region', 'kharkiv oblast'], lat: 49.5, lng: 36.8, kind: 'region' },
+  { conflict: 'ukraine', name: 'Dnipropetrovsk Region', aliases: ['dnipropetrovsk region', 'dnipropetrovsk oblast'], lat: 48.4, lng: 35.6, kind: 'region' },
+  { conflict: 'drc', name: 'North Kivu', aliases: ['north kivu'], lat: -0.79, lng: 29.05, kind: 'region' },
+  { conflict: 'drc', name: 'South Kivu', aliases: ['south kivu'], lat: -2.9, lng: 28.4, kind: 'region' },
+  { conflict: 'drc', name: 'Ituri', aliases: ['ituri'], lat: 1.56, lng: 30.25, kind: 'region' },
 ];

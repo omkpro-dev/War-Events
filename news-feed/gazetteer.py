@@ -1,7 +1,7 @@
 """Places the news fetcher can pin a story to.
 
 Countries pin to their capital. A city, waterway or region named in a headline
-beats the country it sits in ("Russian drones hit Kharkiv" -> KHARKIV, UKRAINE),
+(or, inside a country the headline names, in the description) beats the country it sits in ("Russian drones hit Kharkiv" -> KHARKIV, UKRAINE),
 and the United States ranks lowest so "US sanctions Iran" lands in Iran.
 Add places freely: (alias text is matched case-sensitively, whole words only).
 """
@@ -13,7 +13,7 @@ EU, AS, ME, AF, SA, NA, OC = "EUROPE", "ASIA", "MIDDLE EAST", "AFRICA", "SOUTH A
 COUNTRIES = [
     # Europe
     ("UKRAINE", EU, ["Ukraine", "Ukrainian", "Ukrainians"], [("Kyiv", 50.45, 30.52, ["Kiev"]), ("Kharkiv", 49.99, 36.23), ("Odesa", 46.48, 30.72, ["Odessa"]), ("Zaporizhzhia", 47.84, 35.14), ("Dnipro", 48.46, 35.05), ("Kherson", 46.64, 32.61), ("Lviv", 49.84, 24.03), ("Donetsk", 48.02, 37.80), ("Luhansk", 48.57, 39.31), ("Pokrovsk", 48.28, 37.18)]),
-    ("RUSSIA", EU, ["Russia", "Russian", "Russians", "Kremlin"], [("Moscow", 55.76, 37.62), ("St Petersburg", 59.93, 30.34, ["St. Petersburg", "Saint Petersburg"]), ("Kursk", 51.73, 36.19), ("Belgorod", 50.60, 36.59), ("Kaliningrad", 54.71, 20.51)]),
+    ("RUSSIA", EU, ["Russia", "Russian", "Russians", "Kremlin"], [("Moscow", 55.76, 37.62), ("St Petersburg", 59.93, 30.34, ["St. Petersburg", "Saint Petersburg"]), ("Kursk", 51.73, 36.19), ("Belgorod", 50.60, 36.59), ("Kaliningrad", 54.71, 20.51), ("Volgograd", 48.71, 44.51), ("Rostov-on-Don", 47.24, 39.71, ["Rostov"]), ("Samara", 53.20, 50.15), ("Lipetsk", 52.61, 39.59)]),
     ("BELARUS", EU, ["Belarus", "Belarusian"], [("Minsk", 53.90, 27.56)]),
     ("POLAND", EU, ["Poland"], [("Warsaw", 52.23, 21.01)]),
     ("GERMANY", EU, ["Germany", "German", "Germans"], [("Berlin", 52.52, 13.40)]),
@@ -56,7 +56,7 @@ COUNTRIES = [
     ("JORDAN", ME, ["Jordan", "Jordanian"], [("Amman", 31.95, 35.93)]),
     ("IRAQ", ME, ["Iraq", "Iraqi"], [("Baghdad", 33.31, 44.36), ("Erbil", 36.19, 44.01), ("Basra", 30.51, 47.81)]),
     ("IRAN", ME, ["Iran", "Iranian", "Iranians", "Tehran's"], [("Tehran", 35.69, 51.39), ("Isfahan", 32.65, 51.67), ("Natanz", 33.72, 51.73), ("Fordow", 34.88, 50.99)]),
-    ("SAUDI ARABIA", ME, ["Saudi Arabia", "Saudi"], [("Riyadh", 24.71, 46.68), ("Jeddah", 21.49, 39.19)]),
+    ("SAUDI ARABIA", ME, ["Saudi Arabia", "Saudi"], [("Riyadh", 24.71, 46.68), ("Jeddah", 21.49, 39.19), ("Yanbu", 24.09, 38.06), ("Jazan", 16.89, 42.55, ["Jizan"])]),
     ("UNITED ARAB EMIRATES", ME, ["United Arab Emirates", "UAE", "Emirati"], [("Abu Dhabi", 24.45, 54.38), ("Dubai", 25.20, 55.27)]),
     ("QATAR", ME, ["Qatar", "Qatari"], [("Doha", 25.29, 51.53)]),
     ("KUWAIT", ME, ["Kuwait", "Kuwaiti"], [("Kuwait City", 29.38, 47.99)]),
@@ -72,7 +72,7 @@ COUNTRIES = [
     ("NORTH KOREA", AS, ["North Korea", "North Korean", "North Koreans"], [("Pyongyang", 39.04, 125.76)]),
     ("MONGOLIA", AS, ["Mongolia", "Mongolian"], [("Ulaanbaatar", 47.89, 106.91)]),
     ("INDIA", AS, ["India", "Indian"], [("New Delhi", 28.61, 77.21, ["Delhi"]), ("Mumbai", 19.08, 72.88)]),
-    ("PAKISTAN", AS, ["Pakistan", "Pakistani"], [("Islamabad", 33.68, 73.05), ("Karachi", 24.86, 67.01), ("Lahore", 31.55, 74.34)]),
+    ("PAKISTAN", AS, ["Pakistan", "Pakistani"], [("Islamabad", 33.68, 73.05), ("Karachi", 24.86, 67.01), ("Lahore", 31.55, 74.34), ("Balochistan", 28.49, 65.10, ["Baluchistan"]), ("Khyber Pakhtunkhwa", 34.95, 72.33, ["northwest Pakistan", "northwestern Pakistan"])]),
     ("AFGHANISTAN", AS, ["Afghanistan", "Afghan", "Taliban"], [("Kabul", 34.56, 69.21)]),
     ("BANGLADESH", AS, ["Bangladesh", "Bangladeshi"], [("Dhaka", 23.81, 90.41)]),
     ("SRI LANKA", AS, ["Sri Lanka", "Sri Lankan"], [("Colombo", 6.93, 79.86)]),
@@ -80,6 +80,7 @@ COUNTRIES = [
     ("MYANMAR", AS, ["Myanmar", "Burma", "Burmese"], [("Naypyidaw", 19.76, 96.08), ("Yangon", 16.84, 96.17)]),
     ("THAILAND", AS, ["Thailand", "Thai"], [("Bangkok", 13.76, 100.50)]),
     ("CAMBODIA", AS, ["Cambodia", "Cambodian"], [("Phnom Penh", 11.56, 104.92)]),
+    ("LAOS", AS, ["Laos", "Laotian"], [("Vientiane", 17.97, 102.63)]),
     ("VIETNAM", AS, ["Vietnam", "Vietnamese", "Viet Nam"], [("Hanoi", 21.03, 105.85)]),
     ("PHILIPPINES", AS, ["Philippines", "Philippine", "Filipino"], [("Manila", 14.60, 120.98)]),
     ("MALAYSIA", AS, ["Malaysia", "Malaysian"], [("Kuala Lumpur", 3.14, 101.69)]),
@@ -96,13 +97,13 @@ COUNTRIES = [
     ("KENYA", AF, ["Kenya", "Kenyan"], [("Nairobi", -1.29, 36.82)]),
     ("UGANDA", AF, ["Uganda", "Ugandan"], [("Kampala", 0.35, 32.58)]),
     ("RWANDA", AF, ["Rwanda", "Rwandan"], [("Kigali", -1.94, 30.06)]),
-    ("DR CONGO", AF, ["Democratic Republic of Congo", "Democratic Republic of the Congo", "DR Congo", "DRC", "Congo", "Congolese", "M23"], [("Kinshasa", -4.32, 15.31), ("Goma", -1.68, 29.22)]),
+    ("DR CONGO", AF, ["Democratic Republic of Congo", "Democratic Republic of the Congo", "DR Congo", "DRC", "Congo", "Congolese", "M23"], [("Kinshasa", -4.32, 15.31), ("Goma", -1.68, 29.22), ("North Kivu", -0.79, 29.05, ["eastern Congo", "eastern DR Congo", "eastern DRC"]), ("Ituri", 1.56, 30.25)]),
     ("NIGERIA", AF, ["Nigeria", "Nigerian"], [("Abuja", 9.08, 7.40), ("Lagos", 6.52, 3.38)]),
     ("NIGER", AF, ["Niger"], [("Niamey", 13.51, 2.11)]),
     ("MALI", AF, ["Mali", "Malian"], [("Bamako", 12.64, -8.00)]),
     ("BURKINA FASO", AF, ["Burkina Faso", "Burkinabe"], [("Ouagadougou", 12.37, -1.52)]),
     ("CHAD", AF, ["Chad", "Chadian"], [("N'Djamena", 12.13, 15.06)]),
-    ("CAMEROON", AF, ["Cameroon", "Cameroonian"], [("Yaounde", 3.85, 11.50, ["Yaoundé"])]),
+    ("CAMEROON", AF, ["Cameroon", "Cameroonian"], [("Yaoundé", 3.85, 11.50, ["Yaounde"])]),
     ("GHANA", AF, ["Ghana", "Ghanaian"], [("Accra", 5.60, -0.19)]),
     ("SENEGAL", AF, ["Senegal", "Senegalese"], [("Dakar", 14.72, -17.47)]),
     ("LIBYA", AF, ["Libya", "Libyan"], [("Tripoli", 32.89, 13.19), ("Benghazi", 32.12, 20.07)]),
@@ -121,11 +122,11 @@ COUNTRIES = [
     ("PANAMA", NA, ["Panama", "Panamanian"], [("Panama City", 8.98, -79.52)]),
     ("GREENLAND", NA, ["Greenland"], [("Nuuk", 64.18, -51.69)]),
     ("VENEZUELA", SA, ["Venezuela", "Venezuelan"], [("Caracas", 10.49, -66.88)]),
-    ("COLOMBIA", SA, ["Colombia", "Colombian"], [("Bogota", 4.71, -74.07, ["Bogotá"])]),
+    ("COLOMBIA", SA, ["Colombia", "Colombian"], [("Bogotá", 4.71, -74.07, ["Bogota"])]),
     ("ECUADOR", SA, ["Ecuador", "Ecuadorian"], [("Quito", -0.18, -78.47)]),
     ("PERU", SA, ["Peru", "Peruvian"], [("Lima", -12.05, -77.04)]),
     ("BOLIVIA", SA, ["Bolivia", "Bolivian"], [("La Paz", -16.49, -68.12)]),
-    ("BRAZIL", SA, ["Brazil", "Brazilian"], [("Brasilia", -15.79, -47.88, ["Brasília"]), ("Sao Paulo", -23.55, -46.63, ["São Paulo"]), ("Rio de Janeiro", -22.91, -43.17)]),
+    ("BRAZIL", SA, ["Brazil", "Brazilian"], [("Brasília", -15.79, -47.88, ["Brasilia"]), ("São Paulo", -23.55, -46.63, ["Sao Paulo"]), ("Rio de Janeiro", -22.91, -43.17)]),
     ("CHILE", SA, ["Chile", "Chilean"], [("Santiago", -33.45, -70.67)]),
     ("ARGENTINA", SA, ["Argentina", "Argentine", "Argentinian"], [("Buenos Aires", -34.60, -58.38)]),
     # Oceania
@@ -143,7 +144,7 @@ SPOTS = [
     ("BAB EL-MANDEB", ME, 12.58, 43.33, 3, ["Bab el-Mandeb", "Bab al-Mandab"]),
     ("SUEZ CANAL", ME, 30.58, 32.27, 3, ["Suez Canal", "Suez"]),
     ("PERSIAN GULF", ME, 27.00, 51.00, 3, ["Persian Gulf", "Gulf of Oman"]),
-    ("GAZA", ME, 31.50, 34.47, 2, ["Gaza", "Gaza Strip", "Gazan", "Gazans", "Hamas", "Rafah", "Khan Younis"]),
+    ("GAZA", ME, 31.50, 34.47, 2, ["Gaza", "Gaza Strip", "Gazan", "Gazans", "Hamas", "Rafah", "Khan Younis", "Nasser Hospital"]),
     ("WEST BANK", ME, 31.95, 35.30, 2, ["West Bank", "Ramallah", "Jenin", "Palestinian Authority"]),
     ("GOLAN HEIGHTS", ME, 33.00, 35.75, 3, ["Golan Heights", "Golan"]),
     ("TAIWAN STRAIT", AS, 24.50, 119.50, 3, ["Taiwan Strait"]),
@@ -154,6 +155,7 @@ SPOTS = [
     ("INDIAN OCEAN", AS, -10.00, 75.00, 3, ["Indian Ocean"]),
     ("BLACK SEA", EU, 43.40, 34.00, 3, ["Black Sea"]),
     ("BALTIC SEA", EU, 58.00, 20.00, 3, ["Baltic Sea"]),
+    ("GULF OF FINLAND", EU, 59.85, 26.00, 3, ["Gulf of Finland"]),
     ("CRIMEA", EU, 44.95, 34.10, 3, ["Crimea", "Crimean", "Sevastopol"]),
     ("DONBAS", EU, 48.00, 38.00, 2, ["Donbas", "Donbass"]),
     ("NAGORNO-KARABAKH", EU, 39.82, 46.75, 3, ["Nagorno-Karabakh", "Karabakh"]),
@@ -174,7 +176,9 @@ def _add(label, cat, lat, lon, spec, aliases):
         _ALIASES.append((a, label))
 
 
+CAPITAL_OF = {}   # "KYIV, UKRAINE" -> "UKRAINE"
 for _name, _cat, _aliases, _cities in COUNTRIES:
+    CAPITAL_OF[f"{_cities[0][0].upper()}, {_name}"] = _name
     _low = _name == "UNITED STATES"
     _cap = _cities[0]
     _add(_name, _cat, _cap[1], _cap[2], 0 if _low else 1, _aliases)
@@ -183,8 +187,33 @@ for _name, _cat, _aliases, _cities in COUNTRIES:
 for _label, _cat, _lat, _lon, _spec, _aliases in SPOTS:
     _add(_label, _cat, _lat, _lon, _spec, _aliases)
 
+# Labels that were renamed (accents added): articles already stored under the old label still resolve.
+LEGACY = {"YAOUNDE, CAMEROON": "YAOUNDÉ, CAMEROON", "BOGOTA, COLOMBIA": "BOGOTÁ, COLOMBIA",
+          "BRASILIA, BRAZIL": "BRASÍLIA, BRAZIL", "SAO PAULO, BRAZIL": "SÃO PAULO, BRAZIL"}
+for _old, _new in LEGACY.items():
+    PLACES[_old] = PLACES[_new]
+
+
+def country_of(label):
+    """'KHARKIV, UKRAINE' -> 'UKRAINE'; a country or spot is its own area."""
+    label = LEGACY.get(label, label)
+    return label.split(", ", 1)[1] if ", " in label else label
+
+
 _ALIASES.sort(key=lambda x: -len(x[0]))
 _RX = [(re.compile(r"(?<!\w)" + re.escape(a) + r"(?!\w)"), label) for a, label in _ALIASES]
+
+
+# "Kyiv says", "Moscow's response", "Tehran warns": the capital stands for the government, not the city.
+_SPEAKS = re.compile(r"(?:['’]s\b|\s+(?:says|said|claims|claimed|accuses|accused|denies|denied|warns|warned|rejects|"
+                     r"rejected|urges|urged|demands|insists|announces|vows|vowed|blames|threatens|condemns|hits back|"
+                     r"responds|confirms|reports|summons|calls))")
+
+
+def _resolve(label, text, end):
+    if label in CAPITAL_OF and _SPEAKS.match(text, end):
+        return PLACES[CAPITAL_OF[label]]
+    return PLACES[label]
 
 
 def locate(text):
@@ -198,8 +227,36 @@ def locate(text):
             if any(s < te and e > ts for ts, te in taken):
                 continue
             taken.append((s, e))
-            p = PLACES[label]
+            p = _resolve(label, text, e)
             key = (p["spec"], -s)
             if best is None or key > best[0]:
                 best = (key, p)
     return best[1] if best else None
+
+
+def places_in(text):
+    """Every place named in text (the longest alias wins where names overlap)."""
+    if not text:
+        return []
+    taken, out = [], []
+    for rx, label in _RX:
+        for m in rx.finditer(text):
+            s, e = m.span()
+            if any(s < te and e > ts for ts, te in taken):
+                continue
+            taken.append((s, e))
+            out.append(_resolve(label, text, e))
+    return out
+
+
+def article_place(title, desc):
+    """Where one article happened. The headline decides; the description may sharpen it to a city or region,
+    but only inside a country the headline names ("Russian drones hit Ukraine" + "in Kharkiv" -> KHARKIV),
+    or to a waterway/contested spot. A city in some other country (talks "in Abu Dhabi") never moves it."""
+    t, d = locate(title), locate(desc)
+    if not t:
+        return d
+    if d and d["spec"] >= 2 and d["spec"] > t["spec"]:
+        if ", " not in d["label"] or country_of(d["label"]) in {country_of(p["label"]) for p in places_in(title)}:
+            return d
+    return t

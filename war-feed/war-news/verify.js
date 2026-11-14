@@ -7,6 +7,9 @@ import { CONFLICTS } from './sources.js';
 
 const WINDOW_MS = 72 * 3600e3;
 const KEEP_CONFIRMED_MS = 14 * 864e5;
+// Unconfirmed claims stay on the map (marked "claimed") for a week; confirmation by two strong outlets is rare,
+// and at 72 h nearly every claim vanished before anyone saw it.
+const KEEP_CLAIMED_MS = 7 * 864e5;
 
 // Strong outlets. A story credited to a wire (Reuters/AP/AFP) counts as that wire.
 export const STRONG = [
@@ -24,8 +27,22 @@ const norm = (s) => String(s || '').toLowerCase().normalize('NFD').replace(/[\u0
 const ALIAS = new Map();
 for (const p of PLACES) for (const a of [p.name, ...p.aliases]) ALIAS.set(p.conflict + '|' + norm(a), p);
 
+// A known name inside a longer phrase: "key mountain range in Al-Jawf" -> Al-Jawf. Longest names first, whole
+// words only, and never names under 4 letters.
+const ALIAS_LIST = [...ALIAS.entries()].sort((a, b) => b[0].length - a[0].length);
+function within(conflict, text) {
+  const t = ' ' + norm(text).replace(/[^\p{L}\p{N}' -]+/gu, ' ') + ' ';
+  for (const [k, p] of ALIAS_LIST) {
+    const i = k.indexOf('|');
+    const a = k.slice(i + 1);
+    if (k.slice(0, i) === conflict && a.length >= 4 && t.includes(' ' + a + ' ')) return p;
+  }
+  return null;
+}
+
 function findPlace(c) {
-  return ALIAS.get(c.conflict + '|' + norm(c.place)) || (c.adminHint && ALIAS.get(c.conflict + '|' + norm(c.adminHint))) || null;
+  return ALIAS.get(c.conflict + '|' + norm(c.place)) || (c.adminHint && ALIAS.get(c.conflict + '|' + norm(c.adminHint)))
+    || within(c.conflict, c.place) || (c.adminHint && within(c.conflict, c.adminHint)) || null;
 }
 export function sourceKey(c) {
   if (c.wire) { const w = norm(c.wire); return w.includes('reuters') ? 'reuters' : w.includes('afp') ? 'afp' : 'ap'; }
@@ -62,7 +79,7 @@ export function buildControl(allClaims, now = Date.now()) {
     const strongAgainst = against.some((c) => sourceKey(c) && (c.voice === 'reported' || c.kind === 'denial'));
     let status = strongAgainst ? 'contested' : confirmed ? 'confirmed' : (against.length ? 'contested' : 'claimed');
     const age = now - t0;
-    if (status === 'confirmed' ? age > KEEP_CONFIRMED_MS : age > WINDOW_MS) continue;   // fade out
+    if (status === 'confirmed' ? age > KEEP_CONFIRMED_MS : age > KEEP_CLAIMED_MS) continue;   // fade out
     const conf = CONFLICTS.find((c) => c.id === p.conflict);
     const actor = conf && conf.actors.find((a) => a.id === gainer);
     const seen = new Set();

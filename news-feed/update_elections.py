@@ -17,6 +17,7 @@ import datetime as dt
 import html as htmllib
 import json, os, re, time, urllib.parse, urllib.request
 import usage   # prints this run's token use and cost to the log
+from spelling import spell_entry
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA = os.path.join(ROOT, "data", "elections.json")
@@ -62,7 +63,9 @@ SCHEMA = """{
 RULES = """Rules: be factual and neutral; check everything with current sources found by web search, do not rely on memory.
 Do not use or cite Wikipedia: use pollsters' own releases, official election authorities and news outlets.
 Plain text only (no HTML, no markdown). Keep pos/auth placements consistent with standard classifications and
-unchanged unless the party has clearly moved. Return ONLY the JSON, no commentary."""
+unchanged unless the party has clearly moved. Write every name with its native spelling and accents
+(Pedro Sánchez, Jean-Luc Mélenchon, Jarosław Kaczyński, Aleksandar Vučić), even if the current entry lacks them,
+but keep each contender's "short" exactly as it is. Return ONLY the JSON, no commentary."""
 
 
 def region(code):
@@ -488,6 +491,7 @@ def main():
         e["status"] == "result" and (today - dt.date.fromisoformat(e["date"])).days > 60)]
     for e in items:
         e["region"] = region(e["code"])
+        spell_entry(e)   # native spellings (Sánchez, Mélenchon); never touches short/id, so polls still line up
     items.sort(key=lambda e: (e["date"], not e.get("major")))
     data["elections"] = items
     data["updated"] = dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
