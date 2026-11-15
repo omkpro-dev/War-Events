@@ -27,6 +27,25 @@ MARKET_RX = re.compile(
     r"\b(stocks?|shares?|wall street|nasdaq|dow|s&p|ftse|nikkei|hang seng|stoxx|bonds?|yields?|treasur(?:y|ies)|"
     r"oil|brent|crude|dollar|euro|yen|sterling|currenc(?:y|ies)|bitcoin|crypto(?:currenc(?:y|ies))?)\b", re.I)
 NUM_RX = re.compile(r"\d[\d.,]*%?")
+# Not market reports: questions, explainers, forecasts, strategist views, history pieces. Left out of the roundup.
+OPINION_RX = re.compile(
+    r"\?|\b(why|how|what|could|might|may|should|would|risks?|strategists?|analysts? (?:say|see|warn)|outlook|explainer|"
+    r"analysis|opinion|lessons?|history|matters|guide|to buy|ways to|19\d\d)\b", re.I)
+# Not articles: quote pages and topic hubs that searches return, and markets outside Economy (no India or Pakistan).
+JUNK_RX = re.compile(
+    r"stock price &|latest news$|not available at this time|stock grades|\bindustry$|^prediction:|^\d+ [^,]*stocks?\b|"
+    r"\bindia|\bindian\b|pakistan|sensex|nifty", re.I)
+MIN_WORDS = 2   # a single word is a tag page, not a report
+# A line must report a move (or a level held), not a background fact.
+MOVE_RX = re.compile(
+    r"\b(rose|rises?|risen|fell|falls?|fallen|gain(?:ed|s)?|lost|loses?|climb(?:ed|s)?|slid|slides?|slip(?:ped|s)?|"
+    r"drop(?:ped|s)?|jump(?:ed|s)?|edged|rall(?:ied|ies|y)|slump(?:ed|s)?|surg(?:ed|es)|tumbl(?:ed|es)|soar(?:ed|s)|"
+    r"sank|sinks?|stead(?:y|ied|ies)|flat|unchanged|firmed|weakened|strengthened|eased|advanced|declined|retreated|rebounded|"
+    r"hit|closed|ended|traded)\b", re.I)
+# Market reports from the wires and market desks first; other outlets fill the rest.
+WIRE_ORDER = ["Reuters", "AP", "Bloomberg", "CNBC", "MarketWatch", "Financial Times", "The Wall Street Journal",
+              "Barron's", "Nikkei Asia"]
+PROMPT_V = "2"   # part of the cache key: a new prompt writes a new roundup
 
 
 def log(*a):
@@ -49,25 +68,32 @@ def select_articles(articles, now, hours=24, limit=60):
     rows = []
     for a in articles:
         t = _time(a.get("time"))
-        if t is None or not MARKET_RX.search(a.get("title") or ""):
+        title = a.get("title") or ""
+        if (t is None or not MARKET_RX.search(title) or OPINION_RX.search(title) or JUNK_RX.search(title)
+                or len(title.split()) < MIN_WORDS):
             continue
         if timedelta(0) <= now - t <= timedelta(hours=hours) or (t > now and t - now < timedelta(minutes=10)):
             rows.append((t, a))
     rows.sort(key=lambda r: r[0], reverse=True)
+    rank = {o: n for n, o in enumerate(WIRE_ORDER)}
+    rows.sort(key=lambda r: rank.get(r[1].get("outlet"), len(WIRE_ORDER)))   # stable: newest first within a rank
     return [dict(a, id=f"a{n}") for n, (_, a) in enumerate(rows[:limit], 1)]
 
 
 def build_prompt(selected):
     lst = "\n".join(f"{a['id']}. {a['title']} ({a.get('outlet', '')})"
                     + (f" - {a['desc']}" if a.get("desc") else "") for a in selected)
-    return ("You write the \"Markets today\" box of a news app from the market headlines below.\n\n"
+    return ("You write the \"Markets today\" box of a news app from the market reports below.\n\n"
             f"{lst}\n\n"
-            "For each topic that the headlines clearly cover, write ONE sentence (plain, neutral). Topics: "
-            + ", ".join(TOPICS) + " (stocks = US/global equities, europe = European markets, asia = Asian markets, "
-            "bonds = yields and Treasuries, oil = oil and energy prices, currencies = dollar, euro, yen, sterling, "
-            "crypto = bitcoin and crypto). Each topic at most once; skip topics without coverage.\n"
-            "Use only facts stated in the headlines and descriptions above: no other knowledge, no guesses, no number "
-            "that is not in the cited items. Cite the ids of the items each sentence is based on.\n"
+            "For each topic the reports clearly cover, write ONE short sentence reporting one market move from the "
+            "last day: what moved, which way, and by how much when the report says (e.g. \"Wall Street fell 1.2% as "
+            "Nvidia slid.\"). Topics: " + ", ".join(TOPICS) + " (stocks = US shares, europe = European shares, "
+            "asia = shares in Japan, China and Hong Kong, South Korea, Taiwan or Australia, bonds = government bond "
+            "yields, oil = oil and gas prices, currencies = the dollar, euro, yen or sterling, crypto = bitcoin and "
+            "crypto). Each topic at most once.\n"
+            "Rules: one move per sentence, never two stories joined with \"while\" or \"and\"; no forecasts, views, "
+            "background, history or company profiles; skip a topic rather than fill it. Use only facts stated in the "
+            "items above, no other knowledge, and no number that is not in the cited items. Cite the ids used.\n"
             "Return ONLY JSON: {\"items\": [{\"topic\": \"stocks\", \"text\": \"...\", \"ids\": [\"a1\"]}]}")
 
 
@@ -92,13 +118,15 @@ def validate(items, selected):
         source = " ".join(f"{a.get('title', '')} {a.get('desc', '')}" for a in cited)
         if not _numbers(text) <= _numbers(source):
             continue
+        if not MOVE_RX.search(text):
+            continue   # a background fact, not a market move
         outlets = list(dict.fromkeys(a.get("outlet") for a in cited if a.get("outlet")))
         done[topic] = {"topic": topic, "text": text, "outlets": outlets}
     return [done[t] for t in TOPICS if t in done]
 
 
 def input_key(selected):
-    return hashlib.sha1("\n".join(a["key"] for a in selected).encode()).hexdigest()
+    return hashlib.sha1((PROMPT_V + "\n" + "\n".join(a["key"] for a in selected)).encode()).hexdigest()
 
 
 def ask(prompt):

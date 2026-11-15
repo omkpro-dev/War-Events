@@ -62,8 +62,8 @@ class MarketsTests(unittest.TestCase):
 
     def sel2(self):
         return m.select_articles([art("k1", "Wall Street fell 1.2% on Friday", 1, "Reuters"),
-                                  art("k2", "Brent crude rises to $82.5 a barrel", 2, "AP"),
-                                  art("k3", "Bitcoin steadies", 3, "Reuters")], NOW)
+                                  art("k2", "Brent crude rises to $82.5 a barrel", 2, "Reuters"),
+                                  art("k3", "Bitcoin steadies", 3, "AP")], NOW)   # wires first: Reuters, then AP
 
     def test_validate_drops_unknown_and_repeated_topics(self):
         items = [{"topic": "stocks", "text": "Wall Street fell 1.2%.", "ids": ["a1"]},
@@ -84,9 +84,9 @@ class MarketsTests(unittest.TestCase):
                  {"topic": "stocks", "text": "Wall Street fell 1.2%.", "ids": ["a1", "a3"]}]
         out = m.validate(items, self.sel2())
         self.assertEqual([i["topic"] for i in out], ["stocks", "crypto"])
-        self.assertEqual(out[0]["outlets"], ["Reuters"])
+        self.assertEqual(out[0]["outlets"], ["Reuters", "AP"])
         out2 = m.validate([{"topic": "oil", "text": "Brent rose.", "ids": ["a2", "a1"]}], self.sel2())
-        self.assertEqual(out2[0]["outlets"], ["AP", "Reuters"])
+        self.assertEqual(out2[0]["outlets"], ["Reuters"])
 
     def run_main(self, tmp, arts, key="k", ask=None):
         seen = os.path.join(tmp, "seen.json"); out = os.path.join(tmp, "markets_today.json")
@@ -140,3 +140,52 @@ class MarketsTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TighterRoundup(unittest.TestCase):
+    """Only actual moves from market reports: no opinion or history pieces, wires first, one move per line."""
+
+    def _art(self, title, outlet="Reuters", mins=30, desc=""):
+        now = m.now_utc()
+        return {"key": title, "title": title, "outlet": outlet, "desc": desc,
+                "time": (now - m.timedelta(minutes=mins)).strftime("%Y-%m-%dT%H:%M:%SZ")}
+
+    def test_opinion_and_explainer_headlines_left_out(self):
+        arts = [self._art("Why the 1973 oil crisis still matters for markets"),
+                self._art("European stocks face risk of underperformance, strategists say"),
+                self._art("Could bitcoin hit $100,000 next year?"),
+                self._art("Oil prices rise 2% on supply worries")]
+        titles = [a["title"] for a in m.select_articles(arts, m.now_utc())]
+        self.assertEqual(titles, ["Oil prices rise 2% on supply worries"])
+
+    def test_wire_market_reports_come_first(self):
+        arts = [self._art("Stocks slip as tech weighs", outlet="Yahoo Finance", mins=5),
+                self._art("Wall Street falls 1.2% as Nvidia slides", outlet="Reuters", mins=50)]
+        self.assertEqual(m.select_articles(arts, m.now_utc())[0]["outlet"], "Reuters")
+
+    def test_line_without_a_market_move_dropped(self):
+        sel = m.select_articles([self._art("Oil prices rise 2% on supply worries"),
+                                  self._art("Permian basin output drives US oil growth")], m.now_utc())
+        items = [{"topic": "oil", "text": "US oil growth is being driven by the Permian Basin.", "ids": ["a2"]},
+                 {"topic": "bonds", "text": "Oil prices rose 2% on supply worries.", "ids": ["a1"]}]
+        out = m.validate(items, sel)
+        self.assertEqual([i["topic"] for i in out], ["bonds"])
+
+    def test_prompt_asks_for_moves_only_and_names_asia_markets(self):
+        p = m.build_prompt([])
+        self.assertIn("one market move", p)
+        self.assertIn("Japan", p)
+        self.assertNotIn("India", p.split("asia =")[1].split(",")[0] if "asia =" in p else "")
+
+    def test_prompt_change_forces_a_new_roundup(self):
+        self.assertNotEqual(m.input_key([]), m.hashlib.sha1(b"").hexdigest())
+
+
+class JunkPagesLeftOut(unittest.TestCase):
+    def test_quote_pages_topic_hubs_and_india_left_out(self):
+        arts = [art("q1", "1605ta.tw - | Stock Price & Latest News", 1),
+                art("q2", "Stock Earnings information is not available at this time.", 1),
+                art("q3", "Oil and gas industry", 1, "AP"),
+                art("q4", "AI Retreat Fuels India Stock Comeback in Great Rotation Trade", 1, "Bloomberg"),
+                art("ok", "Bitcoin Tumbles to Three-Month Low as Liquidations Accelerate", 1, "Bloomberg")]
+        self.assertEqual([a["key"] for a in m.select_articles(arts, NOW)], ["ok"])
