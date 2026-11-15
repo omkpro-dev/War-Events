@@ -74,6 +74,10 @@ jobs:
           AWS_DEFAULT_REGION: auto
         run: |
           if [ -z "$R2_ACCOUNT_ID" ] || [ -z "$AWS_ACCESS_KEY_ID" ]; then echo "R2 secrets not set; skipping"; exit 0; fi
+          R2_ACCOUNT_ID=$(printf %s "$R2_ACCOUNT_ID" | tr -d '[:space:]')
+          if ! printf %s "$R2_ACCOUNT_ID" | grep -Eq '^[0-9a-f]{32}$'; then
+            echo "R2_ACCOUNT_ID is not a 32-character account id (it is ${#R2_ACCOUNT_ID} characters); skipping"; exit 1
+          fi
           cd "$GITHUB_WORKSPACE/war-feed/out"
           for f in war_feed.json war_control.json; do
             [ -f "$f" ] || continue
