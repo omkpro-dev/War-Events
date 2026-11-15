@@ -134,3 +134,16 @@ class EconomyScore(unittest.TestCase):
         self.assertGreater(prompt_version("economy"), 12)
         self.assertEqual(parse_reply('{"summary":"s"}', "economy")["v"], prompt_version("economy"))
         self.assertEqual(parse_reply('{"summary":"s"}', "war")["v"], 12)
+
+
+class EconomyScoreIsInternational(unittest.TestCase):
+    """Economy is international news: a story that matters mainly inside one country scores low."""
+
+    def test_prompt_rewards_international_and_marks_domestic_low(self):
+        p = system_prompt("economy")
+        self.assertIn("international", p)
+        self.assertIn("mainly inside one country", p)
+
+    def test_rescored_with_new_guide(self):
+        from enrich_stories import prompt_version
+        self.assertEqual(prompt_version("economy"), 14)
