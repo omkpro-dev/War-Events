@@ -42,3 +42,18 @@ class SourcingRules(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class StateMediaCountOnce(unittest.TestCase):
+    """Economy: outlets run by the same government count as one, so state media can't make a story on their own."""
+
+    def test_one_governments_outlets_count_once_for_economy(self):
+        self.assertFalse(passes_strict_rule(["Xinhua", "China Daily", "CGTN"]))
+        self.assertFalse(passes_strict_rule(["TASS", "Xinhua", "China Daily"]))
+
+    def test_state_outlet_still_counts_with_independent_ones(self):
+        self.assertTrue(passes_strict_rule(["Xinhua", "Reuters", "Caixin Global"]))
+        self.assertTrue(passes_strict_rule(["TASS", "Xinhua", "Reuters"]))
+
+    def test_war_rule_unchanged(self):
+        self.assertTrue(passes_war_rule(["Xinhua", "China Daily", "CGTN"]))

@@ -23,7 +23,7 @@ concurrency:
 jobs:
   update:
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 12   # 62 outlets read one after another, plus the headline check; runs are 20 min apart
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5

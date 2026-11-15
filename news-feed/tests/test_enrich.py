@@ -103,3 +103,33 @@ class EnrichTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class EconomyScore(unittest.TestCase):
+    """The 0-10 score after the summary, as War's "geo" score: how much a story is economy news."""
+
+    def test_parse_reply_reads_econ_score(self):
+        self.assertEqual(parse_reply('{"summary":"s","econ":8}', "economy")["econ"], 8)
+        self.assertEqual(parse_reply('{"summary":"s","econ":42}', "economy")["econ"], 10)
+        self.assertEqual(parse_reply('{"summary":"s","econ":"x"}', "economy")["econ"], 10)
+        self.assertEqual(parse_reply('{"summary":"s"}', "economy")["econ"], 10)
+
+    def test_low_econ_score_dropped_from_economy(self):
+        self.assertFalse(keep_story({"econ": 3}, "economy"))
+        self.assertTrue(keep_story({"econ": 7}, "economy"))
+        self.assertTrue(keep_story({}, "economy"))   # cached before the score existed: kept until re-asked
+
+    def test_scores_only_apply_to_their_own_section(self):
+        self.assertTrue(keep_story({"econ": 1, "geo": 9}, "war"))
+        self.assertTrue(keep_story({"econ": 9, "geo": 1}, "economy"))
+
+    def test_economy_prompt_asks_for_econ_score(self):
+        self.assertIn('"econ"', system_prompt("economy"))
+        self.assertNotIn('"econ"', system_prompt("war"))
+
+    def test_economy_reasked_but_war_cache_kept(self):
+        from enrich_stories import prompt_version
+        self.assertEqual(prompt_version("war"), 12)
+        self.assertGreater(prompt_version("economy"), 12)
+        self.assertEqual(parse_reply('{"summary":"s"}', "economy")["v"], prompt_version("economy"))
+        self.assertEqual(parse_reply('{"summary":"s"}', "war")["v"], 12)

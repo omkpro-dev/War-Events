@@ -18,8 +18,10 @@ KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 MODEL = os.environ.get("CLAUDE_MODEL", "claude-haiku-5-5")
 MAX_NEW = int(os.environ.get("ENRICH_MAX", "20"))  # cap API calls per run
 BUDGET_S = float(os.environ.get("ENRICH_BUDGET_S", "150"))   # no new Claude asks after this many seconds (job timeout is 8 min)
-PROMPT_V = 12                                        # bump to re-ask Claude for every cached story
+PROMPT_V = 12                                        # bump to re-ask Claude for every cached war story
+ECONOMY_PROMPT_V = 13                                # the same for Economy (its own cache, so War is not re-asked)
 MIN_GEO = int(os.environ.get("MIN_GEO", "7"))       # stories Claude scores below this (0-10) are dropped from the site
+MIN_ECON = int(os.environ.get("MIN_ECON", "7"))     # the same for Economy, on its "econ" score
 MAX_FETCHES = 6                                      # page reads per story, failed ones included (each can take 15 s)
 SECTIONS = ("war", "economy")
 UA = {"User-Agent": "Mozilla/5.0 (WarEvents enrich bot)"}
@@ -73,6 +75,7 @@ ECONOMY_JSON = """Return ONLY a JSON object, no prose, with:
 - "summary": 50 to 100 plain words in one or two short paragraphs separated by a blank line: what happened, who is affected, and the market impact, in your own words. Neutral and factual, no speculation beyond the reporting.
 - "points": always an empty list [].
 - "impact_points": exactly 2 sentences on who is affected and how. Each begins with the main country, group, company or sector affected, then what happens to it. Plain English, max 20 words each, grounded in the reporting.
+- "econ": integer 0-10, how much this is economy and markets news. 8-10 = central banks and rates, inflation, jobs, GDP and recessions, market moves, major company results, deals or failures, trade and tariffs, energy and commodity prices. 5-7 = business or policy news with a clear economic effect. 0-4 = technology, science or space news with no market angle, product launches and reviews, stock tips and price targets, personal finance advice, lifestyle and personal stories, sport and celebrity, politics or war with no economic angle. Judge the substance, not the keywords: a company or a big number in the headline does not make it economy news.
 - "country": the ISO 3166-1 alpha-2 uppercase code of the country the story is mainly about. When no place is given, use the country of the institution, company, regulator or market named (Federal Reserve -> US, University of Cambridge -> GB). Use "EU" for EU institutions as a bloc.
 - "actors": the economic impact of THIS story on each country, worked out from what the articles actually say.
   Step 1, WHO: every country directly involved (the country whose institution, company or market acts, the countries trading, taxed, sanctioned or lending), then any country the articles say is clearly affected. At least 1; max 6; most affected first. Use the country, not a group.
@@ -170,6 +173,10 @@ def parse_reply(text, section):
         geo = max(0, min(10, int(data.get("geo", 10))))
     except Exception:
         geo = 10
+    try:
+        econ = max(0, min(10, int(data.get("econ", 10))))
+    except Exception:
+        econ = 10
     sev = data.get("severity")
     severity = sev if isinstance(sev, int) and not isinstance(sev, bool) and 1 <= sev <= 5 else None
     country = str(data.get("country") or "").strip().upper()
@@ -179,14 +186,23 @@ def parse_reply(text, section):
             return []
         out = [re.sub(r"^[\s\-\u2022*]+", "", str(x)).strip() for x in v]
         return [x for x in out if x][:n]
-    return {"v": PROMPT_V, "headline": re.sub(r"\s+", " ", str(data.get("headline", ""))).strip().strip("\"\u201c\u201d"), "summary": str(data.get("summary", "")).strip(), "actors": actors, "geo": geo, "severity": severity,
+    return {"v": prompt_version(section), "econ": econ, "headline": re.sub(r"\s+", " ", str(data.get("headline", ""))).strip().strip("\"\u201c\u201d"), "summary": str(data.get("summary", "")).strip(), "actors": actors, "geo": geo, "severity": severity,
             "points": bullets(data.get("points"), 3), "impact_points": bullets(data.get("impact_points"), 4),
             "country": country}
 
 
-def keep_story(entry, section):
+def prompt_version(section):
     check_section(section)
-    return section == "economy" or entry.get("geo", 10) >= MIN_GEO
+    return ECONOMY_PROMPT_V if section == "economy" else PROMPT_V
+
+
+def keep_story(entry, section):
+    """War drops stories scored under MIN_GEO for how geopolitical they are; Economy, under MIN_ECON for how much
+    they are economy news. A story cached before its score existed counts as 10 until it is re-asked."""
+    check_section(section)
+    if section == "economy":
+        return entry.get("econ", 10) >= MIN_ECON
+    return entry.get("geo", 10) >= MIN_GEO
 
 
 def ask_claude(story):
@@ -268,7 +284,7 @@ def main(ask=None, clock=None):
         # Re-ask once for stories cached before the bullet points existed.
         # also redo summaries written without the article text once another outlet's page can be read
         notext = "not available" in cache.get(sid, {}).get("summary", "") and s.get("textUrls")
-        wants = sid not in cache or cache[sid].get("v") != PROMPT_V or notext
+        wants = sid not in cache or cache[sid].get("v") != prompt_version(SECTION) or notext
         if wants and KEY and new < MAX_NEW and not out_of_time and clock() - start >= BUDGET_S:
             out_of_time = True   # the rest wait for the next run; stories already cached still go out
             print("time budget of %.0f s used; no more asks this run" % BUDGET_S)
@@ -308,7 +324,7 @@ def main(ask=None, clock=None):
     live = {s.get("id") for s in stories}
     before = len(stories)
     stories = [s for s in stories if keep_story(cache.get(s.get("id"), {}), SECTION)]
-    print("dropped as not geopolitical:", before - len(stories))
+    print("dropped as not economy news:" if SECTION == "economy" else "dropped as not geopolitical:", before - len(stories))
     if SECTION == "economy":
         n = len(stories)
         stories = [s for s in stories if s.get("place")]   # every story needs a pin

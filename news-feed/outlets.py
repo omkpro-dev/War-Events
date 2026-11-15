@@ -18,10 +18,17 @@ TIER2 = {   # respected regional / specialist outlets
     "Africanews", "Meduza", "The Moscow Times", "Ukrainska Pravda", "The New Arab", "Radio Dabanga",
     "Premium Times", "Daily Maverick", "CNA", "The Irrawaddy", "Rappler", "El País", "Balkan Insight",
     "OC Media", "Euronews",
+    # business and economics newsrooms (Economy section)
+    "CNBC", "MarketWatch", "Barron's", "Fortune", "Axios", "The Telegraph", "The Globe and Mail", "Financial Post",
+    "CBC News", "BNN Bloomberg", "Australian Financial Review", "ABC News (Australia)", "The Economic Times", "Mint",
+    "Business Standard", "The Hindu BusinessLine", "Caixin Global", "The Business Times", "Kyodo News", "NHK World",
+    "The Korea Herald", "Focus Taiwan", "The Bell",
 }
 # Tier 3: everything else, e.g. The Hindu, Dawn, Daily Sabah, DefenceTalk, and the more partisan or
 # single-country outlets: Iran International, Jerusalem Post, Taipei Times, Mexico News Daily,
-# Buenos Aires Times, Notes from Poland.
+# Buenos Aires Times, Notes from Poland; and in Economy, high-volume or advice-heavy business sites (Forbes,
+# Business Insider, Yahoo Finance, Fox Business, City AM, Moneycontrol), smaller regional titles, and state media
+# (Xinhua, China Daily, TASS).
 
 WEIGHT = {1: 4.0, 2: 3.0, 3: 1.5}   # credit an outlet adds to a story's score
 CAP = {1: None, 2: 5, 3: 2}         # max items per outlet in one list (None = no limit)
