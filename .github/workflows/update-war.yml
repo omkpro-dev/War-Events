@@ -75,7 +75,7 @@ jobs:
         run: |
           if [ -z "$R2_ACCOUNT_ID" ] || [ -z "$AWS_ACCESS_KEY_ID" ]; then echo "R2 secrets not set; skipping"; exit 0; fi
           # Accepts the bare 32-character account id or the whole endpoint address.
-          R2_ACCOUNT_ID=$(printf %s "$R2_ACCOUNT_ID" | tr -d '[:space:]' | sed -e 's#^https\?://##' -e 's#\.r2\.cloudflarestorage\.com.*$##' -e 's#/.*$##')
+          R2_ACCOUNT_ID=$(printf %s "$R2_ACCOUNT_ID" | tr -d '[:space:]' | sed -E -e 's#^https?://##' -e 's#[.]r2[.]cloudflarestorage[.]com.*$##' -e 's#/.*$##')
           if ! printf %s "$R2_ACCOUNT_ID" | grep -Eq '^[0-9a-f]{32}$'; then
             echo "R2_ACCOUNT_ID is not a 32-character account id (it is ${#R2_ACCOUNT_ID} characters); skipping"; exit 1
           fi
