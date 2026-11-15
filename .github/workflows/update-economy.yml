@@ -11,6 +11,7 @@ on:
       - "news-feed/enrich_stories.py"
       - "news-feed/sourcing.py"
       - "news-feed/gazetteer.py"
+      - "news-feed/markets_today.py"
       - ".github/workflows/update-economy.yml"
 
 permissions:
@@ -36,7 +37,7 @@ jobs:
           if git ls-remote --exit-code --heads origin economy-data >/dev/null 2>&1; then
             git fetch --depth=1 origin economy-data
             # One file at a time: a file missing on the branch must not stop the others being restored.
-            for f in economy_developments.json news-feed/economy_seen.json news-feed/economy_relevance.json news-feed/economy_enrich_cache.json news-feed/economy_studies.json news-feed/economy_study_check.json; do
+            for f in economy_developments.json news-feed/economy_seen.json news-feed/economy_relevance.json news-feed/economy_enrich_cache.json news-feed/economy_studies.json news-feed/economy_study_check.json markets_today.json news-feed/markets_cache.json; do
               git checkout FETCH_HEAD -- "$f" 2>/dev/null || true
             done
             git reset -q
@@ -56,10 +57,15 @@ jobs:
           ENRICH_CACHE_PATH: news-feed/economy_enrich_cache.json
           ENRICH_MAX: "12"
           ENRICH_BUDGET_S: "240"   # 12 summaries; fetching takes ~5 of the job's 12 minutes
+      - name: Markets today (Claude)
+        run: python news-feed/markets_today.py
+        continue-on-error: true
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
       - name: Publish to economy-data branch (one commit, no history build-up)
         run: |
           mkdir -p /tmp/pub && cd "$GITHUB_WORKSPACE"
-          for f in economy_developments.json news-feed/economy_seen.json news-feed/economy_relevance.json news-feed/economy_enrich_cache.json news-feed/economy_studies.json news-feed/economy_study_check.json; do
+          for f in economy_developments.json news-feed/economy_seen.json news-feed/economy_relevance.json news-feed/economy_enrich_cache.json news-feed/economy_studies.json news-feed/economy_study_check.json markets_today.json news-feed/markets_cache.json; do
             [ -f "$f" ] && mkdir -p "/tmp/pub/$(dirname "$f")" && cp "$f" "/tmp/pub/$f"
           done
           cd /tmp/pub

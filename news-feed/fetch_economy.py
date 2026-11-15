@@ -650,7 +650,8 @@ def qualify(a, now):
     if cover and not cover.startswith("https://"):
         cover = None
     return {"key": url_key(url), "url": url, "title": title, "outlet": a.get("outlet") or outlet_for(url),
-            "time": iso(t), "cover": cover, "place": place["label"] if place else "", "placeFrom": place_from, "topics": topics}
+            "time": iso(t), "cover": cover, "place": place["label"] if place else "", "placeFrom": place_from, "topics": topics,
+            "desc": desc}
 
 
 TOPIC_DEFINITION = (

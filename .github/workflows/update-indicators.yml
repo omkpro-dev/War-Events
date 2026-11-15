@@ -1,0 +1,56 @@
+name: Update indicators
+
+on:
+  workflow_dispatch:         # the owner's external cron calls this twice a day (about 07:00 and 19:00 UTC)
+  push:
+    branches: [main]         # a feature-branch push must never rebuild or force-push indicators-data
+    paths:
+      - "news-feed/fetch_indicators.py"
+      - "news-feed/indicators_core.py"
+      - "news-feed/indicator_sources.py"
+      - "news-feed/indicator_calendar.json"
+      - ".github/workflows/update-indicators.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: indicators
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Previous data (indicators-data branch)
+        run: |
+          # A source that fails keeps the previous file's value, so start from the last published file.
+          if git ls-remote --exit-code --heads origin indicators-data >/dev/null 2>&1; then
+            git fetch --depth=1 origin indicators-data
+            git checkout FETCH_HEAD -- indicators.json 2>/dev/null || true
+            git reset -q
+          fi
+      - name: Fetch indicators
+        run: python news-feed/fetch_indicators.py
+        env:
+          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}   # optional: without it the job reads fredgraph.csv
+      - name: Publish to indicators-data branch (one commit, no history build-up)
+        run: |
+          mkdir -p /tmp/pub && cd "$GITHUB_WORKSPACE"
+          for f in indicators.json; do
+            [ -f "$f" ] && mkdir -p "/tmp/pub/$(dirname "$f")" && cp "$f" "/tmp/pub/$f"
+          done
+          cd /tmp/pub
+          echo '{"git":{"deploymentEnabled":false}}' > vercel.json   # data only: Vercel skips this branch
+          git init -q
+          git config user.name "news-bot"
+          git config user.email "news-bot@users.noreply.github.com"
+          git checkout -q -b indicators-data
+          git add -A
+          git commit -q -m "indicators-data $(date -u +%FT%TZ)"
+          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" indicators-data
