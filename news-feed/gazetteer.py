@@ -5,6 +5,8 @@ Countries pin to their capital. A city, waterway or region named in a headline
 and the United States ranks lowest so "US sanctions Iran" lands in Iran.
 Add places freely: (alias text is matched case-sensitively, whole words only).
 """
+import json
+import os
 import re
 
 EU, AS, ME, AF, SA, NA, OC = "EUROPE", "ASIA", "MIDDLE EAST", "AFRICA", "SOUTH AMERICA", "NORTH AMERICA", "OCEANIA"
@@ -249,13 +251,82 @@ def places_in(text):
     return out
 
 
-def article_place(title, desc):
+INSTITUTIONS = {
+    "Federal Reserve": "UNITED STATES", "the Fed": "UNITED STATES", "Fed": "UNITED STATES",
+    "Wall Street": "UNITED STATES", "Nasdaq": "UNITED STATES", "Dow Jones": "UNITED STATES",
+    "S&P 500": "UNITED STATES", "SEC": "UNITED STATES", "US Treasury": "UNITED STATES",
+    "Bank of England": "UNITED KINGDOM", "FTSE": "UNITED KINGDOM", "London Stock Exchange": "UNITED KINGDOM",
+    "European Central Bank": "EUROPEAN UNION", "ECB": "EUROPEAN UNION",
+    "European shares": "EUROPEAN UNION", "European stocks": "EUROPEAN UNION", "European markets": "EUROPEAN UNION",
+    "Stoxx": "EUROPEAN UNION",
+    "Bank of Japan": "JAPAN", "Nikkei": "JAPAN",
+    "People's Bank of China": "CHINA", "People\u2019s Bank of China": "CHINA", "PBOC": "CHINA",
+    "Hang Seng": "HONG KONG, CHINA",
+    "Reserve Bank of India": "INDIA", "Sensex": "INDIA", "Nifty": "INDIA",
+    "Bundesbank": "GERMANY", "DAX": "GERMANY",
+    "IMF": "UNITED STATES", "World Bank": "UNITED STATES",
+}
+_INST_RX = [(re.compile(r"(?<!\w)" + re.escape(a) + r"(?!\w)"), label)
+            for a, label in sorted(INSTITUTIONS.items(), key=lambda x: -len(x[0]))]
+
+
+def institution_place(text):
+    """The country of the first institution named in text (longest alias wins), or None."""
+    if not text:
+        return None
+    best = None
+    for rx, label in _INST_RX:
+        m = rx.search(text)
+        if m and (best is None or m.start() < best[0]):
+            best = (m.start(), label)
+    return PLACES[best[1]] if best else None
+
+
+# country_iso2.json names that differ from the PLACES labels.
+_ISO_NAME_TO_LABEL = {"Netherlands": "NETHERLANDS", "Kingdom of the Netherlands": "NETHERLANDS",
+                      "Czech Republic": "CZECHIA", "Bosnia and Herzegovina": "BOSNIA"}
+# Codes whose pin is a place inside a country rather than the country itself.
+_ISO2_EXCEPTIONS = {"HK": "HONG KONG, CHINA"}
+_ISO2 = {}
+
+
+def _load_iso2():
+    try:
+        names = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "country_iso2.json"),
+                               encoding="utf-8"))
+    except Exception:
+        names = {}
+    by_lower = {k.lower(): k for k in PLACES}
+    for name, code in names.items():
+        label = _ISO_NAME_TO_LABEL.get(name) or by_lower.get(name.lower())
+        if label in PLACES and ", " not in label and code not in _ISO2:
+            _ISO2[code] = label
+    _ISO2["EU"] = "EUROPEAN UNION"
+    for code, label in _ISO2_EXCEPTIONS.items():
+        if label in PLACES:
+            _ISO2[code] = label
+
+
+_load_iso2()
+
+
+def place_for_iso2(code):
+    """The PLACES entry for a two-letter country code ("EU" is the European Union), or None."""
+    label = _ISO2.get((code or "").upper())
+    return PLACES.get(label) if label else None
+
+
+def article_place(title, desc, institutions=False):
     """Where one article happened. The headline decides; the description may sharpen it to a city or region,
     but only inside a country the headline names ("Russian drones hit Ukraine" + "in Kharkiv" -> KHARKIV),
     or to a waterway/contested spot. A city in some other country (talks "in Abu Dhabi") never moves it."""
     t, d = locate(title), locate(desc)
     if not t:
-        return d
+        if not institutions:
+            return d
+        # Economy order: headline place, headline institution ("Fed holds rates"), description place,
+        # description institution. A country the description only mentions in passing never beats the headline.
+        return institution_place(title) or d or institution_place(desc)
     if d and d["spec"] >= 2 and d["spec"] > t["spec"]:
         if ", " not in d["label"] or country_of(d["label"]) in {country_of(p["label"]) for p in places_in(title)}:
             return d

@@ -1,0 +1,72 @@
+name: Update economy stories
+
+on:
+  schedule:
+    - cron: "*/20 * * * *"   # every 20 minutes (GitHub may delay runs a little)
+  workflow_dispatch:         # "Run workflow" button
+  push:
+    branches: [main]        # a feature-branch push must never rebuild or force-push economy-data
+    paths:
+      - "news-feed/fetch_economy.py"
+      - "news-feed/enrich_stories.py"
+      - "news-feed/sourcing.py"
+      - "news-feed/gazetteer.py"
+      - ".github/workflows/update-economy.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: economy-feed
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Previous data (economy-data branch)
+        run: |
+          # The bot's files live on the economy-data branch (one commit, no history build-up).
+          # Until that branch exists, the run starts from empty memory files.
+          if git ls-remote --exit-code --heads origin economy-data >/dev/null 2>&1; then
+            git fetch --depth=1 origin economy-data
+            # One file at a time: a file missing on the branch must not stop the others being restored.
+            for f in economy_developments.json news-feed/economy_seen.json news-feed/economy_relevance.json news-feed/economy_enrich_cache.json; do
+              git checkout FETCH_HEAD -- "$f" 2>/dev/null || true
+            done
+            git reset -q
+          fi
+      - name: Fetch stories
+        run: python news-feed/fetch_economy.py
+        env:
+          # No NewsAPI/GNews keys: their free quota is War's; Economy leans on the free feeds.
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}   # Haiku yes/no relevance check on new headlines
+      - name: Summaries + impact (Claude)
+        run: python news-feed/enrich_stories.py
+        continue-on-error: true
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          SECTION: economy
+          OUTPUT_PATH: economy_developments.json
+          ENRICH_CACHE_PATH: news-feed/economy_enrich_cache.json
+          ENRICH_MAX: "8"
+      - name: Publish to economy-data branch (one commit, no history build-up)
+        run: |
+          mkdir -p /tmp/pub && cd "$GITHUB_WORKSPACE"
+          for f in economy_developments.json news-feed/economy_seen.json news-feed/economy_relevance.json news-feed/economy_enrich_cache.json; do
+            [ -f "$f" ] && mkdir -p "/tmp/pub/$(dirname "$f")" && cp "$f" "/tmp/pub/$f"
+          done
+          cd /tmp/pub
+          echo '{"git":{"deploymentEnabled":false}}' > vercel.json   # data only: Vercel skips this branch
+          git init -q
+          git config user.name "news-bot"
+          git config user.email "news-bot@users.noreply.github.com"
+          git checkout -q -b economy-data
+          git add -A
+          git commit -q -m "economy-data $(date -u +%FT%TZ)"
+          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" economy-data

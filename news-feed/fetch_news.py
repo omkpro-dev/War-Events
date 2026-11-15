@@ -17,6 +17,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 from gazetteer import PLACES, article_place, country_of  # noqa: E402
 import outlets as ranking  # noqa: E402  (outlet tiers + per-outlet caps)
+from sourcing import passes_war_rule  # noqa: E402  (3 different outlets, or 2 top-tier)
 
 ROOT = os.path.dirname(HERE)
 OUTPUT = os.environ.get("OUTPUT_PATH") or os.path.join(ROOT, "key_developments.json")
@@ -34,7 +35,7 @@ BREAK_OUTLETS = 5      # ...at least this many different outlets...
 BREAK_MAJOR = 2        # ...of which at least this many are major (tier 1-2) newsrooms
 BREAK_BOOST = 3.0      # breaking stories rank as if this many times more important (and sit at the top)
 FRESH_HALF_LIFE = 18   # hours: how fast an older story gives up its place to newer ones
-MIN_SCORE = 6          # outlet credit (tier 1 = 4, tier 2 = 3, tier 3 = 1.5 each), +2 if a major outlet, +topic strength (max 4)
+MIN_SCORE = 6          # outlet credit (tier 1 = 4, tier 2 = 3, tier 3 = 1.5 each), +2 if a major outlet, +topic strength (max 4); the outlet rule (sourcing.passes_war_rule) is applied as well
 USE_COVERS = os.environ.get("USE_COVERS", "0") == "1"   # outlets' photos are off: only our own map, flags and emblems are shown
 NEWSAPI_KEY = os.environ.get("NEWSAPI_KEY", "").strip()
 GNEWS_KEY = os.environ.get("GNEWS_KEY", "").strip()
@@ -756,6 +757,12 @@ def removed(s, rules):
     return any(p in head for p in rules["phrases"])
 
 
+def keep(stories, rules):
+    """The story filter: score, the War outlet rule (3 different outlets, or 2 top-tier) and remove.txt."""
+    return [s for s in stories if s["score"] >= MIN_SCORE and passes_war_rule(s["outlets"])
+            and not removed(s, rules)]
+
+
 def load_json(path, default):
     try:
         with open(path, encoding="utf-8") as f:
@@ -820,7 +827,7 @@ def main():
     rules = load_remove()
     stories = [build_story(g, now) for g in cluster(recent)]
     carry_ids(stories, load_json(OUTPUT, []))
-    stories = [s for s in stories if s["score"] >= MIN_SCORE and not removed(s, rules)]
+    stories = keep(stories, rules)
     # Stories Claude already judged not geopolitical (enrich_stories.py drops them later anyway)
     # must not take one of the slots, or fresh stories get squeezed out.
     try:

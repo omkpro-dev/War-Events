@@ -5,6 +5,7 @@ on:
     - cron: "*/5 * * * *"   # every 5 minutes (GitHub may delay runs a little)
   workflow_dispatch:        # "Run workflow" button
   push:
+    branches: [main]
     paths:
       - "news-feed/remove.txt"
       - "news-feed/*.py"
