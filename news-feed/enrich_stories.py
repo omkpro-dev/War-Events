@@ -196,15 +196,28 @@ def parse_reply(text, section):
             "country": country}
 
 
+MAX_STUDIES_SHOWN = 5   # Economy shows at most this many studies, newest first, among those that passed the score
+
+
+def cap_studies(stories):
+    """Keep the newest MAX_STUDIES_SHOWN studies (fetch_economy.py passes more candidates, so a study scored too low
+    leaves room for the next one); news stories are untouched."""
+    keep = {s["id"] for s in sorted((s for s in stories if s.get("kind") == "study"),
+                                     key=lambda s: s.get("time", ""), reverse=True)[:MAX_STUDIES_SHOWN]}
+    return [s for s in stories if s.get("kind") != "study" or s["id"] in keep]
+
+
 def prompt_version(section):
     check_section(section)
     return ECONOMY_PROMPT_V if section == "economy" else PROMPT_V
 
 
-def keep_story(entry, section):
+def keep_story(entry, section, study=False):
     """War drops stories scored under MIN_GEO for how geopolitical they are; Economy, under MIN_ECON for how much
     they are economy news. A story cached before its score existed counts as 10 until it is re-asked."""
     check_section(section)
+    if study and "econ" not in entry:
+        return False   # a study (one source, no outlet rule) waits until it is scored
     if section == "economy":
         return entry.get("econ", 10) >= MIN_ECON
     return entry.get("geo", 10) >= MIN_GEO
@@ -328,9 +341,10 @@ def main(ask=None, clock=None):
             apply_country(s, e.get("country"))
     live = {s.get("id") for s in stories}
     before = len(stories)
-    stories = [s for s in stories if keep_story(cache.get(s.get("id"), {}), SECTION)]
+    stories = [s for s in stories if keep_story(cache.get(s.get("id"), {}), SECTION, study=s.get("kind") == "study")]
     print("dropped as not economy news:" if SECTION == "economy" else "dropped as not geopolitical:", before - len(stories))
     if SECTION == "economy":
+        stories = cap_studies(stories)
         n = len(stories)
         stories = [s for s in stories if s.get("place")]   # every story needs a pin
         print("dropped for no place:", n - len(stories))

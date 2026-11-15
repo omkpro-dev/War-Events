@@ -147,3 +147,29 @@ class EconomyScoreIsInternational(unittest.TestCase):
     def test_rescored_with_new_guide(self):
         from enrich_stories import prompt_version
         self.assertEqual(prompt_version("economy"), 15)
+
+
+class StudiesWaitForTheirScore(unittest.TestCase):
+    """A study has no outlet rule, so it is only shown once the summary step has scored it."""
+
+    def test_unscored_study_held_back(self):
+        self.assertFalse(keep_story({}, "economy", study=True))
+
+    def test_scored_study_follows_the_cut_off(self):
+        self.assertTrue(keep_story({"econ": 8}, "economy", study=True))
+        self.assertFalse(keep_story({"econ": 4}, "economy", study=True))
+
+    def test_unscored_news_story_still_shown(self):
+        self.assertTrue(keep_story({}, "economy"))
+
+
+class StudyCap(unittest.TestCase):
+    def test_at_most_five_studies_after_scoring_newest_first(self):
+        from enrich_stories import cap_studies, MAX_STUDIES_SHOWN
+        items = [{"id": "auto-1"}] + [{"id": "study-%d" % i, "kind": "study", "time": "2026-11-%02dT10:00:00Z" % (i + 1)} for i in range(8)]
+        out = cap_studies(items)
+        studies = [s for s in out if s.get("kind") == "study"]
+        self.assertEqual(MAX_STUDIES_SHOWN, 5)
+        self.assertEqual(len(studies), 5)
+        self.assertEqual({s["id"] for s in studies}, {"study-7", "study-6", "study-5", "study-4", "study-3"})   # the newest five, in feed order
+        self.assertIn({"id": "auto-1"}, out)

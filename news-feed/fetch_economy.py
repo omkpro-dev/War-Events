@@ -932,7 +932,7 @@ DROPPED_TLDS = (".in", ".pk")
 # step's 0-10 economy score (enrich_stories.py) still applies. Pinned where the study is about, else at the
 # institution's home.
 STUDY_DAYS = 7          # a study stays this long
-MAX_STUDIES = 5         # studies shown at once, newest first, alongside the news stories
+MAX_STUDIES = 10        # study candidates passed on; the summary step shows the newest 5 that pass its score
 STUDY_GN = ("https://news.google.com/rss/search?q=site:{}+(report+OR+study+OR+outlook+OR+survey+OR+%22working+paper%22"
             "+OR+analysis)+when:7d&hl=en-US&gl=US&ceid=US:en")
 STUDY_SOURCES = [   # (name, feed, home country)
