@@ -69,6 +69,21 @@ jobs:
           git add -A
           git commit -q -m "wire-data $(date -u +%FT%TZ)"
           git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" wire-data
+      - name: Copy to Cloudflare R2 (the app's first source; skipped until the R2 secrets exist)
+        continue-on-error: true
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: auto
+        run: |
+          if [ -z "$R2_ACCOUNT_ID" ] || [ -z "$AWS_ACCESS_KEY_ID" ]; then echo "R2 secrets not set; skipping"; exit 0; fi
+          cd /tmp/pub
+          for f in latest_reports.json wire_ticker.json; do
+            [ -f "$f" ] || continue
+            aws s3 cp "$f" "s3://war-events-data/wire-data/$f" --endpoint-url "https://$R2_ACCOUNT_ID.r2.cloudflarestorage.com" \
+              --content-type application/json --cache-control "public, max-age=60" --only-show-errors
+          done
       - name: Refresh the CDN copy (the app reads these files from jsDelivr first)
         continue-on-error: true
         run: |
