@@ -54,7 +54,8 @@ jobs:
           SECTION: economy
           OUTPUT_PATH: economy_developments.json
           ENRICH_CACHE_PATH: news-feed/economy_enrich_cache.json
-          ENRICH_MAX: "8"
+          ENRICH_MAX: "12"
+          ENRICH_BUDGET_S: "240"   # 12 summaries; fetching takes ~5 of the job's 12 minutes
       - name: Publish to economy-data branch (one commit, no history build-up)
         run: |
           mkdir -p /tmp/pub && cd "$GITHUB_WORKSPACE"
