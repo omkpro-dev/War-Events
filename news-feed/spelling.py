@@ -43,6 +43,14 @@ SPELLING = {
     "Recep Tayyip Erdogan": "Recep Tayyip Erdoğan", "Ozgur Ozel": "Özgür Özel", "Ekrem Imamoglu": "Ekrem İmamoğlu",
 }
 
+# Surnames alone ("Sanchez called...", "Vucic's resignation") are fixed too: the last word of each full name above,
+# when it is the part that carries the accent. Surnames that are also ordinary words stay full-name only.
+NOT_ALONE = {"Junior"}
+for _plain, _native in list(SPELLING.items()):
+    _p, _n = _plain.split()[-1], _native.split()[-1]
+    if " " in _plain and _p != _n and _p not in NOT_ALONE:
+        SPELLING.setdefault(_p, _n)
+
 _RX = re.compile(r"(?<!\w)(" + "|".join(re.escape(k) for k in sorted(SPELLING, key=len, reverse=True)) + r")(?!\w)")
 TEXT_FIELDS = ("dateNote", "stakes", "winner")
 CONTENDER_FIELDS = ("name", "leader")
