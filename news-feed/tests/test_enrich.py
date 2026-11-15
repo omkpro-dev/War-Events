@@ -116,8 +116,8 @@ class EconomyScore(unittest.TestCase):
 
     def test_low_econ_score_dropped_from_economy(self):
         self.assertFalse(keep_story({"econ": 3}, "economy"))
-        self.assertTrue(keep_story({"econ": 6}, "economy"))
-        self.assertFalse(keep_story({"econ": 5}, "economy"))
+        self.assertTrue(keep_story({"econ": 7}, "economy"))
+        self.assertFalse(keep_story({"econ": 6}, "economy"))
         self.assertTrue(keep_story({}, "economy"))   # cached before the score existed: kept until re-asked
 
     def test_scores_only_apply_to_their_own_section(self):
@@ -146,4 +146,4 @@ class EconomyScoreIsInternational(unittest.TestCase):
 
     def test_rescored_with_new_guide(self):
         from enrich_stories import prompt_version
-        self.assertEqual(prompt_version("economy"), 14)
+        self.assertEqual(prompt_version("economy"), 15)

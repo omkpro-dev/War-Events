@@ -57,3 +57,23 @@ class StateMediaCountOnce(unittest.TestCase):
 
     def test_war_rule_unchanged(self):
         self.assertTrue(passes_war_rule(["Xinhua", "China Daily", "CGTN"]))
+
+
+class EconomyNeedsABigNewsroom(unittest.TestCase):
+    """Economy is big news only: besides 3 separate outlets, at least one is a top-tier international newsroom."""
+
+    def test_domestic_outlets_alone_fail(self):
+        from sourcing import passes_economy_rule
+        self.assertFalse(passes_economy_rule(["The Economic Times", "Mint", "Business Standard", "Moneycontrol"]))
+
+    def test_with_a_top_tier_newsroom_passes(self):
+        from sourcing import passes_economy_rule
+        self.assertTrue(passes_economy_rule(["Reuters", "Mint", "The Economic Times"]))
+
+    def test_still_needs_three(self):
+        from sourcing import passes_economy_rule
+        self.assertFalse(passes_economy_rule(["Reuters", "Bloomberg"]))
+
+    def test_state_media_still_count_once(self):
+        from sourcing import passes_economy_rule
+        self.assertFalse(passes_economy_rule(["Reuters", "Xinhua", "China Daily"]))

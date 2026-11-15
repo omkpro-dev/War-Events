@@ -38,3 +38,9 @@ STATE_MEDIA = {
 
 def passes_strict_rule(names):
     return len({STATE_MEDIA.get(f, f) for f in distinct_outlets(names)}) >= 3
+
+
+def passes_economy_rule(names):
+    """Economy: the strict rule, and at least one top-tier international newsroom among the outlets, so a story
+    that only one country's business press carries (an IPO calendar, a local fund) stays out."""
+    return passes_strict_rule(names) and any(outlet_family(n) in outlets.TIER1 for n in names)

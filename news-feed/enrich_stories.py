@@ -19,9 +19,9 @@ MODEL = os.environ.get("CLAUDE_MODEL", "claude-haiku-5-5")
 MAX_NEW = int(os.environ.get("ENRICH_MAX", "20"))  # cap API calls per run
 BUDGET_S = float(os.environ.get("ENRICH_BUDGET_S", "150"))   # no new Claude asks after this many seconds (job timeout is 8 min)
 PROMPT_V = 12                                        # bump to re-ask Claude for every cached war story
-ECONOMY_PROMPT_V = 14                                # the same for Economy (its own cache, so War is not re-asked)
+ECONOMY_PROMPT_V = 15                                # the same for Economy (its own cache, so War is not re-asked)
 MIN_GEO = int(os.environ.get("MIN_GEO", "7"))       # stories Claude scores below this (0-10) are dropped from the site
-MIN_ECON = int(os.environ.get("MIN_ECON", "6"))     # the same for Economy, on its "econ" score (one lower than War)
+MIN_ECON = int(os.environ.get("MIN_ECON", "7"))     # the same for Economy, on its "econ" score (big international news only)
 MAX_FETCHES = 6                                      # page reads per story, failed ones included (each can take 15 s)
 SECTIONS = ("war", "economy")
 UA = {"User-Agent": "Mozilla/5.0 (WarEvents enrich bot)"}
@@ -75,7 +75,7 @@ ECONOMY_JSON = """Return ONLY a JSON object, no prose, with:
 - "summary": 50 to 100 plain words in one or two short paragraphs separated by a blank line: what happened, who is affected, and the market impact, in your own words. Neutral and factual, no speculation beyond the reporting.
 - "points": always an empty list [].
 - "impact_points": exactly 2 sentences on who is affected and how. Each begins with the main country, group, company or sector affected, then what happens to it. Plain English, max 20 words each, grounded in the reporting.
-- "econ": integer 0-10, how important this is as international economy and business news: something people in economics and business around the world care about. 8-10 = global or cross-border: the major central banks (Fed, ECB, Bank of Japan, People's Bank of China, Bank of England), global markets, oil and commodity prices, trade and tariffs between countries, G7, G20, IMF, World Bank or OECD decisions, studies and data covering many countries, the world's largest companies, and big cross-border deals or failures. 5-7 = one major economy's national data or policy with clear effects on markets or other countries (US jobs report, China's growth figures, a big EU rule). 0-4 = news that matters mainly inside one country (a national jobs scheme, a local tax, one city's housing, a small company) with no market or international effect; technology, science or space news with no market angle; product launches and reviews; stock tips and price targets; personal finance advice; lifestyle and personal stories; sport and celebrity; politics or war with no economic angle. Judge the substance, not the keywords: a company or a big number in the headline does not make it economy news, and a national story scores 6 or more only when markets or other countries are clearly affected.
+- "econ": integer 0-10, how important this is as international economy and business news: something people in economics and business around the world care about. 8-10 = global or cross-border: the major central banks (Fed, ECB, Bank of Japan, People's Bank of China, Bank of England), global markets, oil and commodity prices, trade and tariffs between countries, G7, G20, IMF, World Bank or OECD decisions, studies and data covering many countries, the world's largest companies (including one country's government or regulator acting against a global company, such as a big fine on Meta, Apple or Google), and big cross-border deals or failures. 5-7 = one major economy's national data or policy with clear effects on markets or other countries (US jobs report, China's growth figures, a big EU rule). 0-4 = news that matters mainly inside one country (a national jobs scheme, a local tax, one city's housing, a small company, one country's IPO calendar or fund launches) with no market or international effect; technology, science or space news with no market angle; product launches and reviews; stock tips and price targets; personal finance advice; lifestyle and personal stories; sport and celebrity; politics or war with no economic angle. Judge the substance, not the keywords: a company or a big number in the headline does not make it economy news, and a national story scores 6 or more only when markets or other countries are clearly affected.
 - "country": the ISO 3166-1 alpha-2 uppercase code of the country the story is mainly about. When no place is given, use the country of the institution, company, regulator or market named (Federal Reserve -> US, University of Cambridge -> GB). Use "EU" for EU institutions as a bloc.
 - "actors": the economic impact of THIS story on each country, worked out from what the articles actually say.
   Step 1, WHO: every country directly involved (the country whose institution, company or market acts, the countries trading, taxed, sanctioned or lending), then any country the articles say is clearly affected. At least 1; max 6; most affected first. Use the country, not a group.
@@ -142,6 +142,11 @@ def article_text(url):
 
 def user_message(story, texts):
     parts = []
+    if story.get("kind") == "study":
+        src = (story.get("outlets") or ["an institution"])[0]
+        parts.append("This is a study published by %s, not a news report. Write the summary about the study: who "
+                     "published it, what it found, and on what evidence (data, countries, period). The impact "
+                     "lines describe who the findings concern." % src)
     for outlet, text in texts:
         parts.append("Article from %s:\n%s" % (outlet, text))
     heads = [html.unescape(c.get("h", "")) for c in story.get("coverage", []) if c.get("h")]

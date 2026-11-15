@@ -19,15 +19,17 @@ from email.utils import parsedate_to_datetime
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
-from gazetteer import PLACES, article_place, country_of, institution_place, locate  # noqa: E402
+from gazetteer import PLACES, article_place, country_of, institution_place, locate, place_for_iso2  # noqa: E402
 import outlets as ranking  # noqa: E402  (outlet tiers + per-outlet caps)
-from sourcing import passes_strict_rule  # noqa: E402  (at least 3 different outlets, sister brands merged)
+from sourcing import passes_economy_rule  # noqa: E402  (3 different outlets, one of them top tier; sister brands merged)
 import usage  # noqa: E402  (prints this run's Claude token use and cost to the log)
 
 ROOT = os.path.dirname(HERE)
 OUTPUT = os.environ.get("OUTPUT_PATH") or os.path.join(ROOT, "economy_developments.json")
 STORE = os.path.join(HERE, "economy_seen.json")
 RELEVANCE = os.path.join(HERE, "economy_relevance.json")   # Haiku's cached yes/no per headline key
+STUDY_STORE = os.path.join(HERE, "economy_studies.json")    # study items seen in the last STUDY_DAYS
+STUDY_CHECK = os.path.join(HERE, "economy_study_check.json")   # Haiku's cached "is this a study?" per title
 REMOVE = os.path.join(HERE, "remove.txt")
 
 # ---- tuning ----
@@ -37,7 +39,7 @@ STORE_HOURS = 72       # how long fetched articles are remembered
 MAX_STORIES = 30       # auto stories written to the feed (homepage shows the newest 10)
 NEW_HOURS = 3          # "NEW" pill for stories younger than this
 FRESH_HALF_LIFE = 18   # hours: how fast an older story gives up its place to newer ones
-MIN_SCORE = 6          # outlet credit (tier 1 = 4, tier 2 = 3, tier 3 = 1.5 each), +2 if a major outlet, +topic strength (max 4); the outlet rule (sourcing.passes_strict_rule) is applied as well
+MIN_SCORE = 6          # outlet credit (tier 1 = 4, tier 2 = 3, tier 3 = 1.5 each), +2 if a major outlet, +topic strength (max 4); the outlet rule (sourcing.passes_economy_rule) is applied as well
 USE_COVERS = os.environ.get("USE_COVERS", "0") == "1"   # outlets' photos are off: only our own map, flags and emblems are shown
 NEWSAPI_KEY = os.environ.get("NEWSAPI_KEY", "").strip()
 GNEWS_KEY = os.environ.get("GNEWS_KEY", "").strip()
@@ -88,7 +90,6 @@ RSS_FEEDS = [
     ("City AM", "https://www.cityam.com/feed/"),
     ("The Globe and Mail", "https://www.theglobeandmail.com/arc/outboundfeeds/rss/category/business/"),
     ("Australian Financial Review", "https://www.afr.com/rss/feed.xml"),
-    ("The Economic Times", "https://economictimes.indiatimes.com/rssfeedsdefault.cms"),
     ("The Business Times", "https://www.businesstimes.com.sg/rss/top-stories"),
     ("The National", "https://www.thenationalnews.com/arc/outboundfeeds/rss/category/business/?outputType=xml"),
     ("The Bell", "https://en.thebell.io/rss/"),                  # Russia's independent business newsroom
@@ -108,10 +109,8 @@ RSS_FEEDS = [
     ("Yahoo Finance", GN.format("finance.yahoo.com")),
     ("CNN", GN.format("cnn.com")),
     ("Financial Post", GN.format("financialpost.com")),
-    ("Business Standard", GN.format("business-standard.com")),
     ("Caixin Global", GN.format("caixinglobal.com")),
     ("BusinessLIVE", GN.format("businesslive.co.za")),
-    ("Mint", GN.format("livemint.com")),
     ("The Telegraph", GN.format("telegraph.co.uk")),
     # the major economies' own newsrooms in English: China, Japan, South Korea, Russia, India, Taiwan, Canada,
     # Australia, the Gulf, Turkey, Indonesia. State media of one government count once (sourcing.STATE_MEDIA).
@@ -124,8 +123,6 @@ RSS_FEEDS = [
     ("The Korea Herald", GN.format("koreaherald.com")),
     ("The Moscow Times", GN.format("themoscowtimes.com")),
     ("TASS", GN.format("tass.com")),
-    ("The Hindu BusinessLine", GN.format("thehindubusinessline.com")),
-    ("Moneycontrol", GN.format("moneycontrol.com")),
     ("Focus Taiwan", GN.format("focustaiwan.tw")),
     ("Taipei Times", GN.format("taipeitimes.com")),
     ("CBC News", GN.format("cbc.ca")),
@@ -144,12 +141,10 @@ OUTLETS = {
     "finance.yahoo.com": "Yahoo Finance", "axios.com": "Axios", "foxbusiness.com": "Fox Business",
     "telegraph.co.uk": "The Telegraph", "cityam.com": "City AM", "financialpost.com": "Financial Post",
     "theglobeandmail.com": "The Globe and Mail", "afr.com": "Australian Financial Review",
-    "economictimes.indiatimes.com": "The Economic Times", "livemint.com": "Mint",
-    "business-standard.com": "Business Standard", "caixinglobal.com": "Caixin Global",
+    "caixinglobal.com": "Caixin Global",
     "businesstimes.com.sg": "The Business Times", "businesslive.co.za": "BusinessLIVE",
     "chinadaily.com.cn": "China Daily", "english.news.cn": "Xinhua", "english.kyodonews.net": "Kyodo News",
     "www3.nhk.or.jp": "NHK World", "koreaherald.com": "The Korea Herald", "tass.com": "TASS",
-    "thehindubusinessline.com": "The Hindu BusinessLine", "moneycontrol.com": "Moneycontrol",
     "focustaiwan.tw": "Focus Taiwan", "taipeitimes.com": "Taipei Times", "cbc.ca": "CBC News",
     "bnnbloomberg.ca": "BNN Bloomberg", "abc.net.au": "ABC News (Australia)", "thejakartapost.com": "The Jakarta Post",
     "thebell.io": "The Bell", "digitimes.com": "DigiTimes Asia",
@@ -163,7 +158,7 @@ OUTLETS = {
     "arabnews.com": "Arab News", "thenationalnews.com": "The National",
     "aawsat.com": "Asharq Al-Awsat", "middleeasteye.net": "Middle East Eye", "timesofisrael.com": "Times of Israel",
     "al-monitor.com": "Al-Monitor", "dailysabah.com": "Daily Sabah", "yna.co.kr": "Yonhap", "nknews.org": "NK News",
-    "japantimes.co.jp": "Japan Times", "thediplomat.com": "The Diplomat", "dawn.com": "Dawn", "thehindu.com": "The Hindu",
+    "japantimes.co.jp": "Japan Times", "thediplomat.com": "The Diplomat", 
     "rfi.fr": "RFI Africa", "lemonde.fr": "Le Monde", "africanews.com": "Africanews", "kyivindependent.com": "Kyiv Independent",
     "news.sky.com": "Sky News", "meduza.io": "Meduza", "themoscowtimes.com": "The Moscow Times",
     "pravda.com.ua": "Ukrainska Pravda", "iranintl.com": "Iran International", "newarab.com": "The New Arab",
@@ -634,6 +629,10 @@ def qualify(a, now):
     url = (a.get("url") or "").strip()
     if len(title) < 15 or not url.startswith("http") or EXCLUDE_RX.search(title):
         return None
+    host = urllib.parse.urlparse(url).hostname or ""
+    outlet = a.get("outlet") or outlet_for(url)
+    if outlet in DROPPED_OUTLETS or host.endswith(DROPPED_TLDS) or any(d in host for d in ("indiatimes.", "livemint.", "moneycontrol.", "dawn.com", "thehindu", "business-standard.", "tribune.com.pk")):
+        return None
     t = a.get("time") or now
     if (t.hour, t.minute, t.second) == (0, 0, 0) and now - t < timedelta(hours=24):
         t = now   # date-only feed time (e.g. Al Jazeera live blogs): use when we first saw it, not midnight
@@ -659,7 +658,9 @@ TOPIC_DEFINITION = (
     "prices, jobs, wages and unemployment, GDP, growth and recessions, company earnings, deals and other big corporate "
     "news, trade and tariffs, housing markets, personal finance policy (taxes, pensions, benefits, debt), and energy "
     "and commodity prices. "
-    "NOT: stock tips, price targets or 'stocks to buy' advice, product deals, reviews or launches, sport (including "
+    "Big international news only. NOT: routine market news of one country (IPO calendars, fund launches, local "
+    "listings, one country's daily market report), national schemes that matter mainly inside one country, "
+    "stock tips, price targets or 'stocks to buy' advice, product deals, reviews or launches, sport (including "
     "club finances and transfers), celebrity news, local crime, or war and politics without a clear economic angle.")
 
 
@@ -892,7 +893,7 @@ def removed(s, rules):
 
 def keep(stories, rules):
     """The story filter: score, the strict outlet rule (3+ different outlets, sister brands merged) and remove.txt."""
-    return [s for s in stories if s["score"] >= MIN_SCORE and passes_strict_rule(s["outlets"])
+    return [s for s in stories if s["score"] >= MIN_SCORE and passes_economy_rule(s["outlets"])
             and not (rules and removed(s, rules))]
 
 
@@ -918,6 +919,142 @@ def write_if_changed(path, data):
 
 
 # ---------------- main ----------------
+# Outlets taken off the list: their saved articles are dropped too, so they leave stories at once.
+DROPPED_OUTLETS = {"Mint", "Moneycontrol", "The Economic Times", "Business Standard", "The Hindu BusinessLine",
+                   "The Hindu", "Dawn", "NDTV", "Hindustan Times", "The Express Tribune", "Business Recorder", "Geo News"}
+# No Indian or Pakistani outlets in Economy: any .in or .pk site a search turns up is left out as well.
+DROPPED_TLDS = (".in", ".pk")
+
+
+# ---------------- studies ----------------
+# Research and reports straight from the institutions, shown in Economy marked "Study". Each is one publication,
+# so studies skip the 3-outlet rule; instead an AI check keeps only real studies with findings, and the summary
+# step's 0-10 economy score (enrich_stories.py) still applies. Pinned where the study is about, else at the
+# institution's home.
+STUDY_DAYS = 7          # a study stays this long
+MAX_STUDIES = 5         # studies shown at once, newest first, alongside the news stories
+STUDY_GN = ("https://news.google.com/rss/search?q=site:{}+(report+OR+study+OR+outlook+OR+survey+OR+%22working+paper%22"
+            "+OR+analysis)+when:7d&hl=en-US&gl=US&ceid=US:en")
+STUDY_SOURCES = [   # (name, feed, home country)
+    ("IMF", STUDY_GN.format("imf.org"), "US"),               # its own feeds are blocked
+    ("World Bank", STUDY_GN.format("worldbank.org"), "US"),
+    ("OECD", STUDY_GN.format("oecd.org"), "FR"),
+    ("ILO", STUDY_GN.format("ilo.org"), "CH"),
+    ("UNCTAD", STUDY_GN.format("unctad.org"), "CH"),
+    ("PIIE", STUDY_GN.format("piie.com"), "US"),
+    ("BIS", "https://www.bis.org/doclist/wppubls.rss", "CH"),
+    ("ECB", "https://www.ecb.europa.eu/rss/pub.html", "EU"),
+    ("Federal Reserve", "https://www.federalreserve.gov/feeds/ifdp.xml", "US"),        # international finance papers
+    ("Federal Reserve", "https://www.federalreserve.gov/feeds/feds_notes.xml", "US"),
+    ("NBER", "https://www.nber.org/rss/new.xml", "US"),
+    ("WTO", "https://www.wto.org/library/rss/latest_news_e.xml", "CH"),
+    ("CEPR (VoxEU)", "https://cepr.org/rss/vox-content", "GB"),
+]
+STUDY_HOME = {n: h for n, _, h in STUDY_SOURCES}
+STUDY_DEFINITION = (
+    "a published research study, report, outlook, survey or working paper with findings about the economy, markets, "
+    "trade, jobs, prices, finance or development, especially one covering many countries or the world economy. "
+    "NOT: press releases about meetings, staff visits, appointments, speeches, conferences or events, statistics or "
+    "database pages, country programme or project documents, job adverts, or old documents.")
+
+
+def qualify_study(a, now):
+    title = SUFFIX_RX.sub("", clean(a.get("title")))
+    url = (a.get("url") or "").strip()
+    if len(title) < 15 or not url.startswith("http") or EXCLUDE_RX.search(title):
+        return None
+    t = a.get("time") or now   # undated feeds (the Fed, NBER): when first seen
+    if t > now + timedelta(minutes=10):
+        t = now
+    if now - t > timedelta(days=STUDY_DAYS):
+        return None
+    return {"key": url_key(url), "url": url, "title": title, "outlet": a.get("outlet") or outlet_for(url),
+            "time": iso(t), "desc": clean(a.get("desc"))[:600]}
+
+
+def build_study(q, now):
+    # The headline decides the pin; an abstract lists countries in passing, so it is not used.
+    place = locate(q["title"]) or place_for_iso2(STUDY_HOME.get(q["outlet"], "US"))
+    t = parse_time(q["time"]) or now
+    readable = "news.google.com" not in q["url"]
+    return {
+        "id": "study-" + hashlib.sha1(q["key"].encode()).hexdigest()[:12],
+        "auto": True, "kind": "study",
+        "headline": html.escape(q["title"], quote=False),
+        "body": "<b>Reported by:</b> " + html.escape(q["outlet"]) + ".",   # the app credits it as a study
+        "place": place["label"], "cat": place["cat"], "lat": place["lat"], "lon": place["lon"],
+        "time": iso(t), "isNew": now - t < timedelta(hours=NEW_HOURS),
+        "sourceUrl": q["url"], "sourceLabel": "Source",
+        "textUrls": [q["url"]] if readable else [],
+        "outlets": [q["outlet"]],
+        "coverage": [dict({"o": q["outlet"], "t": q["time"], "h": q["title"]}, **({"u": q["url"]} if readable else {}))],
+        "topics": ["study"], "score": 0,
+    }
+
+
+def pick_studies(studies):
+    return sorted(studies, key=lambda s: s["time"], reverse=True)[:MAX_STUDIES]
+
+
+def ai_is_study(items, cache):
+    """Haiku yes/no, cached per title: is this a real study with findings? Without a key nothing is asked and
+    nothing is shown (an unchecked item could be a press release)."""
+    new = [q for q in items if relevance_key(q["title"]) not in cache]
+    if new and ANTHROPIC_KEY:
+        for start in range(0, len(new), 60):
+            batch = new[start:start + 60]
+            lst = "\n".join(f"{n}. {q['title']} ({q['outlet']})" for n, q in enumerate(batch))
+            prompt = (f"An economics page lists studies: {STUDY_DEFINITION}\n\nWhich of these items are such studies?\n{lst}\n\n"
+                      "Return ONLY a JSON array of the numbers that are, e.g. [0, 3]. Return [] if none.")
+            try:
+                body = json.dumps({"model": MODEL, "max_tokens": 400,
+                                   "thinking": {"type": "disabled"}, "output_config": {"effort": "low"},
+                                   "messages": [{"role": "user", "content": prompt}]}).encode()
+                req = urllib.request.Request("https://api.anthropic.com/v1/messages", data=body, headers={
+                    "x-api-key": ANTHROPIC_KEY, "anthropic-version": "2023-06-01", "content-type": "application/json"})
+                with urllib.request.urlopen(req, timeout=90) as r:
+                    out = json.loads(r.read())
+                    usage.record(out)
+                txt = "".join(b.get("text", "") for b in out.get("content", []) if b.get("type") == "text")
+                m = re.search(r"\[[\d,\s]*\]", txt)
+                ok = set(json.loads(m.group(0))) if m else None
+            except Exception as ex:
+                log(f"  study check failed ({str(ex)[:60]}); asked again next run")
+                ok = None
+            if ok is None:
+                continue
+            for n, q in enumerate(batch):
+                cache[relevance_key(q["title"])] = n in ok
+        log(f"  study check: {sum(1 for q in new if cache.get(relevance_key(q['title'])))} of {len(new)} new items are studies")
+    return [q for q in items if cache.get(relevance_key(q["title"])) is True]
+
+
+def collect_studies(now):
+    store = {q["key"]: q for q in load_json(STUDY_STORE, []) if isinstance(q, dict) and "key" in q}
+    for name, url, _ in STUDY_SOURCES:
+        try:
+            items = from_rss(name, url)
+        except Exception as e:
+            log(f"  {name} (studies): FAILED ({e})")
+            continue
+        for a in items:
+            a["outlet"] = name
+            q = qualify_study(a, now)
+            if q and q["key"] not in store:
+                store[q["key"]] = q
+    after = now - timedelta(days=STUDY_DAYS)
+    kept = sorted((q for q in store.values() if (parse_time(q["time"]) or now) >= after), key=lambda q: q["time"], reverse=True)
+    write_if_changed(STUDY_STORE, kept)
+    cache = load_json(STUDY_CHECK, {})
+    if not isinstance(cache, dict):
+        cache = {}
+    studies = ai_is_study(kept, cache)
+    if len(cache) > 3000:
+        cache = dict(list(cache.items())[-2000:])
+    write_if_changed(STUDY_CHECK, cache)
+    return pick_studies([build_study(q, now) for q in studies])
+
+
 def main():
     now = now_utc()
     raw, reached = [], 0
@@ -964,8 +1101,8 @@ def main():
     for a in store.values():   # a place renamed in the gazetteer (accents added) keeps its stored articles
         if a.get("place") in PLACES:
             a["place"] = PLACES[a["place"]]["label"]
-    kept = [a for a in store.values()
-            if (a.get("place") == "" or a.get("place") in PLACES) and (parse_time(a.get("time")) or now) >= keep_after]
+    kept = [a for a in store.values() if a.get("outlet") not in DROPPED_OUTLETS
+            and (a.get("place") == "" or a.get("place") in PLACES) and (parse_time(a.get("time")) or now) >= keep_after]
     kept.sort(key=lambda a: a["time"], reverse=True)
     write_if_changed(STORE, kept)
 
@@ -986,6 +1123,12 @@ def main():
     stories = stories[:MAX_STORIES]
     for s in stories:
         del s["_keys"]
+    try:   # studies never block the news: any failure just leaves them out this run
+        studies = collect_studies(now)
+        log(f"  studies shown: {len(studies)}")
+        stories += studies
+    except Exception as e:
+        log(f"  studies: FAILED ({e})")
 
     existing = load_json(OUTPUT, [])
     manual = [p for p in existing if isinstance(p, dict) and not p.get("auto")] if isinstance(existing, list) else []

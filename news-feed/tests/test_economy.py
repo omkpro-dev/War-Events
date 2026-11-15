@@ -99,3 +99,18 @@ class EconomyTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class NoIndiaOrPakistanOutlets(unittest.TestCase):
+    def test_indian_and_pakistani_outlets_dropped(self):
+        now = e.now_utc()
+        for outlet, url in [("The Economic Times", "https://economictimes.indiatimes.com/x"), ("Dawn", "https://www.dawn.com/x"),
+                            ("Mint", "https://www.livemint.com/x"), ("Someone", "https://www.example.in/x"),
+                            ("Someone", "https://tribune.com.pk/x")]:
+            a = {"title": "Central bank raises interest rates to fight inflation", "url": url, "outlet": outlet, "time": now}
+            self.assertIsNone(e.qualify(a, now), outlet + " " + url)
+
+    def test_no_indian_or_pakistani_feeds(self):
+        names = {n for n, _ in e.RSS_FEEDS}
+        for n in ("The Economic Times", "Business Standard", "The Hindu BusinessLine", "Mint", "Moneycontrol", "Dawn"):
+            self.assertNotIn(n, names)

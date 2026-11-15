@@ -36,7 +36,7 @@ jobs:
           if git ls-remote --exit-code --heads origin economy-data >/dev/null 2>&1; then
             git fetch --depth=1 origin economy-data
             # One file at a time: a file missing on the branch must not stop the others being restored.
-            for f in economy_developments.json news-feed/economy_seen.json news-feed/economy_relevance.json news-feed/economy_enrich_cache.json; do
+            for f in economy_developments.json news-feed/economy_seen.json news-feed/economy_relevance.json news-feed/economy_enrich_cache.json news-feed/economy_studies.json news-feed/economy_study_check.json; do
               git checkout FETCH_HEAD -- "$f" 2>/dev/null || true
             done
             git reset -q
@@ -58,7 +58,7 @@ jobs:
       - name: Publish to economy-data branch (one commit, no history build-up)
         run: |
           mkdir -p /tmp/pub && cd "$GITHUB_WORKSPACE"
-          for f in economy_developments.json news-feed/economy_seen.json news-feed/economy_relevance.json news-feed/economy_enrich_cache.json; do
+          for f in economy_developments.json news-feed/economy_seen.json news-feed/economy_relevance.json news-feed/economy_enrich_cache.json news-feed/economy_studies.json news-feed/economy_study_check.json; do
             [ -f "$f" ] && mkdir -p "/tmp/pub/$(dirname "$f")" && cp "$f" "/tmp/pub/$f"
           done
           cd /tmp/pub
