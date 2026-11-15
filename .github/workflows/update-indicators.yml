@@ -54,3 +54,9 @@ jobs:
           git add -A
           git commit -q -m "indicators-data $(date -u +%FT%TZ)"
           git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" indicators-data
+      - name: Refresh the CDN copy (the app reads these files from jsDelivr first)
+        continue-on-error: true
+        run: |
+          for f in indicators.json; do
+            curl -s -m 20 --retry 2 "https://purge.jsdelivr.net/gh/${{ github.repository }}@indicators-data/$f" > /dev/null || true
+          done

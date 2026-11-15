@@ -49,3 +49,9 @@ jobs:
           git add -A
           git commit -q -m "monthly-data $(date -u +%FT%TZ)"
           git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" monthly-data
+      - name: Refresh the CDN copy (the app reads these files from jsDelivr first)
+        continue-on-error: true
+        run: |
+          for f in data/power.json; do
+            curl -s -m 20 --retry 2 "https://purge.jsdelivr.net/gh/${{ github.repository }}@monthly-data/$f" > /dev/null || true
+          done
