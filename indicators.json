@@ -1,0 +1,272 @@
+{
+ "updated": "2026-11-21T00:01:02Z",
+ "pulse": {
+  "verdict": "steady",
+  "from": null,
+  "position": 0.333,
+  "rows": {
+   "borrowing": "steady",
+   "recession": "none",
+   "jobs": "steady"
+  }
+ },
+ "pulseHistory": [
+  {
+   "date": "2026-11-15",
+   "verdict": "steady"
+  },
+  {
+   "date": "2026-11-16",
+   "verdict": "steady"
+  },
+  {
+   "date": "2026-11-17",
+   "verdict": "steady"
+  },
+  {
+   "date": "2026-11-18",
+   "verdict": "steady"
+  },
+  {
+   "date": "2026-11-19",
+   "verdict": "steady"
+  },
+  {
+   "date": "2026-11-20",
+   "verdict": "steady"
+  },
+  {
+   "date": "2026-11-21",
+   "verdict": "steady"
+  }
+ ],
+ "fedRate": {
+  "asOf": "2026-11-20",
+  "now": 4.0,
+  "next": [
+   {
+    "date": "2026-12-09",
+    "move": "hike"
+   },
+   {
+    "date": "2027-01-27",
+    "move": "hike"
+   }
+  ]
+ },
+ "cards": [
+  {
+   "id": "mortgages",
+   "asOf": "2026-11-20",
+   "cadence": "daily",
+   "value": 4.92,
+   "change": -0.12,
+   "low": 3.97,
+   "high": 5.31,
+   "position": 0.724,
+   "verdict": "easing",
+   "tone": "normal"
+  },
+  {
+   "id": "brent",
+   "asOf": "2026-11-17",
+   "cadence": "daily",
+   "value": 92.94,
+   "change": 0.04,
+   "low": 59.93,
+   "high": 138.21,
+   "position": 0.461,
+   "verdict": "steady",
+   "tone": "normal"
+  },
+  {
+   "id": "gas",
+   "asOf": "2026-11-17",
+   "cadence": "daily",
+   "value": 3.1,
+   "change": -0.1,
+   "low": 2.42,
+   "high": 30.72,
+   "position": 0.088,
+   "verdict": "steady",
+   "tone": "cool"
+  },
+  {
+   "id": "eurusd",
+   "asOf": "2026-11-20",
+   "cadence": "daily",
+   "value": 1.099,
+   "change": -0.0002,
+   "low": 1.0968,
+   "high": 1.1974,
+   "position": 0.0,
+   "verdict": "steady",
+   "tone": "cool"
+  },
+  {
+   "id": "claims",
+   "asOf": "2026-11-19",
+   "cadence": "weekly",
+   "value": 203000,
+   "change": 1000,
+   "low": 189000,
+   "high": 235000,
+   "position": 0.324,
+   "verdict": "steady",
+   "tone": "normal"
+  },
+  {
+   "id": "travellers",
+   "asOf": "2026-11-19",
+   "cadence": "daily",
+   "value": 2609107,
+   "change": 124762,
+   "low": 1313323,
+   "high": 2988204,
+   "position": 0.722,
+   "verdict": "steady",
+   "tone": "normal"
+  }
+ ],
+ "curve": {
+  "asOf": "2026-11-20",
+  "verdict": "normal",
+  "today": [
+   {
+    "m": "1m",
+    "y": 4.19
+   },
+   {
+    "m": "2m",
+    "y": 4.28
+   },
+   {
+    "m": "3m",
+    "y": 4.32
+   },
+   {
+    "m": "4m",
+    "y": 4.32
+   },
+   {
+    "m": "6m",
+    "y": 4.38
+   },
+   {
+    "m": "1y",
+    "y": 4.51
+   },
+   {
+    "m": "2y",
+    "y": 4.63
+   },
+   {
+    "m": "3y",
+    "y": 4.65
+   },
+   {
+    "m": "5y",
+    "y": 4.71
+   },
+   {
+    "m": "7y",
+    "y": 4.8
+   },
+   {
+    "m": "10y",
+    "y": 4.92
+   },
+   {
+    "m": "20y",
+    "y": 5.34
+   },
+   {
+    "m": "30y",
+    "y": 5.31
+   }
+  ],
+  "monthAgo": [
+   {
+    "m": "1m",
+    "y": 4.11
+   },
+   {
+    "m": "2m",
+    "y": 4.16
+   },
+   {
+    "m": "3m",
+    "y": 4.22
+   },
+   {
+    "m": "4m",
+    "y": 4.3
+   },
+   {
+    "m": "6m",
+    "y": 4.3
+   },
+   {
+    "m": "1y",
+    "y": 4.44
+   },
+   {
+    "m": "2y",
+    "y": 4.69
+   },
+   {
+    "m": "3y",
+    "y": 4.75
+   },
+   {
+    "m": "5y",
+    "y": 4.82
+   },
+   {
+    "m": "7y",
+    "y": 4.89
+   },
+   {
+    "m": "10y",
+    "y": 5.0
+   },
+   {
+    "m": "20y",
+    "y": 5.37
+   },
+   {
+    "m": "30y",
+    "y": 5.33
+   }
+  ]
+ },
+ "borrowing": {
+  "asOf": "2026-11-20",
+  "verdict": "steady",
+  "position": 0.47
+ },
+ "recession": {
+  "asOf": "2026-11-20",
+  "verdict": "none",
+  "spread": 0.6,
+  "position": 0.16
+ },
+ "comingUp": [
+  {
+   "date": "2026-11-26",
+   "event": "claims"
+  },
+  {
+   "date": "2026-12-09",
+   "event": "fed"
+  },
+  {
+   "date": "2026-12-17",
+   "event": "ecb"
+  },
+  {
+   "date": "2026-12-17",
+   "event": "boe"
+  }
+ ]
+}
