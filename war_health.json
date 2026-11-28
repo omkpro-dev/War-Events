@@ -1,0 +1,180 @@
+{
+ "at": "2026-11-28T13:16:34.763Z",
+ "stats": {
+  "fetched": 34,
+  "added": 0,
+  "total": 1779,
+  "claimsFound": 0,
+  "ms": 53306
+ },
+ "feeds": {
+  "bbc-world": {
+   "name": "BBC",
+   "ok": true,
+   "error": null,
+   "count": 24,
+   "at": "2026-11-28T13:15:41.554Z"
+  },
+  "guardian-world": {
+   "name": "The Guardian",
+   "ok": true,
+   "error": null,
+   "count": 45,
+   "at": "2026-11-28T13:15:41.632Z"
+  },
+  "aljazeera": {
+   "name": "Al Jazeera",
+   "ok": true,
+   "error": null,
+   "count": 25,
+   "at": "2026-11-28T13:15:41.705Z"
+  },
+  "mee": {
+   "name": "Middle East Eye",
+   "ok": true,
+   "error": null,
+   "count": 20,
+   "at": "2026-11-28T13:15:41.786Z"
+  },
+  "dw-world": {
+   "name": "DW",
+   "ok": true,
+   "error": null,
+   "count": 13,
+   "at": "2026-11-28T13:15:41.798Z"
+  },
+  "france24": {
+   "name": "France 24",
+   "ok": true,
+   "error": null,
+   "count": 24,
+   "at": "2026-11-28T13:15:41.803Z"
+  },
+  "kyiv-independent": {
+   "name": "Kyiv Independent",
+   "ok": true,
+   "error": null,
+   "count": 15,
+   "at": "2026-11-28T13:15:41.935Z"
+  },
+  "crisisgroup": {
+   "name": "Crisis Group",
+   "ok": true,
+   "error": null,
+   "count": 10,
+   "at": "2026-11-28T13:15:42.336Z"
+  },
+  "gn-syria": {
+   "name": "Google News",
+   "ok": false,
+   "error": "HTTP 503",
+   "count": 0,
+   "at": "2026-11-28T13:15:47.280Z"
+  },
+  "gn-sudan": {
+   "name": "Google News",
+   "ok": false,
+   "error": "HTTP 503",
+   "count": 0,
+   "at": "2026-11-28T13:15:49.506Z"
+  },
+  "gn-ukraine": {
+   "name": "Google News",
+   "ok": false,
+   "error": "HTTP 503",
+   "count": 0,
+   "at": "2026-11-28T13:15:50.140Z"
+  },
+  "gn-myanmar": {
+   "name": "Google News",
+   "ok": false,
+   "error": "HTTP 503",
+   "count": 0,
+   "at": "2026-11-28T13:15:51.023Z"
+  },
+  "gn-yemen": {
+   "name": "Google News",
+   "ok": false,
+   "error": "HTTP 503",
+   "count": 0,
+   "at": "2026-11-28T13:15:51.468Z"
+  },
+  "gn-israel": {
+   "name": "Google News",
+   "ok": false,
+   "error": "HTTP 503",
+   "count": 0,
+   "at": "2026-11-28T13:15:51.684Z"
+  },
+  "gn-drc": {
+   "name": "Google News",
+   "ok": false,
+   "error": "HTTP 503",
+   "count": 0,
+   "at": "2026-11-28T13:15:57.118Z"
+  },
+  "gn-sahel": {
+   "name": "Google News",
+   "ok": false,
+   "error": "HTTP 503",
+   "count": 0,
+   "at": "2026-11-28T13:15:57.472Z"
+  },
+  "gn-afpak": {
+   "name": "Google News",
+   "ok": false,
+   "error": "HTTP 503",
+   "count": 0,
+   "at": "2026-11-28T13:15:58.395Z"
+  },
+  "gn-somalia": {
+   "name": "Google News",
+   "ok": false,
+   "error": "HTTP 503",
+   "count": 0,
+   "at": "2026-11-28T13:15:58.591Z"
+  },
+  "gn-lakechad": {
+   "name": "Google News",
+   "ok": false,
+   "error": "HTTP 503",
+   "count": 0,
+   "at": "2026-11-28T13:15:59.182Z"
+  },
+  "gn-ethiopia": {
+   "name": "Google News",
+   "ok": false,
+   "error": "HTTP 503",
+   "count": 0,
+   "at": "2026-11-28T13:16:00.604Z"
+  },
+  "gn-iran": {
+   "name": "Google News",
+   "ok": false,
+   "error": "HTTP 503",
+   "count": 0,
+   "at": "2026-11-28T13:16:03.451Z"
+  },
+  "gdelt-yemen": {
+   "name": "GDELT",
+   "ok": false,
+   "error": "fetch failed",
+   "count": 0,
+   "at": "2026-11-28T13:16:13.946Z"
+  },
+  "gdelt-sudan": {
+   "name": "GDELT",
+   "ok": false,
+   "error": "GDELT 429: Please limit requests to one every 5 seconds or contact kalev.leetaru5@gmail.com",
+   "count": 0,
+   "at": "2026-11-28T13:16:24.434Z"
+  },
+  "gdelt-ukraine": {
+   "name": "GDELT",
+   "ok": false,
+   "error": "GDELT 429: Please limit requests to one every 5 seconds or contact kalev.leetaru5@gmail.com",
+   "count": 0,
+   "at": "2026-11-28T13:16:34.736Z"
+  }
+ }
+}
