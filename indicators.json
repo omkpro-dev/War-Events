@@ -1,0 +1,300 @@
+{
+ "updated": "2026-11-28T00:01:03Z",
+ "pulse": {
+  "verdict": "steady",
+  "from": null,
+  "position": 0.333,
+  "rows": {
+   "borrowing": "steady",
+   "recession": "none",
+   "jobs": "steady"
+  }
+ },
+ "pulseHistory": [
+  {
+   "date": "2026-11-15",
+   "verdict": "steady"
+  },
+  {
+   "date": "2026-11-16",
+   "verdict": "steady"
+  },
+  {
+   "date": "2026-11-17",
+   "verdict": "steady"
+  },
+  {
+   "date": "2026-11-18",
+   "verdict": "steady"
+  },
+  {
+   "date": "2026-11-19",
+   "verdict": "steady"
+  },
+  {
+   "date": "2026-11-20",
+   "verdict": "steady"
+  },
+  {
+   "date": "2026-11-21",
+   "verdict": "steady"
+  },
+  {
+   "date": "2026-11-22",
+   "verdict": "steady"
+  },
+  {
+   "date": "2026-11-23",
+   "verdict": "steady"
+  },
+  {
+   "date": "2026-11-24",
+   "verdict": "steady"
+  },
+  {
+   "date": "2026-11-25",
+   "verdict": "steady"
+  },
+  {
+   "date": "2026-11-26",
+   "verdict": "steady"
+  },
+  {
+   "date": "2026-11-27",
+   "verdict": "steady"
+  },
+  {
+   "date": "2026-11-28",
+   "verdict": "steady"
+  }
+ ],
+ "fedRate": {
+  "asOf": "2026-11-27",
+  "now": 4.0,
+  "next": [
+   {
+    "date": "2026-12-09",
+    "move": "hike"
+   },
+   {
+    "date": "2027-01-27",
+    "move": "hike"
+   }
+  ]
+ },
+ "cards": [
+  {
+   "id": "mortgages",
+   "asOf": "2026-11-27",
+   "cadence": "daily",
+   "value": 4.94,
+   "change": 0.09,
+   "low": 3.97,
+   "high": 5.31,
+   "position": 0.738,
+   "verdict": "edging_up",
+   "tone": "normal"
+  },
+  {
+   "id": "brent",
+   "asOf": "2026-11-24",
+   "cadence": "daily",
+   "value": 91.8,
+   "change": 0.6,
+   "low": 59.93,
+   "high": 138.21,
+   "position": 0.444,
+   "verdict": "steady",
+   "tone": "normal"
+  },
+  {
+   "id": "gas",
+   "asOf": "2026-11-24",
+   "cadence": "daily",
+   "value": 3.3,
+   "change": 0.02,
+   "low": 2.42,
+   "high": 30.72,
+   "position": 0.122,
+   "verdict": "steady",
+   "tone": "cool"
+  },
+  {
+   "id": "eurusd",
+   "asOf": "2026-11-27",
+   "cadence": "daily",
+   "value": 1.0957,
+   "change": -0.0018,
+   "low": 1.0935,
+   "high": 1.1974,
+   "position": 0.0,
+   "verdict": "steady",
+   "tone": "cool"
+  },
+  {
+   "id": "claims",
+   "asOf": "2026-11-26",
+   "cadence": "weekly",
+   "value": 189000,
+   "change": -13000,
+   "low": 189000,
+   "high": 235000,
+   "position": 0.0,
+   "verdict": "falling",
+   "tone": "cool"
+  },
+  {
+   "id": "travellers",
+   "asOf": "2026-11-26",
+   "cadence": "daily",
+   "value": 1394436,
+   "change": -1214671,
+   "low": 1313323,
+   "high": 2988204,
+   "position": 0.0,
+   "verdict": "falling",
+   "tone": "cool"
+  }
+ ],
+ "curve": {
+  "asOf": "2026-11-27",
+  "verdict": "normal",
+  "today": [
+   {
+    "m": "1m",
+    "y": 4.27
+   },
+   {
+    "m": "2m",
+    "y": 4.3
+   },
+   {
+    "m": "3m",
+    "y": 4.35
+   },
+   {
+    "m": "4m",
+    "y": 4.38
+   },
+   {
+    "m": "6m",
+    "y": 4.46
+   },
+   {
+    "m": "1y",
+    "y": 4.61
+   },
+   {
+    "m": "2y",
+    "y": 4.69
+   },
+   {
+    "m": "3y",
+    "y": 4.72
+   },
+   {
+    "m": "5y",
+    "y": 4.74
+   },
+   {
+    "m": "7y",
+    "y": 4.82
+   },
+   {
+    "m": "10y",
+    "y": 4.94
+   },
+   {
+    "m": "20y",
+    "y": 5.36
+   },
+   {
+    "m": "30y",
+    "y": 5.33
+   }
+  ],
+  "monthAgo": [
+   {
+    "m": "1m",
+    "y": 4.06
+   },
+   {
+    "m": "2m",
+    "y": 4.16
+   },
+   {
+    "m": "3m",
+    "y": 4.16
+   },
+   {
+    "m": "4m",
+    "y": 4.18
+   },
+   {
+    "m": "6m",
+    "y": 4.25
+   },
+   {
+    "m": "1y",
+    "y": 4.36
+   },
+   {
+    "m": "2y",
+    "y": 4.56
+   },
+   {
+    "m": "3y",
+    "y": 4.65
+   },
+   {
+    "m": "5y",
+    "y": 4.71
+   },
+   {
+    "m": "7y",
+    "y": 4.8
+   },
+   {
+    "m": "10y",
+    "y": 4.94
+   },
+   {
+    "m": "20y",
+    "y": 5.34
+   },
+   {
+    "m": "30y",
+    "y": 5.31
+   }
+  ]
+ },
+ "borrowing": {
+  "asOf": "2026-11-27",
+  "verdict": "steady",
+  "position": 0.455
+ },
+ "recession": {
+  "asOf": "2026-11-27",
+  "verdict": "none",
+  "spread": 0.59,
+  "position": 0.164
+ },
+ "comingUp": [
+  {
+   "date": "2026-12-03",
+   "event": "claims"
+  },
+  {
+   "date": "2026-12-09",
+   "event": "fed"
+  },
+  {
+   "date": "2026-12-17",
+   "event": "ecb"
+  },
+  {
+   "date": "2026-12-17",
+   "event": "boe"
+  }
+ ]
+}
